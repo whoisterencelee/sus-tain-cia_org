@@ -56,39 +56,38 @@
 	<div style="padding:0 1em 1em 1em;">
 		<style>.hpot {display:none;}
 		form {display:flex;flex-direction:column;align-items:center;}
-		form input {background:transparent;border:0px;padding:0;width:90vw;text-align:center;max-width:20em;margin-top:0.5em;font-family:Montserrat,san-serif;border-bottom:3px solid lightgrey;padding:0.5em;}
+		form input {background:transparent;border:0px;padding:0;width:90vw;max-width:21em;margin-top:0.5em;font-family:Montserrat,san-serif;border-bottom:3px solid lightgrey;padding:0.5em;}
 		form label {display:flex;flex-direction:column;margin:0 0 1em 0;align-items:center;text-align:center;width:100%;}
-		form label span {font-size:2em;color:grey;}
-		.step {font-size:1.5em;margin:1em 0 0 0;color:grey;}
+		form label span {color:grey;}
+		form label a {color:#0070c4;text-decoration:none;}
 		</style>
 
 		<form method="POST" action="https://formspree.io/sustaincia@gmail.com">
 		<div class="hpot"><label>Sustaincia Open Science Platform for Everyone<input name="_gotcha"></label></div>
 
-		<label><span>1</span>
+		<label>
 		<!--<input style="border-bottom:1px solid lightgrey;padding:0.5em;padding-left:0em;max-width:30em;font-size:1.2em;" placeholder="in just a few words" name="Description" required></input>-->
-		<textarea autofocus cols="30" rows="2" style="background:transparent;border:0;border-bottom:3px solid lightgrey;padding:0.5em;padding-left:0em;max-width:18.5em;font-family:Montserrat,san-serif;text-align:center;" placeholder="write a short description of what you're trying to achieve" name="Description" required></textarea>
+		<textarea autofocus cols="30" rows="2" style="background:transparent;border:0;border-bottom:3px solid lightgrey;padding:0.5em;padding-left:0em;max-width:19.5em;font-family:Montserrat,san-serif;text-align:center;" placeholder="1. write a short description of what you're trying to achieve" name="Description" required></textarea>
 		</label><br />
 
-		<label><span>2</span>
-		<input type="email" placeholder="give us a contact email" name="Contact Email" required></input>
+		<label>
+		<input type="email" placeholder="2. a contact email we can reach you at" name="Contact Email" required></input>
 		<span style="font-size:0.75em;">email address will not be shared publicly</span><br />
 		</label><br />
 
-		<label><span>3</span><br />
-		<input type="url" placeholder="provide image URL https://.../beach.jpg" name="image url" required></input>
-		<span style="font-size:0.75em;">make sure the image can be use for public, try images from <a href="https://commons.wikimedia.org/wiki/Category:Images">wikimedia</a> or <a href="https://www.si.edu/openaccess">smithsonian</a></span><br />
+		<label>
+		<input type="url" placeholder="3. provide image URL https://.../beach.jpg" name="image url" required></input>
+		<span style="font-size:0.75em;">please make sure the image can be use for public<br />try images from <a href="https://commons.wikimedia.org/wiki/Category:Images">wikimedia</a> or <a href="https://www.si.edu/openaccess">smithsonian</a></span><br />
 		</label><br />
 		<!--<input type="file" accept="image/*" name="image" required></input>
 		</label><br />-->
 
-		<span class="step">optional</span>
 		<label>
-		<input placeholder="what is needed now? $$$?" name="What They Need"></input>
+		<input placeholder="optional - what is needed now? $$$?" name="What They Need"></input>
 		</label><br />
 
 		<label>
-		<input placeholder="any certificates?" name="Certification"></input>
+		<input placeholder="optional - any certificates?" name="Certification"></input>
 		</label><br />
 
 		<input style="background:#0070c4;color:white;margin:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="submit"></input>
