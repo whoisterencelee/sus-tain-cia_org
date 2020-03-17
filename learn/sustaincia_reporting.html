@@ -30,7 +30,8 @@
 	</style>
 
 	<!-- header -->
-	<div style="background:#0070c4;font-size:2em;padding:0.5em 0;color:white;text-align:center;width:100%;">Sustaincia Reporting</div>
+	<div style="background:#0070c4;padding:0.35em 0;color:white;text-align:center;width:100%;">sustaincia reporting</div>
+	<!-- padding need the second 0 otherwise the horizontal scroll appears -->
 
 	<style>
 	.pulldown:focus-within > #report {display:flex;}
@@ -40,8 +41,9 @@
 	<div class="pulldown" style="align-items:center;width:100%;">
 
 		<style>.hpot {display:none;}
-		form {display:flex;flex-direction:column;align-items:center;font-family:arial;}
-		form input {background:transparent;border:0px;padding:0;width:90vw;max-width:20em;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
+		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
+		form textarea {background:transparent;border:0;margin:0;border-bottom:3px dotted lightgrey;padding:0.5em;font-family:Arial;width:100%;}
+		form input {background:transparent;border:0px;padding:0;width:100%;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
 		form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;}
 		form label span {color:grey;}
 		form label a {color:#0070c4;text-decoration:none;}
@@ -56,19 +58,25 @@
 			</label></div>
 
 			<label>
-			<textarea autofocus required cols="30" rows="4" style="background:transparent;border:0;border-bottom:3px dotted lightgrey;padding:0.5em;font-family:Arial;" placeholder="enter your report here&#x0a;for *bold* text&#x0a;for image [[http://../imagelink]]&#x0a;for link [[https://..][link text]]" name="report" required></textarea>
-			</label><br />
-
-			<label>
-			<input style="text-align:right;" placeholder="offering $$$ - optional" name="offer"></input>
+			<textarea tabindex="1" autofocus required cols="30" rows="4" placeholder="enter your report here&#x0a;for *bold* text&#x0a;for image [[http://../imagelink]]&#x0a;for link [[https://..][link text]]" name="report" required></textarea>
 			</label>
 
-			<input style="background:#4eadb8;color:white;margin:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="submit"></input>
+			<label>
+			<input style="text-align:right;" placeholder="offering - optional" name="offer"></input>
+			</label>
+
+			<label>
+			<input required style="text-align:right;" placeholder="post as" name="by"></input>
+			</label>
+
+			<div tabindex="-1" style="outline:0;height:1em;width:100%;"></div>
+
+			<input style="background:#4eadb8;color:white;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="submit"></input>
 
 		</form>
 
 		<!-- down arrow -->
-		<div class="unselectable" tabindex="1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;">
+		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;">
 			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;">+</div>
 		</div>
 	</div>
@@ -76,7 +84,7 @@
 	<style>
 	#list > div {flex-direction:row;}
 	#list p:first-child {font-size:1.5em;}
-	#list img {margin:0 1em 0 0;float:left;height:30vh;max-width:90vw;}
+	#list img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
 	/* #list p:first-child > img {height:40vh;} */
 	#list > p {padding-bottom:0.5em;margin:0.5em 0;border-bottom:1px solid lightgrey;color:grey;}
 	#list b {color:black;}
