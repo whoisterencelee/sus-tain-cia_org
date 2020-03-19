@@ -27,15 +27,24 @@
 	</style>
 
 	<!-- header -->
-	<div style="background:#0070c4;padding:0.35em 0;color:white;text-align:center;width:100%;">sustaincia reporting</div>
-	<!-- padding need the second 0 otherwise the horizontal scroll appears -->
+	<style>
+	#header a {color:white;text-decoration:none;}
+	.bell {color: transparent;text-shadow: 0 0 0 white;}
+	</style>
+	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;">
+		<div id="header" style="margin:0.35em 1em;display:block;min-height:1em;"></div>
+		<div class="bell" style="margin:0.35em 1em;">🔔</div>
+	</div>
+	<script>
+	function header(){let path = "";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/\/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p+' </a>' } ).join( "/" )}
+	window.onload = header
+	</script>
 
+	<!-- pull down tab -->
 	<style>
 	.pulldown:focus-within > #report {display:flex;}
 	.pulldown:focus-within > #preview {display:flex;}
 	</style>
-
-	<!-- pull down tab -->
 	<div class="pulldown" style="align-items:center;width:100%;">
 
 		<style>.hpot {display:none;}
