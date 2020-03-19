@@ -28,12 +28,13 @@
 
 	<!-- header -->
 	<style>
+	#header {opacity:0.5;}
 	#header a {color:white;text-decoration:none;}
-	.bell {color: transparent;text-shadow: 0 0 0 white;}
+	.megaphone {color: transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-between;">
-		<div id="header" style="margin:0.35em 1em;display:block;min-height:1em;"></div>
-		<div class="bell" style="margin:0.35em 1em;">🔔</div>
+		<div id="header" style="margin:0.35em 1em;display:block;"><a href="https://sustaincia.org">sustaincia</a></div>
+		<div class="megaphone" style="margin:0.35em 1em;">subscribe</div>
 	</div>
 	<script>
 	function header(){let path = "";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/\/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p+' </a>' } ).join( "/" )}
@@ -84,7 +85,7 @@
 
 		<!-- down arrow -->
 		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;">
-			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;">+</div>
+			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
 		</div>
 	
 		<div id="preview" class="hide">
