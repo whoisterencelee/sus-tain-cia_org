@@ -37,7 +37,7 @@
 		<div class="megaphone" style="margin:0.35em 1em;">subscribe</div>
 	</div>
 	<script>
-	function header(){let path = "";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/\/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p+' </a>' } ).join( "/" )}
+	function header(){let path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').replace(/\/$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p+' </a>' } ).join( "/" )}
 	window.onload = header
 	</script>
 
@@ -60,7 +60,6 @@
 		<form id="report" class="hide" method="POST" action="https://functional.limited/forms">
 
 			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
-				<input name="_url" value="https://sustaincia.org/learn/sustaincia_reporting.html">
 				<input name="_next" value="https://sustaincia.org/complete.html">
 				<input name="_gotcha">
 			</label></div>
