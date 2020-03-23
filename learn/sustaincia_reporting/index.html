@@ -19,6 +19,7 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
+	<script>$=(i=>document.getElementById(i))</script>
 
 	<style>
 	div {display:flex;flex-direction:column;flex-wrap:wrap;}
@@ -30,12 +31,13 @@
 	<style>
 	#header {opacity:0.5;}
 	#header a {color:white;text-decoration:none;}
-	.megaphone {color: transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
+	.megaphone {color:transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
 		<div id="header" style="margin:0.35em 1em;display:block;"><a href="https://sustaincia.org">sustaincia</a></div>
 		<div class="megaphone" style="margin:0.35em 1em;">subscribe</div>
 	</div>
+
 	<script>
 	function header(){let path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').replace(/\/$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p+' </a>' } ).join( "/" )}
 	window.onload = header
@@ -60,7 +62,7 @@
 		<form id="report" class="hide" method="POST" action="https://functional.limited/forms">
 
 			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
-				<input name="_next" value="https://sustaincia.org/complete.html">
+				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting?success">
 				<input name="_gotcha">
 			</label></div>
 
@@ -93,7 +95,17 @@
 		
 	</div>
 
-	<script>$=(id=>document.getElementById(id));function org2html(orgmode){return"<p>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</p>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
+	<script>function org2html(orgmode){return"<p>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</p>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
+
+	<!-- successful submission -->
+	<div id="success" class="hide" style="text-align:center;background:#4eadb8;color:white;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;">
+	Thank you for your submission<br /> we will review and post it asap<br />
+	in the meantime<br />take a look at our community identity living document
+	</div>
+
+	<script>
+	if( /success/.test( location.search.toLowerCase() ) )$('success').style.display="flex"
+	</script>
 
 	<style>
 	/*.list p:first-child {font-size:1.5em;}*/
