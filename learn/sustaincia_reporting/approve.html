@@ -29,7 +29,6 @@
 
 
 	<!-- header -->
-	<!-- TODO use header to authenicate this page -->
 	<style>
 	#header a {color:white;text-decoration:none;}
 	.megaphone {color:transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
@@ -44,12 +43,7 @@
 	</script>
 
 
-	<!-- pull down tab -->
-	<style>
-	.pulldown:focus-within > #report {display:flex;}
-	.pulldown:focus-within > #preview {display:flex;}
-	</style>
-	<div class="pulldown" style="align-items:center;width:100%;">
+	<div style="align-items:center;width:100%;">
 
 		<style>.hpot {display:none;}
 		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;color:grey;}
@@ -61,6 +55,13 @@
 		.info {border:none;}
 		</style>
 
+		<style>
+		.list img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
+		.list > p {padding-bottom:0.5em;margin:0.25em 0;color:grey;}
+		.list b {color:black;}
+		.list a {color:grey;}
+		</style>
+
 		<div id="preview">
 			<div id="render" class="list" style="padding:0 1em;"></div>
 		</div>
@@ -69,15 +70,15 @@
 		<form id="report" method="POST" action="https://functional.limited/forms">
 
 			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
-				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting?success">
+				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting/approve.html?success">
 				<input name="_gotcha">
 			</label></div>
+
 
 			<label>
 			<textarea id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD REPORT HERE syntax:&#x0a;*bold text*&#x0a;[[https://../image url]]&#x0a;[[https://..][link]]" required name="content" style="max-height:75vh;"></textarea>
 			</label>
-
-		<script>function org2html(orgmode){return"<p>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</p>"}let render=()=>{$("render").innerHTML=org2html($("editor").value);$("editor").style.height="auto";$("editor").style.height=$("editor").scrollHeight+"px"};$("editor").onkeyup=render;render();</script>
+			<script>function org2html(orgmode){return"<p>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</p>"}let render=()=>{$("render").innerHTML=org2html($("editor").value);$("editor").style.height="auto";$("editor").style.height=$("editor").scrollHeight+"px"};$("editor").onkeyup=render;render();</script>
 
 
 			<p style="font-size:0.8em;color:grey;margin:0.5em;">
@@ -88,7 +89,7 @@
 
 			<label style="flex-direction:row;justify-content:end;">
 			<div style="color:grey;">checked</div>
-			<input tabindex="1" required style="width:auto;" type="checkbox" name="codecheck"></input>
+			<input tabindex="1" required style="width:auto;" type="checkbox" name="checked"></input>
 			</label>
 
 			<label style="flex-flow:row nowrap;">from
@@ -103,7 +104,7 @@
 
 			<label>relevance
 			<div style="flex-flow:row nowrap;">today only
-			<input name="relevance" tabindex="1" style="padding:0;" type="range" min="1" max="365" value="1"></input>
+			<input tabindex="1" style="padding:0;" type="range" min="1" max="365" value="1" name="relevance"></input>
 			for a year
 			</div>
 			</label>
@@ -111,7 +112,7 @@
 			<div tabindex="-1" style="outline:0;height:2em;width:100%;"></div><!-- focusable spacing -->
 
 			<label>
-			<input required placeholder="signature" tabindex="1" type="password" name="signature" style="text-align:right;"></ input>
+			<input required placeholder="signature" tabindex="1" type="password" style="text-align:right;" name="signature"></input>
 			</label>
 
 			<input tabindex="4" style="margin:1em;background:#ffb06a;color:black;border:0;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="approve"></input>
@@ -130,15 +131,6 @@
 	<script>
 	if( /success/.test( location.search.toLowerCase() ) )$('success').style.display="flex"
 	</script>
-
-	<style>
-	/*.list p:first-child {font-size:1.5em;}*/
-	.list img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
-	/* .list p:first-child > img {height:40vh;} */
-	.list > p {padding-bottom:0.5em;margin:0.25em 0;color:grey;}
-	.list b {color:black;}
-	.list a {color:grey;}
-	</style>
 
 	</div><!-- padding -->
 
