@@ -15,7 +15,7 @@
 
 </head>
 
-<body style="font-family:Roboto,san-serif;margin:0;display:flex;flex-direction:column;align-items:center;">
+<body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;">
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
@@ -37,10 +37,8 @@
 		<div id="header" style="margin:0.35em 1em;display:block;"><a href="https://sustaincia.org">sustaincia</a></div>
 		<div class="megaphone" style="margin:0.35em 1em;">subscribe</div>
 	</div>
-
 	<script>
-	function header(){let path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').replace(/\/$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p+' </a>' } ).join( "/" )}
-	window.onload = header
+	var path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
 	</script>
 
 	<!-- pull down tab -->
@@ -100,7 +98,8 @@
 	<!-- successful submission -->
 	<div id="success" class="hide" style="text-align:center;background:#4eadb8;color:white;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;">
 	Thank you for your submission<br /> we will review and post it asap<br />
-	in the meantime<br />take a look at our community identity living document
+	in the meantime<br />take a look at our 
+	<a style="text-decoration:none;color:white;border-bottom:1px solid white;" href="https://sustaincia.org/make/sustaincia_identity">community identity living document</a>
 	</div>
 
 	<script>
