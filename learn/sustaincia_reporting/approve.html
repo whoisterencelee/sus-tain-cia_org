@@ -93,11 +93,11 @@
 			</label>
 
 			<label style="flex-flow:row nowrap;">from
-			<input class="info" disabled placeholder="post from" name="by"></input>
+			<input id="by" class="info" readonly placeholder="missing" name="by"></input>
 			</label>
 
 			<label style="flex-flow:row nowrap;">offered
-			<input class="info" disabled placeholder="offered" name="offer"></input>
+			<input id="offer" class="info" readonly placeholder="none" name="offer"></input>
 			</label>
 
 			<div tabindex="-1" style="outline:0;height:1em;width:100%;"></div><!-- focusable spacing -->
@@ -112,7 +112,7 @@
 			<div tabindex="-1" style="outline:0;height:2em;width:100%;"></div><!-- focusable spacing -->
 
 			<label>
-			<input required placeholder="signature" tabindex="1" type="password" style="text-align:right;" name="signature"></input>
+			<input required placeholder="signature" tabindex="1" type="password" style="text-align:right;" name="user"></input>
 			</label>
 
 			<input tabindex="4" style="margin:1em;background:#ffb06a;color:black;border:0;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="approve"></input>
@@ -129,7 +129,18 @@
 	</div>
 
 	<script>
-	if( /success/.test( location.search.toLowerCase() ) )$('success').style.display="flex"
+	var u = new URLSearchParams( location.search )
+	if( u.get( "success" ) != null ) $('success').style.display="flex"
+	var data = u.get( "data" )
+	if( data ) fetch( 'https://functional.limited/data/sustaincia.org/learn/sustaincia_reporting/index.html/' + data ).then( res => {
+		res.json().then( rj =>{
+			$('editor').value = rj.content
+			$('by').value = rj.user
+			$('offer').value = rj.offer
+			render()
+			console.log( res ) 
+			})
+		})
 	</script>
 
 	</div><!-- padding -->
