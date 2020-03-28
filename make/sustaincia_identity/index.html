@@ -1,0 +1,159 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sustaincia Reporting</title>
+  <meta name="description" content="Sustainability Reporting on Sustaincia">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <meta name="theme-color" content="#fafafa">
+
+</head>
+
+<body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;">
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+	<script>$=(i=>document.getElementById(i))</script>
+
+	<style>
+	div {display:flex;flex-direction:column;flex-wrap:wrap;}
+	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.hyphenate { overflow-wrap: break-word; word-wrap: break-word; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
+	</style>
+
+	<!-- header -->
+	<style>
+	#header {opacity:0.5;}
+	#header a {color:white;text-decoration:none;}
+	.megaphone {color:transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
+	</style>
+	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
+		<div id="header" style="margin:0.35em 1em;display:block;"><a href="https://sustaincia.org">sustaincia</a></div>
+		<div class="megaphone" style="margin:0.35em 1em;">subscribe</div>
+	</div>
+	<script>
+	var path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+	</script>
+
+	<!-- pull down tab -->
+	<style>
+	.pulldown:focus-within > #report {display:flex;}
+	.pulldown:focus-within > #preview {display:flex;}
+	</style>
+	<div class="pulldown" style="align-items:center;width:100%;">
+
+		<style>.hpot {display:none;}
+		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
+		form textarea {background:transparent;border:0;margin:0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;width:100%;}
+		form input {background:transparent;border:0px;padding:0;width:100%;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
+		form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;}
+		form label span {color:grey;}
+		form label a {color:#0070c4;text-decoration:none;}
+		</style>
+
+		<form id="report" class="hide" method="POST" action="https://functional.limited/forms" name="report">
+
+			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
+				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting?success">
+				<input name="_gotcha">
+			</label></div>
+
+			<label>
+			<textarea id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD REPORT HERE syntax:&#x0a;*bold text*&#x0a;[[https://../image url]]&#x0a;[[https://..][link]]" required name="content"></textarea>
+			</label>
+
+			<label>
+			<input required placeholder="post as" type="password" tabindex="2" name="user"></input>
+			</label>
+
+			<label>
+			<input placeholder="offering" tabindex="3" name="offer"></input>
+			</label>
+
+			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
+
+			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="submit"></input>
+
+		</form>
+
+		<!-- down arrow -->
+		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;">
+			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
+		</div>
+	
+		<div id="preview" class="hide">
+			<div id="render" class="list" style="padding:0 1em;"></div>
+		</div>
+		
+	</div>
+
+	<script>function org2html(orgmode){return"<p>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</p>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
+
+	<!-- successful submission -->
+	<div id="success" class="hide" style="text-align:center;background:#4eadb8;color:white;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;">
+	Thank you for your submission<br /> we will review and post it asap<br />
+	in the meantime<br />take a look at our 
+	<a style="text-decoration:none;color:white;border-bottom:1px solid white;" href="https://sustaincia.org/make/sustaincia_identity">community identity living document</a>
+	</div>
+
+	<script>
+	if( /success/.test( location.search.toLowerCase() ) )$('success').style.display="flex"
+	</script>
+
+	<style>
+	/*.list p:first-child {font-size:1.5em;}*/
+	.list img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
+	/* .list p:first-child > img {height:40vh;} */
+	.list > p {padding-bottom:0.5em;margin:0.25em 0;border-bottom:1px solid lightgrey;color:grey;}
+	.list b {color:black;}
+	.list a {color:grey;}
+	</style>
+
+	<div style="padding:0 1em;">
+	<div class="list">
+
+<h1 style="text-align:center;">Community Identity</h1>
+<p class="hyphenate">
+This is a great group specifically for sustainability-related activities and a platform to mingle with one another, chat about the latest trends and share interesting projects and case studies. The quality of our online communities depends on the attitudes and behaviors we bring to it. A summary of the code of conduct and legal issues for Sustaincia members are as follows: 
+</p>
+
+<p style="text-align:center;">Each section can be edited</p>
+
+<ol>
+
+    <li contenteditable="true"><h3>Policies on Sustaincia</h3> Local and international policies/rules which govern the extent of activities in Sustaincia and information sourcing/sharing must be abided by all members and cooperative groups/parties.
+</li>
+
+    <li contenteditable="true"><h3>Cooperation with other groups</h3> Sustaincia platform is created for sustainable development and sustainability-related activities. The platform is opened to any interested organization/company for cooperation and sustainability-related activities.</li>
+
+    <li contenteditable="true"><h3>Disclaimer rights</h3> Sustaincia is a platform with great interest in sustainable development and related activities. Therefore, any project ideas/information shared on sustaincia platform are opened for all members and the general public for use or reproduce.</li>
+
+    <li contenteditable="true"><h3>Politics</h3> As a sustainability-related organization, Sustaincia is impartial to politics and any politically motivated movement/cause. The disclaimer advises all members that sharing political campaigns and other politics-related issues is not allowed. Such posts will immediately be removed by the admin without prior notice.</li>
+
+    <li contenteditable="true"><h3>Abuse/harassment</h3> Sustaincia aspires to create a platform for serendipity and mutual benefits for all members and other cooperation groups. The organization (sustaincia) is intolerant to harassment and abuse of whatsoever in the cause of interaction and sharing ideas. All members deserve mutual respect and accolade.</li>
+
+    <li contenteditable="true"><h3>Criticism</h3>  As a platform for serendipity and ideas sharing among members, it is likely to have a contradiction/conflict towards an opinion by some members. Such criticism should be tendered and as constructive as possible. Remember, it is okay to disagree and respecting one another is civil.</li>
+
+    <li contenteditable="true"><h3>Stick to the mission</h3> Sustaincia welcomes ideas sharing, interaction, and sustainability-related activities and should be done within the boundary stipulated. Sustaincia is neither a platform for personal affairs (self or friends) sharing nor for adverts/promotion or job posting, general jokes and cartoons.</li>
+
+    <li contenteditable="true"><h3>Be mindful</h3> Always keep in mind that messages you post will land into someone’s phone/computer. Be sensible not to post opinions on religion, personal attacks, politics, and any controversial subjects that could cause embarrassment to others.</li>
+
+    <li contenteditable="true"><h3>Complaints</h3> Sustaincia creates an inclusive environment for every voice and hence freedom of speech. Sustaincia also entertains any issues/complaints arising from its members and such complaints should be channeled to the admin for appropriate actions.</li>
+
+    <li contenteditable="true"><h3>Legal actions</h3> Sustaincia has the right to self-protection against false accusations and defamation. Appropriate legal actions would be taken against any harassment, false accusations and/or defamation.</li>
+
+</ol>
+
+	</div><!-- list -->
+	</div><!-- padding -->
+
+</body>
+
+</html>
