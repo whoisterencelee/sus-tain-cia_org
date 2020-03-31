@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sustaincia</title>
+  <meta name="description" content="Open Sustainability Platform for Everyone">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <script>function $(i){return document.getElementById(i)}</script>
+  <script type="text/javascript" src="./sumsum.js"></script>
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body style="background:#FFFCF4;margin:0;text-align:center;font-family:Arial;" onload="sumsum()" >
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+	<script>$=(i=>document.getElementById(i))</script>
+
+	<style>
+	div {display:flex;flex-direction:column;flex-wrap:wrap;}
+	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	</style>
+
+	<!-- header -->
+	<style>
+	#header {opacity:0.5;}
+	#header a {color:white;text-decoration:none;}
+	.megaphone {color:transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
+	</style>
+	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
+		<div id="header" style="margin:0.35em 1em;display:block;"><a href="https://sustaincia.org">sustaincia</a></div>
+		<div class="megaphone" style="margin:0.35em 1em;">subscribe</div>
+	</div>
+	<script>
+	var path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+	</script>
+
+	<div style="text-shadow:3px 3px 2px lightgrey;color:grey;">
+
+		
+		<style>
+			u {text-decoration:none;border-bottom:3px dotted lightgrey;}
+			.game {display:flex;flex-direction:column;align-items:center;box-shadow:4px 4px 6px 0px lightgrey;border-radius:4px;border:1px solid #ccc5ba;width:31vw;min-width:300px;margin-bottom:1em;}
+			.game > label {margin:1em;}
+			.game input {max-width:100px;}
+			.gameover {background:#84838E;color:white;margin:0;width:100%;padding:0.25em 0;text-shadow:none;}
+			.gamewon {background:#0070c4;}
+			label div {flex-direction:row;justify-content:center;}
+		</style>
+
+		<h1>Mind Changing Game for Everyone</h1>
+		<p>Let's imagine a game resource call <u>sumsum</u> which everyone needs</p>
+		<div style="display:flex;flex-direction:row;align-items:flex-start;flex-wrap:wrap;justify-content:space-evenly;">
+
+			<div class="game" win="sustainable, true costs should be reflected">
+				<div class="gameover">unsustainable</div>
+				<label>how much sumsum do you take <div>none <input type="range" min="0" max="100" value="100"
+					r0_10="you need sumsum to survive"
+					r20_100="aren't you taking too much"
+					></input> all</div>
+				</label>
+				<label>cost of sumsum <div>free <input type="range" min="0" max="100" value="0"
+					r0_30="so cheap everyone else takes more"
+					r70_100="high cost, most people can't afford and will starve"
+					></input> unaffortable</div></label>
+				<div style="background:#ccc5ba;margin:0;width:100%;padding:0.25em 0;text-shadow:none;">Take-some Dilemma</div>
+			</div>
+
+			<div class="game" win="sustainable, everyone and you need to be involved" >
+				<div class="gameover">unsustainable</div>
+				<label>sumsum you use in a week <div>none <input type="range" min="1" max="14" value="14"
+					r1_6="you need to use some to live"
+					r8_14="you are using so much"
+					></input> lots</div></label> 
+				<label>compare to others, you use <div>less <input type="range" min="1" max="20" value="10"
+					r1_17="everyone still uses more than you"
+					r19_20="are you sure others are using enough"
+					></input> more</div></label> 
+				<div style="background:#ccc5ba;margin:0;width:100%;padding:0.25em 0;text-shadow:none;">Power of Awareness</div>
+			</div>
+
+			<div class="game" win="sustainable, overlaps compensate waiting period" >
+				<div class="gameover">unsustainable</div>
+				<label>time to result <div>short <input type="range" min="1" max="100" value="100"
+					r1_20="too little effort returns not great"
+					r50_100="taking forever"
+					></input> forever</div></label>
+				<label>parallel efforts <div>one <input type="range" min="1" max="100" value="1" 
+					r1_1="sad, it's just you" 
+					r2_10="involve more people" 
+					r50_100="too many duplicate efforts" 
+					></input> everyone</div></label>
+				<div style="background:#ccc5ba;margin:0;width:100%;padding:0.25em 0;text-shadow:none;">Race Against Time</div>
+			</div>
+
+		</div>
+
+		<br />
+		<br />
+
+	</div>
+
+</body>
+
+</html>
