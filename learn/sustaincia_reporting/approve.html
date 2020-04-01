@@ -25,6 +25,7 @@
 	div {display:flex;flex-direction:column;flex-wrap:wrap;}
 	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.hyphenate { overflow-wrap: break-word; word-wrap: break-word; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
 	</style>
 
 
@@ -70,8 +71,9 @@
 		<form id="report" method="POST" action="https://functional.limited/forms">
 
 			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
-				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting/approve.html?success">
+				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting/result.html?success">
 				<input name="_gotcha">
+				<input name="_token">
 			</label></div>
 
 
@@ -111,10 +113,6 @@
 			
 			<div tabindex="-1" style="outline:0;height:2em;width:100%;"></div><!-- focusable spacing -->
 
-			<label>
-			<input required placeholder="signature" tabindex="1" type="password" style="text-align:right;" name="user"></input>
-			</label>
-
 			<input tabindex="4" style="margin:1em;background:#ffb06a;color:black;border:0;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="approve"></input>
 
 		</form>
@@ -137,6 +135,7 @@
 			$('editor').value = rj.content
 			$('by').value = rj.user
 			$('offer').value = rj.offer
+			$('_token').value = u.get("token")
 			render()
 			console.log( res ) 
 			})
