@@ -129,8 +129,9 @@
 	<script>
 	var u = new URLSearchParams( location.search )
 	if( u.get( "success" ) != null ) $('success').style.display="flex"
-	var data = u.get( "data" )
-	if( data ) fetch( 'https://functional.limited/data/sustaincia.org/learn/sustaincia_reporting/index.html/' + data ).then( res => {
+	var msgId = u.get( "msgId" )
+	$('_msgId').value = msgId
+	if( msgId ) fetch( 'https://functional.limited/msgs/sustaincia.org/learn/sustaincia_reporting/index.html/' + msgId ).then( res => {
 		res.json().then( rj =>{
 			$('editor').value = rj.content
 			$('by').value = rj.user
