@@ -131,7 +131,7 @@
 	if( u.get( "success" ) != null ) $('success').style.display="flex"
 	var msgId = u.get( "msgId" )
 	$('_msgId').value = msgId
-	if( msgId ) fetch( 'https://functional.limited/msgs/sustaincia.org/learn/sustaincia_reporting/index.html/' + msgId ).then( res => {
+	if( msgId ) fetch( 'https://functional.limited/msgs/sustaincia.org/learn/sustaincia_reporting/approve.html/' + msgId ).then( res => {
 		res.json().then( rj =>{
 			$('editor').value = rj.content
 			$('by').value = rj.user
