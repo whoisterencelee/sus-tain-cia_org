@@ -63,25 +63,29 @@
 		.list a {color:grey;}
 		</style>
 
+		<div style="color:grey;">
+			<p><span id="by" style="color:black;">someon</span> offer <span id="offer" style="color:black;">gratitude</span> to post:</p>
+		</div>
+
 		<div id="preview">
 			<div id="render" class="list" style="padding:0 1em;"></div>
 		</div>
 
-		
+		<form>
+		<textarea readonly id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD REPORT HERE syntax:&#x0a;*bold text*&#x0a;[[https://../image url]]&#x0a;[[https://..][link]]" required name="content" style="max-height:75vh;"></textarea>
+		<script>function org2html(orgmode){return"<p>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</p>"}let render=()=>{$("render").innerHTML=org2html($("editor").value);$("editor").style.height="auto";$("editor").style.height=$("editor").scrollHeight+"px"};$("editor").onkeyup=render;render();</script>
+		</form>
+
 		<form id="report" method="POST" action="https://functional.limited/tokens">
 
 			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
-				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting/result.html?success">
+				<!--<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting/result.html?success">-->
 				<input name="_gotcha">
 				<input name="_token" id="_token">
 				<input name="_msgId" id="_msgId">
+				<input name="_to" value="https://sustaincia.org/learn/sustaincia_reporting/index.html?modify=list">
 			</label></div>
 
-
-			<label>
-			<textarea id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD REPORT HERE syntax:&#x0a;*bold text*&#x0a;[[https://../image url]]&#x0a;[[https://..][link]]" required name="content" style="max-height:75vh;"></textarea>
-			</label>
-			<script>function org2html(orgmode){return"<p>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</p>"}let render=()=>{$("render").innerHTML=org2html($("editor").value);$("editor").style.height="auto";$("editor").style.height=$("editor").scrollHeight+"px"};$("editor").onkeyup=render;render();</script>
 
 
 			<p style="font-size:0.8em;color:grey;margin:0.5em;">
@@ -89,19 +93,6 @@
 			- check [[ https://image ]] <b>image is public licensed</b><br />
 			- check html code<br />
 			</p>
-
-			<label style="flex-direction:row;justify-content:end;">
-			<div style="color:grey;">checked</div>
-			<input tabindex="1" required style="width:auto;" type="checkbox" name="checked"></input>
-			</label>
-
-			<label style="flex-flow:row nowrap;">from
-			<input id="by" class="info" readonly placeholder="missing" name="by"></input>
-			</label>
-
-			<label style="flex-flow:row nowrap;">offered
-			<input id="offer" class="info" readonly placeholder="none" name="offer"></input>
-			</label>
 
 			<div tabindex="-1" style="outline:0;height:1em;width:100%;"></div><!-- focusable spacing -->
 
@@ -112,9 +103,9 @@
 			</div>
 			</label>
 			
-			<div tabindex="-1" style="outline:0;height:2em;width:100%;"></div><!-- focusable spacing -->
+			<input tabindex="4" style="margin:1em;background:#42949b;font-weight:bold;color:black;border:0;height:3em;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="I am ok with this"></input>
+			<a tabindex="4" style="display:flex;align-items:center;justify-content:center;background:#ffb06a;font-weight:bold;color:black;border:0;height:3em;width:100%;box-shadow:3px 3px 5px 0px lightgrey;text-decoration:none;" href="https://sustaincia.org/learn/sustaincia_reporting/">I am not ok with this</a>
 
-			<input tabindex="4" style="margin:1em;background:#ffb06a;color:black;border:0;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="approve"></input>
 
 		</form>
 	
@@ -131,12 +122,14 @@
 	var u = new URLSearchParams( location.search )
 	if( u.get( "success" ) != null ) $('success').style.display="flex"
 	var msgId = u.get( "msgId" )
-	//$('_msgId').value = msgId
 	if( msgId ) fetch( 'https://functional.limited/msgs/sustaincia.org/learn/sustaincia_reporting/approve.html/' + msgId ).then( res => {
-		res.json().then( rj =>{
-			$('editor').value = rj.content
-			$('by').value = rj.user
-			$('offer').value = rj.offer
+		res.json().then( msg =>{
+			$('editor').value = msg.content
+
+			$('by').textContent = msg.user
+			$('offer').textContent = msg.offer ? msg.offer : "gratitude"
+
+			$('_msgId').value = msgId
 			$('_token').value = u.get("token")
 			render()
 			console.log( res ) 
