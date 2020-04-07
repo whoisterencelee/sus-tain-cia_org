@@ -96,15 +96,22 @@
 
 	<script>function org2html(orgmode){return"<p>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</p>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
 
-	<!-- successful submission -->
-	<div id="success" class="hide" style="text-align:center;background:#4eadb8;color:white;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;">
-	Thank you for your submission<br /> we will review and post it asap<br />
-	in the meantime<br />take a look at our 
-	<a style="text-decoration:none;color:white;border-bottom:1px solid white;" href="https://sustaincia.org/make/sustaincia_identity">community identity living document</a>
+	<!-- messagebuttons -->
+	<style>
+	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
+	</style>
+	<a id="success" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity">
+	Thank you for your submission we will review and post it asap<br />In the meantime click thur to our "community identity living document"
+	</a>
+	<div id="approve" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity">
+	Thank you for your approval, the decision has <span id="triggered" class="hide"> NOT YET</span> triggered
 	</div>
 
 	<script>
-	if( /success/.test( location.search.toLowerCase() ) )$('success').style.display="flex"
+	var u = new URLSearchParams( location.search )
+	if(u.get('success')!=null)$('success').style.display="block"
+	if(u.get('approve')!=null)$('approve').style.display="block"
+	if(u.get('triggered')==null)$('triggered').style.display="inline"
 	</script>
 
 	<style>

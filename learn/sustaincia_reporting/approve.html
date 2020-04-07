@@ -43,7 +43,7 @@
 	var path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
 	</script>
 
-
+	<!-- form -->
 	<div style="align-items:center;width:100%;">
 
 		<style>.hpot {display:none;}
@@ -79,11 +79,11 @@
 		<form id="report" method="POST" action="https://functional.limited/tokens">
 
 			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
-				<!--<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting/result.html?success">-->
 				<input name="_gotcha">
 				<input name="_token" id="_token">
 				<input name="_msgId" id="_msgId">
 				<input name="_to" value="https://sustaincia.org/learn/sustaincia_reporting/index.html/post_to_list.js">
+				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting/index.html">
 			</label></div>
 
 
@@ -103,25 +103,16 @@
 			</div>
 			</label>
 			
-			<input tabindex="4" style="margin:1em;background:#42949b;font-weight:bold;color:black;border:0;height:3em;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="I am ok with this"></input>
-			<a tabindex="4" style="display:flex;align-items:center;justify-content:center;background:#ffb06a;font-weight:bold;color:black;border:0;height:3em;width:100%;box-shadow:3px 3px 5px 0px lightgrey;text-decoration:none;" href="https://sustaincia.org/learn/sustaincia_reporting/">I am not ok with this</a>
+			<input tabindex="4" style="margin:1em;background:#42949b;font-weight:bold;color:#032a2e;border:0;height:3em;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="I am ok with this"></input>
+			<a tabindex="4" style="display:flex;align-items:center;justify-content:center;background:#ffb06a;font-weight:bold;color:#c06b1f;border:0;height:3em;width:100%;box-shadow:3px 3px 5px 0px lightgrey;text-decoration:none;" href="https://sustaincia.org/learn/sustaincia_reporting/">Let's ignore for now</a>
 
 
 		</form>
 	
 	</div>
 
-	<!-- successful submission -->
-	<div id="success" class="hide" style="text-align:center;background:#4eadb8;color:white;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;">
-	Thank you for your vote<br />
-	the decision has<span id="triggered" class="hide"> NOT</span> triggered<br />
-	<a href="https://sustaincia.org/learn/sustainca_reporting/index.html">return</a>
-	</div>
-
 	<script>
 	var u = new URLSearchParams( location.search )
-	if( u.get( "success" ) != null ) $('success').style.display="flex"
-	if( u.get( "triggered" ) ==null ) $('triggered').style.display="inline"
 	var msgId = u.get( "msgId" )
 	if( msgId ) fetch( 'https://functional.limited/msgs/sustaincia.org/learn/sustaincia_reporting/approve.html/' + msgId ).then( res => {
 		res.json().then( msg =>{
