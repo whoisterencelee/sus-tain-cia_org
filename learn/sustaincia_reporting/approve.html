@@ -113,14 +113,15 @@
 
 	<!-- successful submission -->
 	<div id="success" class="hide" style="text-align:center;background:#4eadb8;color:white;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;">
-	Thank you for your submission<br /> we will review and post it asap<br />
-	in the meantime<br />take a look at our 
-	<a style="text-decoration:none;color:white;border-bottom:1px solid white;" href="https://sustaincia.org/make/sustaincia_identity">community identity living document</a>
+	Thank you for your vote<br />
+	the decision has<span id="triggered" class="hide"> NOT</span> triggered<br />
+	<a href="https://sustaincia.org/learn/sustainca_reporting/index.html">return</a>
 	</div>
 
 	<script>
 	var u = new URLSearchParams( location.search )
 	if( u.get( "success" ) != null ) $('success').style.display="flex"
+	if( u.get( "triggered" ) ==null ) $('triggered').style.display="inline"
 	var msgId = u.get( "msgId" )
 	if( msgId ) fetch( 'https://functional.limited/msgs/sustaincia.org/learn/sustaincia_reporting/approve.html/' + msgId ).then( res => {
 		res.json().then( msg =>{
