@@ -16,3 +16,18 @@ self.addEventListener('fetch', function(event) { // needed for home screen insta
 		})
 	);
 });
+
+self.addEventListener( 'push' , ( event ) => {
+		let data = event.data.json()
+		//let title = ( event.data && event.data.text() ) || "Message received"
+		let title = data.title || "notification received"
+		let message = data.message || "message received"
+
+		event.waitUntil(
+			self.registration.showNotification( title , {
+				icon : "icon.png" ,
+				body : message ,
+				tag : "pwa"
+			} )
+	       )
+})
