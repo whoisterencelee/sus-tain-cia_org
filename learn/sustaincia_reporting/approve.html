@@ -43,6 +43,16 @@
 	var host=document.location.host,path="";document.getElementById('header').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
 	</script>
 
+
+        <!-- messagebuttons -->
+	<style>
+	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
+	</style>
+	<div id="subscribed" class="hide messagebutton">
+	Thanks, you will receive voting token notifications 
+	</div>
+
+
 	<!-- form -->
 	<div id="approve" class="hide" style="align-items:center;width:100%;">
 
@@ -112,15 +122,18 @@
 	</div>
 
 	<form id="subscribe" style="width:100%;margin:0;margin-top:3em;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
-		<input class="hide" name="subscription" id="subscription"></input>
 		<label>
 		subscribe this device as approving user
-		<input name="user" style="margin:1em;text-align:center;border:3px dotted lightgrey;" placeholder="user name"></input>
+		<input id="user" name="user" style="margin:1em;text-align:center;border:3px dotted lightgrey;" placeholder="user name"></input>
 		</label>
-		<input name="subscription" class="hide">
+		<input id="subscription" name="subscription" value="" autocomplete="" class="hide">
 		<input type="submit" hidden>
  
 	</form>
+
+	<script>
+	function sw(f){if('serviceWorker'in navigator){return navigator.serviceWorker.register('/service_worker.js').then(function(){console.log('Successfully registered service worker');if(f)f()}).catch(function(err){alert('Error whilst registering service worker '+err)})}else alert('Service worker is required for this page, try a different browser');return null}sw();
+	</script>
 
 	<script>
 	var u = new URLSearchParams( location.search )
@@ -141,13 +154,19 @@
 			console.log( res ) 
 			})
 		})
+	}else if ( u.get('subscribed') != null ){
+		$('subscribed').style.display="block"
+		$('subscribe').className="hide"
 	}else{
 		//get subscription and get notification approval
+		$('user').onclick=()=>{
+const vapidPublicKey='BOKl-Np7Cs83PzZXv_2T6wYGHsU2XdbtrnU8aTySIrcESCH7mpCuHmIpe_bbXRdGjlmBSOYZL3G3V5j1Zgozv50';function getpush(){navigator.serviceWorker.ready.then(function(reg){return reg.pushManager.getSubscription().then(async function(sub){if(sub)return sub;function urlBase64ToUint8Array(base64String){var padding='='.repeat((4-base64String.length%4)%4);var base64=(base64String+padding).replace(/\-/g,'+').replace(/_/g,'/');var rawData=window.atob(base64);var outputArray=new Uint8Array(rawData.length);for(var i=0;i<rawData.length;++i){outputArray[i]=rawData.charCodeAt(i)}return outputArray}const convertedVapidKey=urlBase64ToUint8Array(vapidPublicKey);return reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:convertedVapidKey})})}).then(function(sub){$('subscription').value=JSON.stringify(sub)},function(error){alert('pushManager error : '+error)})}if(!('Notification'in window))alert('Notification is required for this page, try a different browser');else if(Notification.permission==='denied')Notification.requestPermission(p=>{if(p==='denied')alert('Notification is required for this page');else sw(getpush)});else if(Notification.permission==='granted')sw(getpush);
+		}  // onclick
 	}   // msgId
 	</script>
 
 	<p style="margin:1em;text-align:center;color:grey;">
-	As an approving user<br />You will need to follow and be up-to-date with <br />
+	As an approving user you will need to follow and be up-to-date with <br />
 	<a style="color:#67b41a;" href="https://sustaincia.org/make/sustaincia_identity"> "community identity living document" </a>
 	</p>
 	<p style="margin:1em;text-align:center;color:grey;">
