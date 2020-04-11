@@ -49,7 +49,7 @@
 	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
 	</style>
 	<div id="subscribed" class="hide messagebutton">
-	Thanks, you will receive voting token notifications 
+	Thanks, you will receive voting token notifications on this device
 	</div>
 
 
@@ -126,7 +126,7 @@
 		subscribe this device as approving user
 		<input id="user" name="user" style="margin:1em;text-align:center;border:3px dotted lightgrey;" placeholder="user name"></input>
 		</label>
-		<input id="subscription" name="subscription" value="" autocomplete="" class="hide">
+		<input id="subscription" name="subscription" value="" hidden autocomplete="" class="hide">
 		<input type="submit" hidden>
  
 	</form>
@@ -175,6 +175,10 @@ const vapidPublicKey='BOKl-Np7Cs83PzZXv_2T6wYGHsU2XdbtrnU8aTySIrcESCH7mpCuHmIpe_
 	<p style="margin:1em;text-align:center;color:grey;">
 	Token links are not linked to user name, so votes are anonymous
 	</p>
+	<p style="margin:1em;text-align:center;color:grey;">
+	Once set to this username, the device will be lock to this username
+	</p>
+
 
 </body>
 
