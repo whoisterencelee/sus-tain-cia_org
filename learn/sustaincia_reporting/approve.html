@@ -36,15 +36,15 @@
 	.warning {background:#4eadb8;color:white;font-style:bold;width:100%;text-align:center;padding:0.25em 0;}
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:wrap;justify-content:space-around;">
-		<div id="header" style="margin:0.35em 1em;display:block;"><a href="https://sustaincia.org">sustaincia</a></div>
+		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">host</a></div>
 		<div class="warning">check above uri is correct</div>
 	</div>
 	<script>
-	var path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+	var host=document.location.host,path="";document.getElementById('header').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
 	</script>
 
 	<!-- form -->
-	<div style="align-items:center;width:100%;">
+	<div id="approve" class="hide" style="align-items:center;width:100%;">
 
 		<style>.hpot {display:none;}
 		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;color:grey;}
@@ -111,10 +111,24 @@
 	
 	</div>
 
+	<form id="subscribe" style="width:100%;margin:0;margin-top:3em;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
+		<input class="hide" name="subscription" id="subscription"></input>
+		<label>
+		subscribe this device as approving user
+		<input name="user" style="margin:1em;text-align:center;border:3px dotted lightgrey;" placeholder="user name"></input>
+		</label>
+		<input name="subscription" class="hide">
+		<input type="submit" hidden>
+ 
+	</form>
+
 	<script>
 	var u = new URLSearchParams( location.search )
 	var msgId = u.get( "msgId" )
-	if( msgId ) fetch( 'https://functional.limited/msgs/sustaincia.org/learn/sustaincia_reporting/approve.html/' + msgId ).then( res => {
+	if( msgId ){
+		$('subscribe').className="hide"
+		$('approve').className=""
+		fetch( 'https://functional.limited/msgs/sustaincia.org/learn/sustaincia_reporting/approve.html/' + msgId ).then( res => {
 		res.json().then( msg =>{
 			$('editor').value = msg.content
 
@@ -127,9 +141,21 @@
 			console.log( res ) 
 			})
 		})
+	}else{
+		//get subscription and get notification approval
+	}   // msgId
 	</script>
 
-	</div><!-- padding -->
+	<p style="margin:1em;text-align:center;color:grey;">
+	As an approving user<br />You will need to follow and be up-to-date with <br />
+	<a style="color:#67b41a;" href="https://sustaincia.org/make/sustaincia_identity"> "community identity living document" </a>
+	</p>
+	<p style="margin:1em;text-align:center;color:grey;">
+	Also you will need to <b>allow notification</b> to receive approval token link
+	</p>
+	<p style="margin:1em;text-align:center;color:grey;">
+	Token links are not linked to user name, so votes are anonymous
+	</p>
 
 </body>
 

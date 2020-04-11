@@ -35,10 +35,16 @@
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
 		<div id="header" style="margin:0.35em 1em;display:block;"><a href="https://sustaincia.org">sustaincia</a></div>
-		<div class="megaphone" style="margin:0.35em 1em;">subscribe</div>
+		<form id="subscribe" style="width:auto;margin:0;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
+			<input class="hide" name="subscription" id="subscription"></input>
+			<input type="submit" class="megaphone" style="border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
+		</form>
 	</div>
 	<script>
 	var path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+	</script>
+	<script>
+	
 	</script>
 
 	<!-- pull down tab -->
@@ -79,7 +85,7 @@
 
 			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
 
-			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;" type="submit" value="submit"></input>
+			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="submit"></input>
 
 		</form>
 
