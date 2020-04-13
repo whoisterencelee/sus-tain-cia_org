@@ -1,4 +1,5 @@
 self.addEventListener('install', function(e) {
+	self.skipWaiting()  // update service worker immediately not waiting for tabs to close
 	e.waitUntil(
 		caches.open('sustaincia.org').then(function(cache) {
 			return 
