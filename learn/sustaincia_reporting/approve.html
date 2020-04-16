@@ -163,8 +163,6 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 	// maybe better to put getpush in here since there might be an existing worker from a not yet closed tab
 	// calling the register will update the worker first
 	
-	fetch( "/vapid.txt" ).then( r => r.text() ).then( vapidPublicKey =>{
-
 	// This function is needed because Chrome doesn't accept a base64 encoded string
 	// as value for applicationServerKey in pushManager.subscribe yet
 	// https://bugs.chromium.org/p/chromium/issues/detail?id=802280
@@ -182,7 +180,6 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 		}
 		return outputArray;
 	}
-	const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey.replace(/[\n|\r]/g,""))
 
 	function getpush(){
 		// get push subscription, require notification support
@@ -197,8 +194,9 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 					}else return sub  // already correctly subscribed
 				}
 
-				//const response = await fetch('./vapidPublicKey')
-				//const vapidPublicKey = await response.text()
+				const response = await fetch('./vapid.txt')
+				const vapidPublicKey = await response.text()
+				const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey.replace(/[\n|\r]/g,""))
 
 				return reg.pushManager.subscribe({
 					userVisibleOnly : true ,
@@ -232,7 +230,6 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 		else if( Notification.permission === "granted" ) getpush()
 	}
 
-	})  //end of fetch vapid
     }).catch( function(err) { alert('Error whilst registering service worker ' + err) })
 } else alert( 'Service worker is required for this page, try a different browser' )
 // End of serviceworker register
