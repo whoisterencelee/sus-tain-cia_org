@@ -194,7 +194,7 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 					}else return sub  // already correctly subscribed
 				}
 
-				const response = await fetch('./vapid.txt')
+				const response = await fetch('/vapid.txt' , { headers : { 'Content-Type' : 'text/plain' } } )
 				const vapidPublicKey = await response.text()
 				const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey.replace(/[\n|\r]/g,""))
 
