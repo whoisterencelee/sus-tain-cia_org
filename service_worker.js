@@ -25,6 +25,7 @@ self.addEventListener( 'push' , ( event ) => {
 			icon : "icon.png" ,
 			body : data.message || "message received" ,
 			tag : "pwa" ,
+			requireInteraction : true ,
 		}
 		if( data.url ){
 			note.data = { url : data.url }
