@@ -34,18 +34,16 @@
 	.megaphone {color:transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
-		<div id="header" style="margin:0.35em 1em;display:block;"><a href="https://sustaincia.org">sustaincia</a></div>
+		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
 		<form id="subscribe" style="width:auto;margin:0;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
 			<input class="hide" name="subscription" id="subscription"></input>
 			<input type="submit" class="megaphone" style="border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
 		</form>
 	</div>
 	<script>
-	var path="";document.getElementById('header').innerHTML='<a href="https://sustaincia.org">sustaincia </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://sustaincia.org'+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+	var host=document.location.host,path="";document.getElementById('header').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
 	</script>
-	<script>
-	
-	</script>
+
 
 	<!-- pull down tab -->
 	<style>
@@ -106,7 +104,7 @@
 	<style>
 	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
 	</style>
-	<a id="success" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity">
+	<a id="success" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity" rel="noreferrer noopener" target="_blank">
 	Thank you for your submission we will review and post it asap<br />In the meantime click thur to our "community identity living document"
 	</a>
 	<div id="approve" class="hide messagebutton">
@@ -132,7 +130,6 @@
 	<div style="padding:0 1em;">
 	<div class="list">
 
-<p>Sustaincia registration acceptable?</p>
 <p><b>Wynn worldwide sustainability site</b> <a href="https://www.wynnresponsibility.com/reports-press/">press release site</a></p>
 <p><b>Wynn Macau sustainability report</b><br />Entertainment and hotel service industry <a href="https://wynnmacau.gcs-web.com/static-files/025e881a-d8cb-494c-9ca8-618fd3876e63">Full Report</a></p>
 <p><b>Nike vs MTR</b><br><img src="https://x81eha.sn.files.1drv.com/y4mhtQI0Nf30_XrpardP7g4-yZyXwB07AfYSqnwlA5VESXoA9yGcLXw5B_bZYtonY3qlMn6baX8RLxAvg1ZIVKTnsmN7vkVQe0Ue9VQXsZ4kNWfNi3y1-X4q9trWkBvZrW1vrQvsZNLWV8c20oYoCukj6Zs0XVV_U_64u47L5RZqguPIqlcM9w7XEEfSGhk9tFDH9fghWWDfvGZLLeTzbzeHA?width=1920&amp;height=2560&amp;cropmode=none"> What are the <b>Differences</b>?<br><a href="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&amp;resid=3FE21E3ED1DB2476%2115682&amp;authkey=AOMo5RU9gerN7s0&amp;em=2">Full Report</a></p><p><b>BioFuel Reporting</b><br><img src="https://ys09ha.sn.files.1drv.com/y4m1zZpFa-zaybXG5fBQBgqzkwjlC8Oc0FrrD0Bk-HTfqPNplHwliYMyCSsfrYnC1PzRBONvXOyavGea0ptw-0bKSWNXlDrMJ0YqhVIXIZGMyMQWycdJ5iap08e4_sgsklIXOy8p7jCNvDyZmgojCpVFlj9elOiVesQBs3-9soX5_ioN5fQ3YepdNVGlvbBozNGAK2jnn6u17MKFGhFDoMAcw?width=1920&amp;height=2560&amp;cropmode=none">Are all <b>Fuel</b> good for us?</p><p><b>Macau CEM sustainability report</b><br>A local Macau company effort - <a href="https://www.cem-macau.com/files/sustainability_report/11/en/CEM%20Sustainability%20Report%202018%20(English)compressed.pdf">2018 Report</a></p><p><b>Nike sustainability</b><br>A leading company in sustainability<br><a href="https://purpose-cms-preprod01.s3.amazonaws.com/wp-content/uploads/2020/02/11230637/FY19-Nike-Inc.-Impact-Report.pdf">2019 Impact Report</a></p><p><b>MTR world wide sustainability</b><br>Transportation sustainability<br><a href="https://www.mtr.com.hk/sustainability/2018rpt/en/pdf/MTR_Full2018_Eng.pdf">2018 Sustainability Report</a></p>

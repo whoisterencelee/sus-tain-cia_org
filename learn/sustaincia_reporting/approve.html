@@ -36,7 +36,7 @@
 	.warning {background:#4eadb8;color:white;font-style:bold;width:100%;text-align:center;padding:0.25em 0;}
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:wrap;justify-content:space-around;">
-		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">host</a></div>
+		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
 		<div class="warning">check above uri is correct</div>
 	</div>
 	<script>
@@ -170,7 +170,9 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 		var padding = '='.repeat((4 - base64String.length % 4) % 4);
 		var base64 = (base64String + padding)
 			.replace(/\-/g, '+')
-			.replace(/_/g, '/');
+			.replace(/_/g, '/')
+			.replace(/\n/g, '')
+			.replace(/\r/g, '')
 
 		var rawData = window.atob(base64);
 		var outputArray = new Uint8Array(rawData.length);
@@ -189,7 +191,7 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 
 				const response = await fetch('/vapid.txt' , { headers : { 'Content-Type' : 'text/plain' } } )
 				const vapidPublicKey = await response.text()
-				const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey.replace(/[\n|\r]/g,""))
+				const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey)
 
 				if( sub ){
 					if( sub.options && sub.options.applicationServerKey && 
@@ -207,14 +209,7 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 		}).then( function( sub ){
 			$('subscription').value = JSON.stringify( sub )
 			// do not use fetch as need to use cross domain, use form instead
-			//fetch( 'https://functional.limited/subscribe' , {
-			//	method : 'POST' ,
-			//	mode : 'cors' ,
-			//	headers : { 'Content-type' : 'application/json' } ,
-			//	body : JSON.stringify( { subscription : sub } ) ,
-			//})
 		} , function( error ){
-			// JSON.stringify( error ) gives nothing
 			alert( "push notification setup error : " + error.toString() )
 
 		})
@@ -237,10 +232,13 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 
 	<p style="margin:1em;text-align:center;color:grey;">
 	As an approving user you will need to follow and be up-to-date with <br />
-	<a style="color:#67b41a;" href="https://sustaincia.org/make/sustaincia_identity"> "community identity living document" </a>
+	<a style="color:#67b41a;" href="https://sustaincia.org/make/sustaincia_identity" rel="noreferrer noopener" target="_blank"> "community identity living document" </a>
 	</p>
 	<p style="margin:1em;text-align:center;color:grey;">
 	Also you will need to <b>allow notification</b> to receive approval token link
+	</p>
+	<p style="margin:1em;text-align:center;color:grey;">
+	Notification works best on desktop, this will not work on mobile without Google Play Services
 	</p>
 	<p style="margin:1em;text-align:center;color:grey;">
 	Token links are not linked to user name, so votes are anonymous
