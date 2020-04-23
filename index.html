@@ -56,11 +56,12 @@
 
 	<!-- banner -->
 	<style>
+		.banner div{flex-grow:1}
 		.ocean {margin:1em 7vw;text-align:center;width:100%;}
 		.menu1:focus ~ #menu1 {display:block;}
 		.menu2:focus ~ #menu2 {display:block;}
 	</style>
-	<div class="unselectable" style="flex-direction:row;justify-content:space-evenly;background:#4eadb8;color:white;padding:0.5em;box-shadow:0 5px 5px 0 lightgrey;">
+	<div class="unselectable banner" style="flex-direction:row;justify-content:space-evenly;background:#4eadb8;color:white;padding:0.5em;box-shadow:0 5px 5px 0 lightgrey;">
 		<div tabindex="1" class="menu1">About</div>
 		<div tabindex="2" id="banner_Latest" >Latest</div>
 		<div tabindex="3" id="banner_Learn">Learn</div>
