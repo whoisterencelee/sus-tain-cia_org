@@ -60,8 +60,6 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	<div id="subscribed" class="hide messagebutton">
 	Subscribed
 	</div>
-
-
 	<script>
 	var u = new URLSearchParams( location.search )
 	if(u.get('success')!=null)$('success').style.display="block"
@@ -70,67 +68,64 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
 	</script>
 
-	<style>
-	/*.list p:first-child {font-size:1.5em;}*/
-	.list img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
-	/* .list p:first-child > img {height:40vh;} */
-	.list > p {padding-bottom:0.5em;margin:0.25em 0;border-bottom:1px solid lightgrey;color:grey;}
-	.list b {color:black;}
-	.list a {color:grey;}
-	</style>
+	<div style="background:#4eadb8;color:white;text-align:center;width:100%;text-align:left;">
+		<p style="padding:0 1em;">Select multiple interesting lessons below and click <b>Subscribe</b> to get notify when lessons are ready</p>
+		<p style="padding:0 1em;"><b>Check</b> "have expertise" if you can develop or teach the lesson</p>
+	</div>
+
 
 	<div style="width:100%;max-width:680px;">
-	<div style="background:#4eadb8;color:white;padding:1em;">
-		<p>Select multiple interested lessons to get notify when lessons are ready</p>
-		<p>Check "have expertise" if you can develop or teach the lesson</p>
-		<p>or Add a new lessons at the bottom</p>
-	</div>
 	<style>
-	.table {display:flex;flex-direction:column;width:100%;}
+	.table {display:flex;flex-direction:column;width:100%;font-size:0.75em;}
 	.table > div {display:flex;flex-direction:row;border-bottom:1px solid grey;justify-content:space-between;padding:1em;}
-	.table > div > span { color:grey; }
+	.table > div > span { color:grey;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:flex;align-items:center;flex-grow:1;justify-content:end;}
 	</style>
 	<div class="table" onclick="selectlesson()" >
-		<div>General sustainability<span>have expertise<input type="checkbox"></input></span></div>
-		<div>General sustainability<span>have expertise<input type="checkbox"></input></span></div>
-		<div>General sustainability<span>have expertise<input type="checkbox"></input></span></div>
-		<div>General sustainability<span>have expertise<input type="checkbox"></input></span></div>
-		<div class="unselectable" style="justify-content:center;">+</div>
+		<div lesson="general_sustainability">General sustainability<span>have expertise<input type="checkbox"></input></span></div>
 	</div>
-	<form class="table">
+	<form method="POST" action="https://functional.limited/forms" style="width:100%;display:flex;">
+		<div class="hpot"><label>
+			<input name="_next" value="https://sustaincia.org/make/sustaincia_education"></input>
+			<input name="_gotcha"></input>
+			<input name="_to" value=""></input>
+		</label></div>
+		<input style="background:#0070c4;color:white;margin-top:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;margin:1em;flex-grow:1;" type="submit" value="subscribe"></input>
 	</form>
-
 	<script>
 	function selectlesson(){
 		var lessonDOM = event.target
 		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode }
-		lessonDOM.style.background == "" ? lessonDOM.style.background = "#0070c4" : lessonDOM.style.background = ""
+		lessonDOM.style.background == "" ? lessonDOM.style.background = "lightyellow" : lessonDOM.style.background = ""
 
 	}
 	</script>
 
-	<!--
-	<form class="table" style="width:100%;">
-		<label style="display:table-header-group;background:#4eadb8;color:white;width:100%;">
-			<input type="button" value="topic1" style="width:100%;">
-			<input type="button" value="topic1" style="width:100%;">
-			<input type="button" value="topic1" style="width:100%;">
-			<input type="button" value="topic1" style="width:100%;">
-		</label>
-	</form>
-	<form>
-		<select name="topics" multiple="true" size="10">
-			<option value="topic2">description2</option>
-			<option value="topic4">description2</option>
-			<option value="topic5">description2</option>
-			<option value="topic2">description2</option>
-		</select>
-	</form>
-	<div>topic 2</div>
-	<div>topic 3</div>
-	-->
+	<!-- Add a lesson -->
+	<div style="background:#4eadb8;color:white;text-align:left;margin-top:5vh;padding:0 1em;">
+		<p><b>Add</b> a lesson</p>
+	</div>
+	<div id="add" style="justify-content:center;padding:0 1em;">
 
-	</div><!-- padding -->
+		<style>.hpot {display:none;}
+		#add form {display:flex;flex-direction:column;align-items:center;width:100%;height:100%;flex-wrap:wrap;justify-items:center;}
+		#add form input {background:transparent;border:0px;width:100%;font-family:Montserrat,sans-serif;border-bottom:3px dotted lightgrey;padding:2em 0 0.5em 0.5em;}
+		#add form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:calc( 100% - 2em )}
+		#add form span {color:grey;width:100%;text-decoration:none;outline:0;}
+		#add form label a {color:#0070c4;text-decoration:none;}
+		</style>
+
+		<form method="POST" action="https://functional.limited/forms">
+			<div class="hpot"><label>
+				<input name="_next" value="https://sustaincia.org/make/sustaincia_education?success"></input>
+				<input name="_gotcha"></input>
+				<input name="_to" value="https://sustaincia.org/make/sustaincia_education/approve.html"></input>
+			</label></div>
+			<input placeholder="lesson" name="title" required></input>
+
+			<input placeholder="explain" name="explain" required</input>
+			<input style="background:#0070c4;color:white;margin-top:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="add lesson"></input>
+		</form>
+	</div>
 
 </body>
 
