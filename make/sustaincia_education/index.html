@@ -68,13 +68,13 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
 	</script>
 
+	<div style="width:100%;max-width:680px;">
+
 	<div style="background:#4eadb8;color:white;text-align:center;width:100%;text-align:left;">
 		<p style="padding:0 1em;">Select multiple interesting lessons below and click <b>Subscribe</b> to get notify when lessons are ready</p>
 		<p style="padding:0 1em;"><b>Check</b> "have expertise" if you can develop or teach the lesson</p>
 	</div>
 
-
-	<div style="width:100%;max-width:680px;">
 	<style>
 	.table {display:flex;flex-direction:column;width:100%;font-size:0.75em;}
 	.table > div {display:flex;flex-direction:row;border-bottom:1px solid grey;justify-content:space-between;padding:1em;}
@@ -108,6 +108,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 
 		<style>.hpot {display:none;}
 		#add form {display:flex;flex-direction:column;align-items:center;width:100%;height:100%;flex-wrap:wrap;justify-items:center;}
+		#add form textarea {background:transparent;border:0;margin:1em 0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;width:calc( 100% - 1em );}
 		#add form input {background:transparent;border:0px;width:100%;font-family:Montserrat,sans-serif;border-bottom:3px dotted lightgrey;padding:2em 0 0.5em 0.5em;}
 		#add form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:calc( 100% - 2em )}
 		#add form span {color:grey;width:100%;text-decoration:none;outline:0;}
@@ -119,10 +120,10 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 				<input name="_next" value="https://sustaincia.org/make/sustaincia_education?success"></input>
 				<input name="_gotcha"></input>
 				<input name="_to" value="https://sustaincia.org/make/sustaincia_education/approve.html"></input>
+				<input name="user" value="expert"></input>
 			</label></div>
-			<input placeholder="lesson" name="title" required></input>
-
-			<input placeholder="explain" name="explain" required</input>
+			<input placeholder="lesson" name="lesson" required></input>
+			<textarea rows="4" placeholder="explain" name="explain" required></textarea>
 			<input style="background:#0070c4;color:white;margin-top:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="add lesson"></input>
 		</form>
 	</div>
