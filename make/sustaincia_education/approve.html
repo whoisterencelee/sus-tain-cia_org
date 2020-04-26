@@ -181,6 +181,8 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 
 		}).then( function( sub ){
 			$('subscription').value = JSON.stringify( sub )
+			$('user').disabled = ""
+			$('user').focus()
 			// do not use fetch as need to use cross domain, use form instead
 		} , function( error ){
 			alert( "push notification setup error : " + error.toString() )
@@ -190,6 +192,7 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 
 	// notification support, need to put this behind a user event
 	$('user').onclick=()=>{
+		$('user').disabled = "disabled"
 		if( !( "Notification" in window ) ) alert( "Notification is required for this page, try a different browser" )
 		else if( Notification.permission !== "granted" ) Notification.requestPermission( ( p ) => {   // change to check not granted, as there is 'default' and 'denied'
 				if( p !== "granted" ) alert( "Notification is required for this page, try a different browser" )
