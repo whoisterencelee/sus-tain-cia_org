@@ -19,7 +19,7 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
-	<script>$=(i=>document.getElementById(i))</script>
+	<script>$=(i=>document.getElementById(i)||{})</script>
 
 	<style>
 	div {display:flex;flex-direction:column;flex-wrap:wrap;}
@@ -27,18 +27,21 @@
 	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	</style>
 
+	<!-- functional:header 20200427 -->
 	<style>
 	.header > * {opacity:0.5;margin:0.35em 0 0.35em 1em;}
-	.header a {text-decoration:none;}
+	.header a {text-decoration:none;color:white;}
 	</style>
 	<div class="header" style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
-		<!-- sustaincia pathname -->
+		<!-- functional:pathname 20200427 -->
 		<div id="pathname" style="display:block;"><a href="/">/</a></div>
-		<script>// pathname code
+		<script>
 		var host=document.location.host,path="";document.getElementById('pathname').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
 		</script>
-		<!-- 20200427 -->
+		<!-- functional:pathname -->
+		<div> </div>
 	</div>
+	<!--functional:header -->
 
 	<!-- messagebuttons -->
 	<style>
@@ -64,7 +67,7 @@
 	<div style="width:100%;max-width:680px;">
 
 	<div style="background:#4eadb8;color:white;text-align:center;width:100%;text-align:left;">
-		<p style="padding:0 1em;">Select multiple interesting lessons below and click <b>Subscribe</b> to get notify when lessons are ready</p>
+		<p style="padding:0 1em;">Select multiple interesting lessons below and <b>subscribe</b> to get notify when lessons are ready</p>
 		<p style="padding:0 1em;"><b>Check</b> "have expertise" if you can develop or teach the lesson</p>
 	</div>
 
@@ -74,15 +77,23 @@
 	.table > div > span { color:grey;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:flex;align-items:center;flex-grow:1;justify-content:flex-end;}
 	</style>
 	<div class="table" onclick="selectlesson()" >
-		<div lesson="Plastic and U">Plastic and U<span>have expertise<input type="checkbox"></input></span></div>
+		<div lesson="plastic_and_u">Plastic and U<span>have expertise<input type="checkbox"></input></span></div>
 		<div lesson="general_sustainability">General sustainability<span>have expertise<input type="checkbox"></input></span></div>
 	</div>
 	<script>
+	lessons = {}
 	function selectlesson(){
 		var lessonDOM = event.target
-		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode }
-		lessonDOM.style.background == "" ? lessonDOM.style.background = "lightyellow" : lessonDOM.style.background = ""
-
+		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode }  // lesson div
+		var checkDOM = lessonDOM.getElementsByTagName( "input" )[0]
+		if( lessonDOM.style.background == "" ){  // selected
+			lessons[ lessonDOM.attributes.lesson.value ] = checkDOM.checked
+			lessonDOM.style.background = "lightyellow" 
+		} else {  // unselected
+			delete lessons[ lessonDOM.lesson ]
+			lessonDOM.style.background = ""
+			checkDOM.checked = false
+		}
 	}
 	</script>
 
@@ -91,91 +102,18 @@
 			<input name="_next" value="https://sustaincia.org/make/sustaincia_education"></input>
 			<input name="_gotcha"></input>
 			<input name="_to" value=""></input>
-			<input id="user" name="user" value="student"></input>
-			<input class="hide" name="subscription" id="subscription"></input>
+			<input id="subscription" name="subscription"></input>
 		</label></div>
-		<input style="background:#0070c4;color:white;margin-top:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;margin:1em;flex-grow:1;" type="submit" value="subscribe"></input>
+		<style>
+		input[type="submit"] {background:#0070c4;cursor:pointer;}
+		input[type="submit"]:disabled {background:grey;cursor:not-allowed;}
+		</style>
+		<input id="user" style="color:white;margin-top:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;flex-grow:1;" type="submit" value="subscribe" disabled></input>
 	</form>
 	<p style="font-size:0.75em;text-align:center;margin-top:0;">subscribe will also notify you of new lessons</p>
 
 	<script>// subscribe code
-if( 'serviceWorker' in navigator ){  // serviceWorker check
-    navigator.serviceWorker.register('/service_worker.js').then( function() {
-	console.log('Successfully registered service worker')
-	// maybe better to put getpush in here since there might be an existing worker from a not yet closed tab
-	// calling the register will update the worker first
-	
-	// This function is needed because Chrome doesn't accept a base64 encoded string
-	// as value for applicationServerKey in pushManager.subscribe yet
-	// https://bugs.chromium.org/p/chromium/issues/detail?id=802280
-	function urlBase64ToUint8Array(base64String) {
-		var padding = '='.repeat((4 - base64String.length % 4) % 4);
-		var base64 = (base64String + padding)
-			.replace(/\-/g, '+')
-			.replace(/_/g, '/')
-			.replace(/\n/g, '')
-			.replace(/\r/g, '')
-
-		var rawData = window.atob(base64);
-		var outputArray = new Uint8Array(rawData.length);
-
-		for (var i = 0; i < rawData.length; ++i) {
-			outputArray[i] = rawData.charCodeAt(i);
-		}
-		return outputArray;
-	}
-
-	function getpush(){
-		// get push subscription, require notification support
-		navigator.serviceWorker.ready.then( function( reg ) {
-
-			return reg.pushManager.getSubscription().then( async function( sub ){
-
-				const response = await fetch('/vapid.txt' , { headers : { 'Content-Type' : 'text/plain' } } )
-				const vapidPublicKey = await response.text()
-				const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey)
-
-				if( sub ){
-					if( sub.options && sub.options.applicationServerKey && 
-						new Uint8Array( sub.options.applicationServerKey ).toString() != convertedVapidKey.toString() ){
-						sub.unsubscribe()  // there is an old VAPID Key, need to unsubscribe first
-					}else return sub  // already correctly subscribed
-				}
-
-				return reg.pushManager.subscribe({
-					userVisibleOnly : true ,
-					applicationServerKey : convertedVapidKey
-					})
-			})
-
-		}).then( function( sub ){
-			$('subscription').value = JSON.stringify( sub )
-			$('user').disabled = ""
-			$('user').focus()
-			$('subscribe').submit()
-			// do not use fetch as need to use cross domain, use form instead
-		} , function( error ){
-			alert( "push notification setup error : " + error.toString() )
-
-		})
-	}
-
-	// notification support, need to put this behind a user event
-	//$('user').onclick=()=>{
-	$('subscribe').onsubmit=()=>{
-		$('user').disabled = "disabled" // debounce submit
-		event.preventDefault()
-		if( !( "Notification" in window ) ) alert( "Notification is required for this page, try a different browser" )
-		else if( Notification.permission !== "granted" ) Notification.requestPermission( ( p ) => {   // change to check not granted, as there is 'default' and 'denied'
-				if( p !== "granted" ) alert( "Notification is required for this page, try a different browser" )
-				else getpush()
-			} )
-		else if( Notification.permission === "granted" ) getpush()
-	}
-
-    }).catch( function(err) { alert('Error whilst registering service worker ' + err) })
-} else alert( 'Service worker is required for this page, try a different browser' )
-// End of serviceworker register
+if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worker.js').then(function(){console.log('Successfully registered service worker');function urlBase64ToUint8Array(base64String){var padding='='.repeat((4-base64String.length%4)%4);var base64=(base64String+padding).replace(/\-/g,'+').replace(/_/g,'/').replace(/\n/g,'').replace(/\r/g,'');var rawData=window.atob(base64);var outputArray=new Uint8Array(rawData.length);for(var i=0;i<rawData.length;++i){outputArray[i]=rawData.charCodeAt(i)}return outputArray}function getpush(){navigator.serviceWorker.ready.then(function(reg){return reg.pushManager.getSubscription().then(async function(sub){const response=await fetch('/vapid.txt',{headers:{'Content-Type':'text/plain'}});const vapidPublicKey=await response.text();const convertedVapidKey=urlBase64ToUint8Array(vapidPublicKey);if(sub){if(sub.options&&sub.options.applicationServerKey&&new Uint8Array(sub.options.applicationServerKey).toString()!=convertedVapidKey.toString()){sub.unsubscribe()}else return sub}return reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:convertedVapidKey})})}).then(function(sub){$('subscription').value=JSON.stringify(sub);$('user').disabled='';$('subscribe').submit()},function(error){alert('push notification setup error : '+error.toString())})}$('subscribe').onsubmit=()=>{$('user').disabled='disabled';event.preventDefault();if(!('Notification'in window))alert('Notification is required for this page, try a different browser');else if(Notification.permission!=='granted')Notification.requestPermission(p=>{if(p!=='granted')alert('Notification is required for this page, try a different browser');else getpush()});else if(Notification.permission==='granted')getpush()};$('user').disabled=''}).catch(function(err){alert('Error whilst registering service worker '+err)})}else alert('Service worker is required for this page, try a different browser');
 	</script>
 
 
