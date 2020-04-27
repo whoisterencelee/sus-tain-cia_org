@@ -28,21 +28,17 @@
 	</style>
 
 	<style>
-	.subscribe {display:none;}
+	.header > * {opacity:0.5;margin:0.35em 0 0.35em 1em;}
+	.header a {text-decoration:none;}
 	</style>
-
-	<!-- sustaincia header --><!-- 20200427 -->
-	<style>
-	#header {opacity:0.5;}
-	#header a {color:white;text-decoration:none;}
-	.subscribe {background:transparent;width:100%;color:transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);font-size:1em;}
-	</style>
-	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
-		<div id="header" style="margin:0.35em 0em 0.35em 1em;display:block;"><a href="/">/</a></div>
+	<div class="header" style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
+		<!-- sustaincia pathname -->
+		<div id="pathname" style="display:block;"><a href="/">/</a></div>
+		<script>// pathname code
+		var host=document.location.host,path="";document.getElementById('pathname').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+		</script>
+		<!-- 20200427 -->
 	</div>
-	<script>// header code
-	var host=document.location.host,path="";document.getElementById('header').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
-	</script>
 
 	<!-- messagebuttons -->
 	<style>
@@ -95,6 +91,7 @@
 			<input name="_next" value="https://sustaincia.org/make/sustaincia_education"></input>
 			<input name="_gotcha"></input>
 			<input name="_to" value=""></input>
+			<input id="user" name="user" value="student"></input>
 			<input class="hide" name="subscription" id="subscription"></input>
 		</label></div>
 		<input style="background:#0070c4;color:white;margin-top:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;margin:1em;flex-grow:1;" type="submit" value="subscribe"></input>
