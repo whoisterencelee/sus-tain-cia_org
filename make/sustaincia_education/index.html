@@ -39,14 +39,68 @@
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
 		<div id="header" style="margin:0.35em 0em 0.35em 1em;display:block;"><a href="/">/</a></div>
-		<form id="subscribe" style="width:auto;margin:0.35em 1em;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
-			<input class="hide" name="subscription" id="subscription"></input>
-			<input type="submit" class="subscribe" style="border:0;padding:0;cursor:pointer;" value="subscribe"></input>
-		</form>
 	</div>
 	<script>// header code
 	var host=document.location.host,path="";document.getElementById('header').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
 	</script>
+
+	<!-- messagebuttons -->
+	<style>
+	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
+	</style>
+	<a id="success" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity" rel="noreferrer noopener" target="_blank">
+	Thank you for your submission we will review and post it asap<br />In the meantime click thur to our "community identity living document"
+	</a>
+	<div id="approve" class="hide messagebutton">
+	Thank you for your approval, the decision has <span id="triggered" class="hide"> NOT YET</span> triggered
+	</div>
+	<div id="subscribed" class="hide messagebutton">
+	Subscribed
+	</div>
+	<script>
+	var u = new URLSearchParams( location.search )
+	if(u.get('success')!=null)$('success').style.display="block"
+	if(u.get('approve')!=null)$('approve').style.display="block"
+	if(u.get('triggered')==null)$('triggered').style.display="inline"
+	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
+	</script>
+
+	<div style="width:100%;max-width:680px;">
+
+	<div style="background:#4eadb8;color:white;text-align:center;width:100%;text-align:left;">
+		<p style="padding:0 1em;">Select multiple interesting lessons below and click <b>Subscribe</b> to get notify when lessons are ready</p>
+		<p style="padding:0 1em;"><b>Check</b> "have expertise" if you can develop or teach the lesson</p>
+	</div>
+
+	<style>
+	.table {display:flex;flex-direction:column;width:100%;font-size:0.75em;}
+	.table > div {display:flex;flex-direction:row;border-bottom:1px solid grey;justify-content:space-between;padding:1em;}
+	.table > div > span { color:grey;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:flex;align-items:center;flex-grow:1;justify-content:flex-end;}
+	</style>
+	<div class="table" onclick="selectlesson()" >
+		<div lesson="Plastic and U">Plastic and U<span>have expertise<input type="checkbox"></input></span></div>
+		<div lesson="general_sustainability">General sustainability<span>have expertise<input type="checkbox"></input></span></div>
+	</div>
+	<script>
+	function selectlesson(){
+		var lessonDOM = event.target
+		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode }
+		lessonDOM.style.background == "" ? lessonDOM.style.background = "lightyellow" : lessonDOM.style.background = ""
+
+	}
+	</script>
+
+	<form id="subscribe" method="POST" action="https://functional.limited/subscribe" name="subscribe" style="width:100%;display:flex;">
+		<div class="hpot"><label>
+			<input name="_next" value="https://sustaincia.org/make/sustaincia_education"></input>
+			<input name="_gotcha"></input>
+			<input name="_to" value=""></input>
+			<input class="hide" name="subscription" id="subscription"></input>
+		</label></div>
+		<input style="background:#0070c4;color:white;margin-top:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;margin:1em;flex-grow:1;" type="submit" value="subscribe"></input>
+	</form>
+	<p style="font-size:0.75em;text-align:center;margin-top:0;">subscribe will also notify you of new lessons</p>
+
 	<script>// subscribe code
 if( 'serviceWorker' in navigator ){  // serviceWorker check
     navigator.serviceWorker.register('/service_worker.js').then( function() {
@@ -127,60 +181,6 @@ if( 'serviceWorker' in navigator ){  // serviceWorker check
 // End of serviceworker register
 	</script>
 
-	<!-- messagebuttons -->
-	<style>
-	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
-	</style>
-	<a id="success" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity" rel="noreferrer noopener" target="_blank">
-	Thank you for your submission we will review and post it asap<br />In the meantime click thur to our "community identity living document"
-	</a>
-	<div id="approve" class="hide messagebutton">
-	Thank you for your approval, the decision has <span id="triggered" class="hide"> NOT YET</span> triggered
-	</div>
-	<div id="subscribed" class="hide messagebutton">
-	Subscribed
-	</div>
-	<script>
-	var u = new URLSearchParams( location.search )
-	if(u.get('success')!=null)$('success').style.display="block"
-	if(u.get('approve')!=null)$('approve').style.display="block"
-	if(u.get('triggered')==null)$('triggered').style.display="inline"
-	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
-	</script>
-
-	<div style="width:100%;max-width:680px;">
-
-	<div style="background:#4eadb8;color:white;text-align:center;width:100%;text-align:left;">
-		<p style="padding:0 1em;">Select multiple interesting lessons below and click <b>Subscribe</b> to get notify when lessons are ready</p>
-		<p style="padding:0 1em;"><b>Check</b> "have expertise" if you can develop or teach the lesson</p>
-	</div>
-
-	<style>
-	.table {display:flex;flex-direction:column;width:100%;font-size:0.75em;}
-	.table > div {display:flex;flex-direction:row;border-bottom:1px solid grey;justify-content:space-between;padding:1em;}
-	.table > div > span { color:grey;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:flex;align-items:center;flex-grow:1;justify-content:flex-end;}
-	</style>
-	<div class="table" onclick="selectlesson()" >
-		<div lesson="Plastic and U">Plastic and U<span>have expertise<input type="checkbox"></input></span></div>
-		<div lesson="general_sustainability">General sustainability<span>have expertise<input type="checkbox"></input></span></div>
-	</div>
-	<form method="POST" action="https://functional.limited/forms" style="width:100%;display:flex;">
-		<div class="hpot"><label>
-			<input name="_next" value="https://sustaincia.org/make/sustaincia_education"></input>
-			<input name="_gotcha"></input>
-			<input name="_to" value=""></input>
-		</label></div>
-		<input style="background:#0070c4;color:white;margin-top:1em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;margin:1em;flex-grow:1;" type="submit" value="subscribe"></input>
-	</form>
-	<p style="font-size:0.75em;text-align:center;margin-top:0;">subscribe will also notify you of new lessons</p>
-	<script>
-	function selectlesson(){
-		var lessonDOM = event.target
-		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode }
-		lessonDOM.style.background == "" ? lessonDOM.style.background = "lightyellow" : lessonDOM.style.background = ""
-
-	}
-	</script>
 
 	<!-- Add a lesson -->
 	<div style="background:#4eadb8;color:white;text-align:left;margin-top:5vh;padding:0 1em;">
