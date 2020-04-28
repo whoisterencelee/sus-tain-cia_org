@@ -114,7 +114,7 @@
 	var tableDOM = $("table").getElementsByTagName("div") , tl = tableDOM.length
 	while( tl-- ){
 		var d = tableDOM[ tl ] , lesson = d.attributes.lesson.value
-		if( prevlessons.hasOwnProperty( [ lesson ] ) ) selectlesson( d , prevlessons[ lesson ] )
+		if( prevlessons.hasOwnProperty( lesson ) ) selectlesson( d , prevlessons[ lesson ] )
 	}
 	</script>
 
