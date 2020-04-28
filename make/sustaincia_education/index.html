@@ -67,7 +67,7 @@
 	<div style="width:100%;max-width:680px;">
 
 	<div style="background:#4eadb8;color:white;text-align:center;width:100%;text-align:left;">
-		<p style="padding:0 1em;">Select multiple interesting lessons below and <b>subscribe</b> to get notify when lessons are ready</p>
+		<p style="padding:0 1em;"><b>Subscribe</b> to lessons below and get notify when lessons are ready</p>
 		<p style="padding:0 1em;"><b>Check</b> "have expertise" if you can develop or teach the lesson</p>
 	</div>
 
@@ -94,6 +94,7 @@
 			lessonDOM.style.background = ""
 			checkDOM.checked = false
 		}
+		$("_to").value = Object.keys( lessons ).join(",")
 	}
 	</script>
 
@@ -101,7 +102,7 @@
 		<div class="hpot"><label>
 			<input name="_next" value="https://sustaincia.org/make/sustaincia_education"></input>
 			<input name="_gotcha"></input>
-			<input name="_to" value=""></input>
+			<input id="_to" name="_to" value=""></input>
 			<input id="subscription" name="subscription"></input>
 		</label></div>
 		<style>
@@ -140,7 +141,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 				<input name="user" value="expert"></input>
 			</label></div>
 			<input placeholder="lesson" name="lesson" required></input>
-			<textarea rows="4" placeholder="explain" name="explain" required></textarea>
+			<textarea rows="4" placeholder="why should this lesson be added to the list" name="explain" required></textarea>
 			<input style="background:#0070c4;color:white;margin-bottom:3em;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="add lesson"></input>
 		</form>
 	</div>
