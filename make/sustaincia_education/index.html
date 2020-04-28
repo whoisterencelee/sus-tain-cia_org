@@ -81,8 +81,8 @@
 		<div lesson="https://sustaincia.org/make/sustaincia_education/lessons/general_sustainability">General sustainability<span>have expertise<input type="checkbox"></input></span></div>
 	</div>
 	<script>
-	var l = localStorage.getItem( document.location.pathname + "/lessons" ) || "{}"
-	localStorage.removeItem( document.location.pathname + "/lessons" )  // remove then rebuild
+	var l = localStorage.getItem( document.location.pathname.replace( /\/$/ , "/index.html" ) + "/lessons" ) || "{}"
+	localStorage.removeItem( document.location.pathname.replace( /\/$/ , "/index.html" ) + "/lessons" )  // remove then rebuild
 	var prevlessons = JSON.parse( l )
 	lessons = {}
 	function selectlesson( d , expertise ){
@@ -99,7 +99,7 @@
 			lessonDOM.style.background = ""
 			expertiseDOM.checked = false
 		}
-		localStorage.setItem( document.location.pathname + "/lessons" , JSON.stringify( lessons ) )
+		localStorage.setItem( document.location.pathname.replace( /\/$/ , "/index.html" ) + "/lessons" , JSON.stringify( lessons ) )
 		lessons_to()
 	}
 	function lessons_to(){
