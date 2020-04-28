@@ -76,25 +76,43 @@
 	.table > div {display:flex;flex-direction:row;border-bottom:1px solid grey;justify-content:space-between;padding:1em;}
 	.table > div > span { color:grey;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:flex;align-items:center;flex-grow:1;justify-content:flex-end;}
 	</style>
-	<div class="table" onclick="selectlesson()" >
+	<div id="table" class="table" onclick="selectlesson()" >
 		<div lesson="plastic_and_u">Plastic and U<span>have expertise<input type="checkbox"></input></span></div>
 		<div lesson="general_sustainability">General sustainability<span>have expertise<input type="checkbox"></input></span></div>
 	</div>
 	<script>
-	lessons = {}
-	function selectlesson(){
-		var lessonDOM = event.target
+	var l = localStorage.getItem( document.location.pathname + "/lessons" ) || "{}"
+	lessons = JSON.parse( l )	
+	function selectlesson( d , expertise ){
+		var lessonDOM = d || event.target
 		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode }  // lesson div
-		var checkDOM = lessonDOM.getElementsByTagName( "input" )[0]
-		if( lessonDOM.style.background == "" ){  // selected
-			lessons[ lessonDOM.attributes.lesson.value ] = checkDOM.checked
+		var lesson = lessonDOM.attributes.lesson.value
+		var expertiseDOM = lessonDOM.getElementsByTagName( "input" )[0]
+		if( expertise ) expertiseDOM.checked = true
+		if( lessonDOM.style.background == "" ){  // select
+			lessons[ lesson ] = expertiseDOM.checked
 			lessonDOM.style.background = "lightyellow" 
-		} else {  // unselected
-			delete lessons[ lessonDOM.lesson ]
+		} else {  // unselect
+			delete lessons[ lesson ]
 			lessonDOM.style.background = ""
-			checkDOM.checked = false
+			expertiseDOM.checked = false
 		}
-		$("_to").value = Object.keys( lessons ).join(",")
+		localStorage.setItem( document.location.pathname + "/lessons" , JSON.stringify( lessons ) )
+		lessons_to()
+	}
+	function lessons_to(){
+		var interest = []
+		Object.entries( lessons ).forEach( ( [ lesson , expertise ] ) => {
+			if( expertise ) interest.push( lesson + "_expertise" )
+			interest.push( lesson )
+		})
+		$("_to").value = interest.join( "," )
+	}
+	// reload last selections
+	var tableDOM = $("table").getElementsByTagName("div") , tl = tableDOM.length
+	while( tl-- ){
+		var d = tableDOM[ tl ] , lesson = d.attributes.lesson.value
+		if( lessons.hasOwnProperty( [ lesson ] ) ) selectlesson( d , lessons[ lesson ] )
 	}
 	</script>
 
