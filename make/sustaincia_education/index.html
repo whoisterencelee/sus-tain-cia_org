@@ -77,12 +77,14 @@
 	.table > div > span { color:grey;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:flex;align-items:center;flex-grow:1;justify-content:flex-end;}
 	</style>
 	<div id="table" class="table" onclick="selectlesson()" >
-		<div lesson="sustaincia.org/make/sustaincia_education/lessons/plastic_and_u">Plastic and U<span>have expertise<input type="checkbox"></input></span></div>
-		<div lesson="sustaincia.org/make/sustaincia_education/lessons/general_sustainability">General sustainability<span>have expertise<input type="checkbox"></input></span></div>
+		<div lesson="https://sustaincia.org/make/sustaincia_education/lessons/plastic_and_u">Plastic and U<span>have expertise<input type="checkbox"></input></span></div>
+		<div lesson="https://sustaincia.org/make/sustaincia_education/lessons/general_sustainability">General sustainability<span>have expertise<input type="checkbox"></input></span></div>
 	</div>
 	<script>
 	var l = localStorage.getItem( document.location.pathname + "/lessons" ) || "{}"
-	lessons = JSON.parse( l )	
+	localStorage.removeItem( document.location.pathname + "/lessons" )  // remove then rebuild
+	var prevlessons = JSON.parse( l )
+	lessons = {}
 	function selectlesson( d , expertise ){
 		var lessonDOM = d || event.target
 		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode }  // lesson div
@@ -101,18 +103,18 @@
 		lessons_to()
 	}
 	function lessons_to(){
-		var interest = [ document.location.pathname ]  // include this page
+		var interest = [ document.location.href ]  // include this page
 		Object.entries( lessons ).forEach( ( [ lesson , expertise ] ) => {
 			if( expertise ) interest.push( lesson + "_expertise" )
 			interest.push( lesson )
 		})
 		$("_to").value = interest.join( "," )
 	}
-	// reload last selections
+	// check current list and rebuild lessons
 	var tableDOM = $("table").getElementsByTagName("div") , tl = tableDOM.length
 	while( tl-- ){
 		var d = tableDOM[ tl ] , lesson = d.attributes.lesson.value
-		if( lessons.hasOwnProperty( [ lesson ] ) ) selectlesson( d , lessons[ lesson ] )
+		if( prevlessons.hasOwnProperty( [ lesson ] ) ) selectlesson( d , prevlessons[ lesson ] )
 	}
 	</script>
 
