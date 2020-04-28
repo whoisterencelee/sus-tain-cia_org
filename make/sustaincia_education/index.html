@@ -101,7 +101,7 @@
 		lessons_to()
 	}
 	function lessons_to(){
-		var interest = []
+		var interest = [ document.location.pathname ]  // include this page
 		Object.entries( lessons ).forEach( ( [ lesson , expertise ] ) => {
 			if( expertise ) interest.push( lesson + "_expertise" )
 			interest.push( lesson )
