@@ -97,7 +97,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		</div>
 	
 		<div id="preview" class="hide">
-			<div id="render" class="list" style="padding:0 1em;"></div>
+			<div id="render" class="list" style="margin:0 25vw;min-width:340px;"></div>
 		</div>
 		
 	</div>
@@ -136,7 +136,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	.list > div > table {text-align:center;border-spacing:2em 0;}
 	</style>
 
-	<div style="padding:0 1em;">
+	<div style="margin:0 25vw;min-width:340px;">
 	<div class="list" onclick="copyanchor()" >
 	<!-- list -->
 
@@ -156,7 +156,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 
 	<!-- copyanchor -->
 	<textarea id="copyanchor" style="position:absolute;top:-8888px;" readonly></textarea>
-	<div id="anchorcopied" class="hide" style="background:#0070c4;color:white;padding:0.5em 1em;border-radius:3em;position:fixed;bottom:1em;font-size:0.75em;">anchor copied , paste into any chat</div>
+	<div id="anchorcopied" class="hide" style="background:#0070c4;color:white;padding:0.5em 1em;border-radius:3em;position:fixed;bottom:3em;font-size:0.75em;">anchor copied , paste into any chat</div>
 	<script>
 	function copyanchor(){
 		var p = event.target
