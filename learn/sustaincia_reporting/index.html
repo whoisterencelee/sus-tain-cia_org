@@ -32,6 +32,7 @@
 	#header {opacity:0.5;}
 	#header a {color:white;text-decoration:none;}
 	.megaphone {color:transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
+	#subscribe:hover { content:'click subscribe 
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
 		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
@@ -127,12 +128,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	</script>
 
 	<style>
-	.list img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
-	.list video {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
 	.list > div {display:inline-block;padding-bottom:0.5em;margin:0.25em 0;border-bottom:1px solid lightgrey;color:grey;}
-	.list b {color:black;}
-	.list a {color:grey;}
-	.list table {text-align:center;border-spacing:2em 0;}
+	.list > div > img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
+	.list > div > video {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
+	.list > div > b {color:black;}
+	.list > div > a {color:grey;}
+	.list > div > table {text-align:center;border-spacing:2em 0;}
 	</style>
 
 	<div style="padding:0 1em;">
