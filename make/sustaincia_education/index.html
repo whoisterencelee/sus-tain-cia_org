@@ -87,7 +87,7 @@
 	lessons = {}
 	function selectlesson( d , expertise ){
 		var lessonDOM = d || event.target
-		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode }  // lesson div
+		while( lessonDOM.parentNode.className != "table" ){ lessonDOM = lessonDOM.parentNode ; if( lessonDOM == document ) return }  // lesson div
 		var lesson = lessonDOM.attributes.lesson.value
 		var expertiseDOM = lessonDOM.getElementsByTagName( "input" )[0]
 		if( expertise ) expertiseDOM.checked = true
@@ -98,6 +98,7 @@
 			delete lessons[ lesson ]
 			lessonDOM.style.background = ""
 			expertiseDOM.checked = false
+			// TODO should unsubscribe
 		}
 		localStorage.setItem( document.location.pathname.replace( /\/$/ , "/index.html" ) + "/lessons" , JSON.stringify( lessons ) )
 		lessons_to()
