@@ -36,9 +36,11 @@ self.addEventListener( 'push' , ( event ) => {
 		)
 })
 
+// https://stackoverflow.com/questions/38713685/how-can-i-initiate-a-pwa-progressive-webapp-open-from-a-click-on-a-push-notifi
 self.addEventListener( 'notificationclick' , ( event ) => {
 	event.notification.close()
 	var data = event.notification.data
+	var rooturl = new URL('./', location).href
 	if( data.url ){
 		event.waitUntil( clients.matchAll({
 			type: 'window'
@@ -47,7 +49,7 @@ self.addEventListener( 'notificationclick' , ( event ) => {
 				var client = clientList[i]
 				if (client.url == data.url && 'focus' in client) return client.focus()
 			}
-			if (clients.openWindow) return clients.openWindow( data.url )
+			if (clients.openWindow) return clients.openWindow( data.url ).then( ( client ) => client.focus() )
 		} ) )
 	}
 } ) // notificationclick
