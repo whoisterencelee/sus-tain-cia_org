@@ -54,7 +54,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	.pulldown:focus-within > #report {display:flex;}
 	.pulldown:focus-within > #preview {display:flex;}
 	</style>
-	<div class="pulldown" style="align-items:center;width:100%;">
+	<div class="pulldown" style="align-items:center;">
 
 		<style>.hpot {display:none;}
 		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
@@ -78,7 +78,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			</label>
 
 			<label>
-			<input required placeholder="post as" tabindex="2" name="user"></input>
+			<input required placeholder="post as reporter" tabindex="2" name="user"></input>
 			</label>
 
 			<label>
@@ -133,7 +133,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	.list > div > video {margin:0 1em 0 0;float:left;max-height:30vh;max-width:60vw;}
 	.list > div > b {color:black;}
 	.list > div > a {color:grey;}
-	.list > div > table {text-align:center;border-spacing:2em 0;}
+	.list > div > table {text-align:center;border-spacing:2em 0;font-size:0.75em;word-break;break-all;max-width:90vw;}
 	</style>
 
 	<div style="margin:0 25vw;min-width:340px;">
