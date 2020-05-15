@@ -272,7 +272,7 @@
 
 	</div>
 
-	<script>$=(i=>document.getElementById(i))</script>
+	<script>$=(i=>document.getElementById(i)||{})</script>
 	<script>
 	function onlycards( category ){
 		$('hotlist').childNodes.forEach( d => {
