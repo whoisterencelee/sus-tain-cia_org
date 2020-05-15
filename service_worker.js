@@ -73,7 +73,13 @@ function read( dbname , index = db[ dbname ].keyPath , key , func = ( event ) =>
 
 function range( dbname , index = db[ dbname ].keyPath , lower , upper , func = ( event ) => console.log( event.target.result.value ) ){
 	if( !db[ dbname ] ) return openDb( dbname , () => range( dbname , index , lower , upper , func ) )
-	db[ dbname ].transaction( dbname ).objectStore( dbname ).index( index ).openCursor( IDBKeyRange.bound( lower , upper , true , true ) ).onsuccess = func
+	if( upper < lower ){  // descending order
+		var temp = upper
+		upper = lower
+		lower = temp
+		var prev = "prev"
+	}
+	db[ dbname ].transaction( dbname ).objectStore( dbname ).index( index ).openCursor( IDBKeyRange.bound( lower , upper , true , true ) , prev ).onsuccess = func
 }
 // range( "inbox" , "time" , new Date().setDate( new Date().getDate() - 14 ) , new Date() , ( event ) => {
 //	var cursor = event.target.result
