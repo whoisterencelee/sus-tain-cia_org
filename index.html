@@ -113,8 +113,20 @@
 <!-- hot list -->
 <div id="hotlist">
 
-		<a category="make" date="2020-04-24T02:30:52.006Z" style="text-decoration:none;" href="https://sustaincia.org/make/sustaincia_education/">
-		<div category="make" date="2020-04-23T02:31:52.006Z" class="solution">
+		<div category="check" date="2020-05-18T02:31:52.006Z" class="solution">
+			<div class="visual">
+				<img src="https://live.staticflickr.com/2738/4163986012_4443076b0f_3k.jpg"></img>
+			</div>
+			<div class="content">
+				<div class="description">Sustainable Framework Development</div>
+				<div class="need">Expertise in existing standards</div>
+				<div class="certified">certified</div>
+			</div>
+
+		</div>
+
+		<a category="make learn" date="2020-04-24T02:30:52.006Z" style="text-decoration:none;" href="https://sustaincia.org/make/sustaincia_education/">
+		<div category="make learn" date="2020-04-23T02:31:52.006Z" class="solution">
 			<div class="visual">
 				<img src="https://www.picpedia.org/highway-signs/images/teacher.jpg"></img>
 			</div>
@@ -276,7 +288,7 @@
 	<script>
 	function onlycards( category ){
 		$('hotlist').childNodes.forEach( d => {
-			if( d.nodeType == 1 && ( category != null && d.getAttribute( "category" ) && d.getAttribute( "category" ) != category ) ) d.style.display = "none"
+			if( d.nodeType == 1 && ( category != null && d.getAttribute( "category" ) && !d.getAttribute( "category" ).match( category ) ) ) d.style.display = "none"
 			else if( d.style && d.style.display ) d.style.display = ""
 		})
 	}
