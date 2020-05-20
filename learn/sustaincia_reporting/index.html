@@ -32,13 +32,12 @@
 	#header {opacity:0.5;}
 	#header a {color:white;text-decoration:none;}
 	.megaphone {color:transparent;text-shadow: 0 0 0 rgba(255,255,255,0.5);}
-	#subscribe:hover { content:'click subscribe 
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
 		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
 		<form id="subscribe" style="width:auto;margin:0;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
 			<input class="hide" name="subscription" id="subscription"></input>
-			<input type="submit" class="megaphone" style="border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
+			<input id="subscribe-submit" type="submit" class="megaphone" style="border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
 		</form>
 	</div>
 	<script>// header code
