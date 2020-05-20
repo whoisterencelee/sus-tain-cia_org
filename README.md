@@ -44,7 +44,6 @@ It's currently free style, but should be readable but keep an eye on page load t
 
 ## Built With
 
-* [Formspree](https://formspree.io/) - Form to Email for static site
 * [Git](https://git-scm.com/)
 * [Github](https://github.io/)
 * [HTML5 Boilerplate](https://html5boilerplate.com/)
