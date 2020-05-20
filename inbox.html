@@ -70,7 +70,8 @@
 	<style>
 	.inbox > * { display:flex;flex-direction:row;justify-content:space-between;border-bottom:1px solid black;padding:1em 0;width:100%;align-items:start;cursor:pointer; }
 	.inbox > *:hover { background:lightgrey; }
-	.inbox > a { text-decoration:none;color:black;flex-wrap:wrap; }
+	.inbox > a { text-decoration:none;color:black;flex-wrap:wrap;word-break:break-all; }
+	.inbox > a :nth-child(n+3) { color:grey; }
 	</style>
 
 	<div id="inbox" class="inbox" style="margin:0 3vw;font-family:monospace;">
