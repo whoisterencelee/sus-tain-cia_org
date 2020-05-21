@@ -98,10 +98,11 @@ self.addEventListener( 'push' , ( event ) => {
 		tag : "pwa" ,
 		requireInteraction : true ,
 	}
-	if( data.url ) note.data = { url : data.url }
+	note.data = {}
+	if( data.url ) note.data.url = data.url
+	data.time ? note.time = new Date( data.time ) : note.time = new Date()
 
 	// save message to inbox
-	note.time = new Date()  // TODO should use server sent time
 	note.read = false
 	store( "inbox" , note )
 	event.waitUntil(  // prevent serviceworker from stopping until this promise resolves
