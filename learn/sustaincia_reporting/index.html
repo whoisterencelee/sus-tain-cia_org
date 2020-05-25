@@ -172,6 +172,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	</script>
 	<!-- copyanchor -->
 
+	<!-- analytics -->
+	<script>
+	fetch( 'https://functional.limited/log' , { method: "POST" , body : 'href=' + location.href} )
+	</script>
+	<!-- analytics -->
+
 </body>
 
 </html>
