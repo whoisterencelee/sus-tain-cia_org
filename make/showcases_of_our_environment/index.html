@@ -82,28 +82,34 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 
 		</form>
 
+
 	</div>
 
-		<script>
-		function getMIME( u ){
-			if( u == '' ) return
-			// get mime content-type
-			// using fetch might not work due to CORS
-			// innerHTML with an img tag
-			fetch( u ).then( resp =>{
-				var ContentType = resp.headers.get( 'Content-Type' )
-				console.log( ContentType )
-				if( /^image/.test( ContentType ) ) $( "render" ).innerHTML='<div><img src="' + u + '" /></div>'
-				else throw "not an image"
-				// otherwise try putting it into an iframe
-			}).catch( err =>{
-				$("render").innerHTML = '<div><iframe src="' + u + '"></iframe></div>'
-			})
-		}
-		render=()=>{ getMIME( $("editor").value ) }
-		$("editor").onkeyup=render;
-		render()
-		</script>
+	<style>
+	#render > * {max-width:95vw;max-height:50vh;margin:0.5vw;}
+	</style>
+	<div id="render"></div>
+
+	<script>
+	function getMIME( u ){
+		if( u == '' ) return
+		// get mime content-type
+		// using fetch might not work due to CORS
+		// innerHTML with an img tag
+		fetch( u ).then( resp =>{
+			var ContentType = resp.headers.get( 'Content-Type' )
+			console.log( ContentType )
+			if( /^image/.test( ContentType ) ) $( "render" ).innerHTML='<img src="' + u + '" />'
+			else throw "not an image"
+			// otherwise try putting it into an iframe
+		}).catch( err =>{
+			$("render").innerHTML = '<iframe src="' + u + '"></iframe>'
+		})
+	}
+	render=()=>{ getMIME( $("editor").value ) }
+	$("editor").onkeyup=render;
+	render()
+	</script>
 
 	<!-- messagebuttons -->
 	<style>
@@ -132,50 +138,61 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	#zoom > img {max-width:90%;max-height:90%;}
 	</style>
 
-	<div id="unzoom" onclick="unzoom()" style="display:none;position:fixed;width:100vw;height:100vh;background:rgba(255,255,255,0.9);">
-		<div id="zoom" style="justify-content:center;align-items:center;width:100%;height:100%;">
-		</div>
+	<div id="unzoom" onclick="unzoom()" style="display:none;position:fixed;width:100vw;height:100vh;background:rgba(255,252,244,0.9);justify-content:center;align-items:center;">
+		<img id="zoom" onclick="copyanchor()" style="max-width:95vw;max-height:calc( 95vh - 1em );" />
+		<p style="height:1em;font-style:italic;font-size:0.5em;">click image to copy image link or <a style="text-decoration:none;" id="zoom_download" download>download</a></p>
+		<div id="zoom_description"></div>
 	</div>
 
 	<script>
 	function zoom(){
 		var p = event.target
-		if( p.nodeName != "IMG" ) return  // don't copy if user leaving
-		$("zoom").innerHTML = "<img src='" + p.src + "' />"
+		if( p.nodeName != "IMG" ) return
+		$("zoom").src = p.src
+		$("zoom_description").textContent = p.attributes.description || "It's a wonderful world"
+		$("zoom_download").href = p.src
 		$("unzoom").style.display = ""
 	}
-	function unzoom(){ $("unzoom").style.display = "none" }
+	function unzoom(){
+		var t = event.target
+		if( t.nodeName == "IMG" ){ 
+			$("copyanchor").value = t.src
+			$("copyanchor").select()
+			document.execCommand( "copy" )
+			$("anchorcopied").style.display="block"
+			setTimeout( ()=>$("anchorcopied").style.display="" , 3000 )
+		}
+		$("unzoom").style.display = "none"
+	}
 	</script>
 
 
 	<style>
 	.list > div {display:inline-block;margin:0.25vw 0;color:grey;}
-	.list > div > img {margin:0 0.5vw 0 0;float:left;height:22.5vw;min-width:20vw;max-width:40vw;}  // 16:9
-	.list > div > video {margin:0 0.5vw 0 0;float:left;height:22.5vw;max-width:40vw;}  // 16:9
-	.list > div > iframe {margin:0 0.5vw 0 0;height:22.5vw;max-width:40vw;}  // 16:9
-	.list > div > b {color:black;}
-	.list > div > a {color:grey;}
-	.list > div > table {text-align:center;border-spacing:2em 0;font-size:0.75em;word-break;break-all;max-width:90vw;}
+	.list > img {margin:0.5vw;float:left;height:22.5vw;max-width:40vw;}  // 16:9
+	.list > video {margin:0.5vw;float:left;height:22.5vw;max-width:40vw;}  // 16:9
+	.list > iframe {margin:0.5vw;height:22.5vw;max-width:40vw;}  // 16:9
+	.list > table {text-align:center;border-spacing:2em 0;font-size:0.75em;word-break;break-all;max-width:90vw;}
 	</style>
 
 	<div style="margin:0 5vw;min-width:340px;">
 	<div id="list" class="list" style="flex-direction:row;justify-content:center;" onclick="zoom()" >
 	<!-- list -->
 
-<div><img src="https://zm3nuw.sn.files.1drv.com/y4m9J6N46EgDrRwoaFX0vf-0Pfu8QeE3guY_ugzhrgyz3rMp1BZlqVFZ452DbVJfpB6HUTwyAbBc2NxNYnqik1Ulib1bLfy4NfFzcxDJ_0fm5pBP9rxd_ItL3g4nekdVUcFuLJGOV_b8LIj9os3GnaKh4LcVzG7NO5Q1LysGhY7DfTG32jdWcVg1-Dm-QxqdLpX5fJ70j93BcntIwrnjLfTZg?width=1599&height=1200&cropmode=none" /></div>
-<div><img src="https://zm3huw.sn.files.1drv.com/y4mSZhv4ISV8P22hhygwckFzTLWu7vO4bBigqoha_KUjTVH-TJn6Fm6uuEBgiM8lD6eVh0cKmRePP_D5Pm2z_4eS0n34DsbB3cJHl2KnykIh3wghL7qxA0g8_OHlVVrSUntpaK0aSHSSdQvjmQZJ1atKuCVyrvWvlBNKEySmEJH5P-y6OahPJZupTIPBTGPWgqOPxajiOSsZS1kK_Azgi-2QA?width=1200&height=1599&cropmode=none" /></div>
-<div><img src="https://y83huw.sn.files.1drv.com/y4mZS8hu4WGBHJUlX53yG-vWDODLyLDC5uqzXA329PPDxHv2zhKV2ZPkgU8jT1okj0Fl8wByt339LA1vQQtVbrvIwZ_sSe7kARAoth1rEjAPZYV03blsnHwz-1JZ_LPzx1DgmtMFO_pcag-ivIhn3L2-fvoUGW2i3D1h9W_m3BquzW_bpzhwCuTRukc2QlMNtdTDUXfnzmW5cJL9Qs6ubOSRg?width=1600&height=1204&cropmode=none" /></div>
-<div><img src="https://y83nuw.sn.files.1drv.com/y4mjxsAWpLW6CXW9LcNKrX2XgV6MP0C2bCupATqfCLQ1gaFP5d8798mbqkEybrkviyCWihE_HToYGBW3r3pFwG91VdjGzg4rXthHRMPqEuQ2uFOK-KoQfjtKyeKT6DXwVEH5sL1R2GCqPTH-LvPcxgA47DWT707WBUnj8nD3XD4150PrHW0pnH057bS6vw-n6LzJvAgeh3UKk5HV0FNZfsBCQ?width=1200&height=1599&cropmode=none" /></div>
-<div><img src="https://y83luw.sn.files.1drv.com/y4mq7NjFHoDvGDcw8i4IRFSHY2767pBznSRL-jkzkhRHPVvc4S5zkmqpPgDKdqgK3AtDb84jhQPZOiKmikk41EQVq1ajT5WQhhluFT613zuVQZxO6-e-G2wyTJQfemxpUDEGv4Pq4dy5ysB0etlPfAK87RvGKy5FQHPn-Su02ZaHZ7IwPoAfaB2fVf_6ZZ7csw75LfOs4cB4MwJFsEnkH_5ww?width=1200&height=1599&cropmode=none" /></div>
-<div><img src="https://y83iuw.sn.files.1drv.com/y4mg-PDxxafB7amnuWERbhvCPNpfJRfq9fYMYoLQXDQcxZW6QwryaWY-WEvZ6KDN9Em8fkgeAbqb6QG1W-vnMqU7cTvV6FywPY1z1cjoPCpZaBRdVtapd1piCAubRWEV3hOh7eAOWiExi8n7PcLAmWIKIGYUIfY9NswZUu6uElzlO6qZIcGusMy_4vksGNAEk0H5yIL5mjWSudFeoMwibwB3Q?width=1600&height=1111&cropmode=none" /></div>
-<div><img src="https://y83cuw.sn.files.1drv.com/y4m1Fn4N79jBPCu_HvE7YsKoJgTdAZA-uaT_5KFzv4VqjoRCdAiSsjtDlQ0BxAlhKVduEWkt1csEjWshWhOmT2Mh_HGGTbgBId1Md1aeNd1U3U2-HOtr-Em-6RmUyARoo1STq8hixKt39bHYmZURak2JPGlxEDMB17FgFvbOG6COJ9NdhlxDU8U1xYYz0dHhdnHvn1JO1Cp6JvqwKh79hShBA?width=1600&height=1146&cropmode=none" /></div>
-<div><img src="https://y83buw.sn.files.1drv.com/y4mJtmmSv3Sh87-y7Z35EAfb3lwCQ22jV01Xnp_OfVTC0KgIogQwvgwbh5aZ66QEk8IeE-expYy4nAyyv88Ivk9aNImCt9-v1JGEDEMTSJNVS6UH5_IYVf9QFMxYihTR7NlLaa2A1Xl9TzRmEFkU7zSaCPwQXst-UEJbsjqSwPuqX_vCE3kc_uKaJSVuNr5Za7pYWMAhRua-E0tfgwAeHdHnA?width=1200&height=1599&cropmode=none" /></div>
-<div><img src="https://zm3iuw.sn.files.1drv.com/y4mk5H7lWrKadVLspY9KhPtoihs4uMkWP4sjrXF9bpGhaicGshkNHjhujZIM7J0_Exf22CzU8Do4vCGjmKmeagYoh08-P_o1CWzcM24221b4NfwgeWpCfevpG0iyj4EUL7M6Jr8_trWMaj4VCPnrVNRvS-iThrCUEJW-ZSwy-2Dy1nqDXw-tLJcH72UWbG1cp_EcyulpSjFlZxTfAX9DekaJw?width=1179&height=1600&cropmode=none" /></div>
-<div><img src="https://zm3kuw.sn.files.1drv.com/y4mz8Xwtj7DDONxWufDMZ1e0vewSncurH45hjZBsfWOyyyoQBnX5kRIlMCsp3I8eiIYeeaaSnvVUur7qHCT47vwfW93pGganrPin6tmXLsgUgubhGYNEMkj2CSwERkRD888qU4WMH6HHuQ3ELpYFxGM4zrx6yrcokuaWvAc8BFe7wXJoGuHER2Bnb1LNQCC3mPGj9WJZ063Z_2orwpwqVjCKQ?width=1599&height=1200&cropmode=none" /></div>
-<div><img src="https://zm3ouw.sn.files.1drv.com/y4mLXDcFv_0sSvBR4jScHe3xjHiFTbcdnYjV9BxbW5O9O-OHUAHAftwO5WDZllxEvVrkrNS9FG95oxFVr5PiZbfScSe3UOv-Jk8ZnIq-rbsA9VUJ4FHOoCa3PMYLdn4iNsUm4zygMJMEC5lJ2YMKC3LYY5W4sAOuPRBglaG_tv_jjyhFeuHXV41LBybY0x_mwa2hGhS-hEIsQRiO7cpXaMW9A?width=1600&height=1106&cropmode=none" /></div>
-<div><img src="https://y83ouw.sn.files.1drv.com/y4mVx06EDTPfocdUbjmjg5KJnoJv-6s_8_mKeNg9ZnZMFeBXei8gcs9P09sw9Ju7melbd3TS-TSTtRfyGhD77IhFSC-coPYhRpepLR3epYMaLt2mDdTamJ2HYqVP7G2mwLaJeZ6z7EXDL_yZuZucIwao-45UZGRDY5x3Lp5Gkh7_g_fb8NKAXihsjRpJEuUdm4IhBAl1mA6bsFLaQKsgUZyGA?width=1170&height=1600&cropmode=none" /></div>
-<div><img src="https://y83muw.sn.files.1drv.com/y4mbsTSYoZJVC1VQIh412SZ30y6vYHjMi7kYJA4SyUpH_S8nqIhtaPjXNo_XSfdEyQPy6h_MX6VCmSDwSD495CbOf_Mgaw-Fj-mxWqoYNlrXRMagcxzdq-ZxsQRY4RsYxfKdTV4rW7WSNKLjt2iJZKv6u-0xayBQO7-eqFBOti2dJEe6LxeWQ08SYwzrAErBhI3ZWbdCPJ7TYZzQxgmsJbSCg?width=1600&height=1118&cropmode=none" /></div>
-<div><img src="https://zm3juw.sn.files.1drv.com/y4merk9HJenhEf93E9pBCspIGz8j6bjnNJ6e4LbuLauqp5ykCdx3lsmXa-077ZwvJinCFxNG433TqApqP7MWnKDzHHkdHdgezM5CjkijqmLx7zz3J3_VnY378pKMdf_OmUqAdnit4XYujsmGh5P92OgzkNK-LW6rde0L60iuhQK3pbJQQjx7aU43i3Z8guAsIyqyC8mGt-xJASP6-KgCZsJrw?width=1191&height=1600&cropmode=none" /></div>
+<img src="https://zm3nuw.sn.files.1drv.com/y4m9J6N46EgDrRwoaFX0vf-0Pfu8QeE3guY_ugzhrgyz3rMp1BZlqVFZ452DbVJfpB6HUTwyAbBc2NxNYnqik1Ulib1bLfy4NfFzcxDJ_0fm5pBP9rxd_ItL3g4nekdVUcFuLJGOV_b8LIj9os3GnaKh4LcVzG7NO5Q1LysGhY7DfTG32jdWcVg1-Dm-QxqdLpX5fJ70j93BcntIwrnjLfTZg?width=1599&height=1200&cropmode=none" />
+<img src="https://zm3huw.sn.files.1drv.com/y4mSZhv4ISV8P22hhygwckFzTLWu7vO4bBigqoha_KUjTVH-TJn6Fm6uuEBgiM8lD6eVh0cKmRePP_D5Pm2z_4eS0n34DsbB3cJHl2KnykIh3wghL7qxA0g8_OHlVVrSUntpaK0aSHSSdQvjmQZJ1atKuCVyrvWvlBNKEySmEJH5P-y6OahPJZupTIPBTGPWgqOPxajiOSsZS1kK_Azgi-2QA?width=1200&height=1599&cropmode=none" />
+<img src="https://y83huw.sn.files.1drv.com/y4mZS8hu4WGBHJUlX53yG-vWDODLyLDC5uqzXA329PPDxHv2zhKV2ZPkgU8jT1okj0Fl8wByt339LA1vQQtVbrvIwZ_sSe7kARAoth1rEjAPZYV03blsnHwz-1JZ_LPzx1DgmtMFO_pcag-ivIhn3L2-fvoUGW2i3D1h9W_m3BquzW_bpzhwCuTRukc2QlMNtdTDUXfnzmW5cJL9Qs6ubOSRg?width=1600&height=1204&cropmode=none" />
+<img src="https://y83nuw.sn.files.1drv.com/y4mjxsAWpLW6CXW9LcNKrX2XgV6MP0C2bCupATqfCLQ1gaFP5d8798mbqkEybrkviyCWihE_HToYGBW3r3pFwG91VdjGzg4rXthHRMPqEuQ2uFOK-KoQfjtKyeKT6DXwVEH5sL1R2GCqPTH-LvPcxgA47DWT707WBUnj8nD3XD4150PrHW0pnH057bS6vw-n6LzJvAgeh3UKk5HV0FNZfsBCQ?width=1200&height=1599&cropmode=none" />
+<img src="https://y83luw.sn.files.1drv.com/y4mq7NjFHoDvGDcw8i4IRFSHY2767pBznSRL-jkzkhRHPVvc4S5zkmqpPgDKdqgK3AtDb84jhQPZOiKmikk41EQVq1ajT5WQhhluFT613zuVQZxO6-e-G2wyTJQfemxpUDEGv4Pq4dy5ysB0etlPfAK87RvGKy5FQHPn-Su02ZaHZ7IwPoAfaB2fVf_6ZZ7csw75LfOs4cB4MwJFsEnkH_5ww?width=1200&height=1599&cropmode=none" />
+<img src="https://y83iuw.sn.files.1drv.com/y4mg-PDxxafB7amnuWERbhvCPNpfJRfq9fYMYoLQXDQcxZW6QwryaWY-WEvZ6KDN9Em8fkgeAbqb6QG1W-vnMqU7cTvV6FywPY1z1cjoPCpZaBRdVtapd1piCAubRWEV3hOh7eAOWiExi8n7PcLAmWIKIGYUIfY9NswZUu6uElzlO6qZIcGusMy_4vksGNAEk0H5yIL5mjWSudFeoMwibwB3Q?width=1600&height=1111&cropmode=none" />
+<img src="https://y83cuw.sn.files.1drv.com/y4m1Fn4N79jBPCu_HvE7YsKoJgTdAZA-uaT_5KFzv4VqjoRCdAiSsjtDlQ0BxAlhKVduEWkt1csEjWshWhOmT2Mh_HGGTbgBId1Md1aeNd1U3U2-HOtr-Em-6RmUyARoo1STq8hixKt39bHYmZURak2JPGlxEDMB17FgFvbOG6COJ9NdhlxDU8U1xYYz0dHhdnHvn1JO1Cp6JvqwKh79hShBA?width=1600&height=1146&cropmode=none" />
+<img src="https://y83buw.sn.files.1drv.com/y4mJtmmSv3Sh87-y7Z35EAfb3lwCQ22jV01Xnp_OfVTC0KgIogQwvgwbh5aZ66QEk8IeE-expYy4nAyyv88Ivk9aNImCt9-v1JGEDEMTSJNVS6UH5_IYVf9QFMxYihTR7NlLaa2A1Xl9TzRmEFkU7zSaCPwQXst-UEJbsjqSwPuqX_vCE3kc_uKaJSVuNr5Za7pYWMAhRua-E0tfgwAeHdHnA?width=1200&height=1599&cropmode=none" />
+<img src="https://zm3iuw.sn.files.1drv.com/y4mk5H7lWrKadVLspY9KhPtoihs4uMkWP4sjrXF9bpGhaicGshkNHjhujZIM7J0_Exf22CzU8Do4vCGjmKmeagYoh08-P_o1CWzcM24221b4NfwgeWpCfevpG0iyj4EUL7M6Jr8_trWMaj4VCPnrVNRvS-iThrCUEJW-ZSwy-2Dy1nqDXw-tLJcH72UWbG1cp_EcyulpSjFlZxTfAX9DekaJw?width=1179&height=1600&cropmode=none" />
+<img src="https://zm3kuw.sn.files.1drv.com/y4mz8Xwtj7DDONxWufDMZ1e0vewSncurH45hjZBsfWOyyyoQBnX5kRIlMCsp3I8eiIYeeaaSnvVUur7qHCT47vwfW93pGganrPin6tmXLsgUgubhGYNEMkj2CSwERkRD888qU4WMH6HHuQ3ELpYFxGM4zrx6yrcokuaWvAc8BFe7wXJoGuHER2Bnb1LNQCC3mPGj9WJZ063Z_2orwpwqVjCKQ?width=1599&height=1200&cropmode=none" />
+<img src="https://zm3ouw.sn.files.1drv.com/y4mLXDcFv_0sSvBR4jScHe3xjHiFTbcdnYjV9BxbW5O9O-OHUAHAftwO5WDZllxEvVrkrNS9FG95oxFVr5PiZbfScSe3UOv-Jk8ZnIq-rbsA9VUJ4FHOoCa3PMYLdn4iNsUm4zygMJMEC5lJ2YMKC3LYY5W4sAOuPRBglaG_tv_jjyhFeuHXV41LBybY0x_mwa2hGhS-hEIsQRiO7cpXaMW9A?width=1600&height=1106&cropmode=none" />
+<img src="https://y83ouw.sn.files.1drv.com/y4mVx06EDTPfocdUbjmjg5KJnoJv-6s_8_mKeNg9ZnZMFeBXei8gcs9P09sw9Ju7melbd3TS-TSTtRfyGhD77IhFSC-coPYhRpepLR3epYMaLt2mDdTamJ2HYqVP7G2mwLaJeZ6z7EXDL_yZuZucIwao-45UZGRDY5x3Lp5Gkh7_g_fb8NKAXihsjRpJEuUdm4IhBAl1mA6bsFLaQKsgUZyGA?width=1170&height=1600&cropmode=none" />
+<img src="https://y83muw.sn.files.1drv.com/y4mbsTSYoZJVC1VQIh412SZ30y6vYHjMi7kYJA4SyUpH_S8nqIhtaPjXNo_XSfdEyQPy6h_MX6VCmSDwSD495CbOf_Mgaw-Fj-mxWqoYNlrXRMagcxzdq-ZxsQRY4RsYxfKdTV4rW7WSNKLjt2iJZKv6u-0xayBQO7-eqFBOti2dJEe6LxeWQ08SYwzrAErBhI3ZWbdCPJ7TYZzQxgmsJbSCg?width=1600&height=1118&cropmode=none" />
+<img src="https://zm3juw.sn.files.1drv.com/y4merk9HJenhEf93E9pBCspIGz8j6bjnNJ6e4LbuLauqp5ykCdx3lsmXa-077ZwvJinCFxNG433TqApqP7MWnKDzHHkdHdgezM5CjkijqmLx7zz3J3_VnY378pKMdf_OmUqAdnit4XYujsmGh5P92OgzkNK-LW6rde0L60iuhQK3pbJQQjx7aU43i3Z8guAsIyqyC8mGt-xJASP6-KgCZsJrw?width=1191&height=1600&cropmode=none" />
 
 	</div><!-- end of list -->
 	</div><!-- padding -->
