@@ -149,7 +149,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		var p = event.target
 		if( p.nodeName != "IMG" ) return
 		$("zoom").src = p.src
-		$("zoom_description").textContent = p.attributes.description || "It's a wonderful world"
+		$("zoom_description").textContent = p.attributes.description.value || "It's a wonderful world"
 		$("zoom_download").href = p.src
 		$("unzoom").style.display = ""
 	}
