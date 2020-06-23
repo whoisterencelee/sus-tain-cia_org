@@ -48,11 +48,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 
 
 	<!-- pull down tab -->
-	<style>
-	.pulldown:focus-within > #report {display:flex;}
-	.pulldown:focus-within > #preview {display:flex;}
-	</style>
-	<div class="pulldown" style="align-items:center;">
+	<div style="align-items:center;">
 
 		<style>.hpot {display:none;}
 		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
@@ -63,7 +59,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		form label a {color:#0070c4;text-decoration:none;}
 		</style>
 
-		<form id="report" class="hide" method="POST" action="https://functional.limited/forms" name="report">
+		<form id="report" style="display:none;" method="POST" action="https://functional.limited/forms" name="report">
 
 			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
 				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting?success">
@@ -90,11 +86,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		</form>
 
 		<!-- down arrow -->
-		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;">
+		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;" 
+			onclick="var c=event.currentTarget.parentNode.childNodes,cl=c.length;while(cl--){if(c[cl].style&&c[cl].style.display)c[cl].style.display=''}">
 			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
 		</div>
 	
-		<div id="preview" class="hide">
+		<div id="preview" style="display:none;">
 			<div id="render" class="list" style="margin:0 25vw;min-width:340px;"></div>
 		</div>
 		
@@ -139,6 +136,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	<div class="list" onclick="copyanchor()" >
 	<!-- list -->
 
+<div id='kbm9ihwu'><b>Annular Solar Eclipse over South China 2020, June 21</b><br />See ring shaped sun starting at 14:45, next solar eclipse (total) will have to wait until 2034<br /><a href="https://aidit.org/information/509">日偏食天象要來澳門喇 - 澳門國際科技產業發展協會</a></div>
+<div id='kbgfymee'><b>Sustainable and Cost effective water treatment</b><br />John Todd of Ocean Ark International uses  biological components from natural systems to purify toxic sewage<br /><a href="https://www.oceanarksint.org/2019/04/25/5160/">excerpt from his 2019 book</a> and <br /><a href="https://www.oceanarksint.com/eco-machines/">with twelve principles of ecological design</a></div>
+<div id='kb359uc7'><b>Macau Environment Status Report 澳門環境狀況報告 2019</b><br /><img src="https://www.dspa.gov.mo/images/20200605_StateReport2019_BN_PG_01_tc.jpg" /><br />Issued by Environmental Protection Agency of Macau, important for next 10 years planning, providing statistics and analysis of air, water, waste, noise and population situation.<br /><a href="http://www.dspa.gov.mo/Publications/StateReport/2019/20200605_2019_tc.pdf">Download 72 pages report</a></div>
+<div id='kayrgaov'><b>Sustaincia Podcast Ep3 - 附中文字幕</b><br /><iframe width="560" height="315" src="https://www.youtube.com/embed/TUGTzFR2urg?cc_load_policy=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />An open sustainable platform<br /><a href="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%2125178&authkey=AD3gxZg_LWhxv8I">Download</a></div>
+<div id='kaxbgn5d'><b>澳門科學館 廣東話在線教程</b><br />文化教育需要更具可持續性的教育方法，以便覆蓋更廣泛的受眾並創造學習興趣<br /><a href="https://youtu.be/4LiWimrRxdI">介紹7項免費udemy課程以及通用創意許可解釋</a><br />- 樹莓派低價单片机電腦<br />- Python 编程语言<br />- Arduino 微控制器<br />- 圖形設計<br />- 關於機器人<br />- 物理科學<br />- 屏幕截圖教程<br />這平台也建議使用共享許可圖像來代表可持續項目 -- <a href="https://sustaincia.org">訪問首頁</a><br />我們還開始建立可共享的照片數據庫來代表我們的環境 -- <a href="https://sustaincia.org/make/showcases_of_our_environment/">訪問</a></div>
+<div id='kaxb5kor'><b>All electric maiden flight offers zero emission short hop travel</b><br />proves that small all-electric aircraft can feasibly and economically operate short routes that airlines long ago abandoned<br /><a href="https://www.flightglobal.com/airframers/all-electric-grand-caravan-makes-maiden-flight/138600.article">article link</a></div>
 <div id='kam7j533'><b>Sustaincia Podcast Ep2</b><br /><iframe width="560" height="315" src="https://www.youtube.com/embed/M_cKQJjBH4E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br />Let's create "better" Macao community altogether!<br /><a href="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%2125124&authkey=AHvoSUxVZZdynJw">Download</a></div>
 <div id='kaendt6b'><b>Macau hosts International Environment Crisis Management Forum  and Exhibition</b><br />Collaborative governance against disaster and disease<br /><a href="http://www.macaufta.com/portal_c11.php">more details and schedule</a><br /></div>
 <div id='ka7mvqvu'><b>Solar Energy Costs has been falling faster than anyone expected</b><br />It now makes more financial sense to build solar plants than fossil plants.<br /><a href="https://rameznaam.com/2020/05/14/solars-future-is-insanely-cheap-2020/">critic and analysis of past forecasts - ramez naam</a></div>
