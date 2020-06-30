@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Sustaincia Education</title>
+  <title>Sustaincia Career Club</title>
   <meta name="description" content="Sustainability and U on Sustaincia">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -77,13 +77,13 @@
 		.hpot {display:none;}
 		#add form {display:flex;flex-direction:column;flex-wrap:wrap;}
 		#add form textarea {background:transparent;margin:1em 0;border:3px dotted lightgrey;padding:0.5em;font-family:Montserrat,sans-serif;width:calc( 100% - 1em );}
-		#add form input {background:transparent;border:0px;font-family:Montserrat,sans-serif;border-bottom:3px dotted lightgrey;padding:2em 0 0.5em 0.5em;width:100%;text-align:center;margin:1em;font-size:1.6em;}
+		#add form input {background:transparent;border:0px;font-family:Montserrat,sans-serif;border-bottom:3px dotted lightgrey;padding:2em 0 0.5em 0.5em;width:100%;text-align:center;margin:1em;font-size:1.3em;}
 		#add form label {display:flex;flex-direction:column;align-items:center;text-align:center;height:100vh;justify-content:center;}
 		#add form span {color:grey;width:100%;text-decoration:none;outline:0;}
 		#add form label a {color:#0070c4;text-decoration:none;}
 		</style>
 
-		<form method="POST" action="https://functional.limited/forms">
+		<form method="POST" action="https://functional.limited/forms" onchange="fitb()">
 			<div class="hpot"><label>
 				<input name="_next" value="https://sustaincia.org/learn/career_club?success"></input>
 				<input name="_gotcha"></input>
@@ -139,7 +139,7 @@
 
 			<label>
 			<h1>Do you know if others are doing something similar?</h1>
-			<input placeholder="brands which are also doing it, skip if No" id="similar?"></input>
+			<input placeholder="brands which are also doing it" id="similar?"></input>
 			where and what numbers are involved, try to find a recent data point which you can refer to:
 			<span>at one environmental conference, there were 800 sustainable solutions ...</span>
 			<span>at a club in the university, there are 1000 students ...</span>
@@ -169,45 +169,68 @@
 			<h1>Is there some other fun things you do?</h1>
 			<input placeholder="any hobbies or interests" id="interests?"></input>
 			we all have something we do for fun:
-			<span>playing a sport</span>
-			<span>playing a game</span>
-			<span>reading a book</span>
+			<span>playing a sport, reading a book</span>
+			<span>playing a game, cooking a meal</span>
+			<span>playing an instrument, drawing a cartoon</span>
 			</label>
 
-			<div>Here is the script you can edit and follow to make a 2 mins video</div>
-			<hr>
+			<label>
+			<h1>Is there a quotation you live by?</h1>
+			<input placeholder="E = mc²" id="quote?"></input>
+			or heard recently that spoke to you:
+			<span>life is like a box of candy</span>
+			<span>just make it</span>
+			<span>to be or not to be</span>
+			</label>
+
+			<label>
+				<h1>All done! Click here and then scroll down</h1>
+			</label>
+		</form>
+
+	<script>
+		function fitb(){
+			$(event.target.id.replace(/.$/,"_")).textContent = event.target.value
+		}
+	</script>
+
+			<div style="background:#4eadb8;color:white;text-align:center;width:100%;">
+			<h1>Here is the script to make a 2 mins video (You can edit it)</h1>
+			<p>You can read the script yourself or use a AI voice, but you need to [ record some actual videos ] and find an interesting background music</p>
+			</div>
+
+			<style>
+			#videoscript span { text-decoration:underline; }
+			</style>
+
 			<div id="videoscript" contenteditable="true">
 
-<h2>What is sustainability?</h2><b>[ record a 15 sec video of a location you can visit ]</b>
+<h2>What is sustainability?</h2><b>[ 15 sec video of a location you can visit ]</b>
 <p>For me, sustainability is <span id="toyou_">the efficient use of finite resources of our planet</span>.</p>
 <p>Another interpretation is <span id="respect_">creating feedback cycles</span>.</p>
 <p>We can have the above, but we still won’t have sustainability.</p>
 
-<h2>Why isn’t sustainability sustainable?</h2><b>[ record a 15 sec video of a group of people ]</b>
+<h2>Why isn’t sustainability sustainable?</h2><b>[ 20 sec video of a group of people ]</b>
 <p>Think about it.  Sustainability make things cheaper, more efficient and produces less waste, but <span id="asyou_">we don't have people lining up for them</span>.</p>
 <p>Same as sustainable projects which can solve problems, otherwise <span id="changethis_">we owe it for our future generations</span>, but we aren't joining or starting them now.</p> 
 <p>We need to answer why isn’t sustainability sustainable? There isn’t a lack of solutions.  There is a lack of adoption and participation.</p> 
 
-<h2><span id="tohelp_">Design of a marketplace</span></h2><b>[ record a 30 sec video of what you do ]</b>
+<h2><span id="tohelp_">Design of a marketplace</span></h2><b>[ 30 sec video of work you do ]</b>
 <p>Did you know, <span id="similar_">at just one environmental conference there were over 800 sustainable solutions with more than 500 companies</span>.</p>
 <p>The missing piece could very well be <span id="why_">a marketplace where solutions and projects can be listed with clear incentives and outcomes</span>.</p>
 <p>This is bigger than me, <span id="benefit_">it’s a platform for Makers and Users, Teachers and Learners, Checkers and Risk Takers with different interest and aspiration, connecting and doing things more sustainably for our planet and for ourselves</span>. 
 
-<h2><span id="company">A global collaborative platform with local roots</span></h2><b>[ record a 30 sec of something fun you do ]</b>
-<p>People might not see sustainability as something fundamentally different from what’s most of us have been comfortable with, that is, we are used to be stakeholders barricading themselves and protecting their own interests.</p>
-
+<h2><span id="interests_">A global collaborative platform with local roots</span></h2><b>[ 30 sec of something or a couple of things fun you do ]</b>
+<p>People might not see sustainability as something fundamentally different from what’s most of us have been comfortable with, that is, we are used to be stakeholders watching out for their own interests.</p>
 <p>But the better way is to have fun doing it, that's why I like <span id="interests_">collaborate by aligning strategies and common goals, to build trust and connecting the right people, basically what the internet is designed for</span>.</p>
+<p>Everyone has their own interests, but when we collaborate and combine it with sustainability, we can all make an impact.</p>
 
-<p>Everyone has their own interests, but when we can combine it with sustainability, we can all make an impact.</p>
-
-<h2>What I try to achieve?</h2><b>[ record a 10 sec video of a company you want to work for ]</b>
-<p>My goal is to help people understand sustainability.  As the term becomes more and more common place, they can judge for themselves how that will affect them and what they should pay attention to, so that they can be inclusive in this newly developing network that will ultimately transform how we work and live.</p> 
-<p>Let’s adopt sustainable technologies and participate in sustainable projects not only because we have to but because it’s profitable.</p> 
+<h2>What's next?</h2><b>[ 30 sec video of a company you want to work for ]</b>
+<p>My goal is to help people understand sustainability.  As the term becomes more and more common place, they can judge for themselves how that will affect them and what they should pay attention to, so that we can all be inclusive in this newly developing network that will ultimately transform how we work and live.</p> 
+<p><span id="quote_">Let’s adopt sustainable technologies and participate in sustainable projects not only because we have to but because it’s profitable.</span></p> 
 <b>[ fadeout to sustaincia as appreciate for their help in creating this video ]</b>
 <p>At Sustaincia, we launch sustainability.</p>
 			</div>
-			
-		</form>
 	</div>
 
 </body>
