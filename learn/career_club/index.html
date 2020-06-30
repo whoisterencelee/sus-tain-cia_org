@@ -1,0 +1,216 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sustaincia Education</title>
+  <meta name="description" content="Sustainability and U on Sustaincia">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <meta name="theme-color" content="#fafafa">
+
+</head>
+
+<body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;">
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+	<script>$=(i=>document.getElementById(i)||{})</script>
+
+	<style>
+	div {display:flex;flex-direction:column;flex-wrap:wrap;}
+	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	</style>
+
+	<!-- functional:header 20200427 -->
+	<style>
+	.header > * {opacity:0.5;margin:0.35em 0 0.35em 1em;}
+	.header a {text-decoration:none;color:white;}
+	</style>
+	<div class="header" style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
+		<!-- functional:pathname 20200427 -->
+		<div id="pathname" style="display:block;"><a href="/">/</a></div>
+		<script>
+		var host=document.location.host,path="";document.getElementById('pathname').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+		</script>
+		<!-- functional:pathname -->
+		<div> </div>
+	</div>
+	<!--functional:header -->
+
+	<!-- messagebuttons -->
+	<style>
+	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
+	</style>
+	<a id="success" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity" rel="noreferrer noopener" target="_blank">
+	Thank you for your submission we will review and post it asap<br />In the meantime click thur to our "community identity living document"
+	</a>
+	<div id="approve" class="hide messagebutton">
+	Thank you for your approval, the decision has <span id="triggered" class="hide"> NOT YET</span> triggered
+	</div>
+	<div id="subscribed" class="hide messagebutton">
+	Subscribed
+	</div>
+	<script>
+	var u = new URLSearchParams( location.search )
+	if(u.get('success')!=null)$('success').style.display="block"
+	if(u.get('approve')!=null)$('approve').style.display="block"
+	if(u.get('triggered')==null)$('triggered').style.display="inline"
+	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
+	</script>
+
+	<div style="background:#4eadb8;color:white;text-align:center;width:100%;">
+		<p>Let's start, answer each question and scroll down to next question</p>
+	</div>
+
+	<div style="width:100%;max-width:680px;">
+
+	<!-- questionarie -->
+	<div id="add" style="justify-content:center;padding:0 1em;">
+
+		<style>
+		.hpot {display:none;}
+		#add form {display:flex;flex-direction:column;flex-wrap:wrap;}
+		#add form textarea {background:transparent;margin:1em 0;border:3px dotted lightgrey;padding:0.5em;font-family:Montserrat,sans-serif;width:calc( 100% - 1em );}
+		#add form input {background:transparent;border:0px;font-family:Montserrat,sans-serif;border-bottom:3px dotted lightgrey;padding:2em 0 0.5em 0.5em;width:100%;text-align:center;margin:1em;font-size:1.6em;}
+		#add form label {display:flex;flex-direction:column;align-items:center;text-align:center;height:100vh;justify-content:center;}
+		#add form span {color:grey;width:100%;text-decoration:none;outline:0;}
+		#add form label a {color:#0070c4;text-decoration:none;}
+		</style>
+
+		<form method="POST" action="https://functional.limited/forms">
+			<div class="hpot"><label>
+				<input name="_next" value="https://sustaincia.org/learn/career_club?success"></input>
+				<input name="_gotcha"></input>
+				<input name="_to" value="https://sustaincia.org/learn/career_club/approve.html"></input>
+				<input name="user" value="target"></input>
+			</label></div>
+
+			<label style="height:70vh;">
+			<h1>What does the word "sustainability" means to you?</h1>
+			<input placeholder="write anything that comes to mind" name="toyou?"></input>
+			here are some examples:
+			<span>doing something to keep things going</span>
+			<span>making sure our lives improve</span>
+			<span>something I have heard but don't understand</span>
+			</label>
+
+			<label>
+			<h1>What do you think sustainability mean to someone you respect?</h1>
+			<input placeholder="think of someone you can ask" name="respect?"></input>
+			maybe they would tell you:
+			<span>the use of science knowledge to make us better</span>
+			<span>the efficent use of finite resources of our planet</span>
+			<span>keeping our planet clean</span>
+			</label>
+
+			<label>
+			<h1>Why do you think someone might not agree?</h1>
+			<input placeholder="what they need to overcome" id="asyou?"></input>
+			difficulties people might have:
+			<span>people don't have the time to understand</span>
+			<span>people think it costs too much</span>
+
+			<span>people don't pay enough attention</span>
+			</label>
+
+			<label>
+			<h1>What do you think will happen if we don't change this?</h1>
+			<input placeholder="think 5, 10, 100 years into the future" id="changethis?"></input>
+			in the future:
+			<span>biodiversity will be lost</span>
+			<span>we won't be able to live as well as we had</span>
+			<span>we will make it worst for future generations</span>
+			</label>
+
+			<label>
+			<h1>What is one thing you are doing to help?</h1>
+			<input placeholder="just name one thing" id="tohelp?"></input>
+			are you doing something in:
+			<span>transforming a business</span>
+			<span>leading a team</span>
+			<span>creating a solution</span>
+			</label>
+
+			<label>
+			<h1>Do you know if others are doing something similar?</h1>
+			<input placeholder="brands which are also doing it, skip if No" id="similar?"></input>
+			where and what numbers are involved, try to find a recent data point which you can refer to:
+			<span>at one environmental conference, there were 800 sustainable solutions ...</span>
+			<span>at a club in the university, there are 1000 students ...</span>
+			<span>at a company, they try to help a million customers ...</span>
+			<span></span>
+			</label>
+
+			<label>
+			<h1>Why do you think they do it?</h1>
+			<input placeholder="one reason why" id="why?"></input>
+			the reason could be:
+			<span>demand which we didn't know about</span>
+			<span>doing it will cause a change in ...</span>
+			<span>profitable and beneficial for everyoner</span>
+			</label>
+
+			<label>
+			<h1>Who else would benefit and how?</h1>
+			<input placeholder="any secondary stakeholders" id="benefit?"></input>
+			think of who else is positively affected:
+			<span>this also helps people who are ...</span>
+			<span>this also helps people who might ...</span>
+			<span>this also helps people who can now ...</span>
+			</label>
+			
+			<label>
+			<h1>Is there some other fun things you do?</h1>
+			<input placeholder="any hobbies or interests" id="interests?"></input>
+			we all have something we do for fun:
+			<span>playing a sport</span>
+			<span>playing a game</span>
+			<span>reading a book</span>
+			</label>
+
+			<div>Here is the script you can edit and follow to make a 2 mins video</div>
+			<hr>
+			<div id="videoscript" contenteditable="true">
+
+<h2>What is sustainability?</h2><b>[ record a 15 sec video of a location you can visit ]</b>
+<p>For me, sustainability is <span id="toyou_">the efficient use of finite resources of our planet</span>.</p>
+<p>Another interpretation is <span id="respect_">creating feedback cycles</span>.</p>
+<p>We can have the above, but we still won’t have sustainability.</p>
+
+<h2>Why isn’t sustainability sustainable?</h2><b>[ record a 15 sec video of a group of people ]</b>
+<p>Think about it.  Sustainability make things cheaper, more efficient and produces less waste, but <span id="asyou_">we don't have people lining up for them</span>.</p>
+<p>Same as sustainable projects which can solve problems, otherwise <span id="changethis_">we owe it for our future generations</span>, but we aren't joining or starting them now.</p> 
+<p>We need to answer why isn’t sustainability sustainable? There isn’t a lack of solutions.  There is a lack of adoption and participation.</p> 
+
+<h2><span id="tohelp_">Design of a marketplace</span></h2><b>[ record a 30 sec video of what you do ]</b>
+<p>Did you know, <span id="similar_">at just one environmental conference there were over 800 sustainable solutions with more than 500 companies</span>.</p>
+<p>The missing piece could very well be <span id="why_">a marketplace where solutions and projects can be listed with clear incentives and outcomes</span>.</p>
+<p>This is bigger than me, <span id="benefit_">it’s a platform for Makers and Users, Teachers and Learners, Checkers and Risk Takers with different interest and aspiration, connecting and doing things more sustainably for our planet and for ourselves</span>. 
+
+<h2><span id="company">A global collaborative platform with local roots</span></h2><b>[ record a 30 sec of something fun you do ]</b>
+<p>People might not see sustainability as something fundamentally different from what’s most of us have been comfortable with, that is, we are used to be stakeholders barricading themselves and protecting their own interests.</p>
+
+<p>But the better way is to have fun doing it, that's why I like <span id="interests_">collaborate by aligning strategies and common goals, to build trust and connecting the right people, basically what the internet is designed for</span>.</p>
+
+<p>Everyone has their own interests, but when we can combine it with sustainability, we can all make an impact.</p>
+
+<h2>What I try to achieve?</h2><b>[ record a 10 sec video of a company you want to work for ]</b>
+<p>My goal is to help people understand sustainability.  As the term becomes more and more common place, they can judge for themselves how that will affect them and what they should pay attention to, so that they can be inclusive in this newly developing network that will ultimately transform how we work and live.</p> 
+<p>Let’s adopt sustainable technologies and participate in sustainable projects not only because we have to but because it’s profitable.</p> 
+<b>[ fadeout to sustaincia as appreciate for their help in creating this video ]</b>
+<p>At Sustaincia, we launch sustainability.</p>
+			</div>
+			
+		</form>
+	</div>
+
+</body>
+
+</html>
+
