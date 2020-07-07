@@ -15,7 +15,7 @@
 
 </head>
 
-<body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;" onload="$('first').focus()">
+<body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;" onload="$('toyou?').focus()">
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
@@ -65,7 +65,10 @@
 	</script>
 
 	<div style="background:#4eadb8;color:white;text-align:center;width:100%;">
-		<p>Let's start, answer each question and scroll down to next question</p>
+		<h1>Easy Script Generator</h1>
+		<h2>A tool to help you create a unique video script</h2>
+	</div>
+	<div style="font-size:2em;text-align:center;">
 	</div>
 
 	<div style="width:100%;max-width:680px;">
@@ -78,12 +81,12 @@
 		#add form {display:flex;flex-direction:column;flex-wrap:wrap;}
 		#add form textarea {background:transparent;margin:1em 0;border:3px dotted lightgrey;padding:0.5em;font-family:Montserrat,sans-serif;width:calc( 100% - 1em );}
 		#add form input {background:transparent;border:0px;font-family:Montserrat,sans-serif;border-bottom:3px dotted lightgrey;padding:2em 0 0.5em 0.5em;width:100%;text-align:center;margin:1em;font-size:1.3em;}
-		#add form label {display:flex;flex-direction:column;align-items:center;text-align:center;height:100vh;justify-content:center;}
+		#add form label {display:flex;flex-direction:column;width:100%;align-items:center;text-align:center;height:100vh;justify-content:center;}
 		#add form span {color:grey;width:100%;text-decoration:none;outline:0;}
 		#add form label a {color:#0070c4;text-decoration:none;}
 		</style>
 
-		<form method="POST" action="https://functional.limited/forms">
+		<form method="POST" action="https://functional.limited/forms" onchange="fitb()">
 			<div class="hpot"><label>
 				<input name="_next" value="https://sustaincia.org/learn/career_club?success"></input>
 				<input name="_gotcha"></input>
@@ -93,7 +96,7 @@
 
 			<label style="height:70vh;">
 			<h1>What does the word "sustainability" means to you?</h1>
-			<input id="first" placeholder="write anything that comes to mind" name="toyou?"></input>
+			<input placeholder="write anything that comes to mind" id="toyou?"></input>
 			here are some examples:
 			<span>doing something to keep things going</span>
 			<span>making sure our lives improve</span>
@@ -102,7 +105,7 @@
 
 			<label>
 			<h1>What do you think sustainability mean to someone you respect?</h1>
-			<input placeholder="think of someone you can ask" name="respect?"></input>
+			<input placeholder="think of someone you can ask" id="respect?"></input>
 			maybe they would tell you:
 			<span>the use of science knowledge to make us better</span>
 			<span>the efficent use of finite resources of our planet</span>
@@ -129,7 +132,7 @@
 			</label>
 
 			<label>
-				<h1 style="background:#4eadb8;color:white;text-align:center;width:100%;padding:1em;">
+				<h1 style="background:#4eadb8;color:white;text-align:center;padding:1em;">
 				You're halfway done!</h1>
 			</label>
 
@@ -180,7 +183,7 @@
 			</label>
 
 			<label>
-				<h1 style="background:#4eadb8;color:white;text-align:center;width:100%;padding:1em;">
+				<h1 style="background:#4eadb8;color:white;text-align:center;padding:1em;">
 				Almost done!</h1>
 			</label>
 
@@ -202,16 +205,18 @@
 			<span>by name</span>
 			</label>
 
-			<h1 style="background:#4eadb8;color:white;text-align:center;width:100%;padding:1em;" onclick="fitb()">
+			<h1 style="background:#4eadb8;color:white;text-align:center;padding:1em;" onclick="showscript()">
 			All done! Click here</h1>
 
 		</form>
 
 	<script>
 		function fitb(){
-			$("instructions").style.display = ""
-			$("videoscript").style.display = "flex"
 			$(event.target.id.replace(/.$/,"_")).textContent = event.target.value
+		}
+		function showscript(){
+			$("instructions").style.display = ""
+			$("videoscript").style.display = ""
 			$("instructions").scrollIntoView(true);
 			$("videoscript").focus();
 		}
@@ -246,7 +251,7 @@
 <p>The missing piece could very well be <span id="why_">a marketplace where solutions and projects can be listed with clear incentives and outcomes</span>.</p>
 <p>This is bigger than me, <span id="benefit_">it’s a platform for Makers and Users, Teachers and Learners, Checkers and Risk Takers with different interest and aspiration, connecting and doing things more sustainably for our planet and for ourselves</span>. 
 
-<h2><span id="interests_">A global collaborative platform with local roots</span></h2><b>[ 30 sec of something or a couple of things fun you do ]</b>
+<h2>How to participate</h2><b>[ 30 sec of something or a couple of things fun you do ]</b>
 <p>People might not see sustainability as something fundamentally different from what’s most of us have been comfortable with, that is, we are used to be stakeholders watching out for their own interests.</p>
 <p>But the better way is to have fun doing it, that's why I like <span id="interests_">collaborate by aligning strategies and common goals, to build trust and connecting the right people, basically what the internet is designed for</span>.</p>
 <p>Everyone has their own interests, but when we collaborate and combine it with sustainability, we can all make an impact.</p>
