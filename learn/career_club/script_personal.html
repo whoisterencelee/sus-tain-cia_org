@@ -86,7 +86,7 @@
 		#add form label a {color:#0070c4;text-decoration:none;}
 		</style>
 
-		<form method="POST" action="https://functional.limited/forms" onchange="fitb()">
+		<form method="POST" action="https://functional.limited/forms">
 			<div class="hpot"><label>
 				<input name="_next" value="https://sustaincia.org/learn/career_club?success"></input>
 				<input name="_gotcha"></input>
@@ -209,24 +209,26 @@
 			<span>by name</span>
 			</label>
 
-			<h1 id="regen" style="background:#4eadb8;color:white;text-align:center;padding:1em;" onclick="showscript()">
+			<script>
+				function fitb(){
+					var input = document.getElementsByTagName("INPUT") , s = input.length
+					while( s-- ){
+						var id = input[s].id;
+						if( /\?$/.test( id ) ) $( id.replace(/.$/,"_") ).textContent = input[s].value;
+					};
+					$("regen").textContent = "Regenerate Script";
+					$("instructions").style.display = "";
+					$("videoscript").style.display = "";
+					$("instructions").scrollIntoView(true);
+					$("videoscript").focus();;
+				}
+			</script>
+
+			<h1 id="regen" style="background:#4eadb8;color:white;text-align:center;padding:1em;box-shadow:3px 3px lightgrey;margin-bottom:1em;" onclick="fitb()">
 			All done! Click here</h1>
 
 		</form>
 
-	<script>
-		function fitb(){
-			//document.getElementsByTagName("INPUT")
-			$(event.target.id.replace(/.$/,"_")).textContent = event.target.value
-		}
-		function showscript(){
-			$("regen").textContent = "Regenerate Script"
-			$("instructions").style.display = ""
-			$("videoscript").style.display = ""
-			$("instructions").scrollIntoView(true)
-			$("videoscript").focus();
-		}
-	</script>
 
 			<div id="instructions" style="display:none;">
 			<h1>Below is your 2 mins video script</h1>
