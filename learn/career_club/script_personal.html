@@ -1,0 +1,267 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sustaincia Career Club</title>
+  <meta name="description" content="Sustainability and U on Sustaincia">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <meta name="theme-color" content="#fafafa">
+
+</head>
+
+<body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;" onload="$('toyou?').focus()">
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+	<script>$=(i=>document.getElementById(i)||{})</script>
+
+	<style>
+	div {display:flex;flex-direction:column;flex-wrap:wrap;}
+	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	</style>
+
+	<!-- functional:header 20200427 -->
+	<style>
+	.header > * {opacity:0.5;margin:0.35em 0 0.35em 1em;}
+	.header a {text-decoration:none;color:white;}
+	</style>
+	<div class="header" style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
+		<!-- functional:pathname 20200427 -->
+		<div id="pathname" style="display:block;"><a href="/">/</a></div>
+		<script>
+		var host=document.location.host,path="";document.getElementById('pathname').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+		</script>
+		<!-- functional:pathname -->
+		<div> </div>
+	</div>
+	<!--functional:header -->
+
+	<!-- messagebuttons -->
+	<style>
+	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
+	</style>
+	<a id="success" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity" rel="noreferrer noopener" target="_blank">
+	Thank you for your submission we will review and post it asap<br />In the meantime click thur to our "community identity living document"
+	</a>
+	<div id="approve" class="hide messagebutton">
+	Thank you for your approval, the decision has <span id="triggered" class="hide"> NOT YET</span> triggered
+	</div>
+	<div id="subscribed" class="hide messagebutton">
+	Subscribed
+	</div>
+	<script>
+	var u = new URLSearchParams( location.search )
+	if(u.get('success')!=null)$('success').style.display="block"
+	if(u.get('approve')!=null)$('approve').style.display="block"
+	if(u.get('triggered')==null)$('triggered').style.display="inline"
+	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
+	</script>
+
+	<div style="background:#4eadb8;color:white;text-align:center;width:100%;">
+		<h1>Easy Script Generator</h1>
+		<h2>A tool to help you create a unique video script</h2>
+	</div>
+	<div style="font-size:2em;text-align:center;">
+	</div>
+
+	<div style="width:100%;max-width:680px;">
+
+	<!-- questionarie -->
+	<div id="add" style="justify-content:center;padding:0 1em;">
+
+		<style>
+		.hpot {display:none;}
+		#add form {display:flex;flex-direction:column;flex-wrap:wrap;}
+		#add form textarea {background:transparent;margin:1em 0;border:3px dotted lightgrey;padding:0.5em;font-family:Montserrat,sans-serif;width:calc( 100% - 1em );}
+		#add form input {background:transparent;border:0px;font-family:Montserrat,sans-serif;border-bottom:3px dotted lightgrey;padding:2em 0 0.5em 0.5em;width:100%;text-align:center;margin:1em;font-size:1.3em;}
+		#add form label {display:flex;flex-direction:column;width:100%;align-items:center;text-align:center;height:100vh;justify-content:center;}
+		#add form span {color:grey;width:100%;text-decoration:none;outline:0;}
+		#add form label a {color:#0070c4;text-decoration:none;}
+		</style>
+
+		<form method="POST" action="https://functional.limited/forms" onchange="fitb()">
+			<div class="hpot"><label>
+				<input name="_next" value="https://sustaincia.org/learn/career_club?success"></input>
+				<input name="_gotcha"></input>
+				<input name="_to" value="https://sustaincia.org/learn/career_club/approve.html"></input>
+				<input name="user" value="target"></input>
+			</label></div>
+
+			<label style="height:70vh;">
+			<h1>What's your name?</h1>
+			<input placeholder="First and Last name" id="name?"></input>
+			</label>
+
+			<label>
+			<h1>What role do you currently take?</h1>
+			<input placeholder="the youngest sister in my family" id="role?"></input>
+			a role you take on a daily basis:
+			<span>a student at ...</span>
+			<span>a computer programmer</span>
+			<span>a biotechnologist</span>
+			</label>
+
+			<label>
+			<h1>What leadership role do you currently also take?</h1>
+			<input placeholder="mother of two" id="leader?"></input>
+			a role where you take on more responsibility:
+			<span>a team leader of ...</span>
+			<span>a chef in my ...</span>
+			<span>a founder of ...</span>
+			</label>
+
+			<label>
+			<h1>What does the word "sustainability" means to you?</h1>
+			<input placeholder="write anything that comes to mind" id="toyou?"></input>
+			here are some examples:
+			<span>doing something to keep things going</span>
+			<span>making sure our lives improve</span>
+			<span>something I have heard but don't understand</span>
+			</label>
+
+			<label>
+			<h1>What do you think sustainability mean to someone you respect?</h1>
+			<input placeholder="think of someone you can ask" id="respect?"></input>
+			maybe they would tell you:
+			<span>the use of science knowledge to make us better</span>
+			<span>the efficent use of finite resources of our planet</span>
+			<span>keeping our planet clean</span>
+			</label>
+
+			<label>
+			<h1>Why do you think someone might not agree?</h1>
+			<input placeholder="what they need to overcome" id="asyou?"></input>
+			difficulties people might have:
+			<span>don't have the time to understand</span>
+			<span>think it costs too much</span>
+			<span>are not familiar with scientific approaches</span>
+			</label>
+
+			<label>
+				<h1 style="background:#4eadb8;color:white;text-align:center;padding:1em;">
+				You're halfway done!</h1>
+			</label>
+
+			<label>
+			<h1>What is one thing you are doing to help?</h1>
+			<input placeholder="just name one thing" id="tohelp?"></input>
+			are you doing something in:
+			<span>transforming a business</span>
+			<span>leading a team</span>
+			<span>creating a solution</span>
+			</label>
+
+			<label>
+			<h1>Do you know if others are doing something similar?</h1>
+			<input placeholder="industries which are also doing it" id="similar?"></input>
+			where:
+			<span>businesses and communities</span>
+			<span>at a club in the university</span>
+			<span>at a specific company</span>
+			<span></span>
+			</label>
+
+			<label>
+			<h1>Why do you think they do it?</h1>
+			<input placeholder="one reason why" id="why?"></input>
+			the reason could be:
+			<span>demand which we didn't know about</span>
+			<span>doing it will cause a change in ...</span>
+			<span>profitable and beneficial for everyoner</span>
+			</label>
+
+			<label>
+			<h1>Who else would benefit and how?</h1>
+			<input placeholder="any secondary stakeholders" id="benefit?"></input>
+			think of who else is positively affected:
+			<span>those who are ...</span>
+			<span>those who might ...</span>
+			<span>those who can ...</span>
+			</label>
+			
+			<label>
+			<h1>Is there some other fun things you do?</h1>
+			<input placeholder="any hobbies or interests" id="interests?"></input>
+			we all have something we do for fun:
+			<span>playing a sport, reading a book</span>
+			<span>playing a game, cooking a meal</span>
+			<span>playing an instrument, drawing a cartoon</span>
+			</label>
+
+			<label>
+				<h1 style="background:#4eadb8;color:white;text-align:center;padding:1em;">
+				Almost done!</h1>
+			</label>
+
+			<label>
+			<h1>What is the best way to reach you?</h1>
+			<input placeholder="I am career.club@sustaincia.org" id="reachyou?"></input>
+			remember this will be public:
+			<span>email</span>
+			<span>wechat</span>
+			<span>by name</span>
+			</label>
+
+			<h1 id="regen" style="background:#4eadb8;color:white;text-align:center;padding:1em;" onclick="showscript()">
+			All done! Click here</h1>
+
+		</form>
+
+	<script>
+		function fitb(){
+			//document.getElementsByTagName("INPUT")
+			$(event.target.id.replace(/.$/,"_")).textContent = event.target.value
+		}
+		function showscript(){
+			$("regen").textContent = "Regenerate Script"
+			$("instructions").style.display = ""
+			$("videoscript").style.display = ""
+			$("instructions").scrollIntoView(true)
+			$("videoscript").focus();
+		}
+	</script>
+
+			<div id="instructions" style="display:none;">
+			<h1>Below is your 2 mins video script</h1>
+			<p>You can edit it directly</p>
+			<p>You can change your answers above and click above button again</p>
+			<p>You need to [ record some actual videos ] and optionally background music</p>
+			<p>If you like to have a chance for us to help you make the video, please contact us</p>
+			</div>
+
+			<style>
+			#videoscript span { text-decoration:underline; }
+			</style>
+
+			<div id="videoscript" contenteditable="true" style="display:none;margin-bottom:5vh;">
+
+<h2>What is sustainability?</h2><b>[ 15 sec video of a location you can visit ]</b>
+<p>Welcome to yet another episode of sustaincia podcast. I’m <span id="name_">Muhammad Bashir</span>, <span id="role_">a biotechnologist</span> and <span id="leader_">one of the founders of sustaincia</span>. In sustaincia we do sustainability.  Are you still wondering what sustainability is?  Well, you’ve come to the right place.</p>
+
+<h2>Sustainability is a complex concept</h2><b>[ 20 sec video of a group of people ]</b>
+<p>It’s not only limited to <span id="toyou_">protecting the environment</span>. Sustainability should be a guiding influence for all of our endeavors; be it in processes, systems, businesses, culture, lifestyles... you name it!</p>
+
+<p>Sustainability can also be about '<span id="respect_">greening</span>' – for instance, <span id="similar_">businesses and communities</span> depend on <span id="why_">healthy</span>, productive ecosystems, etc. Sustainability is a priority interest for many organizations, and this is especially true for <span id="benefit_">members at sustaincia</span>.</p>
+
+<h2><span id="tohelp_">I want to help</span></h2><b>[ 30 sec video of work you do ]</b>
+<p>As someone who loves <span id="interests_">being a scientist with different social and cultural backgrounds</span>, I’d be helping people who <span id="asyou_">are not familiar with scientific approaches </span> and learn about sustainable culture at sustaincia.</p> 
+
+<b>[ fadeout to sustaincia as appreciation for their help in creating this video ]</b>
+<p>At Sustaincia, we launch sustainability.</p>
+<p><span id="reachyou_">career.club@sustaincia.org</span></p>
+<p>See you in the next episode.</p>
+
+			</div>
+	</div>
+
+</body>
+
+</html>
+
