@@ -84,6 +84,7 @@
 	<style>
 	#hotlist {flex-grow:1;flex-direction:row;justify-content:center;padding:0 1vw;}
 	div.solution {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:1vw;box-shadow:0px 0px 5px 0px lightgrey;flex-wrap:nowrap;justify-content:space-between;background:white;} /* compose of two main sections visual (varying height) and content (height fixed at 8em) */
+	div.solution_temp {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:1vw;box-shadow:0px 0px 5px 0px lightgrey;flex-wrap:nowrap;justify-content:center;background:white;text-align:center;color:grey;} /* basically same as solution */
 
 	div.solution div.visual {width:100%;height:calc(100% - 8em);overflow:hidden;justify-content:center;align-content:center;} /* center image */
 	div.solution div.visual img {width:100%;height:100%;object-fit:cover;} /* ensure image will fill up the horizontal space, tested on firefox, chrome */
@@ -114,7 +115,8 @@
 		</div>
 		</a>
 		
-		<div category="check" date="2020-05-18T02:31:52.006Z" class="solution">
+		<a category="check" date="2020-05-18T02:31:52.006Z">
+		<div class="solution" onclick="toogle()">
 			<div class="visual">
 				<img src="https://live.staticflickr.com/2738/4163986012_4443076b0f_3k.jpg"></img>
 			</div>
@@ -123,8 +125,9 @@
 				<div class="need">Expertise in existing standards</div>
 				<div class="certified">certified</div>
 			</div>
-
 		</div>
+		<div class="solution_temp" style="display:none;" onclick="toogle()">Contact a member of sustaincia for futher details</div>
+		</a>
 
 		<a category="make learn" date="2020-04-24T02:30:52.006Z" style="text-decoration:none;" href="https://sustaincia.org/make/sustaincia_education/">
 		<div category="make learn" date="2020-04-23T02:31:52.006Z" class="solution">
@@ -168,7 +171,8 @@
 		</div>
 		</a>
 		
-		<div category="make" date="2020-04-23T02:34:52.006Z" class="solution">
+		<a category="make" date="2020-04-23T02:34:52.006Z">
+		<div class="solution" onclick="toogle()">
 			<div class="visual">
 				<img src="https://p2.piqsels.com/preview/800/887/588/crowd-pen-write-notepad.jpg"></img>
 			</div>
@@ -179,6 +183,8 @@
 			</div>
 
 		</div>
+		<div class="solution_temp" style="display:none;" onclick="toogle()">Contact a member of sustaincia for futher details</div>
+		</a>
 
 		<!--
 		<a category="make" date="2020-04-23T02:33:52.006Z" style="text-decoration:none;" href="page.html">
@@ -196,7 +202,8 @@
 		</a>
 		-->
 
-		<div category="make" date="2020-04-23T02:32:52.006Z" class="solution">
+		<a category="make" date="2020-04-23T02:32:52.006Z">
+		<div class="solution" onclick="toogle()">
 			<div class="visual">
 				<img src="https://p0.piqsels.com/preview/657/384/889/gathering-group-group-of-people-happy.jpg"></img>
 			</div>
@@ -205,8 +212,9 @@
 				<div class="need">Member of sustaincia, 9 individuals with common idea</div>
 				<div class="certified">certified</div>
 			</div>
-
 		</div>
+		<div class="solution_temp" style="display:none;" onclick="toogle()">Contact a member of sustaincia for futher details</div>
+		</a>
 
 		<a category="make" date="2020-04-23T02:30:52.006Z" style="text-decoration:none;" href="https://sustaincia.org/make/mind_changing_games/">
 		<div class="solution">
@@ -224,7 +232,7 @@
 
 		<div class="solution" style="justify-content:center;">
 			<span tabindex="100" class="add" style="font-size:8em;color:darkgrey;cursor:pointer;" 
-				onclick="var c=event.currentTarget.parentNode.childNodes,cl=c.length;while(cl--){if(c[cl].style&&c[cl].style.display){if(c[cl]!=event.currentTarget)c[cl].style.display=''}}event.currentTarget.style.display='none'">
+				onclick="toogle()">
 			+</span>
 
 			<style>.hpot {display:none;}
@@ -295,6 +303,9 @@
 	$( 'banner_Learn' ).onclick=()=>onlycards( "learn" )
 	$( 'banner_Make' ).onclick=()=>onlycards( "make" )
 	$( 'banner_Check' ).onclick=()=>onlycards( "check" )
+	</script>
+	<script>
+	function toogle(){var c=event.currentTarget.parentNode.childNodes,cl=c.length;while(cl--){if(c[cl].style&&c[cl].style.display){if(c[cl]!=event.currentTarget)c[cl].style.display=''}}event.currentTarget.style.display='none'}
 	</script>
 
 </body>
