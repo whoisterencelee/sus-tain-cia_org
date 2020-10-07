@@ -110,7 +110,7 @@
 			if( expertise ) interest.push( lesson + "_expertise" )
 			interest.push( lesson )
 		})
-		$("_to").value = interest.join( "," )
+		$("_to").value = interest.join( ";" )
 	}
 	// check current list and rebuild lessons
 	var tableDOM = $("table").getElementsByTagName("div") , tl = tableDOM.length
