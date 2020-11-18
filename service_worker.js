@@ -42,7 +42,7 @@ function openDb( dbname , func ) {
 				//dbname , { keyPath : dbschemas[ dbname ].keyPath } );
 				//dbname , { keyPath: 'id', autoIncrement: true });
 		)
-		dbschemas[ dbname ].indices.forEach( index => objstore.createIndex( index , index , { unique: false }) )
+		if( Array.isArray( dbschemas[ dbname ].indices ) ) dbschemas[ dbname ].indices.forEach( index => objstore.createIndex( index , index , { unique: false }) )
 		// unique = false allow insert of same key
 	}
 }
@@ -98,8 +98,11 @@ self.addEventListener( 'push' , ( event ) => {
 		tag : "pwa" ,
 		requireInteraction : true ,
 	}
+
 	note.data = {}
 	if( data.url ) note.data.url = data.url
+	if( data.pathname ) note.data.pathname = data.pathname
+
 	data.time ? note.time = new Date( data.time ) : note.time = new Date()
 
 	// save message to inbox
