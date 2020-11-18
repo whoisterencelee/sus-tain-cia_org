@@ -114,6 +114,7 @@
 				<div class="certified"></div>
 			</div>
 		</div>
+		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>
 		</a>
 
 		<a category="make" date="khjyvgql" href="https://structural.city">
@@ -347,7 +348,17 @@
 	$( 'banner_Check' ).onclick=()=>onlycards( "check" )
 	</script>
 	<script>
-	function toggle(){var c=event.currentTarget.parentNode.childNodes,cl=c.length;while(cl--){if(c[cl].style&&c[cl].style.display){if(c[cl]!=event.currentTarget)c[cl].style.display=''}}event.currentTarget.style.display='none'}
+	function toggle(){
+		var c=event.currentTarget.parentNode.childNodes,cl=c.length
+		if( 
+		while(cl--){ 
+			var cn = c[ cl ]
+			if( cn.style && cn.style.display ){
+				if( cn != event.currentTarget ) cn.style.display=''  // show other DOM
+			}
+		}
+		event.currentTarget.style.display='none'  // turn off DOM clicked on
+	}
 	</script>
 
 </body>
