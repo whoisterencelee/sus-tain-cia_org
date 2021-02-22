@@ -141,7 +141,7 @@
 	if( msgId ){
 		$('subscribe').className="hide"
 		$('approve').className=""
-		fetch( 'https://functional.limited/msgs/sustaincia.org/make/unversity_connections/approve.html/' + msgId ).then( res => {
+		fetch( 'https://functional.limited/msgs/sustaincia.org/make/university_connections/approve.html/' + msgId ).then( res => {
 		res.json().then( msg =>{
 			$('editor').value = msg.content
 
