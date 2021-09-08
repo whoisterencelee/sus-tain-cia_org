@@ -187,7 +187,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		var p = event.target
 		if( p.nodeName == "A" ) return  // don't copy if user leaving
 		while( p.parentNode.className != "list" ){ p = p.parentNode ; if( p == document ) return }
-		var text = $( p + ' ' ).textContent.substring( 0 , 64 ).replace( /\s[^\s]*$/ , "" )  // cut off between words
+		var text = p.textContent.substring( 0 , 64 ).replace( /\s[^\s]*$/ , "" )  // cut off between words
 		$("copyanchor").value = text + "..\n" + document.location.origin + document.location.pathname.replace( /index.html$/ , "" ) + "#" + p.id
 		$("copyanchor").select()
 		document.execCommand( "copy" )
