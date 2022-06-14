@@ -158,15 +158,15 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 				>
 		</video>
 		<div id=videoscript> 
-			<div class=videosection t-start=0 t-end=5><p>
+			<div class=videosection t-start=00:00 t-end=00:05><p>
 				Introduction to getting your NFT, you will need to follow these steps, try to click below each section, let us know if you have difficulty.
-			</p></div><div class=videosection t-start=5 t-end=25><p>
+			</p></div><div class=videosection t-start=00:05 t-end=00:25><p>
 				On your desktop/laptop computer, go to <a href="https://metamask.io">metamask.io</a> and install MetaMask Browser Addon / Extension
-			</p></div><div class=videosection t-start=25 t-end=32><p>
+			</p></div><div class=videosection t-start=00:25 t-end=00:32><p>
 				You should see this after it has been installed, click "Get Started" and follow the instruction to "Create a Wallet"
-			</p></div><div class=videosection t-start=32 t-end=47><p>
+			</p></div><div class=videosection t-start=00:32 t-end=00:47><p>
 				During this setup process, you will be asked to create a password, in addition there will be a secret recovery phrase generated
-			</p></div><div class=videosection t-start=47 t-end=01:00><p>
+			</p></div><div class=videosection t-start=00:47 t-end=01:00><p>
 				Please remember to **write down your secret recovery phrase**, this will be your keys and the only way to recover your wallet
 			</p></div><div class=videosection t-start=01:00 t-end=01:14><p>
 				At the end of the setup, you should see a "Congratulations", you have a digital wallet now, let's try to use it
@@ -202,6 +202,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			</p></div>
 		</div>
 		<script>
+		// ref: https://www.sitepoint.com/html5-video-fragments-captions-dynamic-thumbnails/
+		// problem with this approach is that the video has to be reloaded everytime
 		function mediaFragOne() {
 			var video, sources, nav, buttons;
 			video = document.querySelector('video#vidstructor');
@@ -210,18 +212,67 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			buttons = nav.getElementsByClassName('videosection');
 
 			for (var i = buttons.length - 1; i >= 0; i--) {
+
 				buttons[i].addEventListener('click', function() {
+
+					var v = video.getBoundingClientRect()
 					for (var i = sources.length - 1; i >= 0; i--) {
 						sources[i].setAttribute(
 							'src', ( sources[i].getAttribute('data-original').concat('#t=' + this.getAttribute( 't-start' ) + ',' + this.getAttribute( 't-end' ) ) )
-						);
-						video.load();
-						video.play();
-					};
-				});
-			};
+						)
+						video.style.height = v.height + "px"  // this doesn't work to stablize the video because the video needs to reload everytime
+						video.style.width = v.width + "px"
+						video.height = v.height
+						video.width = v.width
+						video.load()
+						video.play()
+						video.style.height = "auto"
+						video.style.width = "auto"
+					}
+				})
+
+			}
 		}
-		mediaFragOne();
+		// mediaFragOne();
+
+		video = document.querySelector('video#vidstructor');
+		nav = $( 'videoscript' )
+		buttons = nav.getElementsByClassName('videosection');
+		for (var i = buttons.length - 1; i >= 0; i--) {
+			buttons[i].addEventListener('click', function(){
+				var time = this.getAttribute( 't-start' ).split( ':' )
+				var from = time[ 0 ] * 60 + time[ 1 ]
+				var time = this.getAttribute( 't-end' ).split( ':' )
+				var to = time[ 0 ] * 60 + time[ 1 ]
+				video.playFragment( from , to )
+			} )
+		}
+
+		/** ref: https://front.id/en/articles/play-html-5-video-tag-fragment-videoplayfragment
+		 * Plays a video fragment.
+		 *
+		 * @param {Number} from The time video where to start. 
+		 * If this param is null the video will be played from the current position.
+		 * @param {Number} to The time video where to stop.
+		 * @param {Number} frameRate The video framerate.
+		 * @param {Function} cb Callback launched after fragment is played. Optional.
+		 */
+		playing = false  // used if you want to lock
+		HTMLVideoElement.prototype.playFragment = function (from, to, frameRate = 1000, cb) {
+		  if (playing) return;
+		  const video = this;
+		  video.currentTime = from === null ? video.currentTime : from;
+		  video.play();
+
+		  const timeCheck = setInterval(function () {
+		    if (video.currentTime >= to) {
+		      clearInterval(timeCheck);
+		      video.pause();
+		      playing = false;
+		      typeof cb === 'function' && cb();
+		    }
+		  }, 1000 / frameRate);
+		};
 		</script>
 	</div>
 
