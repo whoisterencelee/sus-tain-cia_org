@@ -240,10 +240,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		buttons = nav.getElementsByClassName('videosection');
 		for (var i = buttons.length - 1; i >= 0; i--) {
 			buttons[i].addEventListener('click', function(){
-				var time = this.getAttribute( 't-start' ).split( ':' )
-				var from = time[ 0 ] * 60 + time[ 1 ]
-				var time = this.getAttribute( 't-end' ).split( ':' )
-				var to = time[ 0 ] * 60 + time[ 1 ]
+				var from = this.getAttribute( 't-start' ).split(':').reverse().reduce( ( pv , cv , n ) => pv + parseInt( cv ) * Math.pow( 60 , n ) , 0 )
+				var to = this.getAttribute( 't-end' ).split(':').reverse().reduce( ( pv , cv , n ) => pv + parseInt( cv ) * Math.pow( 60 , n ) , 0 )
 				video.playFragment( from , to )
 			} )
 		}
@@ -257,14 +255,16 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		 * @param {Number} frameRate The video framerate.
 		 * @param {Function} cb Callback launched after fragment is played. Optional.
 		 */
-		playing = false  // used if you want to lock
+		playing = false  // used if you want to lock until finish playing
+		timeCheck = null
 		HTMLVideoElement.prototype.playFragment = function (from, to, frameRate = 1000, cb) {
 		  if (playing) return;
 		  const video = this;
 		  video.currentTime = from === null ? video.currentTime : from;
 		  video.play();
 
-		  const timeCheck = setInterval(function () {
+		  if( timeCheck ) clearInterval( timeCheck )  // a new Fragment started
+		  timeCheck = setInterval(function () {
 		    if (video.currentTime >= to) {
 		      clearInterval(timeCheck);
 		      video.pause();
