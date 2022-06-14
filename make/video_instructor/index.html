@@ -150,11 +150,11 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		#fcvideoscript {width:1em;} /* important need otherwise will wrap */
 		.videosection {padding:1em;flex-direction:row;justify-content:space-between;border-bottom:1px lightgrey solid;text-overflow:ellipsis;}
 		</style>
-		<video id=vidstructor controls preload=auto>
+		<video id=vidstructor controls preload=auto autoplay muted>
 			<source 
 				type="video/mp4"
-				src="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%21111743&authkey=AEGPEu1VbVhkIqg"
-				data-original="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%21111743&authkey=AEGPEu1VbVhkIqg"
+				src="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%21111745&authkey=AKv1dWd58c81qkc"
+				data-original="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%21111745&authkey=AKv1dWd58c81qkc"
 				>
 		</video>
 		<div id=videoscript> 
@@ -259,7 +259,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		timeCheck = null
 		HTMLVideoElement.prototype.playFragment = function (from, to, frameRate = 1000, cb) {
 		  if (playing) return;
-		  const video = this;
+		  // const video = this;
 		  video.currentTime = from === null ? video.currentTime : from;
 		  video.play();
 
@@ -273,8 +273,15 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		    }
 		  }, 1000 / frameRate);
 		};
+
+			// not working
+		video.addEventListener('click',function() { 
+						console.log( 'clicked' )
+						video.muted = false; });
 		</script>
 	</div>
+
+	<a href="https://towardsdatascience.com/how-to-use-vest-a-free-online-tool-for-segmenting-video-clips-a6ec50e29971">For video segmentation check out this tool</a>
 
 	<!-- copyanchor -->
 	<textarea id="copyanchor" style="position:absolute;top:-8888px;" readonly></textarea>
