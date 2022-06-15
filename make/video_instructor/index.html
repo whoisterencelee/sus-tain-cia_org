@@ -150,7 +150,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		#fcvideoscript {width:1em;} /* important need otherwise will wrap */
 		.videosection {padding:1em;flex-direction:row;justify-content:space-between;border-bottom:1px lightgrey solid;text-overflow:ellipsis;}
 		</style>
-		<video id=vidstructor controls preload=auto autoplay muted>
+		<video id=vidstructor controls preload=auto autoplay>
 			<source 
 				type="video/mp4"
 				src="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%21111745&authkey=AKv1dWd58c81qkc"
@@ -243,6 +243,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 				var from = this.getAttribute( 't-start' ).split(':').reverse().reduce( ( pv , cv , n ) => pv + parseInt( cv ) * Math.pow( 60 , n ) , 0 )
 				var to = this.getAttribute( 't-end' ).split(':').reverse().reduce( ( pv , cv , n ) => pv + parseInt( cv ) * Math.pow( 60 , n ) , 0 )
 				video.playFragment( from , to )
+				this.style.background = "lightgreen"
 			} )
 		}
 
@@ -274,9 +275,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		  }, 1000 / frameRate);
 		};
 
-			// not working
-		video.addEventListener('click',function() { 
-						console.log( 'clicked' )
+		// not working, click event on video doesn't work on firefox
+		video.addEventListener('mouseover',function() { 
 						video.muted = false; });
 		</script>
 	</div>
