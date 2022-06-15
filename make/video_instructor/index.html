@@ -160,9 +160,9 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 				>
 		</video>
 		<div id=videoscript> 
-			<div class=videosection t-start=00:00 t-end=00:05><p>
+			<div class=videosection t-start=00:00 t-end=00:09><p>
 				Introduction to getting your NFT, you will need to follow these steps, try to click below each section, let us know if you have difficulty.
-			</p></div><div class=videosection t-start=00:05 t-end=00:25><p>
+			</p></div><div class=videosection t-start=00:09 t-end=00:25><p>
 				On your desktop/laptop computer, go to <a href="https://metamask.io">metamask.io</a> and install MetaMask Browser Addon / Extension
 			</p></div><div class=videosection t-start=00:25 t-end=00:32><p>
 				You should see this after it has been installed, click "Get Started" and follow the instruction to "Create a Wallet"
@@ -204,39 +204,6 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			</p></div>
 		</div>
 		<script>
-		// ref: https://www.sitepoint.com/html5-video-fragments-captions-dynamic-thumbnails/
-		// problem with this approach is that the video has to be reloaded everytime
-		function mediaFragOne() {
-			var video, sources, nav, buttons;
-			video = document.querySelector('video#vidstructor');
-			sources = video.getElementsByTagName('source');
-			nav = $( 'videoscript' )
-			buttons = nav.getElementsByClassName('videosection');
-
-			for (var i = buttons.length - 1; i >= 0; i--) {
-
-				buttons[i].addEventListener('click', function() {
-
-					var v = video.getBoundingClientRect()
-					for (var i = sources.length - 1; i >= 0; i--) {
-						sources[i].setAttribute(
-							'src', ( sources[i].getAttribute('data-original').concat('#t=' + this.getAttribute( 't-start' ) + ',' + this.getAttribute( 't-end' ) ) )
-						)
-						video.style.height = v.height + "px"  // this doesn't work to stablize the video because the video needs to reload everytime
-						video.style.width = v.width + "px"
-						video.height = v.height
-						video.width = v.width
-						video.load()
-						video.play()
-						video.style.height = "auto"
-						video.style.width = "auto"
-					}
-				})
-
-			}
-		}
-		// mediaFragOne();
-
 		video = document.querySelector('video#vidstructor');
 		nav = $( 'videoscript' )
 		buttons = nav.getElementsByClassName('videosection');
@@ -283,7 +250,9 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		</script>
 	</div>
 
+	<!--
 	<a href="https://towardsdatascience.com/how-to-use-vest-a-free-online-tool-for-segmenting-video-clips-a6ec50e29971">For video segmentation check out this tool</a>
+	-->
 
 	<!-- copyanchor -->
 	<textarea id="copyanchor" style="position:absolute;top:-8888px;" readonly></textarea>
