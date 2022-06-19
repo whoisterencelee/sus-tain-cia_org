@@ -1,0 +1,283 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Video Technology Showcase</title>
+  <meta name="description" content="Video Technology on Sustaincia">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <meta name="referrer" content="no-referrer-when-downgrade"><!-- important https://web.dev/referrer-best-practices/ -->
+  <meta name="theme-color" content="#fafafa">
+
+</head>
+
+<body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;">
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+	<script>$=(i=>document.getElementById(i)||{})</script>
+
+	<style>
+	div {display:flex;flex-direction:column;flex-wrap:wrap;}
+	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	</style>
+
+	<!-- header -->
+	<style>
+	#header {opacity:0.5;}
+	#header a {color:white;text-decoration:none;}
+	</style>
+	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
+		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
+		<form id="subscribe" style="width:auto;margin:0;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
+			<input class="hide" name="subscription" id="subscription"></input>
+			<input id="subscribe-submit" type="submit" disabled="disabled" style="opacity:0;color:white;border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
+		</form>
+	</div>
+	<script>// header code
+	var host=document.location.host,path="";document.getElementById('header').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+	</script>
+	<script>// subscribe code
+if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worker.js').then(function(){console.log('Successfully registered service worker');function urlBase64ToUint8Array(base64String){var padding='='.repeat((4-base64String.length%4)%4);var base64=(base64String+padding).replace(/\-/g,'+').replace(/_/g,'/').replace(/\n/g,'').replace(/\r/g,'');var rawData=window.atob(base64);var outputArray=new Uint8Array(rawData.length);for(var i=0;i<rawData.length;++i){outputArray[i]=rawData.charCodeAt(i)}return outputArray}function getpush(){navigator.serviceWorker.ready.then(function(reg){return reg.pushManager.getSubscription().then(async function(sub){const response=await fetch('/vapid.txt',{headers:{'Content-Type':'text/plain'}});const vapidPublicKey=await response.text();const convertedVapidKey=urlBase64ToUint8Array(vapidPublicKey);if(sub){if(sub.options&&sub.options.applicationServerKey&&new Uint8Array(sub.options.applicationServerKey).toString()!=convertedVapidKey.toString()){sub.unsubscribe()}else return sub}return reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:convertedVapidKey})})}).then(function(sub){$('subscription').value=JSON.stringify(sub);console.log($('subscription').value);$('user').disabled='';$('subscribe').submit()},function(error){alert('push notification setup error : '+error.toString())})}$('subscribe').onsubmit=()=>{console.log('let\'s subscribe');$('user').disabled='disabled';event.preventDefault();if(!('Notification'in window))alert('Notification is required for this page, try a different browser');else if(Notification.permission!=='granted')Notification.requestPermission(p=>{if(p!=='granted')alert('Notification is required for this page, try a different browser');else getpush()});else if(Notification.permission==='granted')getpush()};$('user').disabled='';$('subscribe-submit').disabled='';$('subscribe-submit').style.opacity='0.5'}).catch(function(err){alert('Error whilst registering service worker '+err)})}else alert('Service worker is required for this page, try a different browser');
+	</script>
+
+
+	<!-- pull down tab -->
+	<div style="align-items:center;">
+
+		<style>.hpot {display:none;}
+		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
+		form textarea {background:transparent;border:0;margin:0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;width:100%;}
+		form input {background:transparent;border:0px;padding:0;width:100%;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
+		form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;}
+		form label span {color:grey;}
+		form label a {color:#0070c4;text-decoration:none;}
+		</style>
+
+		<form id="report" style="display:none;" method="POST" action="https://functional.limited/forms" name="report">
+
+			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
+				<input name="_next" value="https://sustaincia.org/learn/sustaincia_reporting?success">
+				<input name="_gotcha">
+				<input name="_to" value="https://sustaincia.org/learn/sustaincia_reporting/approve.html">
+			</label></div>
+
+			<label>
+			<textarea id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD REPORT HERE syntax:&#x0a;*bold text*&#x0a;[[https://../image url]]&#x0a;[[https://..][link]]" required name="content"></textarea>
+			</label>
+
+			<label>
+			<input required placeholder="post as reporter" tabindex="2" name="user"></input>
+			</label>
+
+			<label>
+			<input placeholder="offering" tabindex="3" name="offer"></input>
+			</label>
+
+			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
+
+			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="submit"></input>
+
+		</form>
+
+		<!-- down arrow -->
+		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;" 
+			onclick="var c=event.currentTarget.parentNode.childNodes,cl=c.length;while(cl--){if(c[cl].style&&c[cl].style.display)c[cl].style.display=''}">
+			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
+		</div>
+	
+		<div id="preview" style="display:none;">
+			<div id="render" class="list" style="margin:0 25vw;min-width:340px;"></div>
+		</div>
+		
+	</div>
+
+		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
+
+	<!-- messagebuttons -->
+	<style>
+	.messagebutton {text-decoration:none;text-align:center;background:#4eadb8;color:#032a2e;padding:1em;box-shadow:3px 3px 5px 0px lightgrey;margin:1em;}
+	</style>
+	<a id="success" class="hide messagebutton" href="https://sustaincia.org/make/sustaincia_identity" rel="noreferrer noopener" target="_blank">
+	Thank you for your submission we will review and post it asap<br />In the meantime click thur to our "community identity living document"
+	</a>
+	<div id="approve" class="hide messagebutton">
+	Thank you for your approval, the decision has <span id="triggered" class="hide"> NOT YET</span> triggered
+	</div>
+	<div id="subscribed" class="hide messagebutton">
+	Subscribed
+	</div>
+
+
+	<script>
+	var u = new URLSearchParams( location.search )
+	if(u.get('success')!=null)$('success').style.display="block"
+	if(u.get('approve')!=null)$('approve').style.display="block"
+	if(u.get('triggered')==null)$('triggered').style.display="inline"
+	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
+	</script>
+
+	<style>
+	.list > div {display:inline-block;padding-bottom:0.5em;margin:0.25em 0;border-bottom:1px solid lightgrey;color:grey;}
+	.list > div > img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
+	.list > div > video {margin:0 1em 0 0;float:left;max-height:30vh;max-width:60vw;}
+	.list > div > iframe {margin:0 1em 0 0;max-height:36vw;max-width:64vw;}
+	.list > div > b {color:black;}
+	.list > div > a {color:grey;}
+	.list > div > table {text-align:center;border-spacing:2em 0;font-size:0.75em;word-break;break-all;max-width:90vw;}
+	</style>
+
+	<div style="margin:0 25vw;min-width:340px;">
+	<div class="list" onclick="copyanchor()" >
+	<!-- list -->
+
+	</div><!-- end of list -->
+	</div><!-- padding -->
+
+	<!-- vidinstructor -->
+	<div style="width:98vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
+		<style>
+		video#vidstructor {max-width:100%;max-height:50%;background:black;}
+		@media (min-aspect-ratio: 3/2) {
+			video#vidstructor {max-width:66%;max-height:100%;}
+			#videoscript {width:33vw;}
+		}
+		#videoscript {flex-grow:1;flex-wrap:nowrap;overflow:scroll;}
+		#videoscript {height:50vh;} /* important need to set otherwise when scroll video moves out*/
+		.videosection {padding:1em;flex-direction:row;justify-content:space-between;border-bottom:1px black solid;text-overflow:ellipsis;}
+		</style>
+		<video id=vidstructor controls preload=auto autoplay>
+			<source 
+				type="video/mp4"
+				src="https://openseauserdata.com/files/7b133a0a87fb4ea23836576df3e63ceb.mp4"
+				data-original="https://openseauserdata.com/files/7b133a0a87fb4ea23836576df3e63ceb.mp4"
+				>
+		</video>
+		<div id=videoscript> 
+			<div class=videosection t-start=00:00 t-end=00:09><p>
+				Introduction to getting your NFT, you will need to follow these steps, try to click below each section, let us know if you have difficulty.
+			</p></div><div class=videosection t-start=00:09 t-end=00:25><p>
+				On your desktop/laptop computer, go to <a href="https://metamask.io">metamask.io</a> and install MetaMask Browser Addon / Extension
+			</p></div><div class=videosection t-start=00:25 t-end=00:32><p>
+				You should see this after it has been installed, click "Get Started" and follow the instruction to "Create a Wallet"
+			</p></div><div class=videosection t-start=00:32 t-end=00:47><p>
+				During this setup process, you will be asked to create a password, in addition there will be a secret recovery phrase generated
+			</p></div><div class=videosection t-start=00:47 t-end=01:00><p>
+				Please remember to **write down your secret recovery phrase**, this will be your keys and the only way to recover your wallet
+			</p></div><div class=videosection t-start=01:00 t-end=01:14><p>
+				At the end of the setup, you should see a "Congratulations", you have a digital wallet now, let's try to use it
+			</p></div><div class=videosection t-start=01:14 t-end=01:19><p>
+				Now go to <a href="https://opensea.io">opensea.io</a> , at the top right corner, click the profile symbol or wallet symbol or the hamburger menu , if you selected the hamburger menu click on "Connect wallet" and select metamask
+			</p></div><div class=videosection t-start=01:19 t-end=01:25><p>
+				You will be asked to Connect With MetaMask, click Next and Connect, this will let opensea know about your wallet
+			</p></div><div class=videosection t-start=01:25 t-end=01:33><p>
+				Now you should see your wallet address/ID which is a string on the top right that is formatted like "0x????...????", click on that to copy the address, you can always find your wallet address from the wallet symbol  or the hamburger menu and entering My Wallet
+			</p></div><div class=videosection t-start=01:33 t-end=01:35><p>
+				You need to paste this wallet receiving address when you reply to the email, so that we can send the NFT to your wallet address
+				We will send you the NFT
+				In the meantime, check out our <a href="https://twitter.com/sustaincia">twitter</a> for more artworks and give us a follow
+			</p></div><div class=videosection t-start=01:35 t-end=01:40><p>
+				Using the same computer / browser which you installed wallet on previously
+			</p></div><div class=videosection t-start=01:40 t-end=01:48><p>
+				Check you can see your NFT, it might be hidden, follow these steps or
+				Go to <a href="https://opensea.io/account?tab=private">opensea.io/account?tab=private</a> , you might be required to signin with the metamask wallet
+			</p></div><div class=videosection t-start=01:48 t-end=01:59><p>
+				Next, click on the three dots and then "unhide"
+			</p></div><div class=videosection t-start=01:59 t-end=02:06><p>
+				Click on the Heart ❤️ as shown here, you might be required to sign message with the metamask wallet
+			</p></div><div class=videosection t-start=02:06 t-end=02:10><p>
+				Now you have enabled the full power of NFT , show your friends the NFT with share button<br />
+				Did you remember to follow <a href="https://twitter.com/sustaincia">twitter.com/sustaincia</a> this is where the NFT lives socially<br /><br />
+				Advance:<br />
+				To see the NFT directly within the Metamask wallet on your phone you need to:<br />
+				- install Metamask on your phone<br />
+				- add the polygon mainnet to the metamask<br />
+				- import the NFT token<br /><br />
+
+				The NFT is now yours forever!
+			</p></div>
+		</div>
+		<script>
+		video = document.querySelector('video#vidstructor');
+		nav = $( 'videoscript' )
+		buttons = nav.getElementsByClassName('videosection');
+		for (var i = buttons.length - 1; i >= 0; i--) {
+			buttons[i].addEventListener('click', function(){
+				var from = this.getAttribute( 't-start' ).split(':').reverse().reduce( ( pv , cv , n ) => pv + parseInt( cv ) * Math.pow( 60 , n ) , 0 )
+				var to = this.getAttribute( 't-end' ).split(':').reverse().reduce( ( pv , cv , n ) => pv + parseInt( cv ) * Math.pow( 60 , n ) , 0 )
+				video.playFragment( from , to )
+				this.style.background = "lightgreen"
+			} )
+		}
+
+		/** ref: https://front.id/en/articles/play-html-5-video-tag-fragment-videoplayfragment
+		 * Plays a video fragment.
+		 *
+		 * @param {Number} from The time video where to start. 
+		 * If this param is null the video will be played from the current position.
+		 * @param {Number} to The time video where to stop.
+		 * @param {Number} frameRate The video framerate.
+		 * @param {Function} cb Callback launched after fragment is played. Optional.
+		 */
+		playing = false  // used if you want to lock until finish playing
+		timeCheck = null
+		HTMLVideoElement.prototype.playFragment = function (from, to, frameRate = 1000, cb) {
+		  if (playing) return;
+		  // const video = this;
+		  video.currentTime = from === null ? video.currentTime : from;
+		  video.play();
+
+		  if( timeCheck ) clearInterval( timeCheck )  // a new Fragment started
+		  timeCheck = setInterval(function () {
+		    if (video.currentTime >= to) {
+		      clearInterval(timeCheck);
+		      video.pause();
+		      playing = false;
+		      typeof cb === 'function' && cb();
+		    }
+		  }, 1000 / frameRate);
+		};
+
+		// not working, click event on video doesn't work on firefox
+		video.addEventListener('mouseover',function() { 
+						video.muted = false; });
+		</script>
+	</div>
+
+	<!--
+	<a href="https://towardsdatascience.com/how-to-use-vest-a-free-online-tool-for-segmenting-video-clips-a6ec50e29971">For video segmentation check out this tool</a>
+	-->
+
+	<!-- copyanchor -->
+	<textarea id="copyanchor" style="position:absolute;top:-8888px;" readonly></textarea>
+	<div id="anchorcopied" class="hide" style="background:#0070c4;color:white;padding:0.5em 1em;border-radius:3em;position:fixed;bottom:3em;font-size:0.75em;">anchor copied , paste into any chat</div>
+	<script>
+	function copyanchor(){
+		var p = event.target
+		if( p.nodeName == "A" ) return  // don't copy if user leaving
+		while( p.parentNode.className != "list" ){ p = p.parentNode ; if( p == document ) return }
+		var text = p.textContent.substring( 0 , 64 ).replace( /\s[^\s]*$/ , "" )  // cut off between words
+		$("copyanchor").value = text + "..\n" + document.location.origin + document.location.pathname.replace( /index.html$/ , "" ) + "#" + p.id
+		$("copyanchor").select()
+		document.execCommand( "copy" )
+		$("anchorcopied").style.display="block"
+		setTimeout( ()=>$("anchorcopied").style.display="" , 3000 )
+	}
+	</script>
+	<!-- copyanchor -->
+
+	<!-- analytics -->
+	<script>
+	fetch( 'https://functional.limited/log' , { method: "POST" , body : 'href=' + location.href} )
+	</script>
+	<!-- analytics -->
+
+</body>
+
+</html>
