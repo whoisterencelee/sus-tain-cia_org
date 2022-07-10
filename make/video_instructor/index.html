@@ -139,12 +139,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		<span id=until until="2022/07/17 00:00 +8" style="background:#0070c4;color:white;margin:0.25em 0.25em;border-radius:3px;padding:0 0.5em;">00 days 00 hours 00 mins 00 secs</span>
 		<span id=support_en style="border:1px grey solid;border-radius:3px;margin:0.25em 0.25em;padding:0 0.5em;box-shadow:0 0 3px;">Add support time</span>
 		<nobr id=support_zh style="border:1px grey solid;border-radius:3px;margin:0.25em 0.25em;padding:0 0.5em;box-shadow:0 0 3px;">支持維持時間</nobr><br />
-		<div id=donate_en style="color:white;display:none;position:fixed;background:rgba(0,0,0,0.75);top:0;left:0;width:100vw;height:100vh;">
+		<div id=donate_en style="color:white;display:none;position:fixed;background:rgba(0,0,0,0.75);top:0;left:0;width:100vw;height:100vh;z-index:9;">
 			<p>Payment Method</p>
 			<img src="https://sustaincia.org/donate/sustaincia_boc_qr.jpg"></img>
 			<p>Please notify us at <a href="mailto:donate@sustaincia.org" style="color:white;">donate@sustaincia.org</a></p>
 		</div>
-		<div id=donate_zh style="color:white;display:none;position:fixed;background:rgba(0,0,0,0.75);top:0;left:0;width:100vw;height:100vh;">
+		<div id=donate_zh style="color:white;display:none;position:fixed;background:rgba(0,0,0,0.75);top:0;left:0;width:100vw;height:100vh;z-index:9;">
 			<p>付款方式</p>
 			<img src="https://sustaincia.org/donate/sustaincia_boc_qr.jpg"></img>
 			<p>請通過此電郵通知我們<a href="mailto:donate@sustaincia.org" style="color:white;">donate@sustaincia.org</a></p>
@@ -312,7 +312,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 				return
 			}
 			var s = null  // some segments overlaps, choose the last one
-			segments.forEach( ( seg ) => { if( video.currentTime >= seg[ 1 ].startTime && video.currentTime < seg[ 1 ].endTime ) s = seg } )  // will find last
+			segments.forEach( ( seg ) => { if( video.currentTime > seg[ 1 ].startTime && video.currentTime < seg[ 1 ].endTime ) s = seg } )  // will find last
 			if( s && s[ 0 ] != priorSegment.id ){  // allow user to scroll and not locked to the segment
 				var curSegment = $( s[ 0 ] )
 				if( curSegment.scrollIntoView ) curSegment.scrollIntoView()
