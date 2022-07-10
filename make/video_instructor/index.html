@@ -87,6 +87,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		</form>
 
 		<!-- down arrow -->
+		<!--
 		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;" 
 			onclick="var c=event.currentTarget.parentNode.childNodes,cl=c.length;while(cl--){if(c[cl].style&&c[cl].style.display)c[cl].style.display=''}">
 			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
@@ -95,6 +96,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		<div id="preview" style="display:none;">
 			<div id="render" class="list" style="margin:0 25vw;min-width:340px;"></div>
 		</div>
+		-->
 		
 	</div>
 
@@ -124,19 +126,29 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	</script>
 
 	<!-- funding -->
-	<div>
-		<span id=support_en>Supporters <u>fund</u> our work and help maintain this page for </span>
-		<span id=until until="2022/07/17 00:00 +8">03:00:00:00</span>
-		<span id=support_zh>支持者<u>資助</u>我們的工作並維持此頁的剩下時間</span><br />
-		<small>
+	<div style="color:grey;width:98vw;text-align:center;flex-direction:row;justify-content:center;margin:0.2em;">
+		<small style="width:98vw;">
+		Supporters: 
 		Terence Lee / 
 		Leo Lau / 
 		Bashir Saidu / 
 		Winston Lam / 
 		Anonymous
 		</small>
-		<div id=donate_en style="display:none;position:fixed;background:darkred;">Payment Methods</div>
-		<div id=donate_zh style="display:none;position:fixed;background:darkred;">付款方式</div>
+
+		<span id=support_en style="border:1px grey solid;border-radius:3px;margin:0.25em 0.25em;padding:0 0.5em;box-shadow:0 0 3px;">Add support time</span>
+		<span id=until until="2022/07/17 00:00 +8" style="background:#0070c4;color:white;margin:0.25em 0.25em;border-radius:3px;padding:0 0.5em;">00 days 00 hours 00 mins 00 secs</span>
+		<nobr id=support_zh style="border:1px grey solid;border-radius:3px;margin:0.25em 0.25em;padding:0 0.5em;box-shadow:0 0 3px;">支持維持時間</nobr><br />
+		<div id=donate_en style="color:white;display:none;position:fixed;background:rgba(0,0,0,0.75);top:0;left:0;width:100vw;height:100vh;">
+			<p>Payment Method</p>
+			<img src="https://sustaincia.org/donate/sustaincia_boc_qr.jpg"></img>
+			<p>Please notify us at <a href="mailto:donate@sustaincia.org" style="color:white;">donate@sustaincia.org</a></p>
+		</div>
+		<div id=donate_zh style="color:white;display:none;position:fixed;background:rgba(0,0,0,0.75);top:0;left:0;width:100vw;height:100vh;">
+			<p>付款方式</p>
+			<img src="https://sustaincia.org/donate/sustaincia_boc_qr.jpg"></img>
+			<p>請通過此電郵通知我們<a href="mailto:donate@sustaincia.org" style="color:white;">donate@sustaincia.org</a></p>
+		</div>
 	</div>
 	<script>
 		setInterval( ()=>{
@@ -153,10 +165,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			var secsleft = Math.floor( timeleft , 1 )
 			timeleft -= secsleft
 
-			$( 'until' ).textContext = daysleft + ':' + hoursleft + ':' + minsleft + ':' + secsleft
-		} , 5000 )
+			$( 'until' ).textContent = daysleft + ' days ' + hoursleft + ' hours ' + minsleft + ' mins ' + secsleft + " secs"
+		} , 1000 )
 		$( 'support_en' ).addEventListener( 'click' , () => $( 'donate_en' ).style.display='block' )
 		$( 'support_zh' ).addEventListener( 'click' , () => $( 'donate_zh' ).style.display='block' )
+		$( 'donate_en' ).addEventListener( 'click' , () => $( 'donate_en' ).style.display='none' )
+		$( 'donate_zh' ).addEventListener( 'click' , () => $( 'donate_zh' ).style.display='none' )
 	</script>
 	<!-- TODO 
 		cut mechanism
@@ -182,13 +196,13 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	</div><!-- padding -->
 
 	<!-- vidinstructor -->
-	<div style="width:98vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
+	<div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
 		<style>
 		.videoside {width:100%;max-height:50%;}
 		video#vidstructor {width:100%;height:100%;}
 		#videoscript {width:100%;}
 		@media (min-aspect-ratio: 3/2) {
-			.videoside {max-width:66%;max-height:100%;}
+			.videoside {max-width:67%;max-height:100%;}
 			#videoscript {width:33%;}
 			video#vidstructor {width:100%;height:100%;}
 		}
