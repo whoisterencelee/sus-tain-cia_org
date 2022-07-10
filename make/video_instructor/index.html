@@ -123,6 +123,47 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
 	</script>
 
+	<!-- funding -->
+	<div>
+		<span id=support_en>Supporters <u>fund</u> our work and help maintain this page for </span>
+		<span id=until until="2022/07/17 00:00 +8">03:00:00:00</span>
+		<span id=support_zh>支持者<u>資助</u>我們的工作並維持此頁的剩下時間</span><br />
+		<small>
+		Terence Lee / 
+		Leo Lau / 
+		Bashir Saidu / 
+		Winston Lam / 
+		Anonymous
+		</small>
+		<div id=donate_en style="display:none;position:fixed;background:darkred;">Payment Methods</div>
+		<div id=donate_zh style="display:none;position:fixed;background:darkred;">付款方式</div>
+	</div>
+	<script>
+		setInterval( ()=>{
+			var until = $( 'until' ).getAttribute( 'until' )
+			
+			var timeleft = ( new Date( until ).getTime() - new Date().getTime() ) / 1000 / 60 / 60 / 24
+			if( timeleft < 0 ) timeleft = 3
+			var daysleft = Math.floor( timeleft , 1 )
+			timeleft = ( timeleft - daysleft ) * 24
+			var hoursleft = Math.floor( timeleft , 1 )
+			timeleft = ( timeleft - hoursleft ) * 60
+			var minsleft = Math.floor( timeleft , 1 )
+			timeleft = ( timeleft - minsleft ) * 60
+			var secsleft = Math.floor( timeleft , 1 )
+			timeleft -= secsleft
+
+			$( 'until' ).textContext = daysleft + ':' + hoursleft + ':' + minsleft + ':' + secsleft
+		} , 5000 )
+		$( 'support_en' ).addEventListener( 'click' , () => $( 'donate_en' ).style.display='block' )
+		$( 'support_zh' ).addEventListener( 'click' , () => $( 'donate_zh' ).style.display='block' )
+	</script>
+	<!-- TODO 
+		cut mechanism
+		link sharing with #t
+		poster from query
+	-->
+
 	<style>
 	.list > div {display:inline-block;padding-bottom:0.5em;margin:0.25em 0;border-bottom:1px solid lightgrey;color:grey;}
 	.list > div > img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
@@ -143,69 +184,57 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	<!-- vidinstructor -->
 	<div style="width:98vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
 		<style>
-		video#vidstructor {max-width:100%;max-height:50%;background:black;}
+		.videoside {width:100%;max-height:50%;}
+		video#vidstructor {width:100%;height:100%;}
+		#videoscript {width:100%;}
+		@media (min-aspect-ratio: 3/2) {
+			.videoside {max-width:66%;max-height:100%;}
+			#videoscript {width:33%;}
+			video#vidstructor {width:100%;height:100%;}
+		}
+		/*video#vidstructor {max-width:100%;max-height:50%;background:black;}
 		@media (min-aspect-ratio: 3/2) {
 			video#vidstructor {max-width:66%;max-height:100%;}
 			#videoscript {width:33vw;}
 		}
+		*/
 		#videoscript {flex-grow:1;flex-wrap:nowrap;overflow:scroll;}
-		#videoscript {height:50vh;} /* important need to set otherwise when scroll video moves out*/
+		#videoscript {height:50%;} /* important need to set otherwise when scroll video moves out*/
 		.videosection {padding:1em;flex-direction:row;justify-content:space-between;border-bottom:1px black solid;text-overflow:ellipsis;}
 		</style>
-		<video id=vidstructor controls preload=auto autoplay>
-			<source 
-				type="video/mp4"
-				src="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%21111745&authkey=AKv1dWd58c81qkc"
-				data-original="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%21111745&authkey=AKv1dWd58c81qkc"
-				>
-		</video>
-		<div id=videoscript> 
-			<div class=videosection t-start=00:00 t-end=00:09><p>
-				Introduction to getting your NFT, you will need to follow these steps, try to click below each section, let us know if you have difficulty.
-			</p></div><div class=videosection t-start=00:09 t-end=00:25><p>
-				On your desktop/laptop computer, go to <a href="https://metamask.io">metamask.io</a> and install MetaMask Browser Addon / Extension
-			</p></div><div class=videosection t-start=00:25 t-end=00:32><p>
-				You should see this after it has been installed, click "Get Started" and follow the instruction to "Create a Wallet"
-			</p></div><div class=videosection t-start=00:32 t-end=00:47><p>
-				During this setup process, you will be asked to create a password, in addition there will be a secret recovery phrase generated
-			</p></div><div class=videosection t-start=00:47 t-end=01:00><p>
-				Please remember to **write down your secret recovery phrase**, this will be your keys and the only way to recover your wallet
-			</p></div><div class=videosection t-start=01:00 t-end=01:14><p>
-				At the end of the setup, you should see a "Congratulations", you have a digital wallet now, let's try to use it
-			</p></div><div class=videosection t-start=01:14 t-end=01:19><p>
-				Now go to <a href="https://opensea.io">opensea.io</a> , at the top right corner, click the profile symbol or wallet symbol or the hamburger menu , if you selected the hamburger menu click on "Connect wallet" and select metamask
-			</p></div><div class=videosection t-start=01:19 t-end=01:25><p>
-				You will be asked to Connect With MetaMask, click Next and Connect, this will let opensea know about your wallet
-			</p></div><div class=videosection t-start=01:25 t-end=01:33><p>
-				Now you should see your wallet address/ID which is a string on the top right that is formatted like "0x????...????", click on that to copy the address, you can always find your wallet address from the wallet symbol  or the hamburger menu and entering My Wallet
-			</p></div><div class=videosection t-start=01:33 t-end=01:35><p>
-				You need to paste this wallet receiving address when you reply to the email, so that we can send the NFT to your wallet address
-				We will send you the NFT
-				In the meantime, check out our <a href="https://twitter.com/sustaincia">twitter</a> for more artworks and give us a follow
-			</p></div><div class=videosection t-start=01:35 t-end=01:40><p>
-				Using the same computer / browser which you installed wallet on previously
-			</p></div><div class=videosection t-start=01:40 t-end=01:48><p>
-				Check you can see your NFT, it might be hidden, follow these steps or
-				Go to <a href="https://opensea.io/account?tab=private">opensea.io/account?tab=private</a> , you might be required to signin with the metamask wallet
-			</p></div><div class=videosection t-start=01:48 t-end=01:59><p>
-				Next, click on the three dots and then "unhide"
-			</p></div><div class=videosection t-start=01:59 t-end=02:06><p>
-				Click on the Heart ❤️ as shown here, you might be required to sign message with the metamask wallet
-			</p></div><div class=videosection t-start=02:06 t-end=02:10><p>
-				Now you have enabled the full power of NFT , show your friends the NFT with share button<br />
-				Did you remember to follow <a href="https://twitter.com/sustaincia">twitter.com/sustaincia</a> this is where the NFT lives socially<br /><br />
-				Advance:<br />
-				To see the NFT directly within the Metamask wallet on your phone you need to:<br />
-				- install Metamask on your phone<br />
-				- add the polygon mainnet to the metamask<br />
-				- import the NFT token<br /><br />
-
-				The NFT is now yours forever!
-			</p></div>
+		<div class=videoside>
+			<video id=vidstructor controls preload=auto 
+				poster='http://localhost:8080/ipfs/QmX84qEMPYg17DehYHXb5TmzNnNBS5LtgEEpMbtQoRgX86'
+			>
+			<!--poster='https://www.googleapis.com/drive/v3/files/1uhaYcP7dh9nomQIR3qUOAlxIL3c0FGba?alt=media&key=AIzaSyCCF2GrqNbgdpEfDnJifTa0JQ6zbmBN9FE'-->
+				<source 
+					type="video/mp4"
+					src="http://localhost:8080/ipfs/QmNgndFuYj8CXLmMsyUXE6co1arTpa6pHSQQwLaqPPq3NM"
+					type="video/mp4"
+					data-original="https://onedrive.live.com/download?cid=3FE21E3ED1DB2476&resid=3FE21E3ED1DB2476%21111745&authkey=AKv1dWd58c81qkc"
+					>
+				<!--src="https://www.googleapis.com/drive/v3/files/10SiVfo1vQDjKLS46pQFhbuQqGq-dpQX1?alt=media&key=AIzaSyCCF2GrqNbgdpEfDnJifTa0JQ6zbmBN9FE"-->
+			</video>
 		</div>
+		<div id=videoscript> 
+		</div>
+		<script>
+		segments_raw = {"peaks.segment.2":{"startTime":0,"endTime":13.653333333333334,"id":"peaks.segment.2","labelText":"cut"},"peaks.segment.4":{"startTime":34.179773,"endTime":81.08408163265307,"id":"peaks.segment.4","labelText":"cut"},"peaks.segment.5":{"startTime":81.08408163265307,"endTime":140.62004535147392,"id":"peaks.segment.5","labelText":"jiangyisheng"},"peaks.segment.6":{"startTime":142.38476190476192,"endTime":302.6953287981859,"id":"peaks.segment.6","labelText":"macao sar"},"peaks.segment.7":{"startTime":302.788209,"endTime":518.7337868480726,"id":"peaks.segment.7","labelText":"hengqin"},"peaks.segment.8":{"startTime":518.919546,"endTime":716.1962811791383,"id":"peaks.segment.8","labelText":"dubai"},"peaks.segment.9":{"startTime":725.205624,"endTime":2025.2444444444445,"id":"peaks.segment.9","labelText":"xiaoping"},"peaks.segment.10":{"startTime":2026.544762,"endTime":3008.1915646258503,"id":"peaks.segment.10","labelText":"niujianjun"},"peaks.segment.12":{"startTime":2038.897778,"endTime":2049.2074376417236,"id":"peaks.segment.12","labelText":"cut"},"peaks.segment.13":{"startTime":3009.491882,"endTime":3025.095691609977,"id":"peaks.segment.13","labelText":"cut"},"peaks.segment.16":{"startTime":3037.170068,"endTime":3218.935873015873,"id":"peaks.segment.16","labelText":"liujiying"},"peaks.segment.17":{"startTime":3219.214512,"endTime":4647.241723356009,"id":"peaks.segment.17","labelText":"michellechan"},"peaks.segment.18":{"startTime":4648.7278,"endTime":4663.588571428571,"id":"peaks.segment.18","labelText":"carlosfan"},"peaks.segment.19":{"startTime":4663.722086,"endTime":4681.444716553288,"id":"peaks.segment.19","labelText":"cut"},"peaks.segment.20":{"startTime":4681.537596,"endTime":5516.225306122449,"id":"peaks.segment.20","labelText":"carlosfan"},"peaks.segment.21":{"startTime":5516.225306,"endTime":5792.542766439909,"id":"peaks.segment.21","labelText":"terencelee"},"peaks.segment.22":{"startTime":5792.547122,"endTime":5940.964716553288,"id":"peaks.segment.22","labelText":"leoliu"},"peaks.segment.23":{"startTime":5941.150476,"endTime":6533.445079365079,"id":"peaks.segment.23","labelText":"bashirsaidu"},"peaks.segment.24":{"startTime":6538.01941,"endTime":6566.603174603175,"id":"peaks.segment.24","labelText":"terencelee"},"peaks.segment.26":{"startTime":6572.816363,"endTime":6682.424308390023,"id":"peaks.segment.26","labelText":"bashirsaidu"},"peaks.segment.27":{"startTime":6695.613243,"endTime":6811.062857142857,"id":"peaks.segment.27","labelText":"alessandrolampo"},"peaks.segment.28":{"startTime":6819.050522,"endTime":7252.149115646259,"id":"peaks.segment.28","labelText":"alexlobo"},"peaks.segment.29":{"startTime":7253.077914,"endTime":7268.681723356009,"id":"peaks.segment.29","labelText":"cut"},"peaks.segment.30":{"startTime":7268.867483,"endTime":7394.533877551021,"id":"peaks.segment.30","labelText":"brunoknudsen"},"peaks.segment.31":{"startTime":7415.617596,"endTime":8440.639274376417,"id":"peaks.segment.31","labelText":"rickylee"},"peaks.segment.32":{"startTime":8442.31111111111,"endTime":9765.941405895692,"id":"peaks.segment.32","labelText":"qanda"},"peaks.segment.35":{"startTime":8508.81306122449,"endTime":9062.283900226757,"id":"peaks.segment.35","labelText":"xiaoping"},"peaks.segment.36":{"startTime":9064.513016,"endTime":9301.449433106576,"id":"peaks.segment.36","labelText":"pachira"},"peaks.segment.37":{"startTime":9301.519092970522,"endTime":9499.88716553288,"id":"peaks.segment.37","labelText":"michellechan"},"peaks.segment.38":{"startTime":9543.54068,"endTime":9613.246984126985,"id":"peaks.segment.38","labelText":"xiaoping"},"peaks.segment.39":{"startTime":9620.35229,"endTime":9671.575510204082,"id":"peaks.segment.39","labelText":"terencelee"},"peaks.segment.40":{"startTime":9672.968707,"endTime":9750.662675736961,"id":"peaks.segment.40","labelText":"xiaoping"},"peaks.segment.41":{"startTime":9788.371882086169,"endTime":9789.068480725624,"id":"peaks.segment.41","labelText":"leoliu"},"peaks.segment.42":{"startTime":9789.164791,"endTime":9823.759092970522,"id":"peaks.segment.42","labelText":"cut"}}
+		segments = Object.entries( segments_raw )
+		</script>
 		<script>
 		video = document.querySelector('video#vidstructor');
 		nav = $( 'videoscript' )
+		for( var s in segments ){
+			var seg = segments[ s ][ 1 ]
+			if( seg.labelText == "cut" ) continue
+			var se_dom = document.createElement( "div" )
+			se_dom.setAttribute( "class" , "videosection" )
+			se_dom.setAttribute( 't-start' , seg.startTime )
+			se_dom.setAttribute( 't-end' , seg.endTime )
+			se_dom.innerHTML = '<p>'+ seg.labelText + '</p>'
+			nav.appendChild( se_dom )
+		}
 		buttons = nav.getElementsByClassName('videosection');
 		for (var i = buttons.length - 1; i >= 0; i--) {
 			buttons[i].addEventListener('click', function(){
