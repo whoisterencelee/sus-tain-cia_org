@@ -301,12 +301,24 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		  }, 1000 / frameRate);
 		};
 
+		// cut mechanism and scroll to
+		priorSegment = {}
 		setInterval( () => {
 			if( video.currentTime == 0 ) return  // don't check at the beginning
 			var c = cuts.find( ( rng ) => video.currentTime >= rng.startTime && video.currentTime < rng.endTime ) 
 			if( c ){
 				console.log( "skip cut " + c.startTime + " to " + c.endTime )
 				video.currentTime = c.endTime + 0.1
+				return
+			}
+			var s = null  // some segments overlaps, choose the last one
+			segments.forEach( ( seg ) => { if( video.currentTime >= seg[ 1 ].startTime && video.currentTime < seg[ 1 ].endTime ) s = seg } )  // will find last
+			if( s && s[ 0 ] != priorSegment.id ){  // allow user to scroll and not locked to the segment
+				var curSegment = $( s[ 0 ] )
+				if( curSegment.scrollIntoView ) curSegment.scrollIntoView()
+				if( priorSegment.style ) priorSegment.style.background = "lightgreen"
+				curSegment.style.background = "greenyellow"
+				priorSegment = curSegment
 			}
 		} , 1 )
 
