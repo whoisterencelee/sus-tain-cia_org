@@ -191,6 +191,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	</div><!-- padding -->
 
 	<!-- vidinstructor -->
+	<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 	<div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
 		<style>
 		.videoside {width:100%;max-height:50%;}
@@ -245,6 +246,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			return mins + ':' + timeleft
 		}
 		video = document.querySelector('video#vidstructor');
+		videoSrc = 'https://video-instructor.s3.ap-east-1.amazonaws.com/%E8%8B%B1%E6%96%87-%E5%85%A8%E7%90%83%E6%95%B0%E5%AD%97%E4%BA%A7%E4%B8%9A%E6%8A%95%E8%B5%84%E5%B3%B0%E4%BC%9A.hls/master.m3u8'
+		if( Hls.isSupported() ){
+			var hls = new Hls()
+			hls.loadSource( videoSrc )
+			hls.attachMedia( video )
+		}
 		nav = $( 'videoscript' )
 		cuts = []
 		for( var s in segments ){
