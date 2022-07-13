@@ -14,6 +14,10 @@
   <meta name="referrer" content="no-referrer-when-downgrade"><!-- important https://web.dev/referrer-best-practices/ -->
   <meta name="theme-color" content="#fafafa">
 
+  <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/videojs-mobile-ui/dist/videojs-mobile-ui.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-mobile-ui/dist/videojs-mobile-ui.min.js"></script>
 </head>
 
 <body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;">
@@ -191,7 +195,6 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	</div><!-- padding -->
 
 	<!-- vidinstructor -->
-	<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 	<div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
 		<style>
 		.videoside {width:100%;max-height:50%;}
@@ -212,6 +215,10 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		</style>
 		<div class=videoside>
 			<video id=vidstructor controls preload=auto poster='https://video-instructor.s3.ap-east-1.amazonaws.com/sustaincia_green_finance_backdrop.jpg'
+				class='video-js'
+				data-setup='{}'
+				>
+				<source src="https://video-instructor.s3.ap-east-1.amazonaws.com/%E8%8B%B1%E6%96%87-%E5%85%A8%E7%90%83%E6%95%B0%E5%AD%97%E4%BA%A7%E4%B8%9A%E6%8A%95%E8%B5%84%E5%B3%B0%E4%BC%9A.hls/master.m3u8" type="application/x-mpegURL">
 				<source 
 					type="video/mp4"
 					src="https://video-instructor.s3.ap-east-1.amazonaws.com/%E8%8B%B1%E6%96%87-%E5%85%A8%E7%90%83%E6%95%B0%E5%AD%97%E4%BA%A7%E4%B8%9A%E6%8A%95%E8%B5%84%E5%B3%B0%E4%BC%9A.mp4"
@@ -246,12 +253,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			return mins + ':' + timeleft
 		}
 		video = document.querySelector('video#vidstructor');
-		videoSrc = 'https://video-instructor.s3.ap-east-1.amazonaws.com/%E8%8B%B1%E6%96%87-%E5%85%A8%E7%90%83%E6%95%B0%E5%AD%97%E4%BA%A7%E4%B8%9A%E6%8A%95%E8%B5%84%E5%B3%B0%E4%BC%9A.hls/master.m3u8'
-		if( Hls.isSupported() ){
-			var hls = new Hls()
-			hls.loadSource( videoSrc )
-			hls.attachMedia( video )
-		}
+		//var player = videojs( 'vidstructor' )
+		//player.mobileUi()
 		nav = $( 'videoscript' )
 		cuts = []
 		for( var s in segments ){
