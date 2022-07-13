@@ -14,10 +14,6 @@
   <meta name="referrer" content="no-referrer-when-downgrade"><!-- important https://web.dev/referrer-best-practices/ -->
   <meta name="theme-color" content="#fafafa">
 
-  <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/videojs-mobile-ui/dist/videojs-mobile-ui.css" rel="stylesheet" />
-  <script src="https://vjs.zencdn.net/7.19.2/video.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/videojs-mobile-ui/dist/videojs-mobile-ui.min.js"></script>
 </head>
 
 <body style="font-family:Roboto,sans-serif;margin:0;display:flex;flex-direction:column;align-items:center;">
@@ -136,6 +132,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		Terence Lee / 
 		Leo Lau / 
 		Bashir Saidu / 
+		Alexandre Lobo /
 		Winston Lam / 
 		Anonymous
 		</small>
@@ -195,7 +192,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	</div><!-- padding -->
 
 	<!-- vidinstructor -->
-	<div style="width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
+	<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+	<div style="width:98vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
 		<style>
 		.videoside {width:100%;max-height:50%;}
 		video#vidstructor {width:100%;height:100%;}
@@ -205,7 +203,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			#videoscript {width:33%;}
 			video#vidstructor {width:100%;height:100%;}
 		}
-		#videoscript {flex-grow:1;flex-wrap:nowrap;overflow:scroll;}
+		#videoscript {flex-grow:1;flex-wrap:nowrap;overflow-y:scroll;}
 		#videoscript {height:50%;} /* important need to set otherwise when scroll video moves out*/
 		.videosection {padding:0.25em 0.25em;flex-direction:row;justify-content:space-between;align-items:center;text-overflow:ellipsis;}
 		.videosection {font-size:0.8em;border-bottom:1px solid lightgrey;}
@@ -215,10 +213,6 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		</style>
 		<div class=videoside>
 			<video id=vidstructor controls preload=auto poster='https://video-instructor.s3.ap-east-1.amazonaws.com/sustaincia_green_finance_backdrop.jpg'
-				class='video-js'
-				data-setup='{}'
-				>
-				<source src="https://video-instructor.s3.ap-east-1.amazonaws.com/%E8%8B%B1%E6%96%87-%E5%85%A8%E7%90%83%E6%95%B0%E5%AD%97%E4%BA%A7%E4%B8%9A%E6%8A%95%E8%B5%84%E5%B3%B0%E4%BC%9A.hls/master.m3u8" type="application/x-mpegURL">
 				<source 
 					type="video/mp4"
 					src="https://video-instructor.s3.ap-east-1.amazonaws.com/%E8%8B%B1%E6%96%87-%E5%85%A8%E7%90%83%E6%95%B0%E5%AD%97%E4%BA%A7%E4%B8%9A%E6%8A%95%E8%B5%84%E5%B3%B0%E4%BC%9A.mp4"
@@ -226,20 +220,37 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			</video>
 		</div>
 		<div id=videoscript onclick=copyanchor() > 
+			<div style="color:grey;" class="videosection"><span>section</span><span>duration</span></div>
 		</div>
 		<script>
-		segments_raw = {"peaks.segment.2":{"startTime":0,"endTime":13.653333333333334,"id":"peaks.segment.2","labelText":"cut"},"peaks.segment.4":{"startTime":34.179773,"endTime":81.08408163265307,"id":"peaks.segment.4","labelText":"cut"},"peaks.segment.5":{"startTime":81.08408163265307,"endTime":140.62004535147392,"id":"peaks.segment.5","labelText":"jiangyisheng"},"peaks.segment.6":{"startTime":142.38476190476192,"endTime":302.6953287981859,"id":"peaks.segment.6","labelText":"macao sar"},"peaks.segment.7":{"startTime":302.788209,"endTime":518.7337868480726,"id":"peaks.segment.7","labelText":"hengqin"},"peaks.segment.8":{"startTime":518.919546,"endTime":716.1962811791383,"id":"peaks.segment.8","labelText":"dubai"},"peaks.segment.9":{"startTime":725.205624,"endTime":2025.2444444444445,"id":"peaks.segment.9","labelText":"xiaoping"},"peaks.segment.10":{"startTime":2026.544762,"endTime":3008.1915646258503,"id":"peaks.segment.10","labelText":"niujianjun"},"peaks.segment.12":{"startTime":2038.897778,"endTime":2049.2074376417236,"id":"peaks.segment.12","labelText":"cut"},"peaks.segment.13":{"startTime":3009.491882,"endTime":3025.095691609977,"id":"peaks.segment.13","labelText":"cut"},"peaks.segment.16":{"startTime":3037.170068,"endTime":3218.935873015873,"id":"peaks.segment.16","labelText":"liujiying"},"peaks.segment.17":{"startTime":3219.214512,"endTime":4647.241723356009,"id":"peaks.segment.17","labelText":"michellechan"},"peaks.segment.18":{"startTime":4648.7278,"endTime":5515.228571428571,"id":"peaks.segment.18","labelText":"carlosfan"},"peaks.segment.19":{"startTime":4663.722086,"endTime":4681.444716553288,"id":"peaks.segment.19","labelText":"cut"},"peaks.segment.21":{"startTime":5516.225306,"endTime":5792.542766439909,"id":"peaks.segment.21","labelText":"terencelee"},"peaks.segment.22":{"startTime":5792.547122,"endTime":5940.964716553288,"id":"peaks.segment.22","labelText":"leoliu"},"peaks.segment.23":{"startTime":5941.150476,"endTime":6533.445079365079,"id":"peaks.segment.23","labelText":"bashirsaidu"},"peaks.segment.24":{"startTime":6538.01941,"endTime":6566.603174603175,"id":"peaks.segment.24","labelText":"terencelee"},"peaks.segment.26":{"startTime":6572.816363,"endTime":6682.424308390023,"id":"peaks.segment.26","labelText":"bashirsaidu"},"peaks.segment.27":{"startTime":6695.613243,"endTime":6811.062857142857,"id":"peaks.segment.27","labelText":"alessandrolampo"},"peaks.segment.28":{"startTime":6819.050522,"endTime":7252.149115646259,"id":"peaks.segment.28","labelText":"alexlobo"},"peaks.segment.29":{"startTime":7253.077914,"endTime":7268.681723356009,"id":"peaks.segment.29","labelText":"cut"},"peaks.segment.30":{"startTime":7268.867483,"endTime":7394.533877551021,"id":"peaks.segment.30","labelText":"brunoknudsen"},"peaks.segment.31":{"startTime":7415.617596,"endTime":8440.639274376417,"id":"peaks.segment.31","labelText":"rickylee"},"peaks.segment.32":{"startTime":8442.31111111111,"endTime":9765.941405895692,"id":"peaks.segment.32","labelText":"Q&A"},"peaks.segment.35":{"startTime":8508.81306122449,"endTime":9062.283900226757,"id":"peaks.segment.35","labelText":"xiaoping"},"peaks.segment.36":{"startTime":9064.513016,"endTime":9301.449433106576,"id":"peaks.segment.36","labelText":"pachira"},"peaks.segment.37":{"startTime":9301.519092970522,"endTime":9499.88716553288,"id":"peaks.segment.37","labelText":"michellechan"},"peaks.segment.38":{"startTime":9543.54068,"endTime":9613.246984126985,"id":"peaks.segment.38","labelText":"xiaoping"},"peaks.segment.39":{"startTime":9620.35229,"endTime":9671.575510204082,"id":"peaks.segment.39","labelText":"terencelee"},"peaks.segment.40":{"startTime":9672.968707,"endTime":9750.662675736961,"id":"peaks.segment.40","labelText":"xiaoping"},"peaks.segment.41":{"startTime":9788.371882086169,"endTime":9789.068480725624,"id":"peaks.segment.41","labelText":"leoliu"},"peaks.segment.42":{"startTime":9789.164791,"endTime":9823.759092970522,"id":"peaks.segment.42","labelText":"cut"}}
+			segments_raw = {"peaks.segment.2":{"startTime":0,"endTime":13.653333333333334,"id":"peaks.segment.2","labelText":"cut"},"peaks.segment.3":{"startTime":14,"endTime":26,"id":"peaks.segment.3","labelText":"leoliu"},"peaks.segment.4":{"startTime":26.179773,"endTime":81.08408163265307,"id":"peaks.segment.4","labelText":"cut"},"peaks.segment.5":{"startTime":81.08408163265307,"endTime":140.62004535147392,"id":"peaks.segment.5","labelText":"jiangyisheng"},"peaks.segment.6":{"startTime":142.38476190476192,"endTime":302.6953287981859,"id":"peaks.segment.6","labelText":"macao sar"},"peaks.segment.7":{"startTime":302.788209,"endTime":518.7337868480726,"id":"peaks.segment.7","labelText":"hengqin"},"peaks.segment.8":{"startTime":518.919546,"endTime":716.1962811791383,"id":"peaks.segment.8","labelText":"dubai"},"peaks.segment.9":{"startTime":725.205624,"endTime":2025.2444444444445,"id":"peaks.segment.9","labelText":"xiaoping"},"peaks.segment.10":{"startTime":2026.544762,"endTime":3008.1915646258503,"id":"peaks.segment.10","labelText":"niujianjun"},"peaks.segment.12":{"startTime":2038.897778,"endTime":2049.2074376417236,"id":"peaks.segment.12","labelText":"cut"},"peaks.segment.13":{"startTime":3009.491882,"endTime":3025.095691609977,"id":"peaks.segment.13","labelText":"cut"},"peaks.segment.16":{"startTime":3037.170068,"endTime":3218.935873015873,"id":"peaks.segment.16","labelText":"liuxiongying"},"peaks.segment.17":{"startTime":3219.214512,"endTime":4647.241723356009,"id":"peaks.segment.17","labelText":"michellechan"},"peaks.segment.18":{"startTime":4648.7278,"endTime":5515.228571428571,"id":"peaks.segment.18","labelText":"carlosfan"},"peaks.segment.19":{"startTime":4663.722086,"endTime":4681.444716553288,"id":"peaks.segment.19","labelText":"cut"},"peaks.segment.21":{"startTime":5516.225306,"endTime":5792.542766439909,"id":"peaks.segment.21","labelText":"terencelee"},"peaks.segment.22":{"startTime":5792.547122,"endTime":5940.964716553288,"id":"peaks.segment.22","labelText":"leoliu"},"peaks.segment.23":{"startTime":5941.150476,"endTime":6533.445079365079,"id":"peaks.segment.23","labelText":"bashirsaidu"},"peaks.segment.24":{"startTime":6538.01941,"endTime":6566.603174603175,"id":"peaks.segment.24","labelText":"terencelee"},"peaks.segment.26":{"startTime":6572.816363,"endTime":6682.424308390023,"id":"peaks.segment.26","labelText":"bashirsaidu"},"peaks.segment.27":{"startTime":6695.613243,"endTime":6811.062857142857,"id":"peaks.segment.27","labelText":"alessandrolampo"},"peaks.segment.28":{"startTime":6819.050522,"endTime":7252.149115646259,"id":"peaks.segment.28","labelText":"alexlobo"},"peaks.segment.29":{"startTime":7253.077914,"endTime":7268.681723356009,"id":"peaks.segment.29","labelText":"cut"},"peaks.segment.30":{"startTime":7268.867483,"endTime":7394.533877551021,"id":"peaks.segment.30","labelText":"brunoknudsen"},"peaks.segment.31":{"startTime":7415.617596,"endTime":8440.639274376417,"id":"peaks.segment.31","labelText":"rickylee"},"peaks.segment.32":{"startTime":8442.31111111111,"endTime":9765.941405895692,"id":"peaks.segment.32","labelText":"Q&A"},"peaks.segment.35":{"startTime":8508.81306122449,"endTime":9062.283900226757,"id":"peaks.segment.35","labelText":"xiaoping"},"peaks.segment.36":{"startTime":9064.513016,"endTime":9301.449433106576,"id":"peaks.segment.36","labelText":"pachira"},"peaks.segment.37":{"startTime":9301.519092970522,"endTime":9499.88716553288,"id":"peaks.segment.37","labelText":"michellechan"},"peaks.segment.39":{"startTime":9543.35229,"endTime":9671.575510204082,"id":"peaks.segment.39","labelText":"terencelee"},"peaks.segment.40":{"startTime":9672.968707,"endTime":9750.662675736961,"id":"peaks.segment.40","labelText":"xiaoping"},"peaks.segment.41":{"startTime":9750.371882086169,"endTime":9789.068480725624,"id":"peaks.segment.41","labelText":"leoliu"},"peaks.segment.42":{"startTime":9790.164791,"endTime":9823.759092970522,"id":"peaks.segment.42","labelText":"cut"}}
 		segments = Object.entries( segments_raw )
 
 		descriptions = { 
+			"peaks.segment.3" : "<p>劉宇明 <br />可持續發展協會秘書長 <br />會議開幕 <br />Lau Yueming <br />Secretary of Association Sustainable Development Association <br />Conference Openning </p>" ,
+			"peaks.segment.5" : "<p>姜壹盛 <br />澳門證券基金行業協會會長 <br />中國工商銀行(澳門)股份有限公司董事長 <br />歡迎致辭 <br />Jiang Yisheng <br /> President Securities and Fund Industry Association of Macao and <br/>Chairman Industrial and Commercial Bank of China (Macau) Limited <br />Welcoming speech </p>" ,
+			"peaks.segment.6" : "<p>澳門特別行政區簡介 <br />Introduction of Macao SAR</p>" ,
+			"peaks.segment.7" : "<p>橫琴簡介 <br />Introduction to Hengqin</p>" ,
+			"peaks.segment.8" : "<p>Sherif Kamel <br />Director and Senior Vice President Dubai Silicon Valley</p>" ,
+			"peaks.segment.9" : "<p>鄭小平 <br />中國城市發展基金會副會長 <br />Zheng Xiaoping <br />Vice President of China City Development Foundation</p>" ,
+			"peaks.segment.10" : "<p>牛建軍 <br />澳門證券基金行業協會會長 <br />中國工商銀行(澳門)股份有限公司行政總裁 <br />Niu Jianjun <br />President of the Securities and Funds Industry Association of Macao and <br />CEO of Industrial and Commercial Bank of China (Macau) Limited</p>" ,
+			"peaks.segment.16" : "<p>刘雄英 <br />中国投资协会海外投资联合会会长 <br />Liu Xiongying <br />President of Overseas Investment Union of the Investment Association of China</p>" ,
+			"peaks.segment.17" : "<p>陳燕玲 <br />橫琴粵港澳深度合作區金融行業協會秘書長 <br />Chen Yanling <br />Secretary General of the Financial Industry Association of Hengqin Guangdong-Hong Kong-Macao Deep Cooperation Zone</p>" ,
+			"peaks.segment.18" : "<p>范家文 <br />MOX市場部總監 <br />Fan Jiawen <br />Director of the Marketing Department of MOX</p>" ,
 			"peaks.segment.21" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Chairman Terence Lee <br />Sustaincia Thinktank</p>" ,
 			"peaks.segment.22" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Association Secretary Leo Lau <br />History of Islamic finance in Macao</p>" ,
-			"peaks.segment.23" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Supervisory Chairman Bashir Saidu <br />Local Islam Community</p>" ,
-			"peaks.segment.24" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Chairman Terence Lee <br />Project potentials</p>" ,
-			"peaks.segment.26" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Supervisory Chairman Bashir Saidu <br />Islamic Health</p>" ,
+			"peaks.segment.23" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Supervisory Chairman Bashir Saidu <br />Local Islam Community</p>" , "peaks.segment.24" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Chairman Terence Lee <br />Project potentials</p>" , "peaks.segment.26" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Supervisory Chairman Bashir Saidu <br />Islamic Health</p>" ,
 			"peaks.segment.27" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Member Alessandro Lampo <br />Green Transport Macau</p>" ,
 			"peaks.segment.28" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'></img><p>Sustainable Development Association <br />Advisor Alexandre Lobo <br />Portuguese Speaking Countries and Islamic finance</p>" ,
 			"peaks.segment.30" : "<img src='https://sustaincia.org/logo/sustaincia_org_1024x1024.png'/><p>Sustainable Development Association Member <br />Bruno Knudsen <br/>Macau Green Hydrogen</p>" ,
+			"peaks.segment.31" : "<p>李雪明 <br />普強（國際）科技有限公司金融事業部副總裁 <br />Li Xueming <br />Vice President of the Financial Business Department of Pachira (International) Technology Co., Ltd.</p>" ,
+			"peaks.segment.32" : "<p>問答部分 Q&A</p>" ,
+			"peaks.segment.35" : "<p>Q: Law regarding Investment fund? Modern Investment direction for macau?</p>" ,
+			"peaks.segment.36" : "<p>Q: Development plan for green finance for Pachira? AI Transformation?</p>" ,
+			"peaks.segment.37" : "<p>Q: Green finance plan for cooperative zone?</p>" ,
+			"peaks.segment.39" : "<p>Q: Will this help economic diversification for Macau?</p>" ,
+			"peaks.segment.40" : "<p>Q: Chinese medicine can be supported?</p>" ,
+			"peaks.segment.41" : "<p>Closing 會議閉幕</p>" ,
 		}
 
 		</script>
@@ -253,8 +264,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			return mins + ':' + timeleft
 		}
 		video = document.querySelector('video#vidstructor');
-		//var player = videojs( 'vidstructor' )
-		//player.mobileUi()
+		videoSrc = 'https://video-instructor.s3.ap-east-1.amazonaws.com/%E8%8B%B1%E6%96%87-%E5%85%A8%E7%90%83%E6%95%B0%E5%AD%97%E4%BA%A7%E4%B8%9A%E6%8A%95%E8%B5%84%E5%B3%B0%E4%BC%9A.hls/master.m3u8'
+		if( Hls.isSupported() ){
+			var hls = new Hls()
+			hls.loadSource( videoSrc )
+			hls.attachMedia( video )
+		}
 		nav = $( 'videoscript' )
 		cuts = []
 		for( var s in segments ){
@@ -276,10 +291,11 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		buttons = nav.getElementsByClassName('videosection');
 		for (var i = buttons.length - 1; i >= 0; i--) {
 			buttons[i].addEventListener('click', function(){
+				if( !this.getAttribute( 'startTime' ) ) return
 				var from = this.getAttribute( 'startTime' ).split(':').reverse().reduce( ( pv , cv , n ) => pv + parseInt( cv ) * Math.pow( 60 , n ) , 0 )
 				var to = this.getAttribute( 'endTime' ).split(':').reverse().reduce( ( pv , cv , n ) => pv + parseInt( cv ) * Math.pow( 60 , n ) , 0 )
 				video.playFragment( from , to )
-				this.style.background = "lightgreen"
+				this.style.background = "lightgrey"
 			} )
 		}
 
@@ -326,8 +342,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			if( s && s[ 0 ] != priorSegment.id ){  // allow user to scroll and not locked to the segment
 				var curSegment = $( s[ 0 ] )
 				if( curSegment.scrollIntoView ) curSegment.scrollIntoView()
-				if( priorSegment.style ) priorSegment.style.background = "lightgreen"
-				curSegment.style.background = "greenyellow"
+				if( priorSegment.style ) priorSegment.style.background = "lightgrey"
+				curSegment.style.background = "lightblue"
 				priorSegment = curSegment
 			}
 		} , 1 )
