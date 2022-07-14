@@ -23,7 +23,7 @@
 	<script>$=(i=>document.getElementById(i)||{})</script>
 
 	<style>
-	div {display:flex;flex-direction:column;flex-wrap:wrap;}
+	div {display:flex;flex-direction:column;flex-wrap:wrap;flex-grow:1;}
 	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	</style>
@@ -195,7 +195,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 	<div style="width:98vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
 		<style>
-		.videoside {width:100%;max-height:50%;}
+		.videoside {width:100%;max-height:50%;flex-grow:0;}
 		video#vidstructor {width:100%;height:100%;}
 		#videoscript {width:100%;}
 		@media (min-aspect-ratio: 3/2) {
@@ -209,7 +209,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		.videosection {font-size:0.8em;border-bottom:1px solid lightgrey;}
 		.videosection img {max-width:8vw;max-height:8vh;}
 		.videosection p {flex-grow:1;width:1em;padding:0 1em;} /* important otherwise will take up whole space */
-		.videosection .sectionsep {color:grey;}
+		.videosection .sectionsep {color:grey;flex-grow:0;}
 		</style>
 		<div class=videoside>
 			<video id=vidstructor controls preload=auto poster='https://video-instructor.s3.ap-east-1.amazonaws.com/sustaincia_green_finance_backdrop.jpg'
@@ -285,7 +285,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			se_dom.setAttribute( 'startTime' , seg.startTime )
 			se_dom.setAttribute( 'endTime' , seg.endTime )
 			se_dom.innerHTML = ( descriptions[ id ] ? descriptions[ id ] : ( '<p>' + seg.labelText + '</p>' ) )
-							+ '<div class="sectionsep">' + s2m( seg.endTime - seg.startTime ) + '</div>'
+							+ '<p class="sectionsep">' + s2m( seg.endTime - seg.startTime ) + '</p>'
 			nav.appendChild( se_dom )
 		}
 		buttons = nav.getElementsByClassName('videosection');
