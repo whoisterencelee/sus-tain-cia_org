@@ -269,7 +269,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			var hls = new Hls()
 			hls.loadSource( videoSrc )
 			hls.attachMedia( video )
-		}
+		} else if( video.canPlayType( 'application/vnd.apple.mpegurl' ) ) video.src = videoSrc
 		nav = $( 'videoscript' )
 		cuts = []
 		for( var s in segments ){
