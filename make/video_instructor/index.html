@@ -137,7 +137,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		Anonymous
 		</small>
 
-		<span id=until until="2022/07/17 00:00 +8" style="background:#0070c4;color:white;margin:0.25em 0.25em;border-radius:3px;padding:0 0.5em;">00 days 00 hours 00 mins 00 secs</span>
+		<span id=until until="2022/07/21 00:00 +8" style="background:#0070c4;color:white;margin:0.25em 0.25em;border-radius:3px;padding:0 0.5em;">00 days 00 hours 00 mins 00 secs</span>
 		<span id=support_en style="border:1px grey solid;border-radius:3px;margin:0.25em 0.25em;padding:0 0.5em;box-shadow:0 0 3px;">Add support time</span>
 		<nobr id=support_zh style="border:1px grey solid;border-radius:3px;margin:0.25em 0.25em;padding:0 0.5em;box-shadow:0 0 3px;">支持維持時間</nobr><br />
 		<div id=donate_en style="color:white;display:none;position:fixed;background:rgba(0,0,0,0.75);top:0;left:0;width:100vw;height:100vh;z-index:9;">
@@ -196,7 +196,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	<div style="width:98vw;height:100vh;display:flex;flex-direction:column;align-items:center;"> <!-- not sure about overflow:clip; -->
 		<style>
 		.videoside {width:100%;max-height:50%;flex-grow:0;}
-		video#vidstructor {width:100%;height:100%;}
+		video#vidstructor {width:100%;max-height:calc( 100% - 1em );}
 		#videoscript {width:100%;height:50%;overflow:scroll;}
 		@media (min-aspect-ratio: 3/2) {
 			.videoside {max-width:67%;max-height:100%;}
@@ -210,6 +210,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		.videosection img {max-width:8vw;max-height:8vh;}
 		.videosection p {flex-grow:1;width:2em;padding:0 1em;} /* important otherwise will take up whole space */
 		.videosection .sectionsep {color:grey;flex-grow:0;}
+		#vidcontrols {flex-direction:row;font-size:small;text-align:center;color:grey;width:100%;height:1em;}
 		</style>
 		<div class=videoside>
 			<video id=vidstructor controls preload=auto poster='https://video-instructor.s3.ap-east-1.amazonaws.com/sustaincia_green_finance_backdrop.jpg'
@@ -218,6 +219,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 					src="https://video-instructor.s3.ap-east-1.amazonaws.com/%E8%8B%B1%E6%96%87-%E5%85%A8%E7%90%83%E6%95%B0%E5%AD%97%E4%BA%A7%E4%B8%9A%E6%8A%95%E8%B5%84%E5%B3%B0%E4%BC%9A.mp4"
 					type="video/mp4" >
 			</video>
+			<div id=vidcontrols style="flex-direction:row;">
+			</div>
 		</div>
 		<div id=videoscript onclick=copyanchor() > 
 			<div style="color:grey;" class="videosection"><span>section</span><span>duration</span></div>
@@ -269,6 +272,37 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			var hls = new Hls()
 			hls.loadSource( videoSrc )
 			hls.attachMedia( video )
+			// create controls
+			hls.on( Hls.Events.LEVEL_LOADED , ()=>{
+				// var controlhtml = '<div onclick="">listen</div>'  // not supported by hls.js yet
+				var controlhtml = ''  // not supported by hls.js yet
+				hls.levels.forEach( ( l , i ) => {
+					try{
+					controlhtml += '<div id=hls_level_' + i + ' class=hls_level onclick="hls.currentLevel=' + i + '">' + l.attrs.RESOLUTION.split('x')[1] + '</div>'
+					} catch( e ) {}
+				} )
+				hls.audioTracks.forEach( ( t ) => {
+					try{
+					controlhtml += '<div id=hls_audiotrack_' + t.id + ' class=hls_audiotrack onclick="hls.audioTrack=' + t.id + '">' + t.lang + '</div>'
+					} catch( e ) {}
+				} )
+				$( 'vidcontrols' ).innerHTML = controlhtml
+			} )
+			// listen to changes
+			hls.on( Hls.Events.LEVEL_SWITCHED , ( evt , data )=>{
+				var hls_levels = document.querySelectorAll('.hls_level')
+				for( var s = 0 ; s < hls_levels.length ; s ++ ) hls_levels[ s ].style.background = ""
+				$( 'hls_level_' + data.level ).style.background = "lightblue"
+				// for some reason level change before video played doesn't trigger AUDIO_TRACK_SWITCHED
+				var hls_audiotracks = document.querySelectorAll('.hls_audiotrack')
+				for( var s = 0 ; s < hls_audiotracks.length ; s ++ ) hls_audiotracks[ s ].style.background = ""
+				$( 'hls_audiotrack_' + hls.audioTracks[ hls.audioTrack ].id ).style.background = "lightblue"
+			} )
+			hls.on( Hls.Events.AUDIO_TRACK_SWITCHED , ( evt , data ) => {
+				var hls_audiotracks = document.querySelectorAll('.hls_audiotrack')
+				for( var s = 0 ; s < hls_audiotracks.length ; s ++ ) hls_audiotracks[ s ].style.background = ""
+				$( 'hls_audiotrack_' + data.id ).style.background = "lightblue"
+			} )
 		} else if( video.canPlayType( 'application/vnd.apple.mpegurl' ) ) video.src = videoSrc
 		nav = $( 'videoscript' )
 		cuts = []
