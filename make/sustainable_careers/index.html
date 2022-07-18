@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
-
+<!-- sustaincia template 220718 -->
 <head>
   <meta charset="utf-8">
   <title>Sustaincia Sustainable Careers</title>
@@ -34,23 +34,25 @@
 	#header a {color:white;text-decoration:none;}
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
-		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
+		<div id="header" style="margin:0.35em 1em;display:block;">
+			<span id="path"><a href="/">/</a></span>
+			<span class=unselectable onclick="$('report').style.display='';$('preview').style.display=''">+</span>
+		</div>
 		<form id="subscribe" style="width:auto;margin:0;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
 			<input class="hide" name="subscription" id="subscription"></input>
 			<input id="subscribe-submit" type="submit" disabled="disabled" style="opacity:0;color:white;border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
 		</form>
 	</div>
-	<script>// header code
-	var host=document.location.host,path="";document.getElementById('header').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
+	<script>// path code
+	var host=document.location.host,path="";document.getElementById('path').innerHTML='<a href="https://'+host+'">'+host+' </a> /'+document.location.pathname.replace(/index.html$/,'').split('/').slice(1).map(p=>{path+="/"+p;return '<a href="https://'+host+path+'"> '+p.replace(/.html$/,'')+' </a>' }).join( "/" )
 	</script>
 	<script>// subscribe code
 if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worker.js').then(function(){console.log('Successfully registered service worker');function urlBase64ToUint8Array(base64String){var padding='='.repeat((4-base64String.length%4)%4);var base64=(base64String+padding).replace(/\-/g,'+').replace(/_/g,'/').replace(/\n/g,'').replace(/\r/g,'');var rawData=window.atob(base64);var outputArray=new Uint8Array(rawData.length);for(var i=0;i<rawData.length;++i){outputArray[i]=rawData.charCodeAt(i)}return outputArray}function getpush(){navigator.serviceWorker.ready.then(function(reg){return reg.pushManager.getSubscription().then(async function(sub){const response=await fetch('/vapid.txt',{headers:{'Content-Type':'text/plain'}});const vapidPublicKey=await response.text();const convertedVapidKey=urlBase64ToUint8Array(vapidPublicKey);if(sub){if(sub.options&&sub.options.applicationServerKey&&new Uint8Array(sub.options.applicationServerKey).toString()!=convertedVapidKey.toString()){sub.unsubscribe()}else return sub}return reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:convertedVapidKey})})}).then(function(sub){$('subscription').value=JSON.stringify(sub);console.log($('subscription').value);$('user').disabled='';$('subscribe').submit()},function(error){alert('push notification setup error : '+error.toString())})}$('subscribe').onsubmit=()=>{console.log('let\'s subscribe');$('user').disabled='disabled';event.preventDefault();if(!('Notification'in window))alert('Notification is required for this page, try a different browser');else if(Notification.permission!=='granted')Notification.requestPermission(p=>{if(p!=='granted')alert('Notification is required for this page, try a different browser');else getpush()});else if(Notification.permission==='granted')getpush()};$('user').disabled='';$('subscribe-submit').disabled='';$('subscribe-submit').style.opacity='0.5'}).catch(function(err){alert('Error whilst registering service worker '+err)})}else alert('Service worker is required for this page, try a different browser');
 	</script>
 
 
-	<!-- pull down tab -->
+	<!-- org2html -->
 	<div style="align-items:center;">
-
 		<style>.hpot {display:none;}
 		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
 		form textarea {background:transparent;border:0;margin:0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;width:100%;}
@@ -59,7 +61,6 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		form label span {color:grey;}
 		form label a {color:#0070c4;text-decoration:none;}
 		</style>
-
 		<form id="report" style="display:none;" method="POST" action="https://functional.limited/forms" name="report">
 
 			<div class="hpot"><label>Sustaincia Open Science Platform for Everyone
@@ -73,7 +74,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			</label>
 
 			<label>
-			<input required placeholder="post as reporter" tabindex="2" name="user"></input>
+			<input required placeholder="post as" tabindex="2" name="user"></input>
 			</label>
 
 			<label>
@@ -83,22 +84,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
 
 			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="submit"></input>
-
 		</form>
-
-		<!-- down arrow -->
-		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;" 
-			onclick="var c=event.currentTarget.parentNode.childNodes,cl=c.length;while(cl--){if(c[cl].style&&c[cl].style.display)c[cl].style.display=''}">
-			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
-		</div>
-	
 		<div id="preview" style="display:none;">
 			<div id="render" class="list" style="margin:0 25vw;min-width:340px;"></div>
 		</div>
-		
 	</div>
-
-		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
+	<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
 
 	<!-- messagebuttons -->
 	<style>
