@@ -156,8 +156,9 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			var until = $( 'until' ).getAttribute( 'until' )
 			var timeleft = ( new Date( until ).getTime() - new Date().getTime() ) / 1000 / 60 / 60 / 24
 			if( timeleft < 0 ){
-				timeleft = new Date().getTime() + 3 * 24 * 60 * 60 * 1000
-				$( 'until' ).setAttribute( 'until' , timeleft )
+				timeleft = 3
+				$( 'until' ).setAttribute( 'until' , 
+					new Date( new Date().getTime() + ( timeleft * 24 * 60 * 60 * 1000 ) ).toISOString() )
 			}
 			var daysleft = Math.floor( timeleft , 1 )
 			timeleft = ( timeleft - daysleft ) * 24
