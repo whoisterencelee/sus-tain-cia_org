@@ -142,7 +142,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	<div id="unzoom" onclick="unzoom()" style="display:none;position:fixed;width:100vw;height:100vh;background:rgba(255,252,244,0.9);justify-content:center;align-items:center;">
 		<img id="zoom" onclick="copyanchor()" style="max-width:95vw;max-height:calc( 95vh - 1em );" />
 		<p style="height:1em;font-style:italic;font-size:0.5em;">click image to copy image link or <a style="text-decoration:none;" id="zoom_download" download>download</a></p>
-		<div id="zoom_description"></div>
+		<div id="zoom_description" style="margin:0 1em;"></div>
 	</div>
 
 	<script>
