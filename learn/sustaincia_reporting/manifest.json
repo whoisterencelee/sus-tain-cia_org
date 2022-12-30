@@ -25,7 +25,7 @@
 		"method" : "POST" ,
 		"params" : {
 			"title" : "title",
-			"text" : "content",
+			"text" : "text",
 			"url" : "url"
 		}
 	}
