@@ -24,9 +24,9 @@
 		"action" : "forms?forms=https%3A%2F%2Ffunctional.limited%2Fforms" ,
 		"method" : "GET" ,
 		"params" : {
-			"title" : "title",
-			"text" : "text",
-			"url" : "url"
+			"title" : "name",
+			"text" : "desc",
+			"url" : "link"
 		}
 	}
 }

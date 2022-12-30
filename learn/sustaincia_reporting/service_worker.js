@@ -14,9 +14,9 @@ self.addEventListener('fetch', function(event) { // needed for home screen insta
 	if( url.searchParams.get( "forms" ) == "https://functional.limited/forms" ){
 		( async () => {
 			formData = await event.request.formData()
-			title = formData.get( "title" )
-			text = formData.get( "text" )
-			link = formData.get( "url" )
+			title = formData.get( "name" )
+			text = formData.get( "desc" )
+			link = formData.get( "link" )
 			files = formData.get( "files" )
 			console.log( title + text + link + files )
 		} )
