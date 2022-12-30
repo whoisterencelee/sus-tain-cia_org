@@ -11,11 +11,13 @@ self.addEventListener('install', function(e) {
 self.addEventListener('fetch', function(event) { // needed for home screen installation https://developers.google.com/web/fundamentals/app-install-banners/
 	console.log(event.request.url);
 	if( event.request.method == "POST" ){
-		formData = await event.request.formData()
-		title = formData.get( "title" )
-		text = formData.get( "text" )
-		url = formData.get( "url" )
-		files = formData.get( "files" )
+		( async () => {
+			formData = await event.request.formData()
+			title = formData.get( "title" )
+			text = formData.get( "text" )
+			url = formData.get( "url" )
+			files = formData.get( "files" )
+		} )
 	}
 
 	event.respondWith(
