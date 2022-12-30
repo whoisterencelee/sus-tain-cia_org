@@ -21,7 +21,7 @@
 		}
 	] ,
 	"share_target" : {
-		"action" : "forms?forms=https%3A%2F%2Ffunctional.limited%2Fforms" ,
+		"action" : "forms?forms=https%3A%2F%2Ffunctional.limited%2Fforms%26_next%3Dhttps%3A%2F%2Fsustaincia.org%2Flearn%2Fsustaincia_reporting%3Fsuccess%26_to%3Dhttps%3A%2F%2Fsustaincia.org%2Flearn%2Fsustaincia_reporting%2Fapprove.html%26user%3Dmobileshare%26content%3Dhello" ,
 		"method" : "POST" ,
 		"params" : {
 			"title" : "title",
