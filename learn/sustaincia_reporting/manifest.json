@@ -10,6 +10,11 @@
 	"theme_color" : "#0070c4" ,
 	"icons" : [
 		{
+			"src" : "logo/sustaincia_512x512.png" ,
+			"type" : "image/png" ,
+			"sizes" : "512x512" 
+		} ,
+		{
 			"src" : "logo/icon.png" ,
 			"type" : "image/png" ,
 			"sizes" : "128x128" 
