@@ -12,7 +12,7 @@ self.addEventListener('fetch', function(event) { // needed for home screen insta
 	console.log(event.request.url);
 	var url = new URL( event.request.url )
 	var forms = url.searchParams.get( "forms" )
-	if( forms == "https://functional.limited/forms" ){
+	if( forms ){  // expecting a forms redirect
 		event.respondWith( Response.redirect( forms , 303 ) )
 		( async () => {
 			formData = await event.request.formData()
@@ -21,7 +21,7 @@ self.addEventListener('fetch', function(event) { // needed for home screen insta
 			link = formData.get( "link" )
 			files = formData.get( "files" )
 			console.log( title + text + link + files )
-		} )
+		} )()
 		return
 	}
 
