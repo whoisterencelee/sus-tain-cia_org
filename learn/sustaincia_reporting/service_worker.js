@@ -11,7 +11,9 @@ self.addEventListener('install', function(e) {
 self.addEventListener('fetch', function(event) { // needed for home screen installation https://developers.google.com/web/fundamentals/app-install-banners/
 	console.log(event.request.url);
 	var url = new URL( event.request.url )
-	if( url.searchParams.get( "forms" ) == "https://functional.limited/forms" ){
+	var forms = url.searchParams.get( "forms" )
+	if( forms == "https://functional.limited/forms" ){
+		event.respondWidth( Response.redirect( forms , 303 ) )
 		( async () => {
 			formData = await event.request.formData()
 			title = formData.get( "title" )
