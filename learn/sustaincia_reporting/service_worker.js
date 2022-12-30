@@ -18,6 +18,7 @@ self.addEventListener('fetch', function(event) { // needed for home screen insta
 			text = formData.get( "text" )
 			link = formData.get( "url" )
 			files = formData.get( "files" )
+			console.log( title + text + link + files )
 		} )
 		return
 	}
