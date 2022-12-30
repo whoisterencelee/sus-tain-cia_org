@@ -16,9 +16,9 @@ self.addEventListener('fetch', function(event) { // needed for home screen insta
 			formData = await event.request.formData()
 			title = formData.get( "title" )
 			text = formData.get( "text" )
-			url = formData.get( "url" )
+			link = formData.get( "link" )
 			files = formData.get( "files" )
-			console.log( title + text + url + files )
+			console.log( title + text + link + files )
 		} )
 		return
 	}
