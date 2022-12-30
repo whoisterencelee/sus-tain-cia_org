@@ -22,11 +22,11 @@
 	] ,
 	"share_target" : {
 		"action" : "forms?forms=https%3A%2F%2Ffunctional.limited%2Fforms" ,
-		"method" : "GET" ,
+		"method" : "POST" ,
 		"params" : {
-			"title" : "name",
-			"text" : "desc",
-			"url" : "link"
+			"title" : "title",
+			"text" : "text",
+			"url" : "url"
 		}
 	}
 }
