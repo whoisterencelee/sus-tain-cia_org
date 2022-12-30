@@ -31,7 +31,7 @@
 		}
 	] ,
 	"share_target" : {
-		"action" : "./forms" ,
+		"action" : "forms?forms=https%3A%2F%2Ffunctional.limited%2Fforms" ,
 		"method" : "POST" ,
 		"params" : {
 			"title" : "title",
