@@ -21,7 +21,7 @@
 		}
 	] ,
 	"share_target" : {
-		"action" : "?preview" ,
+		"action" : "./?preview" ,
 		"method" : "GET" ,
 		"params" : {
 			"title" : "title",
