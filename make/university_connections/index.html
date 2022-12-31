@@ -7,7 +7,7 @@
   <meta name="description" content="University Sustainability on Sustaincia">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="./manifest.json">
   <link rel="apple-touch-icon" href="/icon.png">
   <!-- Place favicon.ico in the root directory -->
 
@@ -49,7 +49,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 
 
 	<!-- pull down tab -->
-	<div style="align-items:center;">
+	<div id=reporter style="align-items:center;">
 
 		<style>.hpot {display:none;}
 		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
@@ -87,11 +87,22 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		</form>
 
 		<!-- down arrow -->
-		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;" 
-			onclick="var c=event.currentTarget.parentNode.childNodes,cl=c.length;while(cl--){if(c[cl].style&&c[cl].style.display)c[cl].style.display=''}">
+		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;" onclick="preview()">
 			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
 		</div>
 	
+		<script>
+		function preview( text ){
+			if( text ){
+				$( 'editor' ).value = text
+				render()
+			}
+			// open report
+			var c = $( 'reporter' ).childNodes,cl=c.length
+			while(cl--){if(c[cl].style&&c[cl].style.display)c[cl].style.display=''}
+		}
+		</script>
+
 		<div id="preview" style="display:none;">
 			<div id="render" class="list" style="margin:0 25vw;min-width:340px;"></div>
 		</div>
@@ -121,6 +132,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	if(u.get('approve')!=null)$('approve').style.display="block"
 	if(u.get('triggered')==null)$('triggered').style.display="inline"
 	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
+	if(u.get('preview')!=null){
+		preview( 
+			'[[https://sustaincia.org/logo/icon.png]]' +
+			`*${u.get('title')}*\r\n${u.get('text')}` + 
+			( u.get('link')? `\r\n[[${u.get('link')}][link]]` : "" ) )
+	}
 	</script>
 
 	<style>

@@ -133,7 +133,9 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 	if(u.get('triggered')==null)$('triggered').style.display="inline"
 	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
 	if(u.get('preview')!=null){
-		preview( `*${u.get('title')}*\r\n${u.get('text')}` + 
+		preview( 
+			'[[https://sustaincia.org/logo/icon.png]]' +
+			`*${u.get('title')}*\r\n${u.get('text')}` + 
 			( u.get('link')? `\r\n[[${u.get('link')}][link]]` : "" ) )
 	}
 	</script>
