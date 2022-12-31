@@ -132,10 +132,10 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	if(u.get('approve')!=null)$('approve').style.display="block"
 	if(u.get('triggered')==null)$('triggered').style.display="inline"
 	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
-	if(u.get('preview')!=null){
+	if(u.get('share')!=null){
 		preview( 
 			'[[https://sustaincia.org/logo/icon.png]]' +
-			`*${u.get('title')}*\r\n${u.get('text')}` + 
+			`*${u.get('title')}*\r\n${u.get('share')}` + 
 			( u.get('link')? `\r\n[[${u.get('link')}][link]]` : "" ) )
 	}
 	</script>
