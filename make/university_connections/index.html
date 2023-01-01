@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
-
+<version 230101 />
 <head>
   <meta charset="utf-8">
   <title>Sustaincia University Connections</title>
@@ -32,9 +32,15 @@
 	<style>
 	#header {opacity:0.5;}
 	#header a {color:white;text-decoration:none;}
+	.blink { animation: blink-animation 6s infinite; }
+	@keyframes blink-animation{ 0% { opacity: 0.5; } 50% {opacity: 0.05; } 100% { opacity: 0.5; } }
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
-		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
+		<div style=flex-direction:row;>
+			<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
+			<div class=blink style="opacity:0.5;margin:0.35em 0;cursor:crosshair;" onclick="preview()">+</div>
+		</div>
+
 		<form id="subscribe" style="width:auto;margin:0;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
 			<input class="hide" name="subscription" id="subscription"></input>
 			<input id="subscribe-submit" type="submit" disabled="disabled" style="opacity:0;color:white;border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
@@ -49,7 +55,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 
 
 	<!-- pull down tab -->
-	<div id=reporter style=width:100%;>
+	<div id=reporter style=max-width:800px;width:100%;>
 
 		<style>.hpot {display:none;}
 		form {display:flex;flex-direction:column;align-items:center;font-family:arial;margin:0.25em;}
@@ -82,22 +88,17 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 
 			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
 
-			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="submit"></input>
+			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="+"></input>
 
 		</form>
 
-		<!-- down arrow -->
-		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;" onclick="preview()">
-			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
-		</div>
-	
 		<script>
 		function preview( text ){
 			if( text ){
 				$( 'editor' ).value = text
 				render()
 			}
-			// open report
+			// open reporter
 			var c = $( 'reporter' ).childNodes,cl=c.length
 			while(cl--){if(c[cl].style&&c[cl].style.display)c[cl].style.display=''}
 		}

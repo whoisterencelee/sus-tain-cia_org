@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
-
+<version 230101 />
 <head>
   <meta charset="utf-8">
   <title>Sustaincia Reporting</title>
@@ -23,7 +23,7 @@
 	<script>$=(i=>document.getElementById(i)||{})</script>
 
 	<style>
-	div {display:flex;flex-direction:column;flex-wrap:wrap;}
+	div {display:flex;flex-direction:column;flex-wrap:wrap;align-items:stretch;}
 	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	</style>
@@ -32,9 +32,14 @@
 	<style>
 	#header {opacity:0.5;}
 	#header a {color:white;text-decoration:none;}
+	.blink { animation: blink-animation 6s infinite; }
+	@keyframes blink-animation{ 0% { opacity: 0.5; } 50% { opacity: 0.05; } 100% {opacity: 0.5; } }
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
-		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
+		<div style=flex-direction:row;>
+			<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
+			<div class=blink style="opacity:0.5;margin:0.35em 0;cursor:crosshair;" onclick="preview()">+</div>
+		</div>
 		<form id="subscribe" style="width:auto;margin:0;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
 			<input class="hide" name="subscription" id="subscription"></input>
 			<input id="subscribe-submit" type="submit" disabled="disabled" style="opacity:0;color:white;border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
@@ -49,12 +54,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 
 
 	<!-- pull down tab -->
-	<div id=reporter style="align-items:center;">
+	<div id=reporter style=max-width:800px;width:100%;>
 
 		<style>.hpot {display:none;}
-		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
-		form textarea {background:transparent;border:0;margin:0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;width:100%;}
-		form input {background:transparent;border:0px;padding:0;width:100%;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
+		form {display:flex;flex-direction:column;align-items:center;font-family:arial;margin:0.25em;}
+		form textarea {background:transparent;border:0;margin:0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;box-sizing:border-box;width:100%;}
+		form input {background:transparent;border:0px;padding:0;box-sizing:border-box;width:100%;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
 		form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;}
 		form label span {color:grey;}
 		form label a {color:#0070c4;text-decoration:none;}
@@ -82,29 +87,24 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 
 			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
 
-			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="submit"></input>
+			<input tabindex="4" style="background:#4eadb8;color:white;border:0;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="+"></input>
 
 		</form>
 
-		<!-- down arrow -->
-		<div class="unselectable" tabindex="-1" style="outline:0;border-top:1em solid #4eadb8;border-left:1em solid transparent;border-right:1em solid transparent;height:0;width:0;" onclick="preview()">
-			<div style="position:relative;bottom:1.35em;left:-0.25em;color:white;font-weight:bold;opacity:0.5;">+</div>
-		</div>
-	
 		<script>
 		function preview( text ){
 			if( text ){
 				$( 'editor' ).value = text
 				render()
 			}
-			// open report
+			// open reporter
 			var c = $( 'reporter' ).childNodes,cl=c.length
 			while(cl--){if(c[cl].style&&c[cl].style.display)c[cl].style.display=''}
 		}
 		</script>
 
-		<div id="preview" style="display:none;">
-			<div id="render" class="list" style="margin:0 25vw;min-width:340px;"></div>
+		<div id="preview" style="display:none;align-items:center;">
+			<div id="render" class="list"></div>
 		</div>
 		
 	</div>
@@ -141,8 +141,9 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 	</script>
 
 	<style>
+	.list {max-width:680px;margin:0 5vw;}
 	.list > div {display:inline-block;padding-bottom:0.5em;margin:0.25em 0;border-bottom:1px solid lightgrey;color:grey;}
-	.list > div > img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
+	.list > div > img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:100%;}
 	.list > div > video {margin:0 1em 0 0;float:left;max-height:30vh;max-width:60vw;}
 	.list > div > iframe {margin:0 1em 0 0;max-height:36vw;max-width:64vw;}
 	.list > div > b {color:black;}
@@ -150,7 +151,6 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 	.list > div > table {text-align:center;border-spacing:2em 0;font-size:0.75em;word-break;break-all;max-width:90vw;}
 	</style>
 
-	<div style="margin:0 25vw;min-width:340px;">
 	<div class="list" onclick="copyanchor()" >
 	<!-- list -->
 
@@ -205,7 +205,6 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 <div id="k9m8yi3o"><b>MTR world wide sustainability</b><br>Transportation sustainability<br><a href="https://www.mtr.com.hk/sustainability/2018rpt/en/pdf/MTR_Full2018_Eng.pdf">2018 Sustainability Report</a></div>
 
 	</div><!-- end of list -->
-	</div><!-- padding -->
 
 	<!-- copyanchor -->
 	<textarea id="copyanchor" style="position:absolute;top:-8888px;" readonly></textarea>
