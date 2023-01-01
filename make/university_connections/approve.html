@@ -86,8 +86,8 @@
 		</div>
 
 		<form>
-		<textarea readonly id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD REPORT HERE syntax:&#x0a;*bold text*&#x0a;[[https://../image url]]&#x0a;[[https://..][link]]" required name="content" style="max-height:75vh;"></textarea>
-		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value);$("editor").style.height="auto";$("editor").style.height=$("editor").scrollHeight+"px"};$("editor").onkeyup=render;render();</script>
+		<textarea readonly id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD REPORT HERE syntax:&#x0a;*bold text*&#x0a;((https://../image url))&#x0a;((https://..)(link))" required name="content" style="max-height:75vh;"></textarea>
+		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\(\([^\)]+\)\)/g,img=>img.replace("((",'<img src="').replace("))",'" />')).replace(/\(\(.+\)\(.+\)\)/g,a=>a.replace("((",'<a href="').replace(")(",'">').replace("))","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value);$("editor").style.height="auto";$("editor").style.height=$("editor").scrollHeight+"px"};$("editor").onkeyup=render;render();</script>
 		</form>
 
 		<form id="report" method="POST" action="https://functional.limited/tokens">
@@ -103,8 +103,8 @@
 
 
 			<p style="font-size:0.8em;color:grey;margin:0.5em;">
-			- check [[ https://link ][ <b>description match</b> ]]<br />
-			- check [[ https://image ]] <b>image is public licensed</b><br />
+			- check (( https://link )( <b>description match</b> ))<br />
+			- check (( https://image )) <b>image is public licensed</b><br />
 			- check html code<br />
 			</p>
 

@@ -75,7 +75,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 			</label></div>
 
 			<label>
-			<textarea id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD POST HERE syntax:&#x0a;*bold text*&#x0a;[[https://../image url]]&#x0a;[[https://..][link]]" required name="content"></textarea>
+			<textarea id="editor" tabindex="1" autofocus required cols="30" rows="4" placeholder="ADD POST HERE syntax:&#x0a;*bold text*&#x0a;((https://../image url))&#x0a;((https://..)(link))" required name="content"></textarea>
 			</label>
 
 			<label>
@@ -110,7 +110,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		
 	</div>
 
-		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\[\[[^\]]+\]\]/g,img=>img.replace("[[",'<img src="').replace("]]",'" />')).replace(/\[\[.+\]\[.+\]\]/g,a=>a.replace("[[",'<a href="').replace("][",'">').replace("]]","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
+		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\(\([^\)]+\)\)/g,img=>img.replace("((",'<img src="').replace("))",'" />')).replace(/\(\(.+\)\(.+h)\)/g,a=>a.replace("((",'<a href="').replace(")(",'">').replace("))","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
 
 	<!-- messagebuttons -->
 	<style>
@@ -135,9 +135,9 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	if(u.get('subscribed')!=null)$('subscribed').style.display="block"
 	if(u.get('share')!=null){
 		preview( 
-			'[[https://sustaincia.org/logo/icon.png]]' +
+			'((https://sustaincia.org/logo/icon.png))' +
 			`*${u.get('title')}*\r\n${u.get('share')}` + 
-			( u.get('link')? `\r\n[[${u.get('link')}][link]]` : "" ) )
+			( u.get('link')? `\r\n((${u.get('link')})(link))` : "" ) )
 	}
 	</script>
 
