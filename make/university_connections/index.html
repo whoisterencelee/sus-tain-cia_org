@@ -23,7 +23,7 @@
 	<script>$=(i=>document.getElementById(i)||{})</script>
 
 	<style>
-	div {display:flex;flex-direction:column;flex-wrap:wrap;}
+	div {display:flex;flex-direction:column;flex-wrap:wrap;align-items:stretch;}
 	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	</style>
@@ -49,12 +49,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 
 
 	<!-- pull down tab -->
-	<div id=reporter style="align-items:center;">
+	<div id=reporter style=width:100%;>
 
 		<style>.hpot {display:none;}
-		form {display:flex;flex-direction:column;align-items:center;font-family:arial;width:100%;max-width:20em;padding:0.5em 0.5em 0 0.5em;}
-		form textarea {background:transparent;border:0;margin:0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;width:100%;}
-		form input {background:transparent;border:0px;padding:0;width:100%;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
+		form {display:flex;flex-direction:column;align-items:center;font-family:arial;margin:0.25em;}
+		form textarea {background:transparent;border:0;margin:0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;box-sizing:border-box;width:100%;}
+		form input {background:transparent;border:0px;padding:0;box-sizing:border-box;width:100%;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
 		form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;}
 		form label span {color:grey;}
 		form label a {color:#0070c4;text-decoration:none;}
@@ -103,8 +103,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 		}
 		</script>
 
-		<div id="preview" style="display:none;">
-			<div id="render" class="list" style="margin:0 25vw;min-width:340px;"></div>
+		<div id="preview" style="display:none;align-items:center;">
+			<div id="render" class="list"></div>
 		</div>
 		
 	</div>
@@ -141,16 +141,16 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 	</script>
 
 	<style>
+	.list {max-width:680px;margin:0 5vw;}
 	.list > div {display:inline-block;padding-bottom:0.5em;margin:0.25em 0;border-bottom:1px solid lightgrey;color:grey;}
-	.list > div > img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:90vw;}
-	.list > div > video {margin:0 1em 0 0;float:left;max-height:30vh;max-width:60vw;}
-	.list > div > iframe {margin:0 1em 0 0;max-height:36vw;max-width:64vw;}
+	.list > div > img {margin:0 1vw 0 0;float:left;max-height:30vh;max-width:100%;}
+	.list > div > video {margin:0 1vw 0 0;float:left;max-height:30vh;max-width:60vw;}
+	.list > div > iframe {margin:0 1vw 0 0;max-height:36vw;max-width:64vw;}
 	.list > div > b {color:black;}
 	.list > div > a {color:grey;}
 	.list > div > table {text-align:center;border-spacing:2em 0;font-size:0.75em;word-break;break-all;max-width:90vw;}
 	</style>
 
-	<div style="margin:0 25vw;min-width:340px;">
 	<div class="list" onclick="copyanchor()" >
 	<!-- list -->
 
@@ -163,9 +163,8 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('/service_worke
 <div id='kmhsdy6h'><b>Sustaincia attends Cyber Resilience class</b><br /><img src="https://sn3302files.storage.live.com/y4m-eSWB6kgQRma5gO_cf25sZg2xEgaqmv8nPs7UMYHRep-fi8OxHxjv8pavTFGuAizXtt5gSfNCmM3qR0FE0jEMHMtl1hJ-zZqOA9QdTtbVZ112RbQk-49_npbQ9_T6mzYURoY2WibYaoJpacINBpBO867Goh94Jg8NVM3DUuIy91R7JcnSIFgyLHQJsxJhxtV?width=1599&height=755&cropmode=none" /><br /><a href="https://cs.unu.edu">United Nation University Institute in Macau</a> Principal Research Fellow Mamello Thinyane presents his work on improving data security and preparing for cyber attacks.  NGO and SME are most vulnerable to data confidentiality, integrity and availability attacks from bad actors.  If not taken seriously, these risks can severely affect the sustainable development of these organizations.<br /><br /><b>可持續發展協會 參加網絡抵禦能力研討會</b><br /><br />由 聯合國大學澳門研究所 舉辦，首席研究員Mamello Thinyane介紹他在改善數據安全性和為網絡攻擊做準備方面的工作。 非政府組織和中小企業是最容易受到不良行為者的數據機密性，完整性和可用性的攻擊。 如果不認真對待，這些風險可嚴重影響這些組織的可持續發展。</div>
 <div id='kmea868n'><b>Institutional Sustainability Index for Greater Bay Area</b><br /><img src="https://sn3302files.storage.live.com/y4m3XB7Xt89HlGECp9whoGIuRxwgfqGDQoewRNW4SH8aMxPLTSnUibeItNJ4pCX7NKtVPNftXxf6ly_HlOqD3gGcBHv9Loka_yA3X9x150D5cXqR2Vkg2L19JnGT7XHfHzxLHSBfxFldlNrm1HIo9sDKCgGGqrUoJCUuj0evaw6ZhjaG3rizdzF7m7woOqv2AXP?width=1440&height=1080&cropmode=none" /> Indexing helps make sense of large amount of information (like the index at the end of a textbook) which lets us group and normalize information at a glance.<br /><br />Sustaincia presented a plan at <a href="https://hkdatalab.com">Hong Kong Data Lab</a> to quantify local institutions' sustainability to highlighting impacts from investments and fund using strategies.<br /><br /><br /><b>大灣區機構可持續發展指數</b><br /><img src="https://sn3302files.storage.live.com/y4mOMiTDMPrn-RJKUCnod7EZgzeGGosocFGDthYQfeNl1DGaft6kU4goZ9_l43aji5CrGWX6xPOS4g4LrDlfhTq4siye4z_TJPvAxk1J3LXYUZmn919fUV4GqAq6FH5myJxJbTgvKL_rqQh3AxbeP-33VVt89wjwvezSglgUbWfYajoxo4VtKyA5pGYXiiipOrG?width=770&height=435&cropmode=none" /><br />數據收集有助於理解大量信息（例如教科書末尾的目錄），使我們能夠一目了然地對信息進行分組和規範化。<br /><br />可持續發展協會 在 <a href="https://hkdatalab.com">香港數據實驗室</a> 提出了一項計劃，以量化本地機構的可持續性突出投資和資金使用策略的影響。</div>
 <div id='klroutg2'><b>Sustaincia Tea Talk present latest Macau air quality research</b><br /><img src="https://sn3302files.storage.live.com/y4mdc4kLbLFvW7H2KEq3N6HYJ0COgo0Om-23vBefCYi8S0Lq5qmSMfU4uO91mpyfpd4Q-UHRYWnwzc5Q4LG08wSDfiZq5ZlxwxdTo7e0l67BKUWFkLXXzUpkullQ74jzXM-vKcnD80zXZVOVmf0T0YTnYT8XHiApUx-hPwoJCt3fNGEl0HEfnYW7tikkOQ0eiDG?width=2287&height=1080&cropmode=none" /><br />Ever wondered how <a href="https://www.smg.gov.mo/en/subpage/64/realtime-iqa-report">Macao Meteorological and Geophysical Bureau</a> forecasts air quality?  PhD student Thomas Lei from University of Saint Joseph present his Particulate Matter (PM10 & PM2.5) analysis and forecast model.  <br /><br />The Tea Talk was organized in collaboration with <a href="http://HKdatalab.com">Hong Kong Data Lab</a>, a group doing hands-on data science in Macau.  <br /><br />Let's launch sustainability with data science!<br /><br /><b>可持續發展協會 茶聚會 展示澳門最新的空氣質量研究</b><br /><img src="https://sn3302files.storage.live.com/y4mXpRwHXt7GrnHaepeaIiNfymv0a32xWsFDCAgZ4Gyu5KMmi-MGaGMHnahKilLr1sWdHuyZIYDmeOJ7nHTIxR8sHakkBLLhvwF7Pnl9lV-NmecIozklRnFl4NyNzLzKhx-FiSEOIgTGXpQtX02VHW6FDExMbRA7gh5r2pWIFQ_81UJB4wDH3w6iwjBfOqEk6Ik?width=871&height=229&cropmode=none" /><br />有沒有深思過 <a href="https://www.smg.gov.mo/en/subpage/64/realtime-iqa-report">澳門氣象地球物理局</a> 如何預測空氣質量? 澳門聖約瑟大學博士生 李旻達 介紹他對顆粒物（PM10＆PM2.5）的分析和預測模型。<br /><br />茶聚會 是與 <a href="http://HKdatalab.com">香港數據實驗室</a> 合作舉辦，小組正在做澳門的數據科學。 <br /><br />讓我們通過數據科學啟動可持續發展！ </div>
-<div id='klgnevcp'><img src="https://bn1304files.storage.live.com/y4m3O-nrInGjoWz1KxrluaiYiUQh5teN8HcGkd5w0nMT2r2zATp89zVxHS78IYS69AufyVMrEcUqNFi-YgX4gtIaCdc69tvjumuzu6EuebB1fxrBoIBl85o2A4G6Dzx-zD92baagXDWFOpRQPOVR-AH02YhDaAgyzEx0ln243q4wNVKpNd5O7sfgUHQk2Ifp2O-?width=3144&height=2358&cropmode=none" /><br /><br /><b>Collaboration with Macao Institute for Tourism Studies (IFTM) Event Club</b><br />Thanks to <a href="https://www.facebook.com/iftmeventclub">IFTM Event Club</a> for arranging meeting with sustaincia, we have some practical collaborative ideas especially the sustainability survey, Tea Talk and connection with IFTM in general.  Let's launch student sustainability!<br /><br /><b>與澳門旅遊學院（IFTM）會展學會合作</b><br />感謝 <a href="https://www.facebook.com/iftmeventclub">IFTM 會展學會</a> 安排與 可持續發展協會 的會議，我們提出了一些實踐合作想法，尤其是可持續性調查，品茶會以及與IFTM的聯繫。 讓我們啟動學生的可持續發展！ </div>
+<div id='klgnevcp'><img src="https://bn1304files.storage.live.com/y4m3O-nrInGjoWz1KxrluaiYiUQh5teN8HcGkd5w0nMT2r2zATp89zVxHS78IYS69AufyVMrEcUqNFi-YgX4gtIaCdc69tvjumuzu6EuebB1fxrBoIBl85o2A4G6Dzx-zD92baagXDWFOpRQPOVR-AH02YhDaAgyzEx0ln243q4wNVKpNd5O7sfgUHQk2Ifp2O-?width=3144&height=2358&cropmode=none" /><b>Collaboration with Macao Institute for Tourism Studies (IFTM) Event Club</b><br />Thanks to <a href="https://www.facebook.com/iftmeventclub">IFTM Event Club</a> for arranging meeting with sustaincia, we have some practical collaborative ideas especially the sustainability survey, Tea Talk and connection with IFTM in general.  Let's launch student sustainability!<br /><br /><b>與澳門旅遊學院（IFTM）會展學會合作</b><br />感謝 <a href="https://www.facebook.com/iftmeventclub">IFTM 會展學會</a> 安排與 可持續發展協會 的會議，我們提出了一些實踐合作想法，尤其是可持續性調查，品茶會以及與IFTM的聯繫。 讓我們啟動學生的可持續發展！ </div>
 	</div><!-- end of list -->
-	</div><!-- padding -->
 
 	<!-- copyanchor -->
 	<textarea id="copyanchor" style="position:absolute;top:-8888px;" readonly></textarea>
