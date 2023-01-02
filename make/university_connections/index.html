@@ -110,7 +110,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 		
 	</div>
 
-		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\(\([^\)]+\)\)/g,img=>img.replace("((",'<img src="').replace("))",'" />')).replace(/\(\(.+\)\(.+h)\)/g,a=>a.replace("((",'<a href="').replace(")(",'">').replace("))","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
+		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\(\([^\)]+\)\)/g,img=>img.replace("((",'<img src="').replace("))",'" />')).replace(/\(\(.+\)\(.+\)\)/g,a=>a.replace("((",'<a href="').replace(")(",'">').replace("))","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
 
 	<!-- messagebuttons -->
 	<style>
