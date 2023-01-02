@@ -5,7 +5,7 @@
 	"lang" : "en_UTF8" ,
 	"display" : "standalone" ,
 	"start_url" : "index.html" ,
-	"scope" : "/" ,
+	"scope" : "./" ,
 	"background_color" : "#fffcf4" ,
 	"theme_color" : "#0070c4" ,
 	"icons" : [
