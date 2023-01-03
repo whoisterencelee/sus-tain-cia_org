@@ -26,20 +26,17 @@
 	div {display:flex;flex-direction:column;flex-wrap:wrap;align-items:stretch;}
 	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.blink { animation: blink-animation 6s infinite; }
+	@keyframes blink-animation{ 0% { opacity: 0.5; } 50% { opacity: 0.05; } 100% {opacity: 0.5; } }
 	</style>
 
 	<!-- header -->
 	<style>
 	#header {opacity:0.5;}
 	#header a {color:white;text-decoration:none;}
-	.blink { animation: blink-animation 6s infinite; }
-	@keyframes blink-animation{ 0% { opacity: 0.5; } 50% { opacity: 0.05; } 100% {opacity: 0.5; } }
 	</style>
 	<div style="background:#0070c4;color:white;font-size:0.8em;width:100%;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;">
-		<div style=flex-direction:row;>
-			<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
-			<div class=blink style="opacity:0.5;margin:0.35em 0;cursor:crosshair;" onclick="preview()">+</div>
-		</div>
+		<div id="header" style="margin:0.35em 1em;display:block;"><a href="/">/</a></div>
 		<form id="subscribe" style="width:auto;margin:0;padding:0;" method="POST" action="https://functional.limited/subscribe" name="subscribe">
 			<input class="hide" name="subscription" id="subscription"></input>
 			<input id="subscribe-submit" type="submit" disabled="disabled" style="opacity:0;color:white;border:0;margin:0.35em 1em;padding:0;cursor:pointer;" value="subscribe"></input>
@@ -54,10 +51,10 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 
 
 	<!-- pull down tab -->
-	<div id=reporter style=max-width:800px;width:100%;>
+	<div id=reporter style=align-items:center;>
 
 		<style>.hpot {display:none;}
-		form {display:flex;flex-direction:column;align-items:center;font-family:arial;margin:0.25em;}
+		form {display:flex;flex-direction:column;align-items:center;font-family:arial;margin:0.25em;width:95vw;max-width:800px;}
 		form textarea {background:transparent;border:0;margin:0;border:3px dotted lightgrey;padding:0.5em;font-family:Arial;box-sizing:border-box;width:100%;}
 		form input {background:transparent;border:0px;padding:0;box-sizing:border-box;width:100%;border-bottom:3px dotted lightgrey;padding:0.5em;font-size:1em;}
 		form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;}
@@ -103,13 +100,14 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 		}
 		</script>
 
-		<div id="preview" style="display:none;align-items:center;">
-			<div id="render" class="list"></div>
+		<div id="preview" style=align-items:center;width:100vw; onclick=preview() >
+			<div id="render" class="list" >
+			</div>
 		</div>
+		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\(\([^\)]+\)\)/g,img=>img.replace("((",'<img src="').replace("))",'" />')).replace(/\(\(.+\)\(.+\)\)/g,a=>a.replace("((",'<a href="').replace(")(",'">').replace("))","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=$("editor").value?org2html($("editor").value):"<div class='unselectable blink' style=font-size:2em;cursor:crosshair;text-align:center; >+</div>"};$("editor").onkeyup=render;render();</script>
 		
 	</div>
 
-		<script>function org2html(orgmode){return"<div>"+orgmode.replace(/\(\([^\)]+\)\)/g,img=>img.replace("((",'<img src="').replace("))",'" />')).replace(/\(\(.+\)\(.+\)\)/g,a=>a.replace("((",'<a href="').replace(")(",'">').replace("))","</a>")).replace(/\*[^\*]+\*/g,b=>b.replace("*","<b>").replace("*","</b>")).replace(/\n/g,"<br />")+"</div>"}let render=()=>{$("render").innerHTML=org2html($("editor").value)};$("editor").onkeyup=render;render();</script>
 
 	<!-- messagebuttons -->
 	<style>
@@ -136,12 +134,12 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 		preview( 
 			'((https://sustaincia.org/logo/icon.png))' +
 			`*${u.get('title')}*\r\n${u.get('share')}` + 
-			( u.get('link')? `\r\n((${u.get('link')})(link))` : "" ) )
+			( u.get('link')? `\r\n((${u.get('link')})(${u.get('link')}))` : "" ) )
 	}
 	</script>
 
 	<style>
-	.list {max-width:680px;margin:0 5vw;}
+	.list {width:90vw;max-width:680px;margin:0 5vw;}
 	.list > div {display:inline-block;padding-bottom:0.5em;margin:0.25em 0;border-bottom:1px solid lightgrey;color:grey;}
 	.list > div > img {margin:0 1em 0 0;float:left;max-height:30vh;max-width:100%;}
 	.list > div > video {margin:0 1em 0 0;float:left;max-height:30vh;max-width:60vw;}
