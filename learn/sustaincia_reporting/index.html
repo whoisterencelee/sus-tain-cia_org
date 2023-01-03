@@ -135,6 +135,13 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 			'((https://sustaincia.org/logo/icon.png))' +
 			`*${u.get('title')}*\r\n${u.get('share')}` + 
 			( u.get('link')? `\r\n((${u.get('link')})(${u.get('link')}))` : "" ) )
+		try{
+		var ur = new URL( u.get( 'link' ) || u.get( 'share' ) )
+		fetch( "https://jsonlink.io/api/extract?url=" + ur.href ).then( resp => resp.json() ).then( json => preview( 
+			`((${json.images[0]}))` +
+			`*${json.title}*\r\n${json.description}` + 
+			`\r\n((${json.url})(${json.domain}))` ) )
+		} catch( e ){ console.log( 'link or share not a valid link unable to summarize' ) }
 	}
 	</script>
 
