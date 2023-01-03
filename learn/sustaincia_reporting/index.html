@@ -137,10 +137,13 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 			( u.get('link')? `\r\n((${u.get('link')})(${u.get('link')}))` : "" ) )
 		try{
 		var ur = new URL( u.get( 'link' ) || u.get( 'share' ) )
-		fetch( "https://jsonlink.io/api/extract?url=" + ur.href ).then( resp => resp.json() ).then( json => preview( 
-			`((${json.images[0]}))` +
-			`*${json.title}*\r\n${json.description}` + 
-			`\r\n((${json.url})(${json.domain}))` ) )
+		fetch( "https://jsonlink.io/api/extract?url=" + ur.href ).then( resp => resp.json() ).then( json => {
+			if( json.title ) json.preview( 
+			`${(Array.isArray(json.images)&&json.images[0])?"(("+json.images[0]+"))":''}` +
+			`*${json.title}* - ((${json.url})(${json.domain}))` +
+			`${json.description?"\r\n"+json.description:''}` + 
+			`\r\n((${json.url})(${json.domain}))` 
+			) } )
 		} catch( e ){ console.log( 'link or share not a valid link unable to summarize' ) }
 	}
 	</script>
