@@ -138,7 +138,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 		try{
 		var ur = new URL( u.get( 'link' ) || u.get( 'share' ) )
 		fetch( "https://jsonlink.io/api/extract?url=" + ur.href ).then( resp => resp.json() ).then( json => {
-			if( json.title ) json.preview( 
+			if( json.title ) preview( 
 			`${(Array.isArray(json.images)&&json.images[0])?"(("+json.images[0]+"))":''}` +
 			`*${json.title}* - ((${json.url})(${json.domain}))` +
 			`${json.description?"\r\n"+json.description:''}` + 
