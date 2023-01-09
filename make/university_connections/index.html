@@ -142,7 +142,7 @@ if('serviceWorker'in navigator){navigator.serviceWorker.register('./service_work
 			`${(Array.isArray(json.images)&&json.images[0])?"(("+json.images[0]+"))":''}` +
 			`*${json.title}* - ((${json.url})(${json.domain}))` +
 			`${json.description?"\r\n"+json.description:''}` + 
-			`\r\n((${json.url})(${json.domain}))` 
+			''
 			) } )
 		} catch( e ){ console.log( 'link or share not a valid link unable to summarize' ) }
 	}
