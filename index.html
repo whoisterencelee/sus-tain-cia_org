@@ -85,11 +85,11 @@
 	<style>
 	#hotlist {flex-grow:1;flex-direction:row;justify-content:center;padding:0 1vw;}
 	#hotlist a { text-decoration: none; }
-	div.solution {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:1vw;box-shadow:0px 0px 5px 0px lightgrey;flex-wrap:nowrap;justify-content:space-between;background:white;} /* compose of two main sections visual (varying height) and content (height fixed at 8em) */
+	div.solution {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:0.25vw;box-shadow:0px 0px 5px 0px lightgrey;flex-wrap:nowrap;justify-content:space-between;} /* compose of two main sections visual (varying height) and content (height fixed at 8em) */
 	div.solution_temp {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:1vw;box-shadow:0px 0px 5px 0px lightgrey;flex-wrap:nowrap;justify-content:center;background:white;text-align:center;color:grey;} /* basically same as solution */
 
 	div.solution div.visual {width:100%;height:calc(100% - 8em);overflow:hidden;justify-content:center;align-content:center;} /* center image */
-	div.solution div.visual img {width:100%;height:100%;object-fit:cover;} /* ensure image will fill up the horizontal space, tested on firefox, chrome */
+	div.solution div.visual img {width:100%;height:100%;object-fit:cover;border-radius:1vw;} /* ensure image will fill up the horizontal space, tested on firefox, chrome */
 
 	div.solution div.content {flex-grow:1;flex-wrap:nowrap;width:calc(100% - 1em);padding:0.5em;justify-content:space-between;align-items:start;} /* no wrap, fill up the width but account for padding */
 
@@ -97,7 +97,7 @@
 	div.solution div.content div.description {color:#0070c4;font-size:1.2em;}
 	div.solution div.content div.need {color:#4eadb8;}
 	div.solution div.content div.need {min-height:1.2em;}
-	div.solution div.content div.certified {white-space:nowrap;font-size:0.75em;color:grey;align-self:flex-end;min-height:1.2em;}
+	div.solution div.content div.certified {white-space:nowrap;font-size:0.75em;color:grey;min-height:1.2em;}
 	</style>
 
 <!-- hot list -->
