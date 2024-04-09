@@ -83,10 +83,12 @@
 		<div tabindex="3" id="banner_Learn">Learn</div>
 		<div tabindex="4" id="banner_Make">Make</div>
 		<div tabindex="5" id="banner_Check">Check</div>
-		<div tabindex="6" class="menu2">Signup</div>
+		<div tabindex="6" id="banner_Signup">Signup</div>
 
 		<!-- menus : needs to be siblings of above using the ~ selector -->
-		<div class="hide ocean" id="menu2">Current signup by invitation only</div>
+		<div class="hide ocean" id="signup">
+			<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSclj_gVARijQJfEy8tkW55KoM_Eg9BnOdNUjesvgQcdAJTC0g/viewform?embedded=true" width="640" height="1451" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+		</div>
 
 		<div class="hide ocean" id="menu1" style="text-align:justify;">
 		This global association is an unlimited duration non-profit organization whose mission is to use technology and social affairs to encourage sustainability development.  To create a community with opportunities for dialogue and exchange of ideas under the premises of economic development, social responsibility and environmental betterment.  To provide an online management platform for sustainable industry projects and activities which include education, inspiration, connection, coordination and verification of sustainable efforts.
@@ -475,6 +477,7 @@
 	$( 'banner_Learn' ).onclick=()=>onlycards( "learn" )
 	$( 'banner_Make' ).onclick=()=>onlycards( "make" )
 	$( 'banner_Check' ).onclick=()=>onlycards( "check" )
+	$( 'banner_Signup' ).onclick=()=>{ $( 'signup' ).style.display = "" }
 	</script>
 	<script>
 	function toggle(){
