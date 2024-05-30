@@ -3,494 +3,107 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Sustaincia.org</title>
+  <title>Sustaincia</title>
   <meta name="description" content="Open Sustainability Platform for Everyone">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <!--Insert OG Markup -->
-  <meta prefix="og: http://ogp.me/ns#" property="og:type" content="website" />
-  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="sustaincia.org" />
-  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="sustainable development using technology and social efforts" />
-  <meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://sustaincia.org/icon.png" />
-  <meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://sustaincia.org" />
-  <!--Insert Twitter Card Markup -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@sustaincia" />
-  <meta name="twitter:domain" content="https://sustaincia.org" />
-  <meta name="twitter:title" content="sustaincia.org" />
-  <meta name="twitter:description" content="sustainable development using technology and social efforts" />
-  <meta name="twitter:image" content="https://sustaincia.org/icon.png" />
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
 
-  <meta name="referrer" content="no-referrer-when-downgrade"><!-- important https://web.dev/referrer-best-practices/ -->
   <meta name="theme-color" content="#fafafa">
-
-  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
 </head>
 
-<body style="background:#FFFCF4;font-family:Montserrat,san-serif;margin:0;">
+<body style="background:#FFFCF4;font-family:Arial;margin:0;">
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
 	<style>
-	div {display:flex;flex-direction:column;justify-content:center;align-items:center;flex-wrap:wrap;}
-	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
-	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	div {display:flex;flex-direction:column;justify-content:center;align-items:center;}
 	</style>
-
-	<!-- seashell menu -->
-	<!--
-	<style>
-		.hamburger {position:fixed;right:0;bottom:0;padding:1em 0.8em;}
-		.hamburger:focus-within {opacity:1;}
-		.hamburger:focus-within > #menu {display:block;}
-	</style>
-	<div class="hamburger" tabindex="3" >
-		<img style="width:3em;height:auto;opacity:0.8;" src="icons/sustaincia-seashells-200302b-web.svg" />
-		<div id="menu" class="hide">
-			<a href="https://sustaincia.com">social media platforms</a>
-		</div>
-	</div>
-	-->
-
 
 	<!-- header -->
-	<div style="background:#0070c4;color:white;padding:1em;text-align:center;flex-direction:row;justify-content:space-evenly;">
+	<div style="background:#0070c4;color:white;padding:1em;text-align:center;flex-direction:row;">
 
-		<!--<img src='sustaincia.svg' alt="Sustaincia.org" style="width:96px;height:96px;box-shadow:0px 0px 5px 0px white;border-radius:1em;margin-right:1em;"></img><br />-->
-		<div style="font-size:3em;">sustaincia.org</div>
+		<img src='sustaincia.svg' alt="Sustaincia" style="width:96px;height:96px;box-shadow:0px 0px 5px 0px white;border-radius:1em;margin-right:1em;"></img><br />
 
-		<div style="font-size:1.25em;">Using technology and social affairs to encourage sustainability development</div>
-
-	</div>
-
-
-	<!-- banner -->
-	<style>
-		.banner div{flex-grow:1}
-		.banner div:hover{text-shadow:0 0 5px navy;}
-		.ocean {margin:1em 7vw;text-align:center;width:100%;}
-		.menu1:focus ~ #menu1 {display:block;}
-		.menu2:focus ~ #menu2 {display:block;}
-	</style>
-	<div class="unselectable banner" style="flex-direction:row;justify-content:space-evenly;background:#4eadb8;color:white;padding:0.5em;box-shadow:0 5px 5px 0 lightgrey;">
-		<div tabindex="1" class="menu1">About</div>
-		<div tabindex="2" id="banner_Latest" >Latest</div>
-		<div tabindex="3" id="banner_Learn">Learn</div>
-		<div tabindex="4" id="banner_Make">Make</div>
-		<div tabindex="5" id="banner_Check">Check</div>
-		<div tabindex="6" id="banner_Signup">Signup</div>
-
-		<!-- menus : needs to be siblings of above using the ~ selector -->
-		<div class="hide ocean" id="signup">
-			<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf4dPLBLufo-Nan6lAVbQV2HRyhav8nHDtR9_QPlpidpzw0qQ/viewform?embedded=true" width="320" height="1451" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-		</div>
-
-		<div class="hide ocean" id="menu1" style="text-align:justify;">
-		This global association is an unlimited duration non-profit organization whose mission is to use technology and social affairs to encourage sustainability development.  To create a community with opportunities for dialogue and exchange of ideas under the premises of economic development, social responsibility and environmental betterment.  To provide an online management platform for sustainable industry projects and activities which include education, inspiration, connection, coordination and verification of sustainable efforts.
-		</div>
-	</div>
-
-	<!-- Generated by https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections -->
-	<div style="height:5vh;overflow:hidden;" ><svg viewBox="0 20 500 66" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C243.79,30.88 247.17,96.02 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: #4eadb8;"></path></svg></div>
-
-	<style>
-	#hotlist {flex-grow:1;flex-direction:row;justify-content:center;padding:0 1vw;}
-	#hotlist a { text-decoration: none; }
-	div.solution {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:0.25vw;flex-wrap:nowrap;justify-content:space-between;} /* compose of two main sections visual (varying height) and content (height fixed at 8em) */
-	div.solution_temp {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:0.25vw;flex-wrap:nowrap;justify-content:center;text-align:center;color:grey;} /* basically same as solution */
-
-	div.solution div.visual {width:100%;height:calc(100% - 8em);overflow:hidden;justify-content:center;align-content:center;} /* center image */
-	div.solution div.visual img {width:100%;height:100%;object-fit:cover;border-radius:1vw;} /* ensure image will fill up the horizontal space, tested on firefox, chrome */
-
-	div.solution div.content {flex-grow:1;flex-wrap:nowrap;width:calc(100% - 1em);padding:0.5em;justify-content:space-between;align-items:start;} /* no wrap, fill up the width but account for padding */
-
-	div.solution div.content div {overflow:hidden;align-items:start;text-overflow:ellipsis;}
-	div.solution div.content div.description {color:#0070c4;font-size:1.2em;}
-	div.solution div.content div.need {color:#4eadb8;}
-	div.solution div.content div.need {min-height:1.2em;}
-	div.solution div.content div.certified {white-space:nowrap;font-size:0.75em;color:grey;min-height:1.2em;}
-	</style>
-
-<!-- hot list -->
-<div id="hotlist">
-
-		<a category="" date="lfq9xb2w" href="https://www.spatial.io/s/sustaincias-cultural-sustainability-63d491dfa5855041a22ce9e5?share=3849254540432992063">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://i.seadn.io/gae/N5ukDFF74SMMv-phyTehxBVdCXgtjnhwM702WeIjocIYmQqLclTFeQsQ1PJn3swlwz00CCjFTcCsK3giI_WDhvFVZIJrA_CuHTbh0g?auto=format&w=3840"></img>
-			</div>
-			<div class="content">
-				<div class="description">Metaverse Cultural Sustainability</div>
-				<div class="need">3D designer, historian, artist, musician</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-
-		<a category="" date="l564dnp9" href="https://sustaincia.org/make/video_instructor/vids/220630_dubai_digital_investment_summit.html">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://lh3.googleusercontent.com/WqI_p-ucQ_9Pex4l3Lv0Quoza9u8JI8Kkg_ClmDOP6ZNjoB4RAWTP7wQZBNK9gcygkxbKOuM4ToPCJc5cq5faBnlL3bd4Jb-Eva7=w600"></img>
-			</div>
-			<div class="content">
-				<div class="description">Multilateral Green Finance</div>
-				<div class="need">Projects, Investors, Experts</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>		</a>
-
-		<a category="" date="l3ns1n2h">
-		<div class="solution" onclick="toggle()">
-			<div class="visual">
-				<img src="https://lh3.googleusercontent.com/AkZl_GBfR8OuXD14AY_vHQWYajh8BRduwKDlyJ9f4yauTRh2zdDK_ctk51pTlTHZ1y-MmjcKuP95aPj5OKADO027CiYXhITdCa7v5Dw=s0"></img>
-			</div>
-			<div class="content">
-				<div class="description">Sustaincia Spelling Sprint</div>
-				<div class="need">League participants</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>		</a>
-
-		<a category="" date="kqk8v5h8">
-		<div class="solution" onclick="toggle()">
-			<div class="visual">
-				<img src="https://live.staticflickr.com/3212/2803715962_3603149edd_b.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Biotech Traditional Medicine</div>
-				<div class="need">Experts and Discussions</div>
-				<div class="certified"></div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>		</a>
-
-		<a category="" date="kpxn9w3r" href="https://nextcloud.wordsharer.org/s/X2CeSHKLQwDLWnb">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://sn3302files.storage.live.com/y4mnpkdA_rHQXBlkItYd5wUBFSGITsw35STYiByQ-nibGuECYxTZhLXQXD9CV9zgWy3ba8w-49ljeg1GWGFN5y3AW8k98cIap7b0iKy6hxKKzHfczMDaCVfvBgXv72bBtbK3lHv8d2kWeaqqq4aswLn181Y9pKH6TQc4J_yKOdHB4vECEMr4ejVJLFrvRTnK3DN?width=514&height=584&cropmode=none"></img>
-			</div>
-			<div class="content">
-				<div class="description">Locally Sourced Aquaponics Grown Food</div>
-				<div class="need">Roof top locations with sunlight</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>		</a>
-
-		<a category="make" date="knrjp385" href="https://sustaincia.org/make/digital_transformation_with_data_science/notes_on_cultural_sustainability.pdf">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://cdn.pixabay.com/photo/2020/04/30/17/56/network-5113947_960_720.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Digital Transformation with Data Science</div>
-				<div class="need">Non-digital industries, government functions</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>		</a>
-
-		<a category="make" date="klg8qfll" href="https://sustaincia.org/make/university_connections/">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://bn1304files.storage.live.com/y4mhvbUWOzJrwQZERYEbFAi2EkcrX_Yo8sK148HepbFymkMgjxl7FvD0wSDbp7prpA6y36qFWcuAzNupX4bAlBoKoAklkw-oHYY9tJlzcHSrftAxKwJR8EDDCFbdvUvaiWyKVm65y4GLDyXV34-Qsmjq6U4Mn03IHvEshj2Hrhy7liEsYZPY0JBXlf7KwG0x3i9?width=533&height=533&cropmode=none"></img>
-			</div>
-			<div class="content">
-				<div class="description">University Connections</div>
-				<div class="need">Students and Professors</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>		</a>
-
-		<a category="" date="kk7nmd3c" href="https://www.thethingsnetwork.org/community/macao-sar/">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://sn3302files.storage.live.com/y4mnDdZdgGpYqWAsNcleKNe-iZ3puGOlzIRf5xyFJiiXkTwyd2PMaOBE5DJE9tAZAMcg_x3y5O0eGRhSxI5N4eyHbbyGgcyzzHW63o64AyAN2-zEAEr2bNQgHjjo7jwirJlKFNd1LtIhWhEepvA582R8dKtG_WNsuXcAcSRAm9A_LiAWBz9KbkFPGj6l4Xs231p?width=334&height=333&cropmode=none"></img>
-			</div>
-			<div class="content">
-				<div class="description">The Things Network Open IoT Community</div>
-				<div class="need">high altitude locations with internet connection, drone with lorawan</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>		</a>
-
-		<a category="make" date="kjustw9b" href="https://litcarga.com">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://live.staticflickr.com/7430/16535052956_7ca88451e4_b.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Electric Vehicle Network</div>
-				<div class="need">current and future ev owners</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>		</a>
-
-		<a category="learn" date="khlqs25o" href="https://objkt.com/asset/versum_items/17430">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://web.archive.org/web/20240509232202if_/https://assets.objkt.media/file/assets-003/KT1UszrnW1x9nzjwDJAVQfh57MysR4L5FMJa/7/thumb288"></img>
-			</div>
-			<div class="content">
-				<div class="description">Science and sustainability literature review</div>
-				<div class="need">Science topics, reviewers, writers </div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>
-		</a>
-
-		<a category="make" date="khjyvgql" href="https://structural.city">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://sn3302files.storage.live.com/y4mM2y3i0feNx_1ZmOLu6AZp-hMrVaahusHaoFpZlPBCk6C0JBazaC-9LOpg5INwtxXVvrQovcCHMpBnM3SobKIzlDojs77u9l7ANfnFEcJqZBDGs760Si0ph18Wk3AtS5x7mkvRGdr4WymDbsvOFTuoSfFFIrr6n0LsfhpeFouZqzztnnKZdTDYOlRUNjOuFOL?width=600&height=600&cropmode=none"></img>
-			</div>
-			<div class="content">
-				<div class="description">Sustainable city by smart structure services</div>
-				<div class="need">property managers, city associations</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		</a>
-
-		<a category="make" date="2020-08-19T02:31:52.006Z" href="https://sustaincia.org/make/sustainable_careers">
-		<div class="solution"> 
-			<div class="visual">
-				<img src="https://live.staticflickr.com/7061/14086855402_3c2a80547d_b.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Sustainable Careers</div>
-				<div class="need">Graduates and Experts, Human Resource Administrators</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		</a>
-
-		<a category="make" date="2020-05-26T02:30:52.006Z" href="https://sustaincia.org/make/showcases_of_our_environment/">
-		<div category="make" date="2020-05-26T02:31:52.006Z" class="solution">
-			<div class="visual">
-				<img src="https://y83juw.sn.files.1drv.com/y4mxq-z3CB5LEvQ_FvPFT9Xvcz2PWLOVlfqduaiNOuw0i1vxlEIrt5jUtcU80Sao2RtdI4KlflC2PT9voTJowjioMJigAQBesHZyxeXfK7lpYi7NrWJzAlR6sQHBIgZ1d5a7sKfcPT-xxB3XgCbXdMT5Y940lptQtItJdgURLQmUE-gzNfSceQ7Q2EELmujQS7eTcxJGNAUdxxQ9zQGri_36g?width=1200&height=1599&cropmode=none"></img>
-			</div>
-			<div class="content">
-				<div class="description">Showcases of our environment</div>
-				<div class="need">Photos, Videos (&gt;30s), Audios</div>
-				<div class="certified">certified</div>
-			</div>
-
-		</div>
-		</a>
-		
-		<a category="check" date="2020-05-18T02:31:52.006Z">
-		<div class="solution" onclick="toggle()">
-			<div class="visual">
-				<img src="https://live.staticflickr.com/2738/4163986012_4443076b0f_3k.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Sustainable Framework Development</div>
-				<div class="need">Expertise in existing standards</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>
-		</a>
-
-		<a category="make learn" date="2020-04-24T02:30:52.006Z" href="https://sustaincia.org/make/sustaincia_education/">
-		<div category="make learn" date="2020-04-23T02:31:52.006Z" class="solution">
-			<div class="visual">
-				<img src="https://www.picpedia.org/highway-signs/images/teacher.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Sustainability Education</div>
-				<div class="need">Teachers, Lesson Plans, Classroom</div>
-				<div class="certified">certified</div>
-			</div>
-
-		</div>
-		</a>
-
-		<a category="make" date="2020-04-23T02:36:52.006Z" href="https://sustaincia.org/make/sustaincia_identity">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://ocvtow.sn.files.1drv.com/y4mrLbIkH0lUXqDCO4iZs36b1e-N7Zg16rlSk7VKXvScY8nt_8oRkdpHlEMI56g9WWeHOefyBUx_Gh0b1sJ_MFgk5-x2JiSOjunUErvo-FhtJdKyaYbwXdjaLNuwwpS5JjNFbfPefJ2QipU-ab_GtlOdn-GRy2C9Cs2TCYipKTICnEEp2PpJ23KhcxGTkLd_VqI8V6Nb1hPCB86Vi4srGzaLg?width=2560&height=2560&cropmode=none"></img>
-			</div>
-			<div class="content">
-				<div class="description">Sustaincia Identity</div>
-				<div class="need">Passionate community moderators</div>
-				<div class="certified">certified</div>
-			</div>
-
-		</div>
-		</a>
-
-		<a category="learn" date="2020-04-23T02:35:52.006Z" href="https://sustaincia.org/learn/sustaincia_reporting">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://y81eha.sn.files.1drv.com/y4mvOgRMIHQPivxDeZWyDMUYykg7p43tM0HGYn7-Ifatl2vmqLpaB8qUnO7_5Cu0SaBNRklbQbv1HfJrzcNqUgdKjvcf10c92MyJzJclS1z_MdQZD51jaje8BdxTZ5dIW248Pfc8_03GFHxRoAO00cEEh1nI_KYEUe7zFBJBU1NqyeyV-92gYhEZnNlhjJ5carVjqQv56-8S-XColbXi3y-gg?width=1920&height=2560&cropmode=none"></img>
-			</div>
-			<div class="content">
-				<div class="description">Sustainability Reporting</div>
-				<div class="need">Organization sustainability report</div>
-				<div class="certified">certified</div>
-			</div>
-
-		</div>
-		</a>
-		
-		<a category="make" date="2020-04-23T02:34:52.006Z">
-		<div class="solution" onclick="toggle()">
-			<div class="visual">
-				<img src="https://p2.piqsels.com/preview/800/887/588/crowd-pen-write-notepad.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Make event invitation list</div>
-				<div class="need">Event with theme and purpose</div>
-				<div class="certified">certified</div>
-			</div>
-
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>
-		</a>
-
-		<!--
-		<a category="make" date="2020-04-23T02:33:52.006Z" href="page.html">
-		<div class="solution">
-			<div class="visual">
-				<img src=""></img>
-			</div>
-			<div class="content">
-				<div class="description">Make Visual AI Recognition</div>
-				<div class="need">Projects which requires Visual AI</div>
-				<div class="certified">certified</div>
-			</div>
-
-		</div>
-		</a>
-		-->
-
-		<a category="make" date="2020-04-23T02:32:52.006Z">
-		<div class="solution" onclick="toggle()">
-			<div class="visual">
-				<img src="https://p0.piqsels.com/preview/657/384/889/gathering-group-group-of-people-happy.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Make Macau association</div>
-				<div class="need">Member of sustaincia, 9 individuals with common idea</div>
-				<div class="certified">certified</div>
-			</div>
-		</div>
-		<div class="solution_temp" style="display:none;" onclick="toggle()">Contact a member of sustaincia for futher details</div>
-		</a>
-
-		<a category="make" date="2020-04-23T02:30:52.006Z" href="https://sustaincia.org/make/mind_changing_games/">
-		<div class="solution">
-			<div class="visual">
-				<img src="https://p2.piqsels.com/preview/941/329/304/tic-tac-toe-noughts-crosses-game.jpg"></img>
-			</div>
-			<div class="content">
-				<div class="description">Mind changing games</div>
-				<div class="need">Game Designers, Coders </div>
-				<div class="certified">certified</div>
-			</div>
-
-		</div>
-		</a>
-
-		<div class="solution" style="justify-content:center;">
-			<span tabindex="100" class="add" style="font-size:8em;color:darkgrey;cursor:pointer;" 
-				onclick="toggle()">
-			+</span>
-
+		<div>
 			<style>.hpot {display:none;}
-			form {display:flex;flex-direction:column;align-items:center;width:100%;height:100%;}
-			form input {background:transparent;border:0px;width:100%;max-width:20em;font-family:Montserrat,sans-serif;border-bottom:3px dotted lightgrey;padding:0.5em;padding-top:2em;}
-			form label {display:flex;flex-direction:column;align-items:center;text-align:center;width:calc( 100% - 2em )}
-			form span {color:grey;width:100%;text-decoration:none;outline:0;}
-			form label a {color:#0070c4;text-decoration:none;}
+			form input {background:transparent;border:0px;padding:0;}
 			</style>
 
-			<form style="display:none;" method="POST" action="https://functional.limited/forms">
-			
-			<div class="hpot"><label>in 3 easy steps
-				<input name="_next" value="https://sustaincia.org?success"></input>
-				<input name="_gotcha"></input>
-				<input name="_to" value="https://sustaincia.org/approve.html"></input>
-			</label></div>
-
-			<div tabindex="-1" style="flex-grow:1;width:100%;outline:0;text-align:center;background:#4eadb8;">
-			<span style="color:white;font-weight:bold;">Add in 3 steps</span>
-			</div>
-
-			<label>
-			<input autofocus placeholder="1.  what are you trying to sustain" name="description" required></input>
+			<form method="POST" action="https://formspree.io/sustaincia@gmail.com">
+			<div class="hpot"><label>Sustaincia Open Sustainability Platform for Everyone<input name="_gotcha"></label></div>
+			<label>Signup for News<br />
+			<input type="email" style="text-align:center;color:white;border-bottom:1px solid lightgrey;padding:0.5em;padding-left:0em;max-width:10em;" placeholder="your@email.address" name="news subscriber" required></input>
 			</label>
-
-			<label>
-			<input type="email" placeholder="2. a contact email we can reach you at" name="contact.email" required></input>
-			<span tabindex="-1" style="font-size:0.75em;">email address not to be shared</span><br />
-			</label>
-
-			<label>
-			<input type="url" placeholder="3. an image URL https://.../beach.jpg" name="image.url" required></input>
-			<span tabindex="-1" style="font-size:0.75em;">make sure the image can be use in public<br />try images from <a tabindex="-1" href="https://commons.wikimedia.org/wiki/Category:Images">wikimedia</a> or <a tabindex="-1" href="https://www.si.edu/openaccess">smithsonian</a></span><br />
-			</label>
-			<!--<input type="file" accept="image/*" name="image" required></input>
-			</label><br />-->
-
-			<input class="hide" type="password" value="anybody" name="user"></input>
-			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
-
-			<label>
-			<input style="text-align:right;" placeholder="what is needed now? $$$? - optional" name="need"></input>
-			</label>
-
-			<label>
-			<input style="text-align:right;" placeholder="any certificates? - optional" name="certification"></input>
-			</label>
-
-			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
-			<input style="background:#0070c4;color:white;padding:1em;border:1px solid lightgrey;box-shadow:3px 3px 5px 0px lightgrey;cursor:pointer;" type="submit" value="submit"></input>
-			<div tabindex="-1" style="outline:0;height:0.5em;width:100%;"></div><!-- focusable spacing -->
-
+			<br />
+			<input style="margin:0;color:white;" type="submit" value="Submit"></input>
 			</form>
 		</div>
 
 	</div>
 
-	<script>$=(i=>document.getElementById(i)||{})</script>
-	<script>
-	function onlycards( category ){
-		$('hotlist').childNodes.forEach( d => {
-			if( d.nodeType == 1 && ( category != null && d.getAttribute( "category" ) && !d.getAttribute( "category" ).match( category ) ) ) d.style.display = "none"
-			else if( d.style && d.style.display ) d.style.display = ""
-		})
-	}
-	$( 'banner_Latest' ).onclick=()=>onlycards()
-	$( 'banner_Learn' ).onclick=()=>onlycards( "learn" )
-	$( 'banner_Make' ).onclick=()=>onlycards( "make" )
-	$( 'banner_Check' ).onclick=()=>onlycards( "check" )
-	$( 'banner_Signup' ).onclick=()=>{ $( 'signup' ).style.display = "block" }
-	</script>
-	<script>
-	function toggle(){
-		var c=event.currentTarget.parentNode.childNodes,cl=c.length
-		while(cl--){ 
-			var cn = c[ cl ]
-			if( cn.style && cn.style.display ){
-				if( cn != event.currentTarget ) cn.style.display=''  // show other DOM
-			}
-		}
-		event.currentTarget.style.display='none'  // turn off DOM clicked on
-	}
-	</script>
+	<!-- banner -->
+	<div style="background:#4eadb8;color:white;padding:0.5em;">
+		Newest | Learn | Make | Check | Help
+	</div>
+
+	<!-- hot list -->
+	<div style="flex-grow:1;flex-wrap:wrap;flex-direction:row;justify-content:center;padding:0 1vw;">
+
+		<style>
+		div.solution {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:1vw;box-shadow:0px 0px 5px 0px lightgrey;justify-content:space-between;}
+		div.solution div.visual {width:100%;height:calc( 100% - 8em );overflow:hidden;}
+		div.solution div.visual img {height:100%;}
+		div.solution div.content {height:8em;width:100%;justify-content:space-between;align-items:start;}
+		div.solution div.content div {margin:8px;overflow:hidden;display:block;}
+		div.solution div.content div.description {color:#0070c4;font-size:1.2em;}
+		div.solution div.content div.need {color:#4eadb8;}
+		div.solution div.content div.need {text-overflow:ellipsis;width:calc( 100% - 16px );overflow:hidden;white-space:nowrap;min-height:1.2em;}
+		div.solution div.content div.certified {text-overflow:ellipsis;width:calc( 100% - 16px );overflow:hidden;white-space:nowrap;font-size:0.75em;color:grey;text-align:right;min-height:1.2em;}
+		</style>
+
+		<a style="text-decoration:none;" href="page.html">
+		<div class="solution">
+			<div class="visual">
+				<img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/ea645623358667.5632cdc8d1fbb.gif"></img>
+			</div>
+			<div class="content">
+				<div class="description">Make simple sustainability games</div>
+				<div class="need">🌱 Game Designers, Coders </div>
+				<div class="certified">not yet certified</div>
+			</div>
+
+		</div>
+		</a>
+
+		<a style="text-decoration:none;" href="page.html">
+		<div class="solution">
+			<div class="visual">
+				<img src="http://www.picpedia.org/highway-signs/images/teacher.jpg"></img>
+			</div>
+			<div class="content">
+				<div class="description">Make sustainable education program</div>
+				<div class="need">🌱 Teachers, Lesson Plans, Classroom</div>
+				<div class="certified">not yet certified</div>
+			</div>
+
+		</div>
+		</a>
+
+
+		<a style="text-decoration:none;" href="submit.html">
+		<div class="solution" style="justify-content:center;">
+		<span style="font-size:8em;">+</span>
+		</div>
+		</a>
+
+	</div>
 
 </body>
 
