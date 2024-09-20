@@ -120,7 +120,7 @@
 
 		<style>
 		speaker { background:#a7f3d0;padding:1em;color:navy;display:flex;flex-direction:row;align-items:start;margin-bottom:0.5em;max-width:80vw;width:600px;}
-		speaker bio p { font-size:0.8em;text-align:left; }
+		speaker bio p { font-size:0.8em;text-align:left;max-height: 5em;overflow:auto; }
 		speaker bio p:first-child { font-size:1em;text-align:left; }
 		speaker photo { min-width:100px;max-width:100px;height:100px;margin-right:1em; }
 		speaker photo img { width:100%;height:100%;object-fit:cover; }
@@ -133,7 +133,7 @@
 			sRow = speakerstxt.split( "\n" ).map( r => r.split( "\t" ) )
 			sHTML = ""
 			sRow.forEach( ( s , i ) => {
-				if( i == 0 || s.length < 5 ) return
+				if( i == 0 || s.length < 5 || s[4]=="" ) return
 				sHTML += `<speaker>
 					<photo><img src="speakers/${s[4]}" /></photo>
 					<bio>
