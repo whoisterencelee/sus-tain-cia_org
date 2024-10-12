@@ -28,7 +28,7 @@
 
   <meta name="referrer" content="no-referrer-when-downgrade"><!-- important https://web.dev/referrer-best-practices/ -->
   <meta name="theme-color" content="#f7d564">
-  <script> $=>(a){document.getElementById(a)} </script>
+  <script> $=(a)=>document.getElementById(a) </script>
 
 </head>
 
@@ -58,6 +58,9 @@
 			<H1>Macao International Trade & Investment Fair</H1>
 			<H1>澳门国际贸易投资展览会</H1>
 			<a id=link style="font-size:2em;color:white;background:#fae492;padding:0.5em 1em;border-radius:3em;text-decoration:none;margin-bottom:1em;" href="https://4670e624.sibforms.com/serve/MUIFAKoz-GRA-Pf6STyCPrlVVNIAAvzS3YX6pdd8G2ywXaJF26-YcBFAAJVym2RxXtzcWV-cfrzmGDS55gNEYQWO2a1t45Okh0QMDpJRATU5MY1-TJ_XQerJrS42YgO2ia16liAFxqEPuILAFxJM-Eqyy7bvB4q4EAc5pUdm_2_RGO668QwHLpGmtMhDBvJyDO51oqreASaMpRH6" >Register 登记</a>
+			<!--
+			<a style="font-size:2em;color:white;background:#fae492;padding:0.5em 1em;border-radius:3em;text-decoration:none;margin-bottom:1em;" href="https://4670e624.sibforms.com/serve/MUIFAAUDE9nwSQ_6Ioy83YissjjB4pee6RP-Awj-3uCmx_0H6tmTIJObFcFuA0wr-qw0F03DUTxalzVSipvaeom1nJ5y_MVeF2jMh-xRbctxYZPRpYydr1temfkKw1A7s7Dn9lNZaNternET1T2z0k2su0hGufabKkPPmAXsUE2dbDUV04nWUl-n9B155pkfJa_Bf4AQ4Dw_5Soh">Feedback 意见</a>
+			-->
 			<!-- menu -->
 			<div id=menu style=width:100%;flex-direction:row;justify-content:space-around;>
 				<style>
@@ -93,15 +96,17 @@
 		tr { margin:0.5vh; }
 	}
 </style>
-		<table style="margin:1em;max-width:700px;">
+		<table id=timetable style="margin:1em;max-width:700px;">
 		<tbody>
 			<tr>
 				<th>Time</th><th>Speaker</th><th>Background</th><th>Topic</th>
 			</tr><tr>
-			<td>10:30 - 10:45</td><td>Dr. Bashir Saidu</td><td>Co-founder of Sustainable Development Association</td><td>Opening</td>
-			<tr></tr>
-				<td>10:45 – 11:00</td><td>Mario Nuzolese</td><td>Co-founder and CEO of D-Shape</td><td>Nature-Inclusive Marine Structures: How to Integrate 3D Printing in Living Ecosystems</td>
-			<tr></tr>
+			<td>10:30 - 10:35</td><td>Dr. Bashir Saidu</td><td>Co-founder of Sustainable Development Association</td><td>Opening</td>
+			</tr><tr>
+			<td>10:35 – 11:45</td><td>TBA</td><td>BioMed Technology</td><td>BioMed - Recommended probiotics for adults and children｜Probiotics for children</td>
+			</tr><tr>
+			<td>10:45 – 11:00</td><td>Mario Nuzolese</td><td>Co-founder and CEO of D-Shape</td><td>Nature-Inclusive Marine Structures: How to Integrate 3D Printing in Living Ecosystems</td>
+			</tr><tr>
 			<td>11:00 – 11:15</td><td>James Chang</td><td>Managing Director of Geb Impact Technology (Hong Kong)</td><td>Introduction of Geb Impact Technology and promoting microalgae as a food ingredient</td>
 			</tr><tr>
 			<td>11:15 – 11:30</td><td>Dr. Kin-chung HO</td><td>President of PRIHK</td><td>Polar research and climate change - more than innovation and sustainability</td>
@@ -114,11 +119,26 @@
 			</tr><tr>
 			<td>12:15 – 12:30</td><td>Dr. Deepa Mora</td><td>BioMyne- Biotech innovation and Engineering Ltd</td><td>The Circular Jackpot: Biotech's Potential to Transform Macau's Overlooked Resources into Economic Riches</td>
 			</tr><tr>
-				<td>12:30 – 12:45</td><td>Mr. Calvin Sio</td><td>Cha Zence New materials and design</td><td>東方樹葉,綠色奇蹟 Green Miracles of Eastern Leaves</td>
+			<td>12:30 – 12:45</td><td>Mr. Calvin Sio</td><td>Cha Zence New materials and design</td><td>東方樹葉,綠色奇蹟 Green Miracles of Eastern Leaves</td>
 			</tr><tr>
-				<td>12:45 – 13:00</td><td>Desmond Ko</td><td>Director MM Limited Hong Kong</td><td>Upcycling Example:  End-of-Life “whole” Bedsheets into #AlternativeLeather</td>
+			<td>12:45 – 13:00</td><td>Desmond Ko</td><td>Director MM Limited Hong Kong</td><td>Upcycling Example:  End-of-Life “whole” Bedsheets into #AlternativeLeather</td>
 			</tr>
 			</tbody></table>
+
+		<script>
+		tr = $('timetable').getElementsByTagName( 'TR' )
+		starttime = new Date('2024-10-24 10:30 UTC+8:00')
+		endtime = new Date('2024-10-24 13:00 UTC+8:00')
+		interval = Math.floor( ( endtime.getTime() - starttime.getTime() ) / ( tr.length - 1 ) / ( 1000 * 60 ) ) * ( 1000 * 60 )
+		newtime = new Date()
+		newtime.setTime( starttime.getTime() )
+		for( t = 1 ; t < tr.length ; t++ ){
+			newtimeText = newtime.toLocaleTimeString().match( /\d+:\d+/ )
+			newtime.setTime( newtime.getTime() + interval )
+			newtimeText += " - " + newtime.toLocaleTimeString().match( /\d+:\d+/ )
+			tr[ t ].getElementsByTagName( 'TD' )[0].textContent = newtimeText
+		}
+		</script>
 	</div>
 
 	<div style="position:relative;padding:1em;text-shadow:1px 1px 2px darkblue;">
