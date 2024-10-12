@@ -134,9 +134,9 @@
 			newtime = new Date()
 			newtime.setTime( starttime.getTime() )
 			for( t = 1 ; t < tr.length ; t++ ){
-				newtimeText = newtime.toLocaleTimeString().match( /\d+:\d+/ )
+				newtimeText = newtime.toString().match( /\d+:\d+/ )
 				newtime.setTime( newtime.getTime() + interval )
-				newtimeText += " - " + newtime.toLocaleTimeString().match( /\d+:\d+/ )
+				newtimeText += " - " + newtime.toString().match( /\d+:\d+/ )
 				tr[ t ].getElementsByTagName( 'TD' )[0].textContent = newtimeText
 			}
 		} )
