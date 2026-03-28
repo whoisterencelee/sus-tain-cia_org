@@ -30,9 +30,34 @@
   <meta name="theme-color" content="#f7d564">
   <script> $=(a)=>document.getElementById(a) </script>
 
-</head>
+<style>
+/* Regular weight (400) */
+@font-face {
+  font-family: 'Source Han Serif';
+  src: url('https://jdh8.github.io/source-han-serif/SourceHanSerifTW-Regular.woff') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
 
-<body style="background:#f7d564;color:white;font-family:sans-serif;margin:0;">
+/* Bold weight (700) */
+@font-face {
+  font-family: 'Source Han Serif';
+  src: url('https://jdh8.github.io/source-han-serif/SourceHanSerifTW-Heavy.woff') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Light weight (300) */
+@font-face {
+  font-family: 'Source Han Serif';
+  src: url('https://jdh8.github.io/source-han-serif/SourceHanSerifTW-Light.woff') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+</style>
+
+</head>
+<body style="background:linear-gradient(to right, #ffde59, #ff914d);color:#3D6AA8;font-family:sans-serif, 'Source Han Serif',serif;margin:0;">
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
@@ -41,9 +66,9 @@
 	div {display:flex;flex-direction:column;justify-content:center;align-items:center;flex-wrap:wrap;}
 	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
 	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
-	h1 {font-family:Georgia;}
-	h2 {font-family:Georgia;}
 	p {max-width:640px;text-align:left;line-height:1.5em;font-size:1.2em;width:100%;}
+	.gradient { background: linear-gradient( to right , #3D6AA8 , #32A48B ); -webkit-background-clip: text; background-clip: text; color: transparent; }
+	h1 { background: linear-gradient( to right , #3D6AA8 , #32A48B ); -webkit-background-clip: text; background-clip: text; color: transparent; }
 	</style>
 
 	<!-- banner -->
@@ -53,14 +78,18 @@
 		<style>
 		#header img { max-width:640px;width:90vw;margin:0.5em;opacity:1; }
 		</style>
-		<div style="opacity:100%;color:white;text-shadow:1px 1px 2px darkblue;padding:1em;text-align:center;flex-direction:column;justify-content:space-evenly;">
+		<div style="opacity:100%;padding:1em;text-align:center;flex-direction:column;justify-content:space-evenly;">
 
-			<H1>Cross Border Sustainable Projects and Partners</H1>
-			<H1>跨境可持續個案及合作夥伴</H1>
-			<H1>Apr 10, 2026 13:30-16:00</H1>
-			<H1>HKSTP / Wheelock Gallery Conference Room</H1>
+			<H1> Cross Border Sustainable Projects and Partners </H1>
+			<H1> 跨境可持續個案及合作夥伴</H1>
+			<H1> Friday Apr 10, 2026 </H1>
+			<H1> Sharing Session at 13:30-16:00 </H1>
+			<!-- <br /> Wheelock Gallery Conference Hall</H1> -->
+			<H1> Cocktail & Dinner* at 17:00 </H1>
+			<!-- <br /> 享享福 Fook La La </H1> -->
+			<small> *Dinner charge HKD 280 </small>
 		</div>
-		<div id=header style="opacity:100%;color:white;text-shadow:1px 1px 2px darkblue;padding:1em;text-align:center;flex-direction:column;justify-content:space-evenly;">
+		<div id=header style="opacity:100%;padding:1em;text-align:center;flex-direction:column;justify-content:space-evenly;">
 			<!--<H1 style=background:darkorange;color;black;padding:0.25em;>Event successfully held 活動成功舉辦</H1>-->
 
 			<!--
@@ -100,33 +129,38 @@
 			<a style="font-size:2em;color:white;background:#fae492;padding:0.5em 1em;border-radius:3em;text-decoration:none;margin-bottom:1em;" href="https://4670e624.sibforms.com/serve/MUIFAAUDE9nwSQ_6Ioy83YissjjB4pee6RP-Awj-3uCmx_0H6tmTIJObFcFuA0wr-qw0F03DUTxalzVSipvaeom1nJ5y_MVeF2jMh-xRbctxYZPRpYydr1temfkKw1A7s7Dn9lNZaNternET1T2z0k2su0hGufabKkPPmAXsUE2dbDUV04nWUl-n9B155pkfJa_Bf4AQ4Dw_5Soh">Feedback 意见</a>
 			-->
 			<!-- menu -->
-			<!-- <div id=menu style=width:100%;flex-direction:row;justify-content:space-around;> -->
-			<!-- 	<style> -->
-			<!-- 		#menu a { background:#fae492;padding:0.5em;border-radius:3em;text-decoration:none;color:white;text-shadow:1px 1px 3px darkblue;} -->
-			<!-- 	</style> -->
-			<!-- 	<a href="#programme">Programme 時間表</a> -->
+			<div id=menu style=width:100%;flex-direction:row;justify-content:space-around;>
+				<style>
+				#menu a { color:white;background:#3D6AA8;padding:0.5em 1em;margin:0.5em 1em;border-radius:.25em;text-decoration:none;box-shadow:0px 3px 2px black;}
+				#menu a:visited {color:white;}
+				</style>
+				<a href="#programme">Programme 時間表</a>
 			<!-- 	<a href="#speakers">Speakers 演讲者</a> -->
-			<!-- 	<a href="#location">Location 地点</a> -->
-			<!-- </div> -->
+				<a href="#session_location">Session Location 會議地點 </a>
+				<a href="#dinner_location">Dinner Location 晚餐地點 </a>
+			</div>
 		</div>
 
 	</div>
 
 
 	<!-- banner -->
-	<div style=background:#a2e4bc;color:darkgreen;padding:1em;>
+	<div style="background:none;padding:1em 3em;">
 
 
-		<p>To bring together researchers and industry professionals to foster collaboration in the fields of sustainable biotechnology.</p>
-		<p>The conference invites participants from research institutions and industries in the Greater Bay Area (GBA), who are interested in knowledge exchange, networking, and developing partnerships to address global sustainability challenges.</p>
-		<p>汇集研究人员和行业专业人士，促进可持续生物技术领域的合作。</p>
-		<p>会议邀请粤港澳大湾区的研究机构和行业人士参加，他们对知识交流、建立联系和发展伙伴关系以应对全球可持续发展挑战感兴趣。</p>
+		<p> We are bringing together our partners and friends to share our collaboration experiences and adventures. </p>
+		<p> Sustaincia.org (Sustainable Development Association) headquarter in Macau has been working with partners all over the world, especially with Hong Kong.</p>
+		<p> Here are our members from diverse background coming together to bring sustainability to life. </p>
+
+		<p> 我們匯聚合作夥伴和朋友，分享合作經驗和精彩歷程。</p>
+		<p> 可持續發展協會 總部位於澳門，一直與世界各地的合作夥伴攜手並進，尤其是在香港。</p>
+		<p> 以下是我們成員的真實合作項目，他們來自不同的背景，共同致力於將可持續發展概念融入生活。</p>
 	</div>
 
-	<div style=background:#ffa622;color:darkgreen;>
+	<div>
 		<H1 id=programme>Programme 時間表</H1>
 <style>
-	td {background:#dde278;padding:1em;text-align:center;}
+	td {background:#FFDA9D;padding:1em;text-align:center;}
 	@media
 	only screen and (max-width:760px),
 	(min-device-width: 768px) and (max-device-width: 1024px) {
@@ -137,14 +171,51 @@
 		<table id=timetable style="margin:1em;max-width:700px;">
 		<tbody>
 			<tr>
-				<th>Time</th><th>Speaker</th><th>Background</th><th>Topic</th>
+				<th>Time</th><th>Speaker</th><th>Topic</th><th>Description</th>
 			</tr><tr>
-			<td>10:30 - 10:43</td><td>Dr. Bashir Saidu</td><td>Co-founder of Sustainable Development Association</td><td>Opening & Group Photo</td>
+				<td time=30>13:30</td><td colspan=3>Networking</td>
 			</tr><tr>
-			<td>12:40 – 12:53</td><td>Dr. Deepa Mora</td><td>BioMyne- Biotech innovation and Engineering Ltd</td><td>The Circular Jackpot: Biotech's Potential to Transform Macau's Overlooked Resources into Economic Riches</td>
+				<td time=15></td><td> Terence Lee - President of Sustaincia </td><td> Introduction </td><td> Sustaincia's Roadmap </td>
+			</tr><tr>
+				<td time=15></td><td> Chan Yi Ngok - Bio-HK <br /><br /> Diogo Calado - President of AMITCM <br /><br /> Terence Lee - Sustaincia </td><td> Traditional Chinese Medicine Development</td>
+				<td> 
+					Connecting the visionaries. Unlocking the Greater Bay Area. For the first time, forward-thinkers meet cross-border. Brought together by Sustaincia to jumpstart international bio-medical development, this is where the connections happen. Let’s bring them together and see what ignites.
+				</td>
+			</tr><tr>
+				<td time=20></td><td> Danny Wong - FunFunKart <br /><br /> Pluto - Z-Challenger </td><td> 賽車激動人心 </td>
+				<td>
+					賽車是澳門一年一度的盛事，同時，我們的合作夥伴也參與了我們的交通運輸活動。他們有哪些親身經歷？如何將這種令人興奮的體驗傳遞給廣大觀眾？從而讓賽車文化得可持續發展。
+				</td>
+			</tr><tr>
+				<td time=20></td><td> 劉宇明 - 可持續發展協會 監事會主席 <br /><br /> 容向紅博士 - 科創公民教育中心 總監 </td><td> 文化可持續發展 </td>
+				<td> 協會一直與合作夥伴共同推動中國文化與中醫藥的相關工作。我們如何整合跨境的教育與產業資源，以吸引年輕一代參與，並為健康福祉建立連結？</td>
+			</tr><tr>
+				<td time=10></td><td colspan=3>Break</td>
+			</tr><tr>
+				<td time=15></td><td> Brendon Clark - Electric Mind <br /><br /> Judy Wong - Sustaincia Executive Officer </td><td> AI Sustainability</td>
+				<td> AI for Sustainability and Sustainability of AI forms AI sustainability.  What is happening between here and Singapore?  How can we exchange ideas and collaborate.  Let's find out. </td>
+			</tr><tr>
+				<td time=15></td><td> Bashir Saidu - Sustaincia Co-founder and Collab Manager <br /><br /> Rana Elromh - Collab Researcher </td><td> Food Waste Research </td>
+				<td> The amount of food waste that gets generated every day is tremendous for integrated resorts with high volume of tourists, how to create an innovative community laboratory and create business impact with partner’s support. </td>
+			</tr><tr>
+				<td time=10></td><td> James Chan - Sustaincia Advisor </td><td>Wrap up</td>
+				<td> Sustainability &amp; Innovation </td>
 			</tr>
 			</tbody></table>
 
+		<script>
+		addEventListener( "DOMContentLoaded" , ( event ) => {
+			tr = $('timetable').getElementsByTagName( 'TR' )
+			newtime = new Date('2026-04-10 13:30 UTC+8:00')
+			for( t = 1 ; t < tr.length ; t++ ){
+				newtimeText = newtime.toString().match( /\d+:\d+/ )
+				time_slot = tr[ t ].getElementsByTagName( 'TD' )[0]
+				time_slot.textContent = newtimeText
+				interval = parseInt( time_slot.getAttribute( "time" ) ) * 60 * 1000 
+				newtime.setTime( newtime.getTime() + interval )
+			}
+		} )
+		</script>
 		<!--<script>
 		// didn't work for wechat iphone
 		addEventListener( "DOMContentLoaded" , ( event ) => {
@@ -164,91 +235,104 @@
 		</script>-->
 	</div>
 
-	<div style="position:relative;padding:1em;text-shadow:1px 1px 2px darkblue;">
-		<H1>Cross Border Sustainable Projects and Partners 跨境可持續個案及合作夥伴</H1>
-		<H4>Join us in shaping tomorrow's innovations!</H4>
-		<H4>加入我们，共同塑造明天的创新！</H4>
-		<img src="cells.webp" style=position:absolute;top:0;left:0;object-fit:cover;height:100%;width:100%;z-index:-100;opacity:50%; />
-	</div>
-
 	<!-- banner -->
-	<div style=background:#f7d564;color:darkgreen;padding:1em;>
-		<H2 id=speakers >Connecting Biotechnology and Sustainability Innovators</H2>
-		<H2>连接生物技术与可持续发展创新者</H2>
-
-		<style>
-		speaker { background:#a7f3d0;padding:1em;color:darkgreen;display:flex;flex-direction:row;align-items:start;margin-bottom:0.5em;max-width:80vw;width:600px;}
-		speaker bio p { font-size:0.8em;text-align:left;max-height: 5em;overflow:auto;scrollbar-width:thin; }
-		speaker bio p:first-child { font-size:1em;text-align:left; }
-		speaker photo { min-width:100px;max-width:100px;height:100px;margin-right:1em; }
-		speaker photo img { width:100%;height:100%;object-fit:cover; }
-		</style>
-
-		<H2>Speakers 演讲者</H2>
-		<script src="./speakers/speakers.js"></script>
-		<script>
-		function ready() {
-			sRow = speakerstxt.split( "\n" ).map( r => r.split( "\t" ) )
-			sHTML = ""
-			sRow.forEach( ( s , i ) => {
-				if( i == 0 || s.length < 8 ) return
-				sHTML += `<speaker>
-					<photo><img src="speakers/${s[8]}" /></photo>
-					<bio>
-						<p>${s[0]}</p>
-						<p>${s[1]} ${s[2]?"- "+s[2]:""}</p>
-						<p>${s[7]}</p>
-					</bio>
-					</speaker>
-				` } )
-			speakerslist = document.getElementById( "speakerslist" )
-			speakerslist.innerHTML = sHTML
-			speakerslist.addEventListener( "click" , ( event ) => {
-				// click to expand
-				var n = event.target
-				if( n == speakerslist ) return
-				while( n.parentNode != speakerslist ){
-					n = n.parentNode
-				}
-				var p = n.getElementsByTagName( "p" )
-				for( s = 0 ; s < p.length ; s++ ){
-					p[ s ].style.maxHeight = "none"
-				}
-			} )
-		} // ready
-		addEventListener( "DOMContentLoaded" , ( event ) => { ready() } )
-		</script>
+	<!-- <div style=background:#f7d564;color:darkgreen;padding:1em;> -->
+		<!-- <H2 id=speakers >Connecting Biotechnology and Sustainability Innovators</H2> -->
+		<!-- <H2>连接生物技术与可持续发展创新者</H2> -->
+		<!---->
+		<!-- <style> -->
+		<!-- speaker { background:#a7f3d0;padding:1em;color:darkgreen;display:flex;flex-direction:row;align-items:start;margin-bottom:0.5em;max-width:80vw;width:600px;} -->
+		<!-- speaker bio p { font-size:0.8em;text-align:left;max-height: 5em;overflow:auto;scrollbar-width:thin; } -->
+		<!-- speaker bio p:first-child { font-size:1em;text-align:left; } -->
+		<!-- speaker photo { min-width:100px;max-width:100px;height:100px;margin-right:1em; } -->
+		<!-- speaker photo img { width:100%;height:100%;object-fit:cover; } -->
+		<!-- </style> -->
+		<!---->
+		<!-- <H2>Speakers 演讲者</H2> -->
+		<!-- <script src="./speakers/speakers.js"></script> -->
+		<!-- <script> -->
+		<!-- function ready() { -->
+		<!-- 	sRow = speakerstxt.split( "\n" ).map( r => r.split( "\t" ) ) -->
+		<!-- 	sHTML = "" -->
+		<!-- 	sRow.forEach( ( s , i ) => { -->
+		<!-- 		if( i == 0 || s.length < 8 ) return -->
+		<!-- 		sHTML += `<speaker> -->
+		<!-- 			<photo><img src="speakers/${s[8]}" /></photo> -->
+		<!-- 			<bio> -->
+		<!-- 				<p>${s[0]}</p> -->
+		<!-- 				<p>${s[1]} ${s[2]?"- "+s[2]:""}</p> -->
+		<!-- 				<p>${s[7]}</p> -->
+		<!-- 			</bio> -->
+		<!-- 			</speaker> -->
+		<!-- 		` } ) -->
+		<!-- 	speakerslist = document.getElementById( "speakerslist" ) -->
+		<!-- 	speakerslist.innerHTML = sHTML -->
+		<!-- 	speakerslist.addEventListener( "click" , ( event ) => { -->
+		<!-- 		// click to expand -->
+		<!-- 		var n = event.target -->
+		<!-- 		if( n == speakerslist ) return -->
+		<!-- 		while( n.parentNode != speakerslist ){ -->
+		<!-- 			n = n.parentNode -->
+		<!-- 		} -->
+		<!-- 		var p = n.getElementsByTagName( "p" ) -->
+		<!-- 		for( s = 0 ; s < p.length ; s++ ){ -->
+		<!-- 			p[ s ].style.maxHeight = "none" -->
+		<!-- 		} -->
+		<!-- 	} ) -->
+		<!-- } // ready -->
+		<!-- addEventListener( "DOMContentLoaded" , ( event ) => { ready() } ) -->
+		<!-- </script> -->
 		<speakerslist id="speakerslist">
 		</speakerslist>
 
-	</div>
+	<!-- </div> -->
 
 	<!-- footer -->
-	<div style=padding:1em;color:darkgreen;background:#a2e4bc;>
-		<h1 style="text-align:center;">Organizers and Sponsors 活动组织者和赞助商</h1>
-		<organizers style="display:flex;flex-direction:row;margin:3vh;flex-wrap:wrap;justify-content:center;">
-			<style>
-			organizers photo { min-width:100px;height:100px;margin:1em; }
-			organizers photo img { width:100%;max-width:50vw;height:100%; }
-			</style>
-			<photo><a href="https://sustaincia.org"><img src="organizers/sustaincia-240818-web.svg"></a></photo>
-		</organizers>
+	<div style=padding:1em;color:darkgreen;>
+		<!-- <h1 style="text-align:center;">Organizers and Sponsors 活动组织者和赞助商</h1> -->
+		<!-- <organizers style="display:flex;flex-direction:row;margin:3vh;flex-wrap:wrap;justify-content:center;"> -->
+		<!-- 	<style> -->
+		<!-- 	organizers photo { min-width:100px;height:100px;margin:1em; } -->
+		<!-- 	organizers photo img { width:100%;max-width:50vw;height:100%; } -->
+		<!-- 	</style> -->
+		<!-- 	<photo><a href="https://sustaincia.org"><img src="https://sustaincia.org/sustaincia.svg"></a></photo> -->
+		<!-- </organizers> -->
 
-		<H1 id=location>Location 地点</H1>
-		<H2 style=text-align:center;>HKSTP / Wheelock Gallery Conference Room<br />
-		</H2>
+		<H1 id=session_location>Locations 地点</H1>
+		<div style="background:#3D6AA8;color:white;padding:0 2% 2% 2%;">
+			<H2 style=text-align:center;> Wheelock Gallery Conference Hall<br />
+			</H2>
 
-		<img style=max-width:80vw;margin-bottom:1em; src="./wheelock_map.webp" />
-		<img style=max-width:80vw;margin-bottom:1em; src="./wheelock_map_1.webp" />
-		<img style=max-width:80vw;margin-bottom:1em; src="./wheelock_map_2.webp" />
-		<img style=max-width:80vw;margin-bottom:1em; src="./wheelockgalleryconference.webp" />
+			<img style=max-width:80vw;margin-bottom:1em; src="./wheelock_map.webp" />
+			<img style=max-width:80vw;margin-bottom:1em; src="./wheelock front door.webp" />
+			<img style=max-width:80vw;margin-bottom:1em; src="./wheelockgalleryconference.webp" />
 
-		<div style=flex-direction:row;justify-content:space-evenly;width:100%;>
-			<div>
-				<iframe width="350" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=113.5536575317383%2C22.14220612022356%2C113.56417179107667%2C22.146677968169623&amp;layer=mapnik&amp;marker=22.144442061951356%2C113.55891466140747" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=22.144442&amp;mlon=113.558915#map=18/22.144442/113.558915" style=color:white; >View Larger Map</a></small>
+			<div style=flex-direction:row;justify-content:space-evenly;width:100%;>
+				<div>
+					<iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=114.16093915700914%2C22.27704428092985%2C114.16868537664416%2C22.279871265648666&amp;layer=mapnik&amp;marker=22.278459024151047%2C114.16481240662665" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=22.278459&amp;mlon=114.164812#map=19/22.278458/114.164812&amp;layers=N">View Larger Map</a></small>
+				</div>
 			</div>
 		</div>
-		<p>© 2024 biotech innvoation and sustainability forum</p>
+
+		<hr id=dinner_location>
+
+		<div style="background:#3D6AA8;color:white;padding:0 2% 2% 2%;">
+			<H2 style=text-align:center;>享享福 Fook La La</H2>
+			<H3> 灣仔皇后大道東147-151號威利商業大廈2-3樓 </H3>
+			<H4> 港鐵灣仔站 B2 出口, 步行約5分鐘 </H4>
+
+			<img style=max-width:80vw;margin-bottom:1em; src="https://static5.orstatic.com/userphoto3/photo/2Z/2D99/0GU9XC64B5FE56B93BB526mx.jpg" />
+			<img style=max-width:80vw;margin-bottom:1em; src="https://static6.orstatic.com/userphoto3/photo/30/2DDA/0GV2I1B6ABD6D7BF685690lv.jpg" />
+			<img style=max-width:80vw;margin-bottom:1em; src="https://static7.orstatic.com/userphoto3/photo/2Z/2D99/0GU9XE0D9AA93C9DAE0F3Fmx.jpg" />
+
+			<div style=flex-direction:row;justify-content:space-evenly;width:100%;>
+				<div>
+					<iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=114.16093915700914%2C22.27704428092985%2C114.16868537664416%2C22.279871265648666&amp;layer=mapnik&amp;marker=22.278459024151047%2C114.16481240662665" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=22.278459&amp;mlon=114.164812#map=19/22.278458/114.164812&amp;layers=N">View Larger Map</a></small>
+				</div>
+			</div>
+		</div>
+
+		<p>© 2026 Cross Border Sustainability Projects and Partners </p>
 	</div>
 </body>
 
