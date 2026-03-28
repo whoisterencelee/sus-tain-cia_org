@@ -1,0 +1,71 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+	<meta id=redirect http-equiv="refresh" content="5; url=https://lusosino.bio" />
+
+  <meta charset="utf-8">
+  <title>網連器</title>
+  <meta name="description" content="Redirect">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <!--Insert OG Markup -->
+  <meta prefix="og: http://ogp.me/ns#" property="og:type" content="website" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="CBSPP" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="Cross Border Sustainable Projects and Partners 跨境可持續個案及合作夥伴" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://sustaincia.org/e/260410/index.jpg" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://sustaincia.org/e/260410" />
+  <!--Insert Twitter Card Markup -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@sustaincia" />
+  <meta name="twitter:domain" content="https://sustaincia.org" />
+  <meta name="twitter:title" content="CBSPP" />
+  <meta name="twitter:description" content="Cross Border Sustainable Projects and Partners 跨境可持續個案及合作夥伴" />
+  <meta name="twitter:image" content="https://sustaincia.org/e/260410/index.jpg" />
+
+  <meta name="referrer" content="no-referrer-when-downgrade"><!-- important https://web.dev/referrer-best-practices/ -->
+  <meta name="theme-color" content="#fafafa">
+
+</head>
+
+<body style="background:#82cfed;color:white;text-shadow:2px 2px 1px darkblue;font-family:serif;margin:0;">
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+	<style>
+	div {display:flex;flex-direction:column;justify-content:center;align-items:center;flex-wrap:wrap;}
+	.hide {display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	.unselectable {-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+	</style>
+
+	<!-- header -->
+	<div style="color:white;padding:1em;text-align:center;flex-direction:column;justify-content:space-evenly;">
+
+		<div style="font-size:2em;"></div>
+		<div style="font-size:1.0em;">Cross Border Sustainable Projects and Partners</div>
+		<div style="font-size:1.0em;">跨境可持續個案及合作夥伴</div>
+		<div style="font-size:1.5em;">CBSPP</div>
+		<div style="filter:drop-shadow(-1px 6px 3px darkblue);">
+			<img src="./index.jpg" style="width:100%;max-height:30vh;margin:1em 0 1em 0;clip-path:circle();" />
+		</div>
+
+		<div style=text-align:center;margin:1em;font-size:1.5em;>
+			We now bring you to 現在帶您進入<a id=link style=color:white;word-break:break-all; href=test>Event</a>
+		</div>
+	</div>
+
+	<script>
+		var tag = document.getElementById( 'redirect' )
+		var url = tag.attributes.content.textContent.replace( /^.*http/ , 'http' )
+		var link = document.getElementById( 'link' )
+		link.href = url
+		link.textContent = url
+	</script>
+</body>
+
+</html>
