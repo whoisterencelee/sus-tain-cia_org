@@ -1,0 +1,455 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Future Innovators CCA · AI & University Advantage</title>
+  <style>
+    /* ----- reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f8fafc;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #0b1e33;
+      line-height: 1.5;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 60px rgba(0, 20, 40, 0.08);
+      overflow: hidden;
+      padding: 2.5rem 2.5rem 3rem;
+      margin-top: 2rem;
+    }
+
+    /* ----- typography & colour ----- */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #0b2b4a;
+    }
+
+    .accent {
+      color: #0b6e4f;      /* deep green – sustainable & trustworthy */
+    }
+
+    .badge {
+      background: #d9f0e8;
+      color: #0b6e4f;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 40px;
+      display: inline-block;
+      letter-spacing: 0.3px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #0b6e4f;
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem 2.2rem;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background 0.2s ease, transform 0.1s ease;
+      border: none;
+      box-shadow: 0 4px 12px rgba(11, 110, 79, 0.25);
+    }
+
+    .btn:hover {
+      background: #08573e;
+      transform: scale(1.01);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #0b6e4f;
+      color: #0b6e4f;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: #eaf5f0;
+    }
+
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    /* ----- header / hero ----- */
+    .hero {
+      padding: 1rem 0 2rem;
+      border-bottom: 1px solid #e9edf2;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      max-width: 900px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.35rem;
+      color: #1f3a57;
+      margin-top: 0.75rem;
+      font-weight: 450;
+      max-width: 700px;
+    }
+
+    .org-tag {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      background: #f0f3f7;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+    }
+
+    .org-tag strong {
+      font-weight: 600;
+      color: #0b2b4a;
+    }
+
+    /* ----- cards & sections ----- */
+    .section {
+      margin: 3rem 0 2.5rem;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title span {
+      background: #e6edf6;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1f4970;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: #f9fbfd;
+      padding: 1.8rem 1.5rem;
+      border-radius: 1.8rem;
+      border: 1px solid #eaeef3;
+      transition: 0.15s ease;
+    }
+
+    .card:hover {
+      border-color: #bdd3cc;
+      background: #f6faf8;
+    }
+
+    .card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card p {
+      color: #2c405a;
+      font-size: 0.95rem;
+    }
+
+    .pill {
+      background: #eef4f9;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #1f4970;
+      display: inline-block;
+      margin-top: 0.6rem;
+    }
+
+    /* stages */
+    .stage-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .stage-item {
+      background: white;
+      border: 1px solid #e0e7ed;
+      padding: 1.2rem 1.6rem;
+      border-radius: 3rem;
+      flex: 1 1 160px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .stage-item strong {
+      display: block;
+      font-size: 1.25rem;
+      color: #0b2b4a;
+    }
+
+    .stage-item small {
+      color: #3d5a78;
+      font-size: 0.9rem;
+    }
+
+    /* list with ticks */
+    .check-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .check-list li {
+      padding: 0.6rem 0 0.6rem 2.2rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%230b6e4f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+      background-size: 1.4rem;
+      font-size: 1rem;
+    }
+
+    .check-list li strong {
+      color: #0b2b4a;
+    }
+
+    /* details table */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0.5rem 1.5rem;
+      background: #f5f8fa;
+      padding: 1.6rem 2rem;
+      border-radius: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .details-grid .label {
+      font-weight: 600;
+      color: #1f3a57;
+    }
+
+    .details-grid .value {
+      color: #0b1e33;
+    }
+
+    .cta-box {
+      background: #0b2b4a;
+      color: white;
+      padding: 2.2rem 2.5rem;
+      border-radius: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2.5rem;
+    }
+
+    .cta-box .btn {
+      background: white;
+      color: #0b2b4a;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .cta-box .btn:hover {
+      background: #f0f4fa;
+    }
+
+    .cta-box p {
+      font-size: 1.2rem;
+      font-weight: 450;
+      max-width: 400px;
+    }
+
+    .footnote {
+      color: #4f6a87;
+      font-size: 0.9rem;
+      border-top: 1px solid #e2e8ef;
+      padding-top: 2rem;
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: end;
+    }
+
+    /* responsiveness */
+    @media (max-width: 700px) {
+      .container {
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .details-grid {
+        grid-template-columns: 1fr;
+        gap: 0.2rem 0;
+        padding: 1.2rem 1.2rem;
+      }
+      .cta-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+      }
+      .stage-item {
+        flex: 1 1 100%;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="badge">🚀 NEW </span>
+    <h1>Future Innovators CCA<br><span class="accent">AI, Entrepreneurship & University Preparation</span></h1>
+    <div class="subtitle">Give your child a clear advantage for university applications—<br>and help them choose the right path.</div>
+    <div class="org-tag"><strong>Led by sustaincia.org</strong> — social enterprise for technology & sustainable development</div>
+    <div class="org-tag"> Real exposure to BIOTECH, TRANSPORTATION, DIGITAL CULTURAL, ENVIRONMENT, FINANCE and more... </div>
+  </div>
+
+  <!-- WHY PARENTS CHOOSE (4 pillars) -->
+  <div class="section">
+    <div class="section-title">
+      <h2>What your child will walk away with</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="icon">📁</div><h3>Real project</h3><p>Business plan, website, or social enterprise prototype — confidently presented in interviews </p></div>
+      <div class="card"><div class="icon">🎓</div><h3>University advantage</h3><p>Not just grades: a concrete achievement that sets them apart from other applicants</p></div>
+      <div class="card"><div class="icon">🧭</div><h3>Choose the right program</h3><p>Discover real interests and make informed decisions about university majors</p></div>
+      <div class="card"><div class="icon">⚡</div><h3>Future‑ready skills</h3><p>AI, sustainable business, entrepreneurship — valuable for any degree or career</p></div>
+    </div>
+  </div>
+
+  <!-- PROGRAM STRUCTURE (3 STAGES) -->
+  <div class="section">
+    <h2>Program structure · multi‑year pathway</h2>
+    <p style="color:#2f4a6a; margin-bottom: 1.2rem;">Students in Years 1–4 can join. Everyone starts at foundation level; returning students advance each year.</p>
+    <div class="stage-row">
+      <div class="stage-item"><strong>🔍 Explore</strong> <small>Generative AI, online business models, tech & social entrepreneurship careers </small></div>
+      <div class="stage-item"><strong>🧩 Create</strong> <small>Define a social mission, fundraising, networks, business models </small></div>
+      <div class="stage-item"><strong>🚀 Launch</strong> <small>Build a website, use AI for operations, working enterprise prototype </small></div>
+    </div>
+    <div style="margin-top: 0.8rem; background: #e9f1f5; padding: 0.5rem 1.2rem; border-radius: 40px; display: inline-block; font-size: 0.9rem;"><strong>Years 1–4</strong> · beginners welcome at any year level · Junior CCA 16:15–17:45 </div>
+  </div>
+
+  <!-- WHO WE ARE LOOKING FOR + COMPETITIONS -->
+  <div class="grid-2" style="margin: 2rem 0;">
+    <div>
+      <h2>We are looking for students who are…</h2>
+      <ul class="check-list">
+        <li><strong>Curious</strong> — ask questions, want to understand how things work</li>
+        <li><strong>Driven</strong> — motivated to build something meaningful</li>
+        <li><strong>Ready to compete</strong> — keen to enter international competitions</li>
+        <li><strong>Pioneers</strong> — inaugural program; students help shape its future</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Why parents choose this CCA</h2>
+      <ul class="check-list">
+        <li><strong>University‑level content</strong> — adapted from actual university syllabi </li>
+        <li><strong>Tangible results</strong> — business plans, websites, prototypes you can see</li>
+        <li><strong>Personalised mentorship</strong> — limited spots, individual guidance</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DETAILS + CTA -->
+  <div style="margin: 2rem 0 1.5rem;">
+    <div class="details-grid">
+      <span class="label">Who can join</span><span class="value">Secondary Years 1–4 · beginners welcome</span>
+      <span class="label">Time</span><span class="value">Junior CCA 16:15–17:45 </span>
+      <span class="label">Organizer</span><span class="value"><strong>sustaincia.org</strong> — technology & sustainable development </span>
+      <span class="label">Enrollment</span><span class="value">Limited spots · first come, first served</span>
+    </div>
+  </div>
+
+  <!-- CALL TO ACTION -->
+  <div class="cta-box">
+    <p><strong>Ready to give your child a sustainable career?</strong>
+    </p>
+    <span>Contact your school's CCA coordinator or career counselor to apply</span>
+  </div>
+
+  <!-- FOOTER / CONTACT -->
+  <div class="footnote">
+    <span style="color:#6f8aa7;">© sustaincia.org · Future Innovators CCA</span>
+  </div>
+
+</div>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
