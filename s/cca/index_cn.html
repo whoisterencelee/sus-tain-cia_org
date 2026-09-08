@@ -14,11 +14,11 @@
                         </head>
                         <body>
                             <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Future Innovators CCA · AI & University Advantage</title>
+  <title>未来创新者计划 · AI 与大学优势</title>
   <style>
     /* ----- reset & base ----- */
     * {
@@ -65,7 +65,7 @@
     }
 
     .accent {
-      color: #0b6e4f;      /* deep green – sustainable & trustworthy */
+      color: #0b6e4f;      /* 深绿色 – 可持续发展与信任感 */
     }
 
     .badge {
@@ -154,6 +154,23 @@
     .org-tag strong {
       font-weight: 600;
       color: #0b2b4a;
+    }
+
+    /* 产业标签 */
+    .industry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+      margin: 0.8rem 0 0.2rem;
+    }
+    .industry-tags span {
+      background: #e6edf6;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1f4970;
+      letter-spacing: 0.3px;
     }
 
     /* ----- cards & sections ----- */
@@ -324,7 +341,6 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      align-content: end;
     }
 
     /* responsiveness */
@@ -366,57 +382,79 @@
 <body>
 <div class="container">
 
+  <div class=lang style=position:fixed;right:0;top:0;padding-right:1em;>
+	<style>
+	.lang a { text-decoration:none; color:inherit; font-size:small; }
+	</style>
+  	<a href=index_zh.html>繁</a> 
+	<a href=index_cn.html>简</a>
+	<a href=index.html?lang=en>EN</a>
+  </div>
+
   <!-- HERO -->
   <div class="hero">
-    <span class="badge">🚀 NEW </span>
-    <h1>Future Innovators CCA<br><span class="accent">AI, Entrepreneurship & University Preparation</span></h1>
-    <div class="subtitle">Give your child a clear advantage for university applications—<br>and help them choose the right path.</div>
-    <div class="org-tag"><strong>Led by sustaincia.org</strong> — social enterprise for technology & sustainable development</div>
-    <div class="org-tag"> Real exposure to BIOTECH, TRANSPORTATION, DIGITAL CULTURAL, ENVIRONMENT, FINANCE and more... </div>
+    <span class="badge">🚀 全新 · 首届招生</span>
+    <h1>未来创新者计划<br><span class="accent">AI、创业与大学准备</span></h1>
+    <div class="subtitle">让您的孩子在申请大学时占得先机——<br>并帮助他们找到正确的方向。</div>
+    <div class="org-tag"><strong>主办：sustaincia.org</strong> — 专注科技与可持续发展的社会企业</div>
+    <!-- 产业曝光 -->
+    <div style="margin-top: 0.8rem;">
+      <div style="font-weight: 500; color: #1f3a57; font-size: 0.95rem;">真实产业接触：</div>
+      <div class="industry-tags">
+        <span>🧬 生物科技</span>
+        <span>🚛 交通运输</span>
+        <span>🎨 数字文化</span>
+        <span>🌿 环境</span>
+        <span>💰 金融</span>
+        <span>➕ 及其他</span>
+      </div>
+    </div>
   </div>
 
   <!-- WHY PARENTS CHOOSE (4 pillars) -->
   <div class="section">
     <div class="section-title">
-      <h2>What your child will walk away with</h2>
+      <h2>您的孩子将获得什么</h2>
+      <span>家长最关心</span>
     </div>
     <div class="card-grid">
-      <div class="card"><div class="icon">📁</div><h3>Real project</h3><p>Business plan, website, or social enterprise prototype — confidently presented in interviews </p></div>
-      <div class="card"><div class="icon">🎓</div><h3>University advantage</h3><p>Not just grades: a concrete achievement that sets them apart from other applicants</p></div>
-      <div class="card"><div class="icon">🧭</div><h3>Choose the right program</h3><p>Discover real interests and make informed decisions about university majors</p></div>
-      <div class="card"><div class="icon">⚡</div><h3>Future‑ready skills</h3><p>AI, sustainable business, entrepreneurship — valuable for any degree or career</p></div>
+      <div class="card"><div class="icon">📁</div><h3>真实项目</h3><p>商业计划书、网站或社会企业原型 — 在大学面试中自信展示</p></div>
+      <div class="card"><div class="icon">🎓</div><h3>大学优势</h3><p>不只成绩：一项具体成就，让他们从众多申请者中脱颖而出</p></div>
+      <div class="card"><div class="icon">🧭</div><h3>选对专业</h3><p>发掘真正兴趣，为大学主修做出明智决定</p></div>
+      <div class="card"><div class="icon">⚡</div><h3>未来技能</h3><p>AI、可持续商业、创业精神 — 对任何学位或职业都有价值</p></div>
     </div>
   </div>
 
   <!-- PROGRAM STRUCTURE (3 STAGES) -->
   <div class="section">
-    <h2>Program structure · multi‑year pathway</h2>
-    <p style="color:#2f4a6a; margin-bottom: 1.2rem;">Students in Years 1–4 can join. Everyone starts at foundation level; returning students advance each year.</p>
+    <h2>课程结构 · 多年期路径</h2>
+    <p style="color:#2f4a6a; margin-bottom: 1.2rem;">初一至初四学生均可参加。所有新生从基础阶段开始；老生每年晋升至下一阶段。</p>
     <div class="stage-row">
-      <div class="stage-item"><strong>🔍 Explore</strong> <small>Generative AI, online business models, tech & social entrepreneurship careers </small></div>
-      <div class="stage-item"><strong>🧩 Create</strong> <small>Define a social mission, fundraising, networks, business models </small></div>
-      <div class="stage-item"><strong>🚀 Launch</strong> <small>Build a website, use AI for operations, working enterprise prototype </small></div>
+      <div class="stage-item"><strong>🔍 探索</strong> <small>生成式AI、线上商业模式、科技与社会创业职业</small></div>
+      <div class="stage-item"><strong>🧩 创造</strong> <small>定义社会使命、筹资、人脉网络、商业模式</small></div>
+      <div class="stage-item"><strong>🚀 实践</strong> <small>建立网站、运用AI运营、完成企业原型</small></div>
     </div>
-    <div style="margin-top: 0.8rem; background: #e9f1f5; padding: 0.5rem 1.2rem; border-radius: 40px; display: inline-block; font-size: 0.9rem;"><strong>Years 1–4</strong> · beginners welcome at any year level · Junior CCA 16:15–17:45 </div>
+    <div style="margin-top: 0.8rem; background: #e9f1f5; padding: 0.5rem 1.2rem; border-radius: 40px; display: inline-block; font-size: 0.9rem;"><strong>初一至初四</strong> · 欢迎任何年级初学者 · 初中课后活动时段</div>
   </div>
 
-  <!-- WHO WE ARE LOOKING FOR + COMPETITIONS -->
+  <!-- WHO WE ARE LOOKING FOR + WHY PARENTS -->
   <div class="grid-2" style="margin: 2rem 0;">
     <div>
-      <h2>We are looking for students who are…</h2>
+      <h2>我们正在寻找这样的学生…</h2>
       <ul class="check-list">
-        <li><strong>Curious</strong> — ask questions, want to understand how things work</li>
-        <li><strong>Driven</strong> — motivated to build something meaningful</li>
-        <li><strong>Ready to compete</strong> — keen to enter international competitions</li>
-        <li><strong>Pioneers</strong> — inaugural program; students help shape its future</li>
+        <li><strong>好奇</strong> — 会提出问题，想了解事物运作原理</li>
+        <li><strong>有动力</strong> — 想建立有意义的事物，将想法付诸实现</li>
+        <li><strong>准备好竞争</strong> — 有意参加国际竞赛，获得认可（双语优势）</li>
+        <li><strong>先锋精神</strong> — 首届课程，学生将协助塑造其未来</li>
       </ul>
     </div>
     <div>
-      <h2>Why parents choose this CCA</h2>
+      <h2>为什么家长选择此计划</h2>
       <ul class="check-list">
-        <li><strong>University‑level content</strong> — adapted from actual university syllabi </li>
-        <li><strong>Tangible results</strong> — business plans, websites, prototypes you can see</li>
-        <li><strong>Personalised mentorship</strong> — limited spots, individual guidance</li>
+        <li><strong>大学等级内容</strong> — 改编自实际大学课程大纲</li>
+        <li><strong>具体成果</strong> — 商业计划书、网站、原型，家长看得到</li>
+        <li><strong>个性化指导</strong> — 名额有限，个别关注</li>
+        <li><strong>首届先锋</strong> — 新创计划，学生共同塑造</li>
       </ul>
     </div>
   </div>
@@ -424,23 +462,25 @@
   <!-- DETAILS + CTA -->
   <div style="margin: 2rem 0 1.5rem;">
     <div class="details-grid">
-      <span class="label">Who can join</span><span class="value">Secondary Years 1–4 · beginners welcome</span>
-      <span class="label">Time</span><span class="value">Junior CCA 16:15–17:45 </span>
-      <span class="label">Organizer</span><span class="value"><strong>sustaincia.org</strong> — technology & sustainable development </span>
-      <span class="label">Enrollment</span><span class="value">Limited spots · first come, first served</span>
+      <span class="label">参加对象</span><span class="value">初一至初四 · 初学者欢迎</span>
+      <span class="label">时间</span><span class="value">初中课后活动时段</span>
+      <span class="label">主办单位</span><span class="value"><strong>sustaincia.org</strong> — 科技与可持续发展</span>
+      <span class="label">名额</span><span class="value">名额有限 · 先到先得</span>
     </div>
   </div>
 
   <!-- CALL TO ACTION -->
   <div class="cta-box">
-    <p><strong>Ready to give your child a sustainable career?</strong>
-    </p>
-    <span>Contact your school's CCA coordinator or career counselor to apply</span>
+    <p><strong>准备好给孩子一个可持续发展的未来？</strong><br>立即联系学校的课外活动协调员或生涯辅导老师。</p>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;">
+      <a href="#" class="btn">sustaincia.org/cca</a>
+    </div>
   </div>
 
-  <!-- FOOTER / CONTACT -->
+  <!-- FOOTER -->
   <div class="footnote">
-    <span style="color:#6f8aa7;">© sustaincia.org · Future Innovators CCA</span>
+    <span>📩 报名请洽学校课外活动负责老师或生涯辅导老师</span>
+    <span style="color:#6f8aa7;">© sustaincia.org · 未来创新者计划</span>
   </div>
 
 </div>

@@ -14,11 +14,11 @@
                         </head>
                         <body>
                             <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Future Innovators Initiative · AI & University Advantage</title>
+  <title>未來創新者計劃 · AI 與大學優勢</title>
   <style>
     /* ----- reset & base ----- */
     * {
@@ -65,7 +65,7 @@
     }
 
     .accent {
-      color: #0b6e4f;      /* deep green – sustainable & trustworthy */
+      color: #0b6e4f;      /* 深綠色 – 可持續發展與信任感 */
     }
 
     .badge {
@@ -154,6 +154,23 @@
     .org-tag strong {
       font-weight: 600;
       color: #0b2b4a;
+    }
+
+    /* 產業標籤 */
+    .industry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+      margin: 0.8rem 0 0.2rem;
+    }
+    .industry-tags span {
+      background: #e6edf6;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1f4970;
+      letter-spacing: 0.3px;
     }
 
     /* ----- cards & sections ----- */
@@ -324,7 +341,6 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      align-content: end;
     }
 
     /* responsiveness */
@@ -362,26 +378,6 @@
       }
     }
   </style>
-	<script>
-	const urlParams = new URLSearchParams( window.location.search )
-	const langParam = urlParams.get('lang')
-	if( !langParam ){
-		// Get browser language
-		const lang = navigator.language || navigator.userLanguage
-		// Map languages to files
-		const langMap = {
-		  'zh-TW': 'index_zh.html',  // Traditional Chinese
-		  'zh-CN': 'index_cn.html',  // Simplified Chinese
-		  'zh': 'index_zh.html',     // Fallback for generic Chinese
-		  'en': 'index.html'         // English (default)
-		}
-		// Get the appropriate file
-		const file = langMap[lang] || langMap[lang.split('-')[0]] || 'index.html'
-		// Redirect
-		const currentFile = window.location.pathname.split('/').pop() || 'index.html'
-		if( currentFile !== file ) window.location.href = file
-	}
-	</script>
 </head>
 <body>
 <div class="container">
@@ -397,61 +393,68 @@
 
   <!-- HERO -->
   <div class="hero">
-    <span class="badge">🚀 NEW </span>
-    <h1>Future Innovators Initiative<br><span class="accent">AI, Entrepreneurship & University Preparation</span></h1>
-    <div class="subtitle">Give your child a clear advantage for university applications and help them choose the right path.</div>
-    <div><strong>Led by sustaincia.org</strong> — social enterprise for technology & sustainable development</div>
-    <div>Real industry exposure to 
-    	<div class="org-tag">BIOTECH</div>
-    	<div class="org-tag">TRANSPORTATION</div>
-    	<div class="org-tag">DIGITAL CULTURE</div>
-    	<div class="org-tag">ENVIRONMENT</div>
-    	<div class="org-tag">FINANCE</div>
-    	<div class="org-tag">and more...</div>
-   </div>
+    <span class="badge">🚀 全新 · 首屆招生</span>
+    <h1>未來創新者計劃<br><span class="accent">AI、創業與大學準備</span></h1>
+    <div class="subtitle">讓您的孩子在申請大學時佔得先機——<br>並幫助他們找到正確的方向。</div>
+    <div class="org-tag"><strong>主辦：sustaincia.org</strong> — 專注科技與可持續發展的社會企業</div>
+    <!-- 產業曝光 -->
+    <div style="margin-top: 0.8rem;">
+      <div style="font-weight: 500; color: #1f3a57; font-size: 0.95rem;">真實產業接觸：</div>
+      <div class="industry-tags">
+        <span>🧬 生物科技</span>
+        <span>🚛 交通運輸</span>
+        <span>🎨 數位文化</span>
+        <span>🌿 環境</span>
+        <span>💰 金融</span>
+        <span>➕ 及其他</span>
+      </div>
+    </div>
   </div>
 
   <!-- WHY PARENTS CHOOSE (4 pillars) -->
   <div class="section">
     <div class="section-title">
-      <h2>What your child will walk away with</h2>
+      <h2>您的孩子將獲得什麼</h2>
+      <span>家長最關心</span>
     </div>
     <div class="card-grid">
-      <div class="card"><div class="icon">📁</div><h3>Real project</h3><p>Business plan, website, or social enterprise prototype — confidently presented in interviews </p></div>
-      <div class="card"><div class="icon">🎓</div><h3>University advantage</h3><p>Not just grades: a concrete achievement that sets them apart from other applicants</p></div>
-      <div class="card"><div class="icon">🧭</div><h3>Choose the right program</h3><p>Discover real interests and make informed decisions about university majors</p></div>
-      <div class="card"><div class="icon">⚡</div><h3>Future‑ready skills</h3><p>AI, sustainable business, entrepreneurship — valuable for any degree or career</p></div>
+      <div class="card"><div class="icon">📁</div><h3>真實項目</h3><p>商業計劃書、網站或社會企業原型 — 在大學面試中自信展示</p></div>
+      <div class="card"><div class="icon">🎓</div><h3>大學優勢</h3><p>不只成績：一項具體成就，讓他們從眾多申請者中脫穎而出</p></div>
+      <div class="card"><div class="icon">🧭</div><h3>選對科系</h3><p>發掘真正興趣，為大學主修做出明智決定</p></div>
+      <div class="card"><div class="icon">⚡</div><h3>未來技能</h3><p>AI、永續商業、創業精神 — 對任何學位或職涯都有價值</p></div>
     </div>
   </div>
 
   <!-- PROGRAM STRUCTURE (3 STAGES) -->
   <div class="section">
-    <h2>Program structure · multi‑year pathway</h2>
-    <p style="color:#2f4a6a; margin-bottom: 1.2rem;">Students in Years 1–4 can join. Everyone starts at foundation level; returning students advance each year.</p>
+    <h2>課程結構 · 多年期路徑</h2>
+    <p style="color:#2f4a6a; margin-bottom: 1.2rem;">中一至中四學生均可參加。所有新生從基礎階段開始；舊生每年晉升至下一階段。</p>
     <div class="stage-row">
-      <div class="stage-item"><strong>🔍 Explore</strong> <small>Generative AI, online business models, tech & social entrepreneurship careers </small></div>
-      <div class="stage-item"><strong>🧩 Create</strong> <small>Define a social mission, fundraising, networks, business models </small></div>
-      <div class="stage-item"><strong>🚀 Launch</strong> <small>Build a website, use AI for operations, working enterprise prototype </small></div>
+      <div class="stage-item"><strong>🔍 探索</strong> <small>生成式AI、線上商業模式、科技與社會創業職涯</small></div>
+      <div class="stage-item"><strong>🧩 創造</strong> <small>定義社會使命、籌資、人脈網絡、商業模式</small></div>
+      <div class="stage-item"><strong>🚀 實踐</strong> <small>建立網站、運用AI營運、完成企業原型</small></div>
     </div>
+    <div style="margin-top: 0.8rem; background: #e9f1f5; padding: 0.5rem 1.2rem; border-radius: 40px; display: inline-block; font-size: 0.9rem;"><strong>中一至中四</strong> · 歡迎任何年級初學者 · 初中課後活動時段</div>
   </div>
 
-  <!-- WHO WE ARE LOOKING FOR + COMPETITIONS -->
+  <!-- WHO WE ARE LOOKING FOR + WHY PARENTS -->
   <div class="grid-2" style="margin: 2rem 0;">
     <div>
-      <h2>We are looking for students who are…</h2>
+      <h2>我們正在尋找這樣的學生…</h2>
       <ul class="check-list">
-        <li><strong>Curious</strong> — ask questions, want to understand how things work</li>
-        <li><strong>Driven</strong> — motivated to build something meaningful</li>
-        <li><strong>Ready to compete</strong> — keen to enter international competitions</li>
-        <li><strong>Pioneers</strong> — inaugural program; students help shape its future</li>
+        <li><strong>好奇</strong> — 會提出問題，想了解事物運作原理</li>
+        <li><strong>有動力</strong> — 想建立有意義的事物，將想法付諸實現</li>
+        <li><strong>準備好競爭</strong> — 有意參加國際競賽，獲得認可（雙語優勢）</li>
+        <li><strong>先鋒精神</strong> — 首屆課程，學生將協助塑造其未來</li>
       </ul>
     </div>
     <div>
-      <h2>Why parents choose this Initiative</h2>
+      <h2>為什麼家長選擇此計劃</h2>
       <ul class="check-list">
-        <li><strong>University‑level content</strong> — adapted from actual university syllabi </li>
-        <li><strong>Tangible results</strong> — business plans, websites, prototypes you can see</li>
-        <li><strong>Personalised mentorship</strong> — limited spots, individual guidance</li>
+        <li><strong>大學等級內容</strong> — 改編自實際大學課程大綱</li>
+        <li><strong>具體成果</strong> — 商業計劃書、網站、原型，家長看得到</li>
+        <li><strong>個人化指導</strong> — 名額有限，個別關注</li>
+        <li><strong>首屆先鋒</strong> — 新創計劃，學生共同塑造</li>
       </ul>
     </div>
   </div>
@@ -459,23 +462,25 @@
   <!-- DETAILS + CTA -->
   <div style="margin: 2rem 0 1.5rem;">
     <div class="details-grid">
-      <span class="label">Who can join</span><span class="value">Secondary Years 1–4 · beginners welcome</span>
-      <span class="label">Time</span><span class="value">Junior Afterschool activities </span>
-      <span class="label">Organizer</span><span class="value"><a href=sustaincia.org>sustaincia.org</a> — technology & sustainable development </span>
-      <span class="label">Enrollment</span><span class="value">Limited spots · first come, first served</span>
+      <span class="label">參加對象</span><span class="value">中一至中四 · 初學者歡迎</span>
+      <span class="label">時間</span><span class="value">初中課後活動時段</span>
+      <span class="label">主辦單位</span><span class="value"><strong>sustaincia.org</strong> — 科技與永續發展</span>
+      <span class="label">名額</span><span class="value">名額有限 · 先到先得</span>
     </div>
   </div>
 
   <!-- CALL TO ACTION -->
   <div class="cta-box">
-    <p><strong>Ready to give your child a sustainable career?</strong>
-    </p>
-    <span>Contact your school's CCA coordinator or career counselor to apply</span>
+    <p><strong>準備好給孩子一個可持續發展的未來？</strong><br>立即聯繫學校的課外活動協調員或生涯輔導老師。</p>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;">
+      <a href="#" class="btn">sustaincia.org/cca</a>
+    </div>
   </div>
 
-  <!-- FOOTER / CONTACT -->
+  <!-- FOOTER -->
   <div class="footnote">
-    <span style="color:#6f8aa7;">© sustaincia.org · Future Innovators Initiative</span>
+    <span>📩 報名請洽學校課外活動負責老師或生涯輔導老師</span>
+    <span style="color:#6f8aa7;">© sustaincia.org · 未來創新者計劃</span>
   </div>
 
 </div>
