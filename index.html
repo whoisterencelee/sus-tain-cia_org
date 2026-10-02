@@ -64,20 +64,20 @@
 		<!--<img src='sustaincia.svg' alt="Sustaincia.org" style="width:96px;height:96px;box-shadow:0px 0px 5px 0px white;border-radius:1em;margin-right:1em;"></img><br />-->
 		<div style="font-size:3em;">sustaincia.org</div>
 
-		<div style="font-size:1.25em;">Using technology and social affairs to encourage sustainability development</div>
+		<div style="font-size:1.25em;">using technology and social affairs to encourage sustainable development</div>
 
 	</div>
 
 
 	<!-- banner -->
 	<style>
-		.banner div{flex-grow:1}
+		.banner div{flex-grow:1;padding-bottom:0.5em;}
 		.banner div:hover{text-shadow:0 0 5px navy;}
-		.ocean {margin:1em 7vw;text-align:center;width:100%;}
+		.ocean {background:#4eadb8;padding:1em 7vw;text-align:center;width:100%;}
 		.menu1:focus ~ #menu1 {display:block;}
 		.menu2:focus ~ #menu2 {display:block;}
 	</style>
-	<div class="unselectable banner" style="flex-direction:row;justify-content:space-evenly;background:#4eadb8;color:white;padding:0.5em;box-shadow:0 5px 5px 0 lightgrey;">
+	<div class="unselectable banner" style="flex-direction:row;justify-content:space-evenly;background:#0070c4;color:white;box-shadow:0 5px 5px 0 lightgrey;font-size:min(1em,3vw);">
 		<div tabindex="1" class="menu1">About</div>
 		<div tabindex="2" id="banner_Latest" >Latest</div>
 		<div tabindex="3" id="banner_Event">Events</div>
@@ -99,13 +99,15 @@
 	<div style="height:5vh;overflow:hidden;" ><svg viewBox="0 20 500 66" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M0.00,49.98 C243.79,30.88 247.17,96.02 500.00,49.98 L500.00,0.00 L0.00,0.00 Z" style="stroke: none; fill: #4eadb8;"></path></svg></div>
 
 	<style>
-	#hotlist {flex-grow:1;flex-direction:row;justify-content:center;padding:0 1vw;}
+	#hotlist {flex-grow:1;flex-direction:row;justify-content:center;padding:0 1vw;gap:4px;}
 	#hotlist a { text-decoration: none; }
-	div.solution {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:0.25vw;flex-wrap:nowrap;justify-content:space-between;} /* compose of two main sections visual (varying height) and content (height fixed at 8em) */
+	div.solution {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:0.25vw;flex-wrap:nowrap;justify-content:space-between;box-shadow:0 0 6px lightgrey;} 
+	/* compose of two main sections visual (varying height) and content (height fixed at 8em) */
 	div.solution_temp {width:90vw;height:90vh;max-width:320px;max-height:calc( 320px + 8em );margin:0.25vw;flex-wrap:nowrap;justify-content:center;text-align:center;color:grey;} /* basically same as solution */
 
 	div.solution div.visual {width:100%;height:calc(100% - 8em);overflow:hidden;justify-content:center;align-content:center;} /* center image */
-	div.solution div.visual img {width:100%;height:100%;object-fit:cover;border-radius:1vw;} /* ensure image will fill up the horizontal space, tested on firefox, chrome */
+	div.solution div.visual img {width:100%;height:100%;object-fit:cover;} 
+	/* ensure image will fill up the horizontal space, tested on firefox, chrome */
 
 	div.solution div.content {flex-grow:1;flex-wrap:nowrap;width:calc(100% - 1em);padding:0.5em;justify-content:space-between;align-items:start;} /* no wrap, fill up the width but account for padding */
 
@@ -119,7 +121,7 @@
 <!-- hot list -->
 <div id="hotlist">
 
-		<a category="event" date="mn9fz61o" href="https://lusosino.bio">>
+		<a category="event" date="mn9fz61o" href="https://lusosino.bio">
 		<div class="solution">
 			<div class="visual">
 				<img src="https://raw2.seadn.io/ethereum/0xf3dd7d47e1b30b8a2351c119592b3e51a1a256ba/956a3fb6897dc8a16cfc38771062ef/13956a3fb6897dc8a16cfc38771062ef.svg"></img>
