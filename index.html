@@ -59,12 +59,14 @@
 
 
 	<!-- header -->
-	<div style="background:#0070c4;color:white;padding:1em;text-align:center;flex-direction:row;justify-content:space-evenly;text-shadow:0 1px 5px black;height:30vh;">
+	<div style="background:#0070c4;color:white;padding:1em;text-align:center;flex-direction:row;justify-content:space-evenly;text-shadow:0 1px 5px black;height:40vh;">
 
 		<!--<img src='sustaincia.svg' alt="Sustaincia.org" style="width:96px;height:96px;box-shadow:0px 0px 5px 0px white;border-radius:1em;margin-right:1em;"></img><br />-->
-		<div style="font-size:3em;">sustaincia.org</div>
+		<div>
+		<div style="font-size:3em;"> sustaincia.org </div>
 
-		<div style="font-size:1.25em;">using technology and social efforts to encourage sustainable development</div>
+		<div style="font-size:1.25em;"> sustainable development using technology and social efforts </div>
+		</div>
 
 	</div>
 
@@ -87,11 +89,8 @@
 	</style>
 	<div class="unselectable banner" style="flex-direction:row;justify-content:space-evenly;background:#0070c4;color:white;font-size:min(1em,3vw);height:50vh;">
 		<div tabindex="1" class="menu1">About</div>
-		<div tabindex="2" id="banner_Latest" >Latest</div>
-		<div tabindex="3" id="banner_Event">Events</div>
-		<div tabindex="4" id="banner_Project">Projects</div>
-		<div tabindex="5" id="banner_Framework">Frameworks</div>
-		<div tabindex="6" id="banner_Join">Join</div>
+		<div tabindex="2" id="banner_News">News</div>
+		<div tabindex="3" id="banner_Join">Join</div>
 
 		<!-- menus : needs to be siblings of above using the ~ selector -->
 		<div class="ocean" id="ocean">
@@ -99,7 +98,7 @@
 			This global association is an unlimited duration non-profit organization whose mission is to use technology and social affairs to encourage sustainability development.  To create a community with opportunities for dialogue and exchange of ideas under the premises of economic development, social responsibility and environmental betterment.  To provide an online management platform for sustainable industry projects and activities which include education, inspiration, connection, coordination and verification of sustainable efforts.
 			</div>
 
-			<div class="hide" id="signup">
+			<div class="hide" id="signup" style=z-index:100;>
 				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf4dPLBLufo-Nan6lAVbQV2HRyhav8nHDtR9_QPlpidpzw0qQ/viewform?embedded=true" width="320" height="1451" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 			</div>
 		</div>
@@ -139,7 +138,13 @@
 	div.solution div.content div.need {min-height:1.2em;}
 	</style>
 
-<H1 style="text-align:center;color:#cbc5ba;text-shadow:0 0 4px #cbc5ba;"> Current Efforts </H1>
+	<H1 style="text-align:center;color:#cbc5ba;text-shadow:0 0 4px #cbc5ba;"> Current Efforts </H1>
+	<div style=color:#cbc5ba;flex-direction:row;justify-content:space-around;margin-bottom:2em;>
+		<div tabindex="4" id="banner_Latest" >Latest</div>
+		<div tabindex="5" id="banner_Event">Events</div>
+		<div tabindex="6" id="banner_Project">Projects</div>
+		<div tabindex="7" id="banner_Governance">Governances</div>
+	</div>
 <!-- hot list -->
 <div id="hotlist">
 
@@ -355,7 +360,7 @@
 				<img src="https://live.staticflickr.com/2738/4163986012_4443076b0f_3k.jpg"></img>
 			</div>
 			<div class="content">
-				<div class="description">Sustainable Framework Development</div>
+				<div class="description">Sustainable Goverance Development</div>
 				<div class="need">Expertise in existing standards</div>
 			</div>
 		</div>
@@ -528,7 +533,7 @@
 	$( 'banner_Latest' ).onclick=()=>onlycards()
 	$( 'banner_Event' ).onclick=()=>onlycards( "event" )
 	$( 'banner_Project' ).onclick=()=>onlycards( "project" )
-	$( 'banner_Framework' ).onclick=()=>onlycards( "framework" )
+	$( 'banner_Goverance' ).onclick=()=>onlycards( "goverance" )
 	$( 'banner_Join' ).onclick=()=>{ $( 'signup' ).style.display = "block" }
 	</script>
 	<script>
