@@ -1,24 +1,9 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<style>
-								body {
-									background-color: white; /* Ensure the iframe has a white background */
-								}
-
-								
-							</style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Innovative Intelligence Initiative · AI & University Preparation</title>
+  <title>Imparting Argumental Intelligence</title>
   <style>
     /* ----- reset & base ----- */
     * {
@@ -28,22 +13,11 @@
     }
 
     body {
-      background: #f8fafc;
+      background: orange;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #0b1e33;
-      line-height: 1.5;
+      color: white;
+      text-shadow: 0px 1px 2px black;
       padding: 0 1.5rem 4rem;
-    }
-
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 2rem;
-      box-shadow: 0 20px 60px rgba(0, 20, 40, 0.08);
-      overflow: hidden;
-      padding: 2.5rem 2.5rem 3rem;
-      margin-top: 2rem;
     }
 
     /* ----- typography & colour ----- */
@@ -54,14 +28,11 @@
 
     h1 {
       font-size: 2.8rem;
-      line-height: 1.1;
       font-weight: 700;
     }
 
     h2 {
       font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: #0b2b4a;
     }
 
     .accent {
@@ -123,12 +94,6 @@
     }
 
     /* ----- header / hero ----- */
-    .hero {
-      padding: 1rem 0 2rem;
-      border-bottom: 1px solid #e9edf2;
-      margin-bottom: 2.5rem;
-    }
-
     .hero h1 {
       font-size: 3.2rem;
       max-width: 900px;
@@ -185,15 +150,21 @@
 
     .card {
       background: #f9fbfd;
+      color: orange;
+      text-shadow:0 0;
       padding: 1.8rem 1.5rem;
-      border-radius: 1.8rem;
-      border: 1px solid #eaeef3;
       transition: 0.15s ease;
+      display:flex;
+      flex-direction:column;
+      flex-wrap:wrap;
+      gap: 0.5em;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0px 3px 6px darkgrey;
     }
 
     .card:hover {
-      border-color: #bdd3cc;
-      background: #f6faf8;
+      box-shadow: inset 0px 0px 4px darkgrey;
     }
 
     .card .icon {
@@ -209,6 +180,7 @@
     .card p {
       color: #2c405a;
       font-size: 0.95rem;
+      text-align:center;
     }
 
     .pill {
@@ -250,6 +222,188 @@
       font-size: 0.9rem;
     }
 
+    /* ----- teacher band (now at end) ----- */
+    .teacher-band {
+      background: #0b2b4a;
+      color: white;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2.5rem 2.8rem;
+      margin: 3rem 0 0;
+    }
+
+    .teacher-band h2 {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .teacher-band .lead {
+      color: #c8dbea;
+      max-width: 760px;
+    }
+
+    .teacher-band .lead strong {
+      color: #ffffff;
+    }
+
+    .teacher-band h3 {
+      color: white;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .teacher-band p {
+      color: #c8dbea;
+      font-size: 0.95rem;
+    }
+
+    /* two-panel contrast: what this is / what this isn't */
+    .teacher-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin: 1.8rem 0 2rem;
+    }
+
+   panel {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 1.5rem;
+      padding: 1.4rem 1.6rem;
+    }
+
+    .panel ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .panel li {
+      color: #c8dbea;
+      font-size: 0.95rem;
+      padding: 0.38rem 0 0.38rem 1.7rem;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .panel.no li::before {
+      content: "×";
+      position: absolute;
+      left: 0;
+      top: 0.3rem;
+      color: #ff9f9f;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .panel.yes li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0.32rem;
+      color: #7ee2b8;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem;
+      margin: 1.6rem 0 2rem;
+    }
+
+    .teacher-point {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+ border-radius: 1.4rem;
+      padding: 1.2rem 1.4rem;
+    }
+
+    /* ----- suggestion table ----- */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 1.4rem;
+      background: white;
+    }
+
+    table.subject-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      font-size: 0.92rem;
+    }
+
+    table.subject-table thead th {
+      background: #0b6e4f;
+      color: white;
+      text-align: left;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    table.subject-table tbody td {
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1px solid #eaeef3;
+      color: #1f3a57;
+      vertical-align: top;
+    }
+
+    table.subject-table tbody tr:nth-child(even) {
+      background: #f9fbfd;
+    }
+
+    table.subject-table tbody td:first-child {
+      font-weight: 600;
+      color: #0b2b4a;
+      white-space: nowrap;
+    }
+
+    .table-caption {
+      color: #c8dbea;
+      font-size: 0.85rem;
+      margin-top: 0.9rem;
+      max-width: 780px;
+    }
+
+    .co-design-strip {
+      background: rgba(126, 226, 184, 0.12);
+      border: 1px solid rgba(126, 226, 184, 0.35);
+      border-radius: 1.4rem;
+      padding: 1.2 1.5rem;
+      margin: 1.6rem 0 2rem;
+    }
+
+    .co-design-strip p {
+      color: #d6ece2;
+      font-size: 0.95rem;
+    }
+
+    .co-design-strip strong {
+      color: #7ee2b8;
+    }
+
+    .teacher-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .teacher-meta .label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #7ee2b8;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
     /* list with ticks */
     .check-list {
       list-style: none;
@@ -316,11 +470,8 @@
     }
 
     .footnote {
-      color: #4f6a87;
       font-size: 0.9rem;
-      border-top: 1px solid #e2e8ef;
-      padding-top: 2rem;
-      margin-top: 2.5rem;
+      padding-top: 1rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -329,9 +480,6 @@
 
     /* responsiveness */
     @media (max-width: 700px) {
-      .container {
-        padding: 1.5rem;
-      }
       h1 {
         font-size: 2.2rem;
       }
@@ -370,9 +518,9 @@
 		const lang = navigator.language || navigator.userLanguage
 		// Map languages to files
 		const langMap = {
-		  'zh-TW': 'index_zh.html',  // Traditional Chinese
-		  'zh-CN': 'index_cn.html',  // Simplified Chinese
-		  'zh': 'index_zh.html',     // Fallback for generic Chinese
+		  // 'zh-TW': 'index_zh.html',  // Traditional Chinese
+		  // 'zh-CN': 'index_cn.html',  // Simplified Chinese
+		  // 'zh': 'index_zh.html',     // Fallback for generic Chinese
 		  'en': 'index.html'         // English (default)
 		}
 		// Get the appropriate file
@@ -384,107 +532,76 @@
 	</script>
 </head>
 <body>
-<div class="container">
-
-  <div class=lang style=position:fixed;right:0;top:0;padding-right:1em;>
+  <div class=lang style="position:absolute;right:0;top:0;padding:0.2em 1em;">
 	<style>
-	.lang a { text-decoration:none; color:inherit; font-size:small; }
+	.lang a { text-decoration:none;
+		border:1px solid darkorange;
+		padding:0.2em;
+		text-shadow:0 0;
+		color:darkorange; font-size:small; }
+	.lang .selected {
+		color:white; border:1px solid white; }
 	</style>
+	<!--
   	<a href=index_zh.html>繁</a> 
 	<a href=index_cn.html>简</a>
-	<a href=index.html?lang=en>EN</a>
+	-->
+	<a class=selected href=index.html?lang=en>EN</a>
   </div>
 
   <!-- HERO -->
-  <div class="hero">
-    <span class="badge">🚀 NEW </span>
-    <h1>Innovative Intelligence Initiative<br><span class="accent">AI, Entrepreneurship & University Preparation</span></h1>
-    <div class="subtitle">Give your child a clear advantage for university applications and help them choose the right path.</div>
-    <div><strong>Led by sustaincia.org</strong> — social enterprise for technology & sustainable development</div>
-    <div>Real industry exposure to 
-    	<div class="org-tag">BIOTECH</div>
-    	<div class="org-tag">TRANSPORTATION</div>
-    	<div class="org-tag">DIGITAL CULTURE</div>
-    	<div class="org-tag">ENVIRONMENT</div>
-    	<div class="org-tag">FINANCE</div>
-    	<div class="org-tag">and more...</div>
-   </div>
+  <div class="hero" style=height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;>
+    <div>
+	    <h1> Imparting Argumental Intelligence </h1>
+	    <h2> Sustainable use of Machine Models </h2>
+	    <h2> for Academic, Employment and Entrepreneurial Development </h2>
+	    <div style=margin-top:1em;><strong>Led by sustaincia.org</strong> — encouraging diverse sustainable development with technology and social efforts </div>
+    </div>
   </div>
 
-  <!-- WHY PARENTS CHOOSE (4 pillars) -->
   <div class="section">
     <div class="section-title">
-      <h2>What your child will walk away with</h2>
+      <h2>Join</h2>
     </div>
     <div class="card-grid">
-      <div class="card"><div class="icon">📁</div><h3>Real project</h3><p>Business plan, website, or social enterprise prototype — confidently presented in interviews </p></div>
-      <div class="card"><div class="icon">🎓</div><h3>University advantage</h3><p>Not just grades: a concrete achievement that sets them apart from other applicants</p></div>
-      <div class="card"><div class="icon">🧭</div><h3>Choose the right program</h3><p>Discover real interests and make informed decisions about university majors</p></div>
-      <div class="card"><div class="icon">⚡</div><h3>Future‑ready skills</h3><p>AI, sustainable business, entrepreneurship — valuable for any degree or career</p></div>
+      <a>
+      <div class="card"><h2>Adopters</h2><p> Students / Interns / Trainees </p> </div>
+      </a>
+      <div class="card"><h2>Masters</h2><p> Teachers / Professors / Managers </p> </div>
+      <div class="card"><h2>Innovators</h2><p> Founders / Researchers / Designers </p> </div>
     </div>
+
   </div>
 
-  <!-- PROGRAM STRUCTURE (3 STAGES) -->
   <div class="section">
-    <h2>Program structure · multi‑year pathway</h2>
-    <p style="color:#2f4a6a; margin-bottom: 1.2rem;">Students in Years 1–4 can join. Everyone starts at foundation level; returning students advance each year.</p>
-    <div class="stage-row">
-      <div class="stage-item"><strong>🔍 Explore</strong> <small>Generative AI, online business models, tech & social entrepreneurship careers </small></div>
-      <div class="stage-item"><strong>🧩 Create</strong> <small>Define a social mission, fundraising, networks, business models </small></div>
-      <div class="stage-item"><strong>🚀 Launch</strong> <small>Build a website, use AI for operations, working enterprise prototype </small></div>
+    <div class="section-title">
+      <h2>Get</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card"><h2> Real Projects </h2><p>Prototypes Built with passion </p> </div>
+      <div class="card"><h2> Ready Skills </h2><p>Abilities more than just grades </p> </div>
+      <div class="card"><h2> Future Paths </h2><p>Open career possibilities </p> </div>
     </div>
   </div>
 
-  <!-- WHO WE ARE LOOKING FOR + COMPETITIONS -->
-  <div class="grid-2" style="margin: 2rem 0;">
-    <div>
-      <h2>We are looking for students who are…</h2>
-      <ul class="check-list">
-        <li><strong>Curious</strong> — ask questions, want to understand how things work</li>
-        <li><strong>Driven</strong> — motivated to build something meaningful</li>
-        <li><strong>Ready to compete</strong> — keen to enter international competitions</li>
-        <li><strong>Pioneers</strong> — inaugural program; students help shape its future</li>
-      </ul>
+    <!--
+    <div style="margin-top: 0.8rem;">
+      <div class="industry-tags">
+	<span>In</span>
+        <span> Biotech</span>
+        <span> Transportation</span>
+        <span> Culture</span>
+        <span> Environment</span>
+        <span> Finance</span>
+        <span> and more</span>
+      </div>
     </div>
-    <div>
-      <h2>Why parents choose this Initiative</h2>
-      <ul class="check-list">
-        <li><strong>University‑level content</strong> — adapted from actual university syllabi </li>
-        <li><strong>Tangible results</strong> — business plans, websites, prototypes you can see</li>
-        <li><strong>Personalised mentorship</strong> — limited spots, individual guidance</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- DETAILS + CTA -->
-  <div style="margin: 2rem 0 1.5rem;">
-    <div class="details-grid">
-      <span class="label">Who can join</span><span class="value">Secondary Years 1–4 · beginners welcome</span>
-      <span class="label">Time</span><span class="value">Junior Afterschool activities </span>
-      <span class="label">Organizer</span><span class="value"><a href=sustaincia.org>sustaincia.org</a> — technology & sustainable development </span>
-      <span class="label">Enrollment</span><span class="value">Limited spots · first come, first served</span>
-    </div>
-  </div>
-
-  <!-- CALL TO ACTION -->
-  <div class="cta-box">
-    <p><strong>Ready to give your child a sustainable career?</strong>
-    </p>
-    <span>Contact your school's CCA coordinator or career counselor to apply</span>
-  </div>
+    -->
 
   <!-- FOOTER / CONTACT -->
   <div class="footnote">
-    <span style="color:#6f8aa7;">© sustaincia.org · Innovative Intelligence Initiative</span>
+    © sustaincia.org · Imparting Argumental Intelligence 
   </div>
 
-</div>
 </body>
 </html>
-
-							<script>
-                            	
-							</script>
-                        </body>
-                        </html>
-                    
