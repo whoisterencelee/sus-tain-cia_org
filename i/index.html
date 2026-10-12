@@ -2,19 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="description" content="Sustainable use of Machine Models for Academic, Employment and Entrepreneurial Development">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="icon.png">
 
-  <title>Imparting Argumental Intelligence</title>
+  <!--Insert OG Markup -->
+  <meta prefix="og: http://ogp.me/ns#" property="og:type" content="website" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="Imparting Argumental Intelligence" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="sustainable development using machine models" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://sustaincia.org/i/icon.png" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://sustaincia.org/i" />
+  <!--Insert Twitter Card Markup -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@sustaincia" />
+  <meta name="twitter:domain" content="https://sustaincia.org" />
+  <meta name="twitter:title" content="Imparting Argumental Intelligence" />
+  <meta name="twitter:description" content="sustainable development using machine models" />
+  <meta name="twitter:image" content="https://sustaincia.org/i/icon.png" />
+
+  <meta name="referrer" content="no-referrer-when-downgrade"><!-- important https://web.dev/referrer-best-practices/ -->
+  <meta name="theme-color" content="orange">
+
+  <title> Imparting AI </title>
   <style>
     /* ----- reset & base ----- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    a {
+    	text-decoration:none;
     }
 
     body {
@@ -165,6 +187,7 @@
       gap: 0.5em;
       align-items:center;
       justify-content:center;
+      border-radius:3px;
       box-shadow: 6px -6px 4px rgba(0,0,0,0.25);
     }
 
@@ -321,7 +344,7 @@
     .teacher-point {
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.14);
- border-radius: 1.4rem;
+      border-radius: 1.4rem;
       padding: 1.2rem 1.4rem;
     }
 
@@ -555,7 +578,7 @@
   </div>
 
   <!-- HERO -->
-  <div class="hero" style=height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;>
+  <div class="hero" style=height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;>
     <div>
 	    <h1> Imparting Argumental Intelligence </h1>
 	    <h2> Sustainable use of Machine Models </h2>
@@ -564,31 +587,41 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">
-      <h2>Join</h2>
-    </div>
-    <div class="card-grid">
-      <a>
-      <div class="card"><h2>Adopters</h2><p> Students / Interns / Trainees </p> </div>
-      </a>
-      <div class="card"><h2>Masters</h2><p> Teachers / Professors / Managers </p> </div>
-      <div class="card"><h2>Innovators</h2><p> Founders / Researchers / Designers </p> </div>
-    </div>
+  <a style=text-decoration:none;color:white;text-align:right; href=./p><h2>How ➜</h2></a>
+  <a style=text-decoration:none;color:white;text-align:right; href=#how><h2>Start ➜</h2></a>
+
+  <div id=how style=height:100vh;>
+
+	  <div class="section">
+	    <div class="section-title">
+	      <a style=color:white; href=#join><h2 id=join>Join</h2></a>
+	    </div>
+	    <div class="card-grid">
+	      <a href=./p?s=Adopters.md><div class="card"><h2>Adopters ➜</h2><p> Students / Interns / Trainees </p> </div></a>
+	      <a href=./p?s=Teachers.md><div class="card"><h2>Teachers ➜</h2><p> Experts / Professors / Trainers </p> </div></a>
+	      <a href=./p?s=Innovators.md><div class="card"><h2>Innovators ➜</h2><p> Founders / Researchers / Designers </p> </div></a>
+	    </div>
+	  </div>
+
+	  <div class="section">
+	    <div class="section-title">
+	      <a style=color:white; href=#see><h2 id=see>See</h2></a>
+	    </div>
+	    <div class="card-grid">
+	      <div class="card"><h2> Real Projects </h2><p>Prototypes Built with Passion </p> </div>
+	      <div class="card"><h2> Ready Skills </h2><p>Next Level Abilities </p> </div>
+	      <div class="card"><h2> Future Paths </h2><p>Open Career Possibilities </p> </div>
+	    </div>
+	  </div>
+
+	  <!-- FOOTER / CONTACT -->
+	  <div class="footnote">
+	    <p style=text-align:center;width:100%;color:darkorange;text-shadow:none;>
+	    © sustaincia.org · Imparting Argumental Intelligence 
+	    </p>
+	  </div>
 
   </div>
-
-  <div class="section">
-    <div class="section-title">
-      <h2>Get</h2>
-    </div>
-    <div class="card-grid">
-      <div class="card"><h2> Real Projects </h2><p>Prototypes Built with passion </p> </div>
-      <div class="card"><h2> Ready Skills </h2><p>Abilities more than just grades </p> </div>
-      <div class="card"><h2> Future Paths </h2><p>Open career possibilities </p> </div>
-    </div>
-  </div>
-
     <!--
     <div style="margin-top: 0.8rem;">
       <div class="industry-tags">
@@ -602,11 +635,6 @@
       </div>
     </div>
     -->
-
-  <!-- FOOTER / CONTACT -->
-  <div class="footnote">
-    © sustaincia.org · Imparting Argumental Intelligence 
-  </div>
 
 </body>
 </html>
