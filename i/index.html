@@ -28,6 +28,11 @@
 
   <title> Imparting AI </title>
   <style>
+  .unselectable {
+	  -webkit-user-select: none; /* For Safari */
+	  user-select: none; /* Standard syntax */
+  }
+
     /* ----- reset & base ----- */
     * {
       margin: 0;
@@ -37,14 +42,14 @@
 
     a {
     	text-decoration:none;
+	color: lightyellow;
     }
 
     body {
       background: orange;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: white;
+      color: lightyellow;
       text-shadow: 0px 1px 2px black;
-      padding: 0 1.5rem 4rem;
     }
 
     /* ----- typography & colour ----- */
@@ -128,7 +133,6 @@
 
     .hero .subtitle {
       font-size: 1.35rem;
-      color: #1f3a57;
       margin-top: 0.75rem;
       font-weight: 450;
       max-width: 700px;
@@ -150,7 +154,7 @@
 
     /* ----- cards & sections ----- */
     .section {
-      margin: 3rem 0 2.5rem;
+      margin: 3rem 1.5rem 2.5rem;
       break-inside: avoid;
     }
 
@@ -167,7 +171,6 @@
       border-radius: 30px;
       font-size: 0.8rem;
       font-weight: 600;
-      color: #1f4970;
     }
 
     .card-grid {
@@ -177,7 +180,8 @@
     }
 
     .card {
-      background: #f9fbfd;
+      height: 30vh;
+      background: lightyellow;
       color: orange;
       text-shadow:0 0;
       padding: 1.8rem 1.5rem;
@@ -251,49 +255,6 @@
       font-size: 0.9rem;
     }
 
-    /* ----- teacher band (now at end) ----- */
-    .teacher-band {
-      background: #0b2b4a;
-      color: white;
-      border-radius: 2.5rem;
-      padding: 2.5rem 2.5rem 2.8rem;
-      margin: 3rem 0 0;
-    }
-
-    .teacher-band h2 {
-      color: white;
-      font-size: 2rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .teacher-band .lead {
-      color: #c8dbea;
-      max-width: 760px;
-    }
-
-    .teacher-band .lead strong {
-      color: #ffffff;
-    }
-
-    .teacher-band h3 {
-      color: white;
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .teacher-band p {
-      color: #c8dbea;
-      font-size: 0.95rem;
-    }
-
-    /* two-panel contrast: what this is / what this isn't */
-    .teacher-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.4rem;
-      margin: 1.8rem 0 2rem;
-    }
-
    panel {
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.14);
@@ -333,20 +294,6 @@
       color: #7ee2b8;
       font-weight: 700;
       font-size: 1rem;
-    }
-
-    .teacher-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.4rem;
-      margin: 1.6rem 0 2rem;
-    }
-
-    .teacher-point {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 1.4rem;
-      padding: 1.2rem 1.4rem;
     }
 
     /* ----- suggestion table ----- */
@@ -544,47 +491,83 @@
   </div>
 
   <!-- HERO -->
-  <div class="hero" style=height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;>
+  <div class="hero" style="height:100vh;padding:0 1.5rem;display:flex;flex-direction:column;justify-content:center;align-items:center;">
     <div>
 	    <h1> Imparting Argumental Intelligence </h1>
 	    <h2> Sustainable use of Machine Models </h2>
 	    <h2> for Academic, Employment and Entrepreneurial Development </h2>
 	    <div style=margin-top:1em;><strong>Led by sustaincia.org</strong> — encouraging diverse sustainable development with technology and social efforts </div>
+	    <div class=card-grid style="margin:2em 0;">
+		  <a style=text-decoration:none;text-align:center; href=#how><h2>How ➜</h2></a>
+		  <a style=text-decoration:none;text-align:center; href=#join><h2>Start ➜</h2></a>
+	    </div>
     </div>
   </div>
 
-  <a style=text-decoration:none;color:white;text-align:right; href=#how><h2>How ➜</h2></a>
-  <a style=text-decoration:none;color:white;text-align:right; href=#join><h2>Start ➜</h2></a>
 
-	  <div class=section>
-	    <div class=section-title>
-	      <a style=color:white; href=#how><h2 id=how>How</h2></a>
-	    </div>
-	    <div style=gap:2em;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;text-align:center;>
-	    <h3> <u>Sustainably use</u> machine assistance </h3>
-	    <h3><u>Collectively</u> follow the latest in AI development</h3>
-	    <h3> <u>Build skills</u> from the ground up </h3>
-	    <h3> Demonstrate <u>practical</u> solutions </h3>
-	    <h3> Scale <u>cost-effectively</u>
-	    <h3> Collaborative design <u>with stakeholders</u> </h3>
-	    <h3> Keep <u>control</u> and avoid misdirection </h3>
+	  <style>
+	  #posting .card {
+		position:absolute;
+	  	background:lightyellow;color:darkorange;width:130px;height:130px;border-radius:0;padding:1em;
+		transform-origin: center center;
+		transform: rotate(3deg);
+		}
+	  </style>
+	  <div class="section unselectable" style=height:100vh;position:relative;>
+	    <div id=posting style=gap:2em;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;text-align:center;>
+		    <div class=card> Sustainably use machine assistance </div class=card>
+		    <div class=card>Collectively follow the latest in AI development</div class=card>
+		    <div class=card> Build skills from the ground up </div class=card>
+		    <div class=card> Demonstrate practical solutions </div class=card>
+		    <div class=card> Scale cost-effectively </div class=card>
+		    <div class=card> Collaborative design with stakeholders </div class=card>
+		    <div class=card> Keep control and avoid misdirection </div class=card>
 	    </div>
 	  </div>
+	  <script>
+	  	card = null
+	  	posting = document.getElementById( "posting" )
+		posting.addEventListener( 'pointerdown' , (e) => {
+			card = e.target.closest( '.card' )
+			if( !card ) return
+			card.setPointerCapture( e.pointerId )
+			startX = e.clientX
+			startY = e.clientY
+			cardLeft = card.offsetLeft
+			cardTop = card.offsetTop
+			card.style.zIndex = 1000
+		} )
+		posting.addEventListener( 'pointermove' , (e) => {
+			if( !card ) return
+			dx = e.clientX - startX
+			dy = e.clientY - startY
+			newLeft = cardLeft + dx
+			newTop = cardTop + dy
+			card.style.left = `${newLeft}px`
+			card.style.top = `${newTop}px`
+		} )
+		posting.addEventListener( 'pointerup' , (e) => {
+			if( !card ) return
+			card.releasePointerCapture( e.pointerId )
+			card.style.zIndex = ''
+			card = null
+		} )
+	  </script>
 
 	  <div class="section">
 	    <div class="section-title">
 	      <a style=color:white; href=#join><h2 id=join>Join</h2></a>
 	    </div>
 	    <div class="card-grid">
-	      <a href=./p?s=Adopters.md><div class="card"><h2>Adopters ➜</h2><p> Students / Interns / Trainees </p> </div></a>
-	      <a href=./p?s=Teachers.md><div class="card"><h2>Teachers ➜</h2><p> Experts / Professors / Trainers </p> </div></a>
-	      <a href=./p?s=Innovators.md><div class="card"><h2>Innovators ➜</h2><p> Founders / Researchers / Designers </p> </div></a>
+	      <a href=./p?s=Adopters.md><div class="card"><h2>Adopters ➜</h2><p> Students<br/>Interns<br/>Trainees </p> </div></a>
+	      <a href=./p?s=Teachers.md><div class="card"><h2>Teachers ➜</h2><p> Experts<br/>Professors<br/>Trainers </p> </div></a>
+	      <a href=./p?s=Innovators.md><div class="card"><h2>Innovators ➜</h2><p> Founders<br/>Researchers<br/>Designers </p> </div></a>
 	    </div>
 	  </div>
 
 	  <div class="section">
 	    <div class="section-title">
-	      <a style=color:white; href=#see><h2 id=see>See</h2></a>
+	      <a style=color:white; href=#get><h2 id=get>Get</h2></a>
 	    </div>
 	    <div class="card-grid">
 	      <div class="card"><h2> Real Projects </h2><p>Prototypes Built with Passion </p> </div>
