@@ -126,17 +126,6 @@
     }
 
     /* ----- header / hero ----- */
-    .hero h1 {
-      font-size: 3.2rem;
-      max-width: 900px;
-    }
-
-    .hero .subtitle {
-      font-size: 1.35rem;
-      margin-top: 0.75rem;
-      font-weight: 450;
-      max-width: 700px;
-    }
 
     .org-tag {
       margin-top: 0.5rem;
@@ -153,24 +142,14 @@
     }
 
     /* ----- cards & sections ----- */
-    .section {
+    section {
       margin: 3rem 1.5rem 2.5rem;
       break-inside: avoid;
     }
 
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .section-title span {
-      background: #e6edf6;
-      padding: 0.2rem 0.8rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 600;
+    section-title {
+    	display:block;
+	margin: 1rem 0;
     }
 
     .card-grid {
@@ -473,9 +452,11 @@
 	</script>
 </head>
 <body>
-  <div class=lang style="position:absolute;right:0;top:0;padding:0.2em 1em;">
+
+<div class="lang unselectable" style="position:absolute;right:0;top:0;padding:0.2em 1em;">
 	<style>
-	.lang a { text-decoration:none;
+	.lang a { 
+		text-decoration:none;
 		border:1px solid darkorange;
 		padding:0.2em;
 		text-shadow:0 0;
@@ -488,50 +469,103 @@
 	<a href=index_cn.html>简</a>
 	-->
 	<a class=selected href=index.html?lang=en>EN</a>
-  </div>
+</div>
 
-  <!-- HERO -->
-  <div class="hero" style="height:100vh;padding:0 1.5rem;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-    <div>
-	    <h1> Imparting Argumental Intelligence </h1>
-	    <h2> Sustainable use of Machine Models </h2>
-	    <h2> for Academic, Employment and Entrepreneurial Development </h2>
-	    <div style=margin-top:1em;><strong>Led by sustaincia.org</strong> — encouraging diverse sustainable development with technology and social efforts </div>
-	    <div class=card-grid style="margin:2em 0;">
-		  <a style=text-decoration:none;text-align:center; href=#how><h2>How ➜</h2></a>
-		  <a style=text-decoration:none;text-align:center; href=#join><h2>Start ➜</h2></a>
-	    </div>
-    </div>
-  </div>
+<section class=hero style="height:100dvh;padding-top:260px;text-align:center;align-items:center;position:relative;margin:0;overflow-x:clip;display:flex;flex-direction:column;justify-content:center;">
 
+	<!-- HERO -->
+	<style>
+	.hero h1 { font-size: 3.2rem; max-width: 900px; }
+	.hero h2 { font-size: 1.5rem; max-width: 900px; }
+	</style>
+	<h1> Imparting Argumental Intelligence </h1>
+	<h2> Sustainable use of Machine Models </h2>
+	<h2> for Academic, Employment and Entrepreneurial Development </h2>
+	<div style=margin-top:1em;>
+	<strong>Led by sustaincia.org</strong>
+	— encouraging diverse sustainable development with technology and social efforts 
+	</div>
 
-	  <style>
-	  .postIT {
+	<div class=card-grid style="margin:2em 0;z-index:101;">
+		<div class="hero" style="padding:0 1.5rem;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+		<a style=text-decoration:none;text-align:center; href=#join><h2>Start ➜</h2></a>
+		</div>
+	</div>
+
+	<!-- postIT -->
+	<style>
+	.postIT {
 		position:absolute;
-	  	background:lightyellow;color:darkorange;width:130px;height:130px;border-radius:0;padding:1em;
+		background:lightyellow;color:darkorange;width:130px;height:130px;border-radius:0;padding:1em;
 		transform-origin: center center;
 		transform: translate(-50%,-50%) rotate(3deg);
-	        text-shadow:0 0;
-      		display:flex;
+		text-shadow:0 0;
+		display:flex;
 		flex-direction:column;
 		flex-wrap:wrap;
-	        align-items:center;
- 	        justify-content:center;
-                box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
-		}
-	  </style>
-	  <div class="section unselectable" style=height:100vh;position:relative;margin:0;overflow-x:clip;>
-	    <div id=posting style=position:absolute;inset:0;text-align:center;>
-		    <div class="postIT" x="0.15" y="0.20">Sustainably use machine assistance</div>
-		    <div class="postIT" x="0.40" y="0.20">Collectively follow the latest in AI development</div>
-		    <div class="postIT" x="0.65" y="0.20">Build skills from the ground up</div>
-		    <div class="postIT" x="0.85" y="0.20">Demonstrate practical solutions</div>
-		    <div class="postIT" x="0.25" y="0.70">Scale cost-effectively</div>
-		    <div class="postIT" x="0.50" y="0.70">Collaborative design with stakeholders</div>
-		    <div class="postIT" x="0.75" y="0.70">Keep control and avoid misdirection</div>
-	    </div>
-	  </div>
-		<script>
+		align-items:center;
+		justify-content:center;
+		box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+		text-overflow: ellipsis;
+		touch-action: none;
+	}
+	</style>
+
+	<div id=posting class=unselectable style=position:absolute;inset:0;text-align:center;>
+		<div class="postIT" x="0.52" y="0.08">Collectively follow the latest in AI development</div>
+		<div class="postIT" x="0.82" y="0.12">Build skills from the ground up</div>
+		<div class="postIT" x="0.95" y="0.26">Demonstrate practical solutions</div>
+		<div class="postIT" x="0.40" y="0.25">Scale cost-effectively</div>
+		<div class="postIT" x="0.67" y="0.27">Collaborative design with stakeholders</div>
+		<div class="postIT" x="0.12" y="0.26">Keep control and avoid misdirection</div>
+	</div>
+
+	<script>
+	function newPostIT({ text = '' } = {} , evt ) {
+	  const el = document.createElement('div');
+	  el.className = 'postIT';
+	  el.textContent = text;
+	  el.contentEditable = 'true';
+	  el.style.left = evt.target.offsetLeft + "px"
+	  el.style.top = evt.target.offsetTop + "px"
+	  el.style.zIndex = 1000
+
+	  document.getElementById('posting').appendChild(el);
+
+	  // Enter edit mode.
+	  el.focus();
+	  const range = document.createRange();
+	  range.selectNodeContents(el);
+	  const sel = window.getSelection();
+	  sel.removeAllRanges();
+	  sel.addRange(range);
+
+	  // Blur on outside tap/click so the card becomes draggable.
+	  // (Your pointerdown handler gates drag on `document.activeElement !== el`.)
+	  const onDocPointerDown = (e) => {
+	    if (!el.contains(e.target)) {
+	      el.blur();
+	    }
+	  };
+	  document.addEventListener('pointerdown', onDocPointerDown, true);
+
+	  // Blur on Enter (without inserting a newline).
+	  const onKeyDown = (e) => {
+		  if (e.key === 'Enter') {
+			  e.preventDefault();
+			  el.blur();
+		  }
+	  };
+	  el.addEventListener('keydown', onKeyDown);
+
+	  el.addEventListener('blur', () => {
+	    document.removeEventListener('pointerdown', onDocPointerDown, true);
+	    el.contentEditable = 'false';
+	  }, { once: true });
+
+	  return el;
+	}  // end of newPostIT
+
 		(() => {
 		  const STORAGE_KEY = 'postIT.v1';
 		  const posting = document.getElementById('posting');
@@ -571,6 +605,7 @@
 		  posting.addEventListener('pointerdown', (e) => {
 		    const postIT = e.target.closest('.postIT');
 		    if (!postIT) return;
+		    const postITs = [...posting.querySelectorAll('.postIT')];
 		    const index = postITs.indexOf(postIT);
 
 		    if (!layout[index]) {
@@ -579,6 +614,7 @@
 		      layout[index] = {
 			x: (r.left - pr.left) / pr.width,
 			y: (r.top  - pr.top ) / pr.height,
+			text: postIT.textContent,
 		      };
 		      applyPinned(postIT, layout[index].x, layout[index].y);
 		    }
@@ -622,29 +658,36 @@
 		    location.reload();
 		  });
 		})();
-		</script>
+	</script>
 
-	  <div class="section">
-	    <div class="section-title">
+	<!-- new postIT -->
+	<!--
+	<div class="postIT unselectable" onclick="newPostIT( { text:'write and stick anywhere' } , event )" x="0.15" y="0.20" style="color:transparent;text-shadow:0 0 1px darkorange;font-size:44px;transform:translate(-50%,-50%) rotate(0deg);left:75px;top:75px;">🖋</div>
+	-->
+
+</section>
+
+<section>
+	<section-title>
 	      <a style=color:white; href=#join><h2 id=join>Join</h2></a>
-	    </div>
+	</section-title>
 	    <div class="card-grid">
 	      <a href=./p?s=Adopters.md><div class="card"><h2>Adopters ➜</h2><p> Students<br/>Interns<br/>Trainees </p> </div></a>
 	      <a href=./p?s=Teachers.md><div class="card"><h2>Teachers ➜</h2><p> Experts<br/>Professors<br/>Trainers </p> </div></a>
 	      <a href=./p?s=Innovators.md><div class="card"><h2>Innovators ➜</h2><p> Founders<br/>Researchers<br/>Designers </p> </div></a>
 	    </div>
 	  </div>
+</section>
 
-	  <div class="section">
-	    <div class="section-title">
+<section>
+	<section-title>
 	      <a style=color:white; href=#get><h2 id=get>Get</h2></a>
-	    </div>
+	</section-title>
 	    <div class="card-grid">
 	      <div class="card"><h2> Real Projects </h2><p>Prototypes Built with Passion </p> </div>
 	      <div class="card"><h2> Ready Skills </h2><p>Next Level Abilities </p> </div>
 	      <div class="card"><h2> Future Paths </h2><p>Open Career Possibilities </p> </div>
 	    </div>
-	  </div>
 
 	  <!-- FOOTER / CONTACT -->
 	  <div class="footnote">
@@ -652,6 +695,7 @@
 	    © sustaincia.org · Imparting Argumental Intelligence 
 	    </p>
 	  </div>
+</section>
 
     <!--
     <div style="margin-top: 0.8rem;">
