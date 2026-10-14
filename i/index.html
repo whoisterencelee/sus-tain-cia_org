@@ -506,53 +506,123 @@
 
 
 	  <style>
-	  #posting .card {
+	  .postIT {
 		position:absolute;
 	  	background:lightyellow;color:darkorange;width:130px;height:130px;border-radius:0;padding:1em;
 		transform-origin: center center;
-		transform: rotate(3deg);
+		transform: translate(-50%,-50%) rotate(3deg);
+	        text-shadow:0 0;
+      		display:flex;
+		flex-direction:column;
+		flex-wrap:wrap;
+	        align-items:center;
+ 	        justify-content:center;
+                box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
 		}
 	  </style>
-	  <div class="section unselectable" style=height:100vh;position:relative;>
-	    <div id=posting style=gap:2em;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;text-align:center;>
-		    <div class=card> Sustainably use machine assistance </div class=card>
-		    <div class=card>Collectively follow the latest in AI development</div class=card>
-		    <div class=card> Build skills from the ground up </div class=card>
-		    <div class=card> Demonstrate practical solutions </div class=card>
-		    <div class=card> Scale cost-effectively </div class=card>
-		    <div class=card> Collaborative design with stakeholders </div class=card>
-		    <div class=card> Keep control and avoid misdirection </div class=card>
+	  <div class="section unselectable" style=height:100vh;position:relative;margin:0;overflow-x:clip;>
+	    <div id=posting style=position:absolute;inset:0;text-align:center;>
+		    <div class="postIT" x="0.15" y="0.20">Sustainably use machine assistance</div>
+		    <div class="postIT" x="0.40" y="0.20">Collectively follow the latest in AI development</div>
+		    <div class="postIT" x="0.65" y="0.20">Build skills from the ground up</div>
+		    <div class="postIT" x="0.85" y="0.20">Demonstrate practical solutions</div>
+		    <div class="postIT" x="0.25" y="0.70">Scale cost-effectively</div>
+		    <div class="postIT" x="0.50" y="0.70">Collaborative design with stakeholders</div>
+		    <div class="postIT" x="0.75" y="0.70">Keep control and avoid misdirection</div>
 	    </div>
 	  </div>
-	  <script>
-	  	card = null
-	  	posting = document.getElementById( "posting" )
-		posting.addEventListener( 'pointerdown' , (e) => {
-			card = e.target.closest( '.card' )
-			if( !card ) return
-			card.setPointerCapture( e.pointerId )
-			startX = e.clientX
-			startY = e.clientY
-			cardLeft = card.offsetLeft
-			cardTop = card.offsetTop
-			card.style.zIndex = 1000
-		} )
-		posting.addEventListener( 'pointermove' , (e) => {
-			if( !card ) return
-			dx = e.clientX - startX
-			dy = e.clientY - startY
-			newLeft = cardLeft + dx
-			newTop = cardTop + dy
-			card.style.left = `${newLeft}px`
-			card.style.top = `${newTop}px`
-		} )
-		posting.addEventListener( 'pointerup' , (e) => {
-			if( !card ) return
-			card.releasePointerCapture( e.pointerId )
-			card.style.zIndex = ''
-			card = null
-		} )
-	  </script>
+		<script>
+		(() => {
+		  const STORAGE_KEY = 'postIT.v1';
+		  const posting = document.getElementById('posting');
+		  const postITs = [...posting.querySelectorAll('.postIT')];
+
+		  let layout = loadLayout();
+
+		  function loadLayout() {
+		    try {
+		      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
+		      if (Array.isArray(raw)) return raw;
+		    } catch {}
+		    return postITs.map(readInitialFromHTML);
+		  }
+
+		  function readInitialFromHTML(postIT) {
+		    const x = parseFloat(postIT.getAttribute('x'));
+		    const y = parseFloat(postIT.getAttribute('y'));
+		    return Number.isFinite(x) && Number.isFinite(y) ? { x, y } : null;
+		  }
+
+		  function saveLayout() {
+		    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(layout)); } catch {}
+		  }
+
+		  function applyPinned(postIT, x, y) {
+		    postIT.style.left = (x * 100) + '%';
+		    postIT.style.top  = (y * 100) + '%';
+		  }
+
+		  postITs.forEach((postIT, i) => {
+		    const p = layout[i];
+		    if (p) applyPinned(postIT, p.x, p.y);
+		  });
+
+		  let drag = null;
+		  posting.addEventListener('pointerdown', (e) => {
+		    const postIT = e.target.closest('.postIT');
+		    if (!postIT) return;
+		    const index = postITs.indexOf(postIT);
+
+		    if (!layout[index]) {
+		      const r = postIT.getBoundingClientRect();
+		      const pr = posting.getBoundingClientRect();
+		      layout[index] = {
+			x: (r.left - pr.left) / pr.width,
+			y: (r.top  - pr.top ) / pr.height,
+		      };
+		      applyPinned(postIT, layout[index].x, layout[index].y);
+		    }
+
+		    drag = {
+		      postIT, index,
+		      startX: e.clientX, startY: e.clientY,
+		      startPct: { ...layout[index] },
+		      moved: false,
+		    };
+		    postIT.style.zIndex = 1000;
+		    posting.setPointerCapture(e.pointerId);
+		    e.preventDefault();
+		  });
+
+		  posting.addEventListener('pointermove', (e) => {
+		    if (!drag) return;
+		    const pr = posting.getBoundingClientRect();
+		    drag.postIT.style.left = ((drag.startPct.x + (e.clientX - drag.startX) / pr.width)  * 100) + '%';
+		    drag.postIT.style.top  = ((drag.startPct.y + (e.clientY - drag.startY) / pr.height) * 100) + '%';
+		    layout[drag.index] = {
+		      x: (drag.startPct.x + (e.clientX - drag.startX) / pr.width),
+		      y: (drag.startPct.y + (e.clientY - drag.startY) / pr.height),
+		    };
+		    drag.moved = true;
+		  });
+
+		  function endDrag(e) {
+		    if (!drag) return;
+		    posting.releasePointerCapture(e.pointerId);
+		    drag.postIT.style.zIndex = '';
+		    if (drag.moved) saveLayout();
+		    drag = null;
+		  }
+		  posting.addEventListener('pointerup', endDrag);
+		  posting.addEventListener('pointercancel', endDrag);
+
+		  posting.addEventListener('dblclick', (e) => {
+		    if (!e.shiftKey) return;
+		    localStorage.removeItem(STORAGE_KEY);
+		    location.reload();
+		  });
+		})();
+		</script>
 
 	  <div class="section">
 	    <div class="section-title">
