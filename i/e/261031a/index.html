@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>第六屆論壇 · 交通運輸領域人工智能工作流程演示 — OCT 31</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;800&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;800&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;family=Noto+Serif+TC:wght@700;900&amp;display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F4EFE5;      /* 暖白紙張 */
@@ -17,6 +17,7 @@
     --grey:rgba(22,20,15,.62);
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
+  [hidden]{ display:none !important; }
   html{ scroll-behavior:smooth; }
   body{
     background:#0D0C0A;
@@ -26,6 +27,8 @@
     display:flex; justify-content:center;
   }
   ::selection{ background:var(--yellow); color:var(--ink); }
+  input, button{ font-family:inherit; }
+  input:focus-visible, button:focus-visible{ outline:2px solid var(--red); outline-offset:2px; }
 
   /* ============ 海報本體 ============ */
   .poster{
@@ -69,7 +72,7 @@
     padding:26px 36px 14px;
   }
   .org{ display:flex; align-items:center; gap:10px; }
-  .org svg{ width:30px; height:30px; }
+  .org img{ width:64px; height:64px; }
   .org-name{ font-weight:700; font-size:14px; letter-spacing:.06em; line-height:1.2; }
   .org-name span{ display:block; font-family:'Big Shoulders Display'; font-weight:600; font-size:10px; letter-spacing:.22em; color:var(--grey); margin-top:2px; }
   .doc-no{ text-align:right; font-family:'Big Shoulders Display'; font-weight:600; font-size:12px; letter-spacing:.24em; color:var(--grey); }
@@ -99,41 +102,93 @@
   .hollow{
     font-style:normal;
     color:transparent;
-    -webkit-text-stroke:2.4px var(--ink);
     transition:color .5s ease;
     cursor:default;
   }
-  .hollow:hover{ color:var(--yellow); }
+  .hollow:hover{ color:green; }
   .hero-sub{
     margin-top:26px; max-width:52ch;
     font-size:13.5px; font-weight:300; line-height:1.9; color:var(--grey);
   }
   .hero-sub b{ font-weight:500; color:var(--ink); }
 
-  /* 賽車門牌圓徽 */
-  .roundel{
-    position:absolute; right:36px; top:118px; z-index:2;
-    width:132px; height:132px; border-radius:50%;
-    background:var(--paper); border:3px solid var(--ink);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    transform:rotate(-7deg);
-    transition:transform .45s cubic-bezier(.2,.8,.25,1.2);
-    cursor:pointer; user-select:none;
-  }
-  .roundel::before{ /* 印刷錯位紅圈 */
-    content:""; position:absolute; inset:-3px; border-radius:50%;
-    border:3px solid var(--red); transform:translate(6px,6px); z-index:-1;
-  }
-  .roundel .no{ font-family:'Big Shoulders Display'; font-weight:600; font-size:12px; letter-spacing:.3em; }
-  .roundel strong{ font-family:'Big Shoulders Display'; font-weight:800; font-size:56px; line-height:.95; letter-spacing:.02em; }
-  .roundel .car-no{ font-family:'Big Shoulders Display'; font-weight:600; font-size:11px; letter-spacing:.26em; color:var(--red); }
-  .roundel:hover{ transform:rotate(0deg) scale(1.05); }
-  .roundel.spin{ animation:spinY .9s cubic-bezier(.3,.7,.3,1); }
-  @keyframes spinY{ 0%{transform:rotate(0)} 50%{transform:rotate(190deg) scale(1.06)} 100%{transform:rotate(360deg)} }
   .pit-note{
-    position:absolute; right:38px; top:262px; width:128px; text-align:right;
+    position:absolute; right:38px; top:118px; width:128px; text-align:right;
     font-family:'Big Shoulders Display'; font-weight:600; font-size:10.5px;
     letter-spacing:.2em; color:var(--grey); line-height:1.7;
+  }
+
+  /* ============ 報名票根（選項 D · 修訂版） ============ */
+  .tk-wrap{ width:min(312px, 100%); margin:36px auto 0; }
+  .tk{
+    position:relative; display:flex;
+    transform:rotate(-1.5deg);
+    filter:drop-shadow(6px 7px 0 rgba(217,58,34,.5));
+  }
+  .tk-main{
+    flex:1; min-width:0;
+    background:var(--paper); border:2.5px solid var(--ink);
+    border-right:2.5px dashed var(--ink);
+    border-radius:10px 0 0 10px;
+    padding:16px 18px;
+  }
+  .tk::before,.tk::after{ /* 副券打孔 */
+    content:""; position:absolute; left:calc(100% - 84px); width:16px; height:16px;
+    border-radius:50%; background:var(--paper); border:2.5px solid var(--ink); z-index:2;
+  }
+  .tk::before{ top:-11px; } .tk::after{ bottom:-11px; }
+  .tm-kicker{
+    display:block; font-weight:600; font-size:10.5px; letter-spacing:.2em;
+    color:var(--red); margin-bottom:6px;
+  }
+  .tm-title{
+    display:block; font-family:'Noto Serif TC', serif; font-weight:900;
+    font-size:21px; letter-spacing:.06em; margin-bottom:12px;
+  }
+  .tm-form{ display:flex; border:2.5px solid var(--ink); }
+  .tm-form input{
+    flex:1; min-width:0; border:0; background:transparent;
+    padding:10px 12px; font-size:13px; outline:none;
+  }
+  .tm-form input:focus{ background:rgba(240,180,40,.14); }
+  .tm-form input::placeholder{ color:rgba(22,20,15,.35); }
+  .tm-form button{
+    border:0; background:var(--ink); color:var(--paper);
+    padding:0 18px; font-weight:700; font-size:13.5px; letter-spacing:.22em;
+    text-indent:.22em; /* 視覺置中兩個字 */
+  }
+  .tm-form button:hover{ background:var(--red); }
+  .tm-ok p{ font-size:11.5px; color:var(--grey); margin-top:12px; line-height:1.9; }
+  .tm-ok b{ color:var(--ink); font-weight:500; word-break:break-all; }
+  .stamp{
+    display:inline-block; border:3px solid var(--red); color:var(--red);
+    font-family:'Noto Serif TC', serif; font-weight:900; font-size:17px; letter-spacing:.18em;
+    padding:5px 14px 5px 17px; transform:rotate(-7deg);
+    animation:stampIn .38s cubic-bezier(.2,.85,.3,1) both;
+  }
+  @keyframes stampIn{
+    0%{ transform:rotate(-16deg) scale(1.9); opacity:0; }
+    55%{ transform:rotate(-6deg) scale(.95); opacity:1; }
+    100%{ transform:rotate(-7deg) scale(1); }
+  }
+  .again{
+    margin-top:10px; margin-left:8px; border:2px solid var(--ink); background:transparent;
+    padding:4px 12px; font-size:11px; font-weight:500; letter-spacing:.14em; cursor:pointer;
+  }
+  .again:hover{ background:var(--ink); color:var(--paper); }
+  .tk-stub{
+    width:84px; background:var(--yellow); border:2.5px solid var(--ink); border-left:0;
+    border-radius:0 10px 10px 0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+  }
+  .ts-s{ font-weight:600; font-size:11px; letter-spacing:.3em; text-indent:.3em; }
+  .ts-b{ font-weight:800; font-size:42px; line-height:.95; }
+
+  /* 桌面版：票根固定於 hero 右下，文字讓位 */
+  @media (min-width:780px){
+    .tk-wrap{ position:absolute; right:36px; bottom:36px; margin:0; }
+    .tk{ transform:rotate(-2.5deg); }
+    .hero-sub{ max-width:340px; }
   }
 
   /* ============ 跑馬燈警示帶 ============ */
@@ -152,7 +207,7 @@
   .timing{ background:var(--asphalt); color:var(--paper); }
   .hazard{ height:7px; background:repeating-linear-gradient(-45deg, var(--yellow) 0 9px, var(--asphalt) 9px 18px); }
   .timing-grid{ display:flex; }
-  .t-cell{ flex:1; padding:20px 24px 18px; display:flex; flex-direction:column; justify-content:center; }
+  .t-cell{ flex:1; padding:20px 24px 18px; display:flex; flex-direction:column; justify-content:center; text-align:center; }
   .t-cell + .t-cell{ border-left:1px solid rgba(244,239,229,.16); }
   .t-big{ font-family:'Big Shoulders Display'; font-weight:800; line-height:.9; }
   .t-cell.date{ flex-direction:row; align-items:center; gap:12px; }
@@ -246,7 +301,7 @@
   .checkers{ height:16px; background:repeating-conic-gradient(var(--paper) 0% 25%, var(--asphalt) 0% 50%) 0 0/11px 11px; opacity:.9; }
   .foot-grid{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; padding:24px 36px; }
   .foot-org{ display:flex; align-items:center; gap:10px; font-weight:500; font-size:13px; letter-spacing:.08em; }
-  .foot-org svg{ width:24px; height:24px; }
+  .foot-org img{ width:64px; height:64px; }
   .foot-mid{ font-family:'Big Shoulders Display'; font-weight:600; font-size:13px; letter-spacing:.2em; color:var(--yellow); }
   .foot-time{ font-family:'Big Shoulders Display'; font-weight:600; font-size:13px; letter-spacing:.2em; color:rgba(244,239,229,.7); text-align:right; }
   .foot-note{ border-top:1px solid rgba(244,239,229,.14); padding:12px 36px 16px; font-size:10.5px; letter-spacing:.14em; color:rgba(244,239,229,.45); display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px; }
@@ -261,9 +316,6 @@
     .double-rule{ margin:0 22px; }
     .m-zh{ letter-spacing:.08em; }
     .m-en{ letter-spacing:.12em; }
-    .roundel{ width:100px; height:100px; right:22px; top:96px; border-width:2.5px; }
-    .roundel strong{ font-size:42px; }
-    .roundel::before{ transform:translate(4px,4px); border-width:2.5px; }
     .pit-note{ display:none; }
     .hero-sub{ margin-top:20px; }
     .timing-grid{ flex-direction:column; }
@@ -288,7 +340,8 @@
   @media (prefers-reduced-motion: reduce){
     .ticker-track, .journey::after{ animation:none; }
     .reveal{ opacity:1; transform:none; transition:none; }
-    .roundel, .node{ transition:none; }
+    .stamp{ animation:none; }
+    .node{ transition:none; }
   }
 </style>
 </head>
@@ -305,8 +358,8 @@
   <!-- 頁眉 -->
   <header class="p-head">
     <div class="org">
-      <!-- 協會標記：圓環 + 上升箭頭 -->
-	<img src=https://sustaincia.org/logo/sustaincia_org_128x128.png style=width:64px;height:64px;/>
+      <!-- 協會標記 -->
+      <img src="https://sustaincia.org/logo/sustaincia_org_128x128.png" alt="可持續發展協會" style="width:64px;height:64px;">
       <div class="org-name">可持續發展協會<span>SUSTAINABLE DEVELOPMENT ASSOCIATION</span></div>
     </div>
     <div class="doc-no">
@@ -320,29 +373,49 @@
   <section class="hero">
     <!-- 背景彎道 -->
     <svg class="hero-corner" viewBox="0 0 460 340" fill="none">
-      <path d="M-20 300 C 130 292, 250 250, 300 170 S 340 40, 470 30" stroke="#16140F" stroke-width="26" stroke-linecap="round"/>
-      <path d="M420 8 L470 30 L438 74" stroke="#16140F" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M-20 300 C 130 292, 250 250, 300 170 S 340 40, 470 30" stroke="#16140F" stroke-width="26" stroke-linecap="round"></path>
+      <path d="M420 8 L470 30 L438 74" stroke="#16140F" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
     </svg>
 
-    <p class="kicker reveal">第六屆論壇 · 現場演示 <span class="en">— TRANSPORT &amp; MOBILITY</span></p>
+    <p class="kicker reveal">第六屆論壇 · 現場演示</p>
 
     <h1>
-      <span class="line reveal">交通運輸領域</span>
-      <span class="line reveal"><em class="hollow">人工智能</em></span>
-      <span class="line reveal">工作流程演示</span>
+      <span class="line reveal" style="color: darkred;">交通運輸領域</span>
+      <span class="line reveal"><em class="hollow" style="color:var(--yellow)">人工智能</em></span>
+      <span class="line reveal" style="color: green;">工作流程演示</span>
     </h1>
 
-    <!-- 賽車門牌圓徽：本場「31 號車」 -->
-    <div class="roundel reveal" id="roundel" title="Nº 31 — OCT 31">
-      <strong class="en" style=text-align:center;font-size:38px;>OCT 31</strong>
-      <span class="car-no en" style=font-size:21px;>15:45</span>
-    </div>
     <p class="pit-note en reveal">EVERY WORKFLOW,<br>RUN LIVE.</p>
 
     <p class="hero-sub reveal">
       人工智能與軟體驅動的功能，是交通運輸的下一個趨勢——為了提高便利性，消費者可以期待哪些？
       每位指導員將<b>即時展示</b>各自的工作流程，產出與交通運輸相關的內容：安全、娛樂、語音自動化等。
     </p>
+
+    <!-- 報名票根（選項 D · 修訂版） -->
+    <div class="tk-wrap reveal">
+      <div class="tk">
+        <div class="tk-main">
+          <span class="tm-kicker">免費入場 · 現場席位</span>
+          <strong class="tm-title">報名留座</strong>
+          <form class="tm-form" id="regForm">
+            <input id="regEmail" type="email" required placeholder="your@email.com" aria-label="電子郵箱">
+            <button type="submit">報名</button>
+          </form>
+          <div class="tm-ok" id="regOk" hidden aria-live="polite">
+            <span class="stamp">已報名 ✓</span>
+            <p>確認信將寄至 <b id="regEcho"></b>
+              <button type="button" class="again" id="regReset">重設</button>
+            </p>
+          </div>
+        </div>
+        <div class="tk-stub en" aria-hidden="true">
+          <span class="ts-s">OCT</span>
+          <strong class="ts-b">31</strong>
+          <span class="ts-s">15:45</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- 跑馬燈警示帶 -->
@@ -362,11 +435,11 @@
         <small>OCT<br>SAT</small>
       </div>
       <div class="t-cell time">
-        <div class="t-big en" style=font-size:36px;>15:45 <i>—</i> 16:45</div>
+        <div class="t-big en" style="font-size:36px;">15:45 <i>—</i> 16:45</div>
         <small class="en">LIVE SESSION · 60 MIN</small>
       </div>
       <div class="t-cell loc">
-        <div class="t-big en" style=font-size:28px;>VENETIAN <i>·</i> ABC</div>
+        <div class="t-big en" style="font-size:28px;">VENETIAN <i>·</i> ABC</div>
         <small>澳門威尼斯人酒店 · 展館 ABC</small>
       </div>
     </div>
@@ -379,12 +452,12 @@
     <!-- 捲動小車 -->
     <div class="car" id="car">
       <svg viewBox="0 0 48 24">
-        <path d="M3 17v-3.2c0-1.8 1.2-3.3 3-3.7l4.2-.9L14.5 6h12.8l5.8 3.1 6.4 1.3c2.4.5 4 2.5 4 4.9V17h-3.1" fill="#D93A22"/>
-        <path d="M16.5 8.2h9.6v4.2H14z" fill="#F4EFE5"/>
-        <circle cx="14.5" cy="18" r="4.4" fill="#16140F"/>
-        <circle cx="36" cy="18" r="4.4" fill="#16140F"/>
-        <circle cx="14.5" cy="18" r="1.7" fill="#F4EFE5"/>
-        <circle cx="36" cy="18" r="1.7" fill="#F4EFE5"/>
+        <path d="M3 17v-3.2c0-1.8 1.2-3.3 3-3.7l4.2-.9L14.5 6h12.8l5.8 3.1 6.4 1.3c2.4.5 4 2.5 4 4.9V17h-3.1" fill="#D93A22"></path>
+        <path d="M16.5 8.2h9.6v4.2H14z" fill="#F4EFE5"></path>
+        <circle cx="14.5" cy="18" r="4.4" fill="#16140F"></circle>
+        <circle cx="36" cy="18" r="4.4" fill="#16140F"></circle>
+        <circle cx="14.5" cy="18" r="1.7" fill="#F4EFE5"></circle>
+        <circle cx="36" cy="18" r="1.7" fill="#F4EFE5"></circle>
       </svg>
     </div>
 
@@ -401,16 +474,16 @@
     <article class="stop reveal">
       <div class="node" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 21h18"/>
-          <path d="M5 21V11h4v10"/>
-          <path d="M11 21V4h5v17"/>
-          <path d="M18 21v-7h3v7"/>
-          <path d="M13.5 8h.01M13.5 12h.01M13.5 16h.01"/>
+          <path d="M3 21h18"></path>
+          <path d="M5 21V11h4v10"></path>
+          <path d="M11 21V4h5v17"></path>
+          <path d="M18 21v-7h3v7"></path>
+          <path d="M13.5 8h.01M13.5 12h.01M13.5 16h.01"></path>
         </svg>
       </div>
       <div class="stop-body">
         <span class="stop-num en">01</span>
-        <span class="corner-tag en">CORNER 01 — CITY PLANNING SANDBOX</span>
+        <span class="corner-tag en">DEMO 01 — CITY PLANNING SANDBOX</span>
         <h3>AI 城市規劃沙盒</h3>
         <p>在澳門 3D 地圖上構想一條新街道、一座新橋，透過<em>模擬車流</em>，比較不同方案下的行車路線與交通變化——一起探索更暢順、更宜居的城市可能。</p>
         <div class="speaker">
@@ -425,12 +498,12 @@
     <article class="stop reveal">
       <div class="node" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round">
-          <path d="M4 10v4M8 7v10M12 3.5v17M16 7v10M20 10v4"/>
+          <path d="M4 10v4M8 7v10M12 3.5v17M16 7v10M20 10v4"></path>
         </svg>
       </div>
       <div class="stop-body">
         <span class="stop-num en">02</span>
-        <span class="corner-tag en">CORNER 02 — VOICE CO-PILOT</span>
+        <span class="corner-tag en">DEMO 02 — VOICE CO-PILOT</span>
         <h3>AI 聲音副駕</h3>
         <p>認識「AI 聲音副駕」如何<em>自動偵測路況與疲勞</em>，並根據你的需求，為你現場量身打造放鬆音樂。</p>
         <div class="speaker">
@@ -445,14 +518,14 @@
     <article class="stop reveal">
       <div class="node" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round">
-          <path d="M4 20h16"/>
-          <path d="M7 20v-6M12 20V9M17 20V4"/>
-          <path d="M17 4l1.8 1.8M17 4l-1.8 1.8"/>
+          <path d="M4 20h16"></path>
+          <path d="M7 20v-6M12 20V9M17 20V4"></path>
+          <path d="M17 4l1.8 1.8M17 4l-1.8 1.8"></path>
         </svg>
       </div>
       <div class="stop-body">
         <span class="stop-num en">03</span>
-        <span class="corner-tag en">CORNER 03 — VISITOR INSIGHT DASHBOARD</span>
+        <span class="corner-tag en">DEMO 03 — VISITOR INSIGHT DASHBOARD</span>
         <h3>車展參觀者眼中的看點</h3>
         <p>一個由人工智能生成的儀表盤，能將澳門車展參觀者拍攝的大量照片，轉化為直觀的<em>視覺圖案與洞察分析</em>——涵蓋色彩偏好、汽車部件、品牌關注度與描述性語言等維度。現場即時演示：在觀眾的注視下，系統將針對「哪種顏色的車最受關注？」等問題，於超寬 LED 大屏上即時呈現答案。</p>
         <div class="speaker">
@@ -467,15 +540,15 @@
     <article class="stop reveal">
       <div class="node" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 4v15M8.5 19h7"/>
-          <path d="M4.5 7h15"/>
-          <path d="M6.5 7 4.2 12a2.4 2.4 0 0 0 4.6 0L6.5 7z"/>
-          <path d="M17.5 7l-2.3 5a2.4 2.4 0 0 0 4.6 0L17.5 7z"/>
+          <path d="M12 4v15M8.5 19h7"></path>
+          <path d="M4.5 7h15"></path>
+          <path d="M6.5 7 4.2 12a2.4 2.4 0 0 0 4.6 0L6.5 7z"></path>
+          <path d="M17.5 7l-2.3 5a2.4 2.4 0 0 0 4.6 0L17.5 7z"></path>
         </svg>
       </div>
       <div class="stop-body">
         <span class="stop-num en">04</span>
-        <span class="corner-tag en">CORNER 04 — AI-ASSISTED JUDGING</span>
+        <span class="corner-tag en">DEMO 04 — AI-ASSISTED JUDGING</span>
         <h3>AI 輔助評審 · 辯論賽</h3>
         <p>本次辯論賽引入「AI 輔助評審」，結合人工智能分析與人類裁判的專業判斷，從<em>論證、證據及反駁</em>等角度梳理雙方表現，提供評分參考與賽後回饋。</p>
         <div class="speaker">
@@ -501,7 +574,7 @@
     <div class="checkers" aria-hidden="true"></div>
     <div class="foot-grid">
       <div class="foot-org">
-	<img src=https://sustaincia.org/logo/sustaincia_org_128x128.png style=width:64px;height:64px;/>
+        <img src="https://sustaincia.org/logo/sustaincia_org_128x128.png" alt="可持續發展協會" style="width:64px;height:64px;">
         可持續發展協會 主辦
       </div>
       <div class="foot-mid en">VENETIAN MACAO · HALLS A·B·C</div>
@@ -558,12 +631,31 @@
   computeTarget();
   if (!reduced) requestAnimationFrame(tick); else render();
 
-  // ---------- 彩蛋：點擊「AI 門牌」讓它轉一圈 ----------
-  const roundel = document.getElementById('roundel');
-  roundel.addEventListener('click', () => {
-    roundel.classList.remove('spin');
-    void roundel.offsetWidth;                            // 重啟動畫
-    roundel.classList.add('spin');
+  // ---------- 報名票根（示範提交） ----------
+  const regForm  = document.getElementById('regForm');
+  const regEmail = document.getElementById('regEmail');
+  const regOk    = document.getElementById('regOk');
+  const regEcho  = document.getElementById('regEcho');
+
+  regForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!regEmail.checkValidity()) { regEmail.reportValidity(); return; }
+
+    /* ▼ 目前為前端示範。接上真實報名時，把下面兩行換成：
+         fetch('https://你的報名端點', { method:'POST', body:new FormData(regForm) })
+           .then(() => { /* 顯示成功 *\/ })
+           .catch(() => { /* 顯示錯誤 *\/ });
+       可對接 Google Form、Formspree、自訂 API 等。 */
+    regEcho.textContent = regEmail.value.trim();
+    regForm.hidden = true;
+    regOk.hidden = false;
+  });
+
+  document.getElementById('regReset').addEventListener('click', () => {
+    regForm.hidden = false;
+    regOk.hidden = true;
+    regEmail.value = '';
+    regEmail.focus();
   });
 </script>
 
