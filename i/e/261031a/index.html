@@ -3,10 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>第六屆論壇 · 交通運輸領域人工智能工作流程演示 — OCT 31</title>
+<title>OCT 31 15:45 · 交通出行人工智能流程演示</title>
+<link rel="icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;800&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;family=Noto+Serif+TC:wght@700;900&amp;display=swap" rel="stylesheet">
+
+  <!--Insert OG Markup -->
+  <meta prefix="og: http://ogp.me/ns#" property="og:type" content="website" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:title" content="sustaincia.org" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:description" content="OCT 31 15:45  · 交通出行人工智能流程演示" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:image" content="https://sustaincia.org/i/e/261031a/icon.png" />
+  <meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://sustaincia.org/i/e/261031a" />
+  <!--Insert Twitter Card Markup -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@sustaincia.org" />
+  <meta name="twitter:domain" content="https://sustaincia.org" />
+  <meta name="twitter:title" content="sustaincia.org" />
+  <meta name="twitter:description" content="OCT 31 15:45  · 交通出行人工智能流程演示" />
+  <meta name="twitter:image" content="https://sustaincia.org/i/e/261031a/icon.png" />
+
 <style>
   :root{
     --paper:#F4EFE5;      /* 暖白紙張 */
@@ -23,7 +39,7 @@
     background:#0D0C0A;
     font-family:'Noto Sans TC', sans-serif;
     color:var(--ink);
-    padding:6vh 16px;
+    padding:0 16px;
     display:flex; justify-content:center;
   }
   ::selection{ background:var(--yellow); color:var(--ink); }
@@ -121,7 +137,6 @@
   .tk-wrap{ width:min(312px, 100%); margin:20px auto 0; }
   .tk{
     position:relative; display:flex;
-    transform:rotate(-1.5deg);
     filter:drop-shadow(6px 7px 0 lightgrey);
   }
   .tk-main{
@@ -155,15 +170,15 @@
   .tm-ok p{ font-size:11.5px; color:var(--grey); margin-top:12px; line-height:1.9; }
   .tm-ok b{ color:var(--ink); font-weight:500; word-break:break-all; }
   .stamp{
-    display:inline-block; border:3px solid var(--red); color:var(--red);
+    display:inline-block; 
     font-family:'Noto Serif TC', serif; font-weight:900; font-size:17px; letter-spacing:.18em;
-    padding:5px 14px 5px 17px; transform:rotate(-7deg);
+    width:100%; text-align:center;
     animation:stampIn .38s cubic-bezier(.2,.85,.3,1) both;
   }
   @keyframes stampIn{
-    0%{ transform:rotate(-16deg) scale(1.9); opacity:0; }
-    55%{ transform:rotate(-6deg) scale(.95); opacity:1; }
-    100%{ transform:rotate(-7deg) scale(1); }
+    0%{ transform:scale(1.9); opacity:0; }
+    55%{ transform:scale(.95); opacity:1; }
+    100%{ transform:scale(1); }
   }
   .again{
     margin-top:10px; margin-left:8px; border:2px solid var(--ink); background:transparent;
@@ -181,7 +196,6 @@
   /* 桌面版：票根固定於 hero 右下，文字讓位 */
   @media (min-width:780px){
     .tk-wrap{ position:absolute; right:36px; bottom:36px; margin:0; }
-    .tk{ transform:rotate(-2.5deg); }
     .hero-sub{ max-width:340px; }
   }
 
@@ -350,24 +364,33 @@
   <!-- 跑馬燈警示帶 -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span>AI工作流程———交通運輸及出行———現場演示———澳門威尼斯人展館———OCT 31 SAT———15:45 — 16:45———</span>
-      <span>AI工作流程———交通運輸及出行———現場演示———澳門威尼斯人展館———OCT 31 SAT———15:45 — 16:45———</span>
+      <span>AI流程———交通及出行———現場演示———澳門威尼斯人展館———OCT 31 SAT———15:45 — 16:45———</span>
+      <span>AI流程———交通及出行———現場演示———澳門威尼斯人展館———OCT 31 SAT———15:45 — 16:45———</span>
     </div>
   </div>
 
   <!-- 主視覺 -->
   <section class="hero">
 
+    <style>
+      .trafficlight {
+      	border-radius: 1em;
+	padding: 0.2em 0.5em;
+	margin: 0.1em -0.2em;
+	color:white;
+	text-shadow:0 0 1px black;
+	}
+    </style>
     <div style=display:flex;flex-direction:row;>
 	    <h1>
-	      <span class="line reveal" style="color: darkred;">交通運輸領域</span>
-	      <span class="line reveal"><em class="hollow" style="color:var(--yellow);text-shadow:0 0 2px black;">人工智能</em></span>
-	      <span class="line reveal" style="color: green;">工作流程演示</span>
+	      <span class="line reveal trafficlight" style="background: darkred;">交通出行</span>
+	      <span class="line reveal trafficlight" style="background: var(--yellow);">人工智能</em></span>
+	      <span class="line reveal trafficlight" style="background: green;">流程演示</span>
 	    </h1>
     </div>
 
     <p class="hero-sub reveal">
-      利用人工智能是交通運輸的下一個趨勢，我們真正能夠實現的是什麼？
+      利用人工智能是交通的下一個趨勢，我們真正能夠實現的是什麼？
       每位指導員將<b>即時展示</b>各自的工作流程，產生出與移動相關的內容：在我們不斷移動的生活中提高便利性、安全、移動的樂趣、自動化。
     </p>
 
@@ -375,18 +398,49 @@
     <div class="tk-wrap reveal">
       <div class="tk">
         <div class="tk-main">
-          <form class="tm-form" id="regForm">
-            <input id="regEmail" type="email" required placeholder="your@email.com" aria-label="電子郵箱">
+          <form class="tm-form" id="regForm" method="POST" action="https://functional.limited/forms" >
+
+             <div class="hpot" style=display:none;><label>
+                    <!--default <input name="_next" value="https://sustaincia.org/i/e/261031a?success"></input>-->
+                    <input name="_gotcha"></input>
+                    <input name="_to" value="https://sustaincia.org/i/e/261031a"></input>
+                    </label></div>
+
+		    <input name="email" type="email" required placeholder="your@email.com" aria-label="電子郵箱">
             <button type="submit">報名</button>
           </form>
           <div class="tm-ok" id="regOk" hidden aria-live="polite">
-            <span class="stamp">已報名 ✓</span>
-            <p>確認信將寄至 <b id="regEcho"></b>
-              <button type="button" class="again" id="regReset">重設</button>
-            </p>
+            <span class="stamp" onclick=timeToShare() >已報名 點此分享</span>
+	    <script>
+		q = new URLSearchParams(window.location.search)
+		if( q.has("success") || q.has("exists") ){
+			document.getElementById('regForm').hidden = true
+			document.getElementById('regOk').hidden = false
+		}
+
+		function timeToShare( byCopy ){
+			if( navigator.share && !byCopy ){
+				try {
+				  navigator.share({
+				  	title : document.title ,
+					text: "time to share" ,
+					url: location.origin + location.pathname ,
+					})
+				} catch( e ) { 
+					timetoShare( "fallback" ) 
+					alert("can't share")
+					}
+			} else {
+				navigator.clipboard.writeText(
+					document.title + "\n " + location.origin + location.pathname
+				)
+				alert("連結已複製")
+			}
+		}
+	    </script>
           </div>
         </div>
-        <div class="tk-stub en" aria-hidden="true">
+        <div class="tk-stub" aria-hidden="true">
           <span class="tm-m">免費入場</span>
 	  <span class="tm-m">報名留座</span>
         </div>
@@ -600,32 +654,6 @@
   computeTarget();
   if (!reduced) requestAnimationFrame(tick); else render();
 
-  // ---------- 報名票根（示範提交） ----------
-  const regForm  = document.getElementById('regForm');
-  const regEmail = document.getElementById('regEmail');
-  const regOk    = document.getElementById('regOk');
-  const regEcho  = document.getElementById('regEcho');
-
-  regForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!regEmail.checkValidity()) { regEmail.reportValidity(); return; }
-
-    /* ▼ 目前為前端示範。接上真實報名時，把下面兩行換成：
-         fetch('https://你的報名端點', { method:'POST', body:new FormData(regForm) })
-           .then(() => { /* 顯示成功 *\/ })
-           .catch(() => { /* 顯示錯誤 *\/ });
-       可對接 Google Form、Formspree、自訂 API 等。 */
-    regEcho.textContent = regEmail.value.trim();
-    regForm.hidden = true;
-    regOk.hidden = false;
-  });
-
-  document.getElementById('regReset').addEventListener('click', () => {
-    regForm.hidden = false;
-    regOk.hidden = true;
-    regEmail.value = '';
-    regEmail.focus();
-  });
 </script>
 
 </body>
