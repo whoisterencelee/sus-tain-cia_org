@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="AI 晶片公路標誌">
+  <style>
+    /* 連續行進虛線：offset = 一個虛線週期 → 無縫循環
+       時長與週期成正比（÷17）→ 全部車道同速 17px/s */
+    .d1{ animation: m1 1s    linear infinite; }  /* 8+9  = 17 */
+    .d2{ animation: m2 .765s linear infinite; }  /* 6+7  = 13 */
+    .d3{ animation: m3 .588s linear infinite; }  /* 5+5  = 10 */
+    .d4{ animation: m4 .529s linear infinite; }  /* 4+5  = 9  */
+    @keyframes m1{ to{ stroke-dashoffset:-17; } }
+    @keyframes m2{ to{ stroke-dashoffset:-13; } }
+    @keyframes m3{ to{ stroke-dashoffset:-10; } }
+    @keyframes m4{ to{ stroke-dashoffset:-9;  } }
+    @media (prefers-reduced-motion:reduce){
+      .d1,.d2,.d3,.d4{ animation:none; }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="chipFaceG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4C4C4C"/>
+      <stop offset="1" stop-color="#343434"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 擠出側壁（3D 厚度） -->
+  <rect x="52" y="56" width="148" height="148" rx="20" fill="#1D1D1D"/>
+  <rect x="49" y="51" width="148" height="148" rx="20" fill="#292929"/>
+
+  <!-- 頂面 -->
+  <rect x="46" y="46" width="148" height="148" rx="20" fill="url(#chipFaceG)"/>
+
+  <!-- 封裝邊緣受光 / 背光 -->
+  <path d="M62 48.5 H178 M48.5 62 V178" fill="none" stroke="#F4EFE5" stroke-opacity=".16" stroke-width="2" stroke-linecap="round"/>
+  <path d="M62 191.5 H178 M191.5 62 V178" fill="none" stroke="#000000" stroke-opacity=".35" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- 蝕刻晶粒輪廓 -->
+  <rect x="57" y="57" width="126" height="126" rx="13" fill="none" stroke="#F4EFE5" stroke-opacity=".15" stroke-width="1.5"/>
+
+  <!-- 道路：字母 AI（粗）＋ 接腳匝道（細） -->
+  <g fill="none" stroke="#F4EFE5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- A -->
+    <path d="M60 170 L87 70 L114 170" stroke-width="16"/>
+    <path d="M66 136 L108 136" stroke-width="12"/>
+    <!-- I -->
+    <path d="M158 70 L158 170" stroke-width="17"/>
+    <path d="M140 70 L176 70" stroke-width="12"/>
+    <path d="M140 170 L176 170" stroke-width="12"/>
+    <!-- 匝道 12/12 -->
+    <path d="M78 47 C78 56 81 62 86 69" stroke-width="6"/>
+    <path d="M120 47 C120 57 131 62 140 68" stroke-width="6"/>
+    <path d="M162 47 L162 67" stroke-width="6"/>
+    <path d="M47 78 L83 78" stroke-width="6"/>
+    <path d="M47 120 C56 120 62 128 68 134.5" stroke-width="6"/>
+    <path d="M47 162 C52 163 55 166 59.5 169" stroke-width="6"/>
+    <path d="M193 78 C188 75 182 72 177 70.5" stroke-width="6"/>
+    <path d="M193 120 C180 120 170 120 162 120" stroke-width="6"/>
+    <path d="M193 162 C188 164 182 167 177 169.5" stroke-width="6"/>
+    <path d="M78 193 C70 190 63 180 61 171" stroke-width="6"/>
+    <path d="M120 193 C117 186 115 178 114.5 171" stroke-width="6"/>
+    <path d="M162 193 L162 173" stroke-width="6"/>
+  </g>
+
+  <!-- 中央虛線（動畫層） -->
+  <g fill="none" stroke="#F0B428" stroke-linecap="round">
+    <path class="d1" d="M63.5 166 L87 75 L110.5 166" stroke-width="3.5" stroke-dasharray="8 9"/>
+    <path class="d2" d="M72 136 L102 136" stroke-width="2.5" stroke-dasharray="6 7"/>
+    <path class="d2" d="M158 78 L158 162" stroke-width="3" stroke-dasharray="6 7"/>
+    <path class="d3" d="M146 70 L170 70" stroke-width="2" stroke-dasharray="5 5"/>
+    <path class="d3" d="M146 170 L170 170" stroke-width="2" stroke-dasharray="5 5"/>
+    <path class="d4" d="M120 47 C120 57 131 62 140 68" stroke-width="1.8" stroke-dasharray="4 5"/>
+    <path class="d4" d="M47 78 L83 78" stroke-width="1.8" stroke-dasharray="4 5"/>
+    <path class="d4" d="M193 120 C180 120 170 120 162 120" stroke-width="1.8" stroke-dasharray="4 5"/>
+    <path class="d4" d="M78 193 C70 190 63 180 61 171" stroke-width="1.8" stroke-dasharray="4 5"/>
+  </g>
+
+  <!-- 接腳（金色，含高光與接觸陰影） -->
+  <g>
+    <!-- 上 -->
+    <rect x="73.5"  y="29" width="9" height="19" rx="2" fill="#F0B428"/><rect x="74.8"  y="31.5" width="2.4" height="12" rx="1.2" fill="#F9D977"/><rect x="73.5"  y="43.5" width="9" height="3.5" fill="#9C750E"/>
+    <rect x="115.5" y="29" width="9" height="19" rx="2" fill="#F0B428"/><rect x="116.8" y="31.5" width="2.4" height="12" rx="1.2" fill="#F9D977"/><rect x="115.5" y="43.5" width="9" height="3.5" fill="#9C750E"/>
+    <rect x="157.5" y="29" width="9" height="19" rx="2" fill="#F0B428"/><rect x="158.8" y="31.5" width="2.4" height="12" rx="1.2" fill="#F9D977"/><rect x="157.5" y="43.5" width="9" height="3.5" fill="#9C750E"/>
+    <!-- 下 -->
+    <rect x="73.5"  y="192" width="9" height="19" rx="2" fill="#F0B428"/><rect x="74.8"  y="194.5" width="2.4" height="12" rx="1.2" fill="#F9D977"/><rect x="73.5"  y="193" width="9" height="3.5" fill="#9C750E"/>
+    <rect x="115.5" y="192" width="9" height="19" rx="2" fill="#F0B428"/><rect x="116.8" y="194.5" width="2.4" height="12" rx="1.2" fill="#F9D977"/><rect x="115.5" y="193" width="9" height="3.5" fill="#9C750E"/>
+    <rect x="157.5" y="192" width="9" height="19" rx="2" fill="#F0B428"/><rect x="158.8" y="194.5" width="2.4" height="12" rx="1.2" fill="#F9D977"/><rect x="157.5" y="193" width="9" height="3.5" fill="#9C750E"/>
+    <!-- 左 -->
+    <rect x="29" y="73.5"  width="19" height="9" rx="2" fill="#F0B428"/><rect x="31.5" y="74.8"  width="12" height="2.4" rx="1.2" fill="#F9D977"/><rect x="43.5" y="73.5"  width="3.5" height="9" fill="#9C750E"/>
+    <rect x="29" y="115.5" width="19" height="9" rx="2" fill="#F0B428"/><rect x="31.5" y="116.8" width="12" height="2.4" rx="1.2" fill="#F9D977"/><rect x="43.5" y="115.5" width="3.5" height="9" fill="#9C750E"/>
+    <rect x="29" y="157.5" width="19" height="9" rx="2" fill="#F0B428"/><rect x="31.5" y="158.8" width="12" height="2.4" rx="1.2" fill="#F9D977"/><rect x="43.5" y="157.5" width="3.5" height="9" fill="#9C750E"/>
+    <!-- 右 -->
+    <rect x="192" y="73.5"  width="19" height="9" rx="2" fill="#F0B428"/><rect x="194.5" y="74.8"  width="12" height="2.4" rx="1.2" fill="#F9D977"/><rect x="192" y="73.5"  width="3.5" height="9" fill="#9C750E"/>
+    <rect x="192" y="115.5" width="19" height="9" rx="2" fill="#F0B428"/><rect x="194.5" y="116.8" width="12" height="2.4" rx="1.2" fill="#F9D977"/><rect x="192" y="115.5" width="3.5" height="9" fill="#9C750E"/>
+    <rect x="192" y="157.5" width="19" height="9" rx="2" fill="#F0B428"/><rect x="194.5" y="158.8" width="12" height="2.4" rx="1.2" fill="#F9D977"/><rect x="192" y="157.5" width="3.5" height="9" fill="#9C750E"/>
+  </g>
+
+  <!-- pin-1 定位點 -->
+  <circle cx="63" cy="63" r="3.8" fill="#F4EFE5"/>
+</svg>
