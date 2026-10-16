@@ -426,7 +426,7 @@
 				  navigator.share({
 				  	title : document.title ,
 					text: "time to share" ,
-					url: location.origin + location.pathname ,
+					url: "https://sustaincia.org/i/e/261031a" ,
 					})
 				} catch( e ) { 
 					timetoShare( "fallback" ) 
@@ -434,7 +434,7 @@
 					}
 			} else {
 				navigator.clipboard.writeText(
-					document.title + "\n " + location.origin + location.pathname
+					document.title + "\n " + "https://sustaincia.org/i/e/261031a" ,
 				)
 				alert("連結已複製")
 			}
