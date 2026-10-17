@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../icon.png">
+<link rel="stylesheet" href="styles.css">
+
+
+    <title>Markdown Loader</title>
+</head>
+<body style=background:orange;margin:0;>
+    <div id=content>Loading...</div>
+
+	<!-- cards -->
+	<div id="cards" class="cards"></div>
+
+	<style>
+	  .cards {
+	    display: flex;
+	    flex-direction:column;
+	    align-items:center;
+	    gap: 16px;
+	  }
+
+	  .card {
+	    display: flex;
+	    gap: 16px;
+	    padding: 16px;
+	    border: 1px solid #ddd;
+	    color: inherit;
+	    text-decoration: none;
+	    background:white;
+	    justify-content:center;
+	  }
+
+	  .card:hover {
+	    background: #f7f7f7;
+	  }
+
+	  .card img {
+	    width: 120px;
+	    height: 90px;
+	    flex: none;
+	    object-fit: cover;
+	    border-radius: 8px;
+	  }
+
+	  .card p {
+	    margin-bottom: 0;
+	    color: #555;
+	  }
+	</style>
+
+	<script>
+	  const sites = [
+	    "https://sustaincia.org/i/e/261031a",
+	  ];
+
+	  const cards = document.querySelector("#cards");
+
+	  async function makeCard(url) {
+	    const response = await fetch(url, { mode: "cors" });
+	    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+	    const html = await response.text();
+	    const doc = new DOMParser().parseFromString(html, "text/html");
+
+	    const meta = (...selectors) => {
+	      for (const selector of selectors) {
+		const value = doc.querySelector(selector)?.content?.trim();
+		if (value) return value;
+	      }
+	      return "";
+	    };
+
+	    const title =
+	      meta('meta[property="og:title"]', 'meta[name="twitter:title"]') ||
+	      doc.title ||
+	      url;
+
+	    const description = meta(
+	      'meta[property="og:description"]',
+	      'meta[name="twitter:description"]',
+	      'meta[name="description"]'
+	    );
+
+	    const image = meta(
+	      'meta[property="og:image"]',
+	      'meta[name="twitter:image"]'
+	    );
+
+	    const link = document.createElement("a");
+	    link.className = "card";
+	    link.href = url;
+	    link.target = "_blank";
+	    link.rel = "noopener noreferrer";
+
+	    if (image) {
+	      const img = document.createElement("img");
+	      img.src = new URL(image, url).href;
+	      img.alt = "";
+	      link.append(img);
+	    }
+
+	    const text = document.createElement("div");
+	    const heading = document.createElement("strong");
+	    heading.textContent = title;
+	    text.append(heading);
+
+	    if (description) {
+	      const paragraph = document.createElement("p");
+	      paragraph.textContent = description;
+	      text.append(paragraph);
+	    }
+
+	    link.append(text);
+	    return link;
+	  }
+
+	  for (const url of sites) {
+	    makeCard(url)
+	      .then(card => cards.append(card))
+	      .catch(() => {
+		const message = document.createElement("p");
+		message.textContent = `Could not load preview for ${url}`;
+		cards.append(message);
+	      });
+	  }
+	</script>
+
+    <!-- editor -->
+    <div id=footer style=text-align:center;margin:1em;>
+	    <button onclick="c=document.getElementById('code');c.style.display=='none'?c.style.display='block':c.style.display='none';" style=background:none;border:0;width:100%;>✂</button>
+    </div>
+
+    <textarea id=code style=display:none;width:98vw;min-height:25vh;resize:none;overflow:scroll;border-radius:0;border:0;padding:1em;background:rgba(255,255,255,0.5);></textarea>
+
+    <!-- Load the marked library from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        // Base location where the markdown files live.
+        // Change this to wherever your .md files are hosted.
+        const baseUrl = './';
+
+        // Default file if no ?s= is provided
+        const defaultFile = 'Readme.md';
+
+        // Read the ?s= query parameter
+        const params = new URLSearchParams(window.location.search);
+        let file = params.get('s') || defaultFile;
+
+        // Basic guardrail: strip anything that isn't a safe filename character.
+        // NOTE: this is NOT a security boundary. Anyone who can edit this page
+        // can change baseUrl or remove this line entirely. Its only purpose is
+        // to keep accidental bad links (typos, copy-paste errors) from
+        // producing strange fetches.
+        file = file.replace(/[^a-zA-Z0-9._-]/g, '');
+
+        // Enforce a .md extension
+        if (!file.toLowerCase().endsWith('.md')) {
+            file += '.md';
+        }
+
+        const markdownUrl = baseUrl + file;
+
+        fetch(markdownUrl, {cache:"no-cache"})
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.status);
+                }
+                return response.text();
+            })
+            .then(markdown => {
+                document.getElementById('content').innerHTML = marked.parse(markdown);
+		document.getElementById('code').value = markdown
+                document.title = document.getElementById('content').childNodes[0].textContent;
+            })
+            .catch(error => {
+                console.error('Error loading Markdown:', error);
+                document.getElementById('content').textContent =
+                    'Failed to load content: ' + file;
+            });
+    </script>
+</body>
+</html>
