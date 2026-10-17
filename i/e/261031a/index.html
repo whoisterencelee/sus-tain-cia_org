@@ -273,9 +273,9 @@
   .host h2 small{ font-family:'Noto Sans TC'; font-weight:400; font-size:13px; color:var(--grey); margin-left:12px; letter-spacing:.08em; }
 
   /* 站點 */
-  .stop{ position:relative; display:grid; grid-template-columns:96px 1fr; padding:36px 0 10px; }
+  .stop{ position:relative; display:flex; }
   .stop .node{ justify-self:start; align-self:start; margin-top:2em; }
-  .stop-body{ padding-right:56px;margin-bottom:30px; }
+  .stop-body{ margin:60px 0; }
   .stop-num{
     font-family:'Big Shoulders Display'; font-weight:800; font-size:104px; line-height:1;
     color:transparent; -webkit-text-stroke:1.5px rgba(22,20,15,.20);
@@ -287,12 +287,12 @@
     position:relative; z-index:1;
     font-family:'Noto Serif TC', serif; font-weight:900; font-size:29px; letter-spacing:.03em; margin-bottom:12px;
   }
-  .stop p{ position:relative; z-index:1; font-size:14px; font-weight:300; line-height:1.95; color:var(--grey); max-width:56ch; }
+  .stop p{ position:relative; z-index:1; font-size:14px; font-weight:300; line-height:1.95; color:var(--grey); }
   .stop p em{ font-style:normal; font-weight:500; color:var(--ink); }
   .speaker{
     margin-top:16px; padding-top:12px;
     border-top:1px dashed rgba(22,20,15,.3);
-    display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 14px; max-width:56ch;
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:4px 14px;
   }
   .speaker .role{ font-size:10.5px; letter-spacing:.2em; font-weight:500; color:var(--grey); }
   .speaker .role .en{ letter-spacing:.22em; font-size:10.5px; }
@@ -388,7 +388,9 @@
 	      <span class="line reveal trafficlight" style="background: green;">流程演示</span>
 	    </h1>
 
-	    <img src=logo.svg />
+	    <div style=display:flex;flex-direction:column;justify-content:center;>
+		    <img src=logo.svg />
+	    </div>
     </div>
 
     <p class="hero-sub reveal" style=font-size:1em;>
@@ -489,64 +491,16 @@
 
     <!-- 起點：主持人 -->
     <section class="stop reveal">
-      <div class="node checker" aria-hidden="true"></div>
       <div>
         <span class="stop-num en" style=color:green;>開始</span>
         <h2>馮敏良<br /><small style=margin:0;>可持續發展協會特約主持人 </small></h2>
       </div>
     </section>
 
-    <!-- 彎道一：城市規劃沙盒 -->
+    <!-- 彎道：車展看點儀表盤 -->
     <article class="stop reveal">
-      <div class="node" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 21h18"></path>
-          <path d="M5 21V11h4v10"></path>
-          <path d="M11 21V4h5v17"></path>
-          <path d="M18 21v-7h3v7"></path>
-          <path d="M13.5 8h.01M13.5 12h.01M13.5 16h.01"></path>
-        </svg>
-      </div>
       <div class="stop-body">
         <span class="stop-num en">道路01</span>
-        <h3>AI 城市規劃沙盒</h3>
-        <p>在澳門 3D 地圖上構想一條新街道、一座新橋，透過<em>模擬車流</em>，比較不同方案下的行車路線與交通變化——一起探索更暢順、更宜居的城市可能。</p>
-        <div class="speaker">
-          <span class="name">卓岫</span>
-          <span class="title">建築師</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- 彎道二：聲音副駕 -->
-    <article class="stop reveal">
-      <div class="node" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round">
-          <path d="M4 10v4M8 7v10M12 3.5v17M16 7v10M20 10v4"></path>
-        </svg>
-      </div>
-      <div class="stop-body">
-        <span class="stop-num en">道路02</span>
-        <h3>AI 聲音副駕</h3>
-        <p>認識「AI 聲音副駕」如何<em>自動偵測路況與疲勞</em>，並根據你的需求，為你現場量身打造放鬆音樂。</p>
-        <div class="speaker">
-          <span class="name">林偉豪</span>
-          <span class="title">可持續發展協會聯合創辦人</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- 彎道三：車展看點儀表盤 -->
-    <article class="stop reveal">
-      <div class="node" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round">
-          <path d="M4 20h16"></path>
-          <path d="M7 20v-6M12 20V9M17 20V4"></path>
-          <path d="M17 4l1.8 1.8M17 4l-1.8 1.8"></path>
-        </svg>
-      </div>
-      <div class="stop-body">
-        <span class="stop-num en">道路03</span>
         <h3>車展參觀者眼中的看點</h3>
         <p>一個由人工智能生成的儀表盤，能將澳門車展參觀者拍攝的大量照片，轉化為直觀的<em>視覺圖案與洞察分析</em>——涵蓋色彩偏好、汽車部件、品牌關注度與描述性語言等維度。現場即時演示：在觀眾的注視下，系統將針對「哪種顏色的車最受關注？」等問題，於超寬 LED 大屏上即時呈現答案。</p>
         <div class="speaker">
@@ -560,16 +514,34 @@
       </div>
     </article>
 
-    <!-- 彎道四：AI 輔助評審 -->
+    <!-- 彎道：城市規劃沙盒 -->
     <article class="stop reveal">
-      <div class="node" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 4v15M8.5 19h7"></path>
-          <path d="M4.5 7h15"></path>
-          <path d="M6.5 7 4.2 12a2.4 2.4 0 0 0 4.6 0L6.5 7z"></path>
-          <path d="M17.5 7l-2.3 5a2.4 2.4 0 0 0 4.6 0L17.5 7z"></path>
-        </svg>
+      <div class="stop-body">
+        <span class="stop-num en">道路02</span>
+        <h3>AI 城市規劃沙盒</h3>
+        <p>在澳門 3D 地圖上構想一條新街道、一座新橋，透過<em>模擬車流</em>，比較不同方案下的行車路線與交通變化——一起探索更暢順、更宜居的城市可能。</p>
+        <div class="speaker">
+          <span class="name">卓岫</span>
+          <span class="title">建築師</span>
+        </div>
       </div>
+    </article>
+
+    <!-- 彎道：聲音副駕 -->
+    <article class="stop reveal">
+      <div class="stop-body">
+        <span class="stop-num en">道路03</span>
+        <h3>AI 聲音副駕</h3>
+        <p>認識「AI 聲音副駕」如何<em>自動偵測路況與疲勞</em>，並根據你的需求，為你現場量身打造放鬆音樂。</p>
+        <div class="speaker">
+          <span class="name">林偉豪</span>
+          <span class="title">可持續發展協會聯合創辦人</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 彎道：AI 輔助評審 -->
+    <article class="stop reveal">
       <div class="stop-body">
         <span class="stop-num en">道路04</span>
         <h3>AI 輔助評審 · 辯論賽</h3>
@@ -578,6 +550,9 @@
           <span class="name">馮敏良</span>
           <a href=https://sustaincia.org/i><span class="title">可持續發展協會人工智能導師</span></a>
         </div>
+	<div class=speaker>
+		<span class=name>模擬場景</span>
+		<img style=width:100%; src=./debate-sim.jpg />
       </div>
     </article>
 
@@ -605,7 +580,7 @@
 	</a>
       </div>
       <div class="foot-mid">
-      <span>澳門威尼斯人酒店 展館 ABC</span>
+      <span>澳門威尼斯人展館 ABC</span>
       </div>
       <div class="foot-time en">2026 OCT 31 — SAT — 15:45 / 16:45</div>
     </div>
