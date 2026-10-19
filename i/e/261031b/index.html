@@ -1,132 +1,246 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" class="scroll-smooth">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全能汽车帝国赛 – 運輸發展辯論比賽 </title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            800: '#1e3a8a',
-                            900: '#0f172a',
-                        },
-                        gold: {
-                            500: '#d97706',
-                            600: '#b45309',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Inter Font -->
+    <title>全能汽车帝国赛 – 運輸發展辯論比賽</title>
+
+    <!-- Typography only. The single external resource left — fonts, not a CSS framework. -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!--
+      Embedded style layer — 6 rules total. Everything else on this page is inline style="".
+      This block exists ONLY for the four things a style="" attribute physically cannot express:
+        1. universal box-sizing        (Tailwind provided this via its "preflight" reset)
+        2. ::selection                 (was: selection:bg-gold-500 selection:text-white)
+        3. :hover states               (was: hover:* utilities — pseudo-classes need a selector)
+        4. one show/hide breakpoint    (was: hidden sm:block on the decorative "|" separator)
+    -->
     <style>
-        body {
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-        }
+        *, ::before, ::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        ::selection { background: #d97706; color: #ffffff; }
+        .cta-btn:hover { transform: translateY(-2px); }
+        .gold-link:hover { text-decoration: underline; }
+        @media (max-width: 639.98px) { .desktop-only { display: none; } }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-gold-500 selection:text-white">
+<body style="
+    /* ---------- Design tokens: the whole palette, declared once ---------- */
+    --navy-800: #1e3a8a;
+    --navy-900: #0f172a;
+    --gold-500: #d97706;
+    --gold-600: #b45309;
+    --slate-50: #f8fafc;  --slate-100: #f1f5f9;  --slate-200: #e2e8f0;  --slate-300: #cbd5e1;
+    --slate-400: #94a3b8; --slate-500: #64748b;  --slate-600: #475569;  --slate-700: #334155;
+    --slate-800: #1e293b;
+    --emerald-50: #ecfdf5; --emerald-200: #a7f3d0; --emerald-500: #10b981; --emerald-700: #047857; --emerald-900: #064e3b;
+    --rose-50: #fff1f2;    --rose-200: #fecdd3;    --rose-500: #f43f5e;    --rose-700: #be123c;    --rose-900: #881337;
+    /* ---------- Base ---------- */
+    margin: 0;
+    font-family: 'Inter', 'Noto Sans TC', sans-serif;
+    background: var(--slate-50);
+    color: var(--slate-800);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+">
 
-    <!-- Header Section -->
-    <header class="bg-gradient-to-b from-navy-900 via-navy-800 to-navy-950 text-white shadow-xl relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(217,119,6,0.15),transparent_50%)]"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10 text-center">
-            <span class="inline-block bg-gold-500/20 text-gold-500 border border-gold-500/30 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-4 tracking-wider uppercase">
-                2026 年度官方辯論大賽 
-            </span>
-            <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-3">
-                全能汽車帝國賽 <span class="text-gold-500 font-normal">|</span> 運輸發展辯論比賽
-            </h1>
-            
-            <div class="flex flex-wrap justify-center gap-4 text-sm sm:text-base font-medium text-slate-300 bg-white/5 backdrop-blur-md p-4 rounded-2xl max-w-3xl mx-auto border border-white/10 shadow-inner">
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+    <!-- ================= Header ================= -->
+    <!-- NOTE vs original: the gradient's last stop is transparent because the original
+         referenced `to-navy-950`, a colour never defined in its tailwind.config —
+         the class silently generated no CSS. Replicated here as rendered. -->
+    <header style="
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(to bottom, var(--navy-900), var(--navy-800), transparent);
+        color: #ffffff;
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    ">
+        <div style="position: absolute; inset: 0; background: radial-gradient(circle at top right, rgb(217 119 6 / 0.15), transparent 50%);"></div>
+
+        <div style="
+            position: relative; z-index: 10;
+            max-width: 80rem; margin: 0 auto;
+            padding: 4rem clamp(1rem, 0.5rem + 1.7vw, 2rem);
+            text-align: center;
+        ">
+            <span style="
+                display: inline-block;
+                background: rgb(217 119 6 / 0.2);
+                color: var(--gold-500);
+                border: 1px solid rgb(217 119 6 / 0.3);
+                font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+                font-weight: 600;
+                padding: 0.375rem 1rem;
+                border-radius: 9999px;
+                margin-bottom: 1rem;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+            ">2026 年度官方辯論大賽 </span>
+
+            <h1 style="
+                margin: 0 0 0.75rem;
+                font-size: clamp(1.875rem, 0.5rem + 4.2vw, 3rem);
+                font-weight: 800;
+                line-height: 1.1;
+                letter-spacing: -0.025em;
+            ">全能汽車帝國賽 <span style="color: var(--gold-500); font-weight: 400;">|</span> 運輸發展辯論比賽</h1>
+
+            <div style="
+                display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+                max-width: 48rem; margin: 0 auto;
+                padding: 1rem;
+                font-size: clamp(0.875rem, 0.85rem + 0.3vw, 1rem);
+                font-weight: 500;
+                color: var(--slate-300);
+                background: rgb(255 255 255 / 0.05);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgb(255 255 255 / 0.1);
+                border-radius: 1rem;
+                box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+            ">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg style="width: 1.25rem; height: 1.25rem; color: var(--gold-500); flex: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     <span><strong>日期 :</strong> 2026 OCT 31 (週六 Sat)</span>
                 </div>
-                <div class="hidden sm:block text-slate-600">|</div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div class="desktop-only" style="color: var(--slate-600);">|</div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg style="width: 1.25rem; height: 1.25rem; color: var(--gold-500); flex: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span><strong>時間 :</strong> 10:30-12:00 | 16:45-17:10</span>
                 </div>
             </div>
 
-            <div class="mt-8">
-                <a href="mailto:debate.contest@sustaincia.org" class="inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <div style="margin-top: 2rem;">
+                <a href="mailto:debate.contest@sustaincia.org" class="cta-btn" style="
+                    display: inline-flex; align-items: center; gap: 0.5rem;
+                    background: linear-gradient(to right, var(--gold-500), var(--gold-600));
+                    color: #ffffff;
+                    font-weight: 600;
+                    padding: 0.875rem 2rem;
+                    border-radius: 0.75rem;
+                    text-decoration: none;
+                    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                    transition: all 0.3s ease;
+                ">
+                    <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     立即報名 debate.contest@sustaincia.org
                 </a>
+            </div>
+
+            <!-- Awards card — LAYOUT REVISION (2026-10-19): moved up from the bottom row to
+                 sit directly under the email CTA. max-width:48rem matches the info bar above;
+                 text-align:left overrides the header's centered text so the card keeps the
+                 exact internal alignment it had in its original location. -->
+            <div style="
+                max-width: 48rem; margin: 2rem auto 0; text-align: left;
+                background: linear-gradient(to bottom right, var(--gold-500), var(--gold-600));
+                color: #ffffff;
+                border-radius: 1rem;
+                padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);
+                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+                display: flex; flex-direction: column; justify-content: space-between;
+            ">
+                <div>
+                    <h3 style="margin: 0 0 1rem; font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg style="width: 1.5rem; height: 1.5rem; color: #ffffff; flex: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        獎項設置 / Awards &amp; Prizes
+                    </h3>
+                    <div>
+                        <div style="background: rgb(255 255 255 / 0.15); backdrop-filter: blur(4px); padding: 1rem; border-radius: 0.75rem; border: 1px solid rgb(255 255 255 / 0.2);">
+                            <div style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.25rem;">MOP $3,000</div>
+                            <div style="font-size: 0.875rem; font-weight: 600;">冠軍現金獎勵 (Immediate Cash Award)</div>
+                            <p style="margin: 0.25rem 0 0; font-size: 0.75rem; color: rgb(255 255 255 / 0.8);">優勝隊伍更可獲得額外體驗券與尊享旅遊機會。</p>
+                        </div>
+                        <div style="margin-top: 1rem; background: rgb(255 255 255 / 0.1); padding: 0.75rem; border-radius: 0.75rem; border: 1px solid rgb(255 255 255 / 0.1); font-size: 0.875rem;">
+                            <span style="font-weight: 600;">鼓勵獎 (Encouragement Prizes):</span> 為表彰優秀表現，其餘參賽隊伍亦將獲得鼓勵獎。
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; font-size: 0.75rem; color: rgb(255 255 255 / 0.9); text-align: center; font-weight: 500;">
+                    主辦方保留活動最終解釋權。如有疑問請聯絡：debate.contest@sustaincia.org
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+    <!-- ================= Main =================
+         Original used space-y-16 on <main>; replicated by an explicit
+         margin-top on every child after the first. -->
+    <main style="max-width: 80rem; margin: 0 auto; padding: 3rem clamp(1rem, 0.5rem + 1.7vw, 2rem);">
 
         <!-- Introduction Notice -->
-        <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-8 relative">
-            <div class="absolute top-0 left-0 w-2 h-full bg-navy-900 rounded-l-2xl"></div>
-            <h3 class="text-xl font-bold text-navy-900 mb-3">歡迎參賽</h3>
-            <p class="text-slate-600 leading-relaxed mb-4">
+        <section style="
+            position: relative;
+            background: #ffffff;
+            border: 1px solid rgb(226 232 240 / 0.8);
+            border-radius: 1rem;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            padding: 2rem;
+        ">
+            <div style="position: absolute; top: 0; left: 0; width: 0.5rem; height: 100%; background: var(--navy-900); border-radius: 1rem 0 0 1rem;"></div>
+            <h3 style="margin: 0 0 0.75rem; font-size: 1.25rem; font-weight: 700; color: var(--navy-900);">歡迎參賽</h3>
+            <p style="margin: 0; color: var(--slate-600); line-height: 1.625;">
                 我們誠摯邀請您的團隊參與本年度聚焦澳門智慧出行與交通數碼化轉型的關鍵戰略辯論賽。本頁面提供兩輪初賽的詳細辯題、思考引導提示、賽制規範與評分標準。
             </p>
         </section>
 
         <!-- Part 1: Preliminary Round 1 -->
-        <section class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-            <div class="bg-gradient-to-r from-navy-900 to-navy-800 text-white p-6 sm:p-8">
-                <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
-                    <span class="bg-gold-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Part 1: 初賽第一輪</span>
-                    <span class="text-slate-300 text-sm font-medium">Smart Parking Management</span>
+        <section style="
+            margin-top: 4rem;
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            overflow: hidden;
+        ">
+            <div style="background: linear-gradient(to right, var(--navy-900), var(--navy-800)); color: #ffffff; padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+                    <span style="background: var(--gold-500); color: #ffffff; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.75rem; border-radius: 9999px;">Part 1: 初賽第一輪</span>
+                    <span style="color: var(--slate-300); font-size: 0.875rem; font-weight: 500;">Smart Parking Management</span>
                 </div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-100">智能咪錶、物聯網傳感器與路邊泊車管理</h3>
+                <h3 style="margin: 0; font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem); font-weight: 700; color: var(--slate-100);">智能咪錶、物聯網傳感器與路邊泊車管理</h3>
             </div>
-            <div class="p-6 sm:p-8 space-y-6">
+            <div style="padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);">
                 <!-- Motion Box -->
-                <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">辯題 / Motion</h4>
-                    <p class="text-base sm:text-lg font-semibold text-navy-900">
+                <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 0.75rem; padding: 1.25rem;">
+                    <h4 style="margin: 0 0 0.25rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--slate-400);">辯題 / Motion</h4>
+                    <p style="margin: 0; font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem); font-weight: 600; color: var(--navy-900);">
                         特區政府與承批實體推行新一代智能咪錶及車位傳感器系統（如空位通知、遙距入錶與多元電子支付），能否在推動車輛高效流轉與保障公共利益之間取得平衡？
                     </p>
                 </div>
 
-                <!-- Hints Grid -->
-                <div class="grid md:grid-cols-2 gap-6">
+                <!-- Hints: flex-wrap — two columns on wide screens, one on narrow (no media query needed) -->
+                <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem;">
                     <!-- Pro Side -->
-                    <div class="bg-emerald-50/50 border border-emerald-200/60 rounded-xl p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                            <h5 class="font-bold text-emerald-900 text-lg">正方：推動泊車現代化 (Pro)</h5>
+                    <div style="flex: 1 1 320px; background: rgb(236 253 245 / 0.5); border: 1px solid rgb(167 243 208 / 0.6); border-radius: 0.75rem; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span style="width: 0.75rem; height: 0.75rem; border-radius: 9999px; background: var(--emerald-500); flex: none;"></span>
+                            <h5 style="margin: 0; font-size: 1.125rem; font-weight: 700; color: var(--emerald-900);">正方：推動泊車現代化 (Pro)</h5>
                         </div>
-                        <p class="text-xs text-emerald-700/80 mb-3 font-medium">思考引導提示 (Question Hints):</p>
-                        <ol class="space-y-3 text-sm text-slate-700 list-decimal list-inside">
-                            <li class="leading-relaxed">物聯網傳感器如何幫助消除傳統路邊泊車的監督盲區？</li>
-                            <li class="leading-relaxed">引入多元電子支付與遠端入錶，對解決市民過往泊車時的哪些痛點有何幫助？</li>
-                            <li class="leading-relaxed">實時流轉數據如何進一步優化繁忙地段的車位使用效率？</li>
-                            <li class="leading-relaxed">新舊系統同步運作的過渡機制，如何確保咪錶服務在置換期間不中斷？</li>
-                            <li class="leading-relaxed">科學化管理與合約規定的政府回報金收益（如48%回報比例），如何共同反哺公共庫房？</li>
+                        <p style="margin: 0 0 0.75rem; font-size: 0.75rem; font-weight: 500; color: rgb(4 120 87 / 0.8);">思考引導提示 (Question Hints):</p>
+                        <ol style="margin: 0; padding: 0; list-style: decimal inside; font-size: 0.875rem; color: var(--slate-700);">
+                            <li style="line-height: 1.625;">物聯網傳感器如何幫助消除傳統路邊泊車的監督盲區？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">引入多元電子支付與遠端入錶，對解決市民過往泊車時的哪些痛點有何幫助？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">實時流轉數據如何進一步優化繁忙地段的車位使用效率？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">新舊系統同步運作的過渡機制，如何確保咪錶服務在置換期間不中斷？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">科學化管理與合約規定的政府回報金收益（如48%回報比例），如何共同反哺公共庫房？</li>
                         </ol>
                     </div>
 
                     <!-- Con Side -->
-                    <div class="bg-rose-50/50 border border-rose-200/60 rounded-xl p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-                            <h5 class="font-bold text-rose-900 text-lg">反方：維護公平與防範私隱爭議 (Con)</h5>
+                    <div style="flex: 1 1 320px; background: rgb(255 241 242 / 0.5); border: 1px solid rgb(254 205 211 / 0.6); border-radius: 0.75rem; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span style="width: 0.75rem; height: 0.75rem; border-radius: 9999px; background: var(--rose-500); flex: none;"></span>
+                            <h5 style="margin: 0; font-size: 1.125rem; font-weight: 700; color: var(--rose-900);">反方：維護公平與防範私隱爭議 (Con)</h5>
                         </div>
-                        <p class="text-xs text-rose-700/80 mb-3 font-medium">思考引導提示 (Question Hints):</p>
-                        <ol class="space-y-3 text-sm text-slate-700 list-decimal list-inside">
-                            <li class="leading-relaxed">全面數碼化和應用程式綁定，會否對部分長者或不擅長智能設備的群體造成科技排斥？</li>
-                            <li class="leading-relaxed">程式和車位傳感器收集的泊車數據，會否引發對駕駛者行蹤私隱的憂慮？</li>
-                            <li class="leading-relaxed">承批商業機構追求營運利潤的同時，會否逐漸侵蝕公共道路資源的公益屬性？</li>
-                            <li class="leading-relaxed">一旦應用程式或物聯網系統出現網絡崩潰，全城的泊車繳費會否麵臨癱瘓風險？</li>
-                            <li class="leading-relaxed">七年批給期內若缺乏實質監管，會否容易形成變相的營運壟斷並損害消費者權益？</li>
+                        <p style="margin: 0 0 0.75rem; font-size: 0.75rem; font-weight: 500; color: rgb(190 18 60 / 0.8);">思考引導提示 (Question Hints):</p>
+                        <ol style="margin: 0; padding: 0; list-style: decimal inside; font-size: 0.875rem; color: var(--slate-700);">
+                            <li style="line-height: 1.625;">全面數碼化和應用程式綁定，會否對部分長者或不擅長智能設備的群體造成科技排斥？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">程式和車位傳感器收集的泊車數據，會否引發對駕駛者行蹤私隱的憂慮？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">承批商業機構追求營運利潤的同時，會否逐漸侵蝕公共道路資源的公益屬性？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">一旦應用程式或物聯網系統出現網絡崩潰，全城的泊車繳費會否麵臨癱瘓風險？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">七年批給期內若缺乏實質監管，會否容易形成變相的營運壟斷並損害消費者權益？</li>
                         </ol>
                     </div>
                 </div>
@@ -134,233 +248,276 @@
         </section>
 
         <!-- Part 2: Preliminary Round 2 -->
-        <section class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-            <div class="bg-gradient-to-r from-navy-900 to-navy-800 text-white p-6 sm:p-8">
-                <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
-                    <span class="bg-gold-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">Part 2: 初賽第二輪</span>
-                    <span class="text-slate-300 text-sm font-medium">Ride-Hailing & Data Integration</span>
+        <section style="
+            margin-top: 4rem;
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            overflow: hidden;
+        ">
+            <div style="background: linear-gradient(to right, var(--navy-900), var(--navy-800)); color: #ffffff; padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);">
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+                    <span style="background: var(--gold-500); color: #ffffff; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.75rem; border-radius: 9999px;">Part 2: 初賽第二輪</span>
+                    <span style="color: var(--slate-300); font-size: 0.875rem; font-weight: 500;">Ride-Hailing &amp; Data Integration</span>
                 </div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-100">網約車平臺數碼化與公共交通數據整合</h3>
+                <h3 style="margin: 0; font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem); font-weight: 700; color: var(--slate-100);">網約車平臺數碼化與公共交通數據整合</h3>
             </div>
-            <div class="p-6 sm:p-8 space-y-6">
+            <div style="padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);">
                 <!-- Motion Box -->
-                <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">辯題 / Motion</h4>
-                    <p class="text-base sm:text-lg font-semibold text-navy-900">
+                <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 0.75rem; padding: 1.25rem;">
+                    <h4 style="margin: 0 0 0.25rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--slate-400);">辯題 / Motion</h4>
+                    <p style="margin: 0; font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem); font-weight: 600; color: var(--navy-900);">
                         特區政府應否向網約車平臺全面開放實時道路遙測與交通數據，以實現城市交通的數碼化協同與效率最大化？
                     </p>
                 </div>
 
-                <!-- Hints Grid -->
-                <div class="grid md:grid-cols-2 gap-6">
+                <!-- Hints -->
+                <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem;">
                     <!-- Pro Side -->
-                    <div class="bg-emerald-50/50 border border-emerald-200/60 rounded-xl p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                            <h5 class="font-bold text-emerald-900 text-lg">正方：推動網約車數碼化協同 (Pro)</h5>
+                    <div style="flex: 1 1 320px; background: rgb(236 253 245 / 0.5); border: 1px solid rgb(167 243 208 / 0.6); border-radius: 0.75rem; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span style="width: 0.75rem; height: 0.75rem; border-radius: 9999px; background: var(--emerald-500); flex: none;"></span>
+                            <h5 style="margin: 0; font-size: 1.125rem; font-weight: 700; color: var(--emerald-900);">正方：推動網約車數碼化協同 (Pro)</h5>
                         </div>
-                        <p class="text-xs text-emerald-700/80 mb-3 font-medium">思考引導提示 (Question Hints):</p>
-                        <ol class="space-y-3 text-sm text-slate-700 list-decimal list-inside">
-                            <li class="leading-relaxed">實時數據共享如何幫助網約車平臺更精準地動態調度車輛以匹配市民出行需求？</li>
-                            <li class="leading-relaxed">透過優化熱點區域上下客動線，能對緩解雙排停車和道路擁堵起到什麼作用？</li>
-                            <li class="leading-relaxed">公共交通與商業出行大數據的深度融合，能為構建智慧交通帶來哪些新契機？</li>
-                            <li class="leading-relaxed">提前預測高峰流量的數據機制，如何有助於提升整體路網的通行效率？</li>
-                            <li class="leading-relaxed">引入市場化數碼工具，對倒逼傳統客運服務升級有何積極意義？</li>
+                        <p style="margin: 0 0 0.75rem; font-size: 0.75rem; font-weight: 500; color: rgb(4 120 87 / 0.8);">思考引導提示 (Question Hints):</p>
+                        <ol style="margin: 0; padding: 0; list-style: decimal inside; font-size: 0.875rem; color: var(--slate-700);">
+                            <li style="line-height: 1.625;">實時數據共享如何幫助網約車平臺更精準地動態調度車輛以匹配市民出行需求？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">透過優化熱點區域上下客動線，能對緩解雙排停車和道路擁堵起到什麼作用？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">公共交通與商業出行大數據的深度融合，能為構建智慧交通帶來哪些新契機？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">提前預測高峰流量的數據機制，如何有助於提升整體路網的通行效率？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">引入市場化數碼工具，對倒逼傳統客運服務升級有何積極意義？</li>
                         </ol>
                     </div>
 
                     <!-- Con Side -->
-                    <div class="bg-rose-50/50 border border-rose-200/60 rounded-xl p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-                            <h5 class="font-bold text-rose-900 text-lg">反方：警惕商業壟斷與公共數據私有化 (Con)</h5>
+                    <div style="flex: 1 1 320px; background: rgb(255 241 242 / 0.5); border: 1px solid rgb(254 205 211 / 0.6); border-radius: 0.75rem; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <span style="width: 0.75rem; height: 0.75rem; border-radius: 9999px; background: var(--rose-500); flex: none;"></span>
+                            <h5 style="margin: 0; font-size: 1.125rem; font-weight: 700; color: var(--rose-900);">反方：警惕商業壟斷與公共數據私有化 (Con)</h5>
                         </div>
-                        <p class="text-xs text-rose-700/80 mb-3 font-medium">思考引導提示 (Question Hints):</p>
-                        <ol class="space-y-3 text-sm text-slate-700 list-decimal list-inside">
-                            <li class="leading-relaxed">將納稅人資助建成的城市基礎設施數據向特定商業網約車平臺開放，是否構成公共資源的變相壟斷？</li>
-                            <li class="leading-relaxed">乘客的實時出行軌跡和目的地一旦向商業平臺敞開，會帶來哪些隱蔽的私隱風險？</li>
-                            <li class="leading-relaxed">這種數據賦能會否對本地傳統公交及中小客運業者的生存空間造成結構性擠壓？</li>
-                            <li class="leading-relaxed">當核心交通運營智慧掌握在跨國商業企業手中時，政府是否會失去宏觀調控的主動權？</li>
-                            <li class="leading-relaxed">開放外部API接口會否過度擴大交通指揮系統的網絡攻擊面，增加黑客入侵隱患？</li>
+                        <p style="margin: 0 0 0.75rem; font-size: 0.75rem; font-weight: 500; color: rgb(190 18 60 / 0.8);">思考引導提示 (Question Hints):</p>
+                        <ol style="margin: 0; padding: 0; list-style: decimal inside; font-size: 0.875rem; color: var(--slate-700);">
+                            <li style="line-height: 1.625;">將納稅人資助建成的城市基礎設施數據向特定商業網約車平臺開放，是否構成公共資源的變相壟斷？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">乘客的實時出行軌跡和目的地一旦向商業平臺敞開，會帶來哪些隱蔽的私隱風險？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">這種數據賦能會否對本地傳統公交及中小客運業者的生存空間造成結構性擠壓？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">當核心交通運營智慧掌握在跨國商業企業手中時，政府是否會失去宏觀調控的主動權？</li>
+                            <li style="margin-top: 0.75rem; line-height: 1.625;">開放外部API接口會否過度擴大交通指揮系統的網絡攻擊面，增加黑客入侵隱患？</li>
                         </ol>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-            <div class="bg-gradient-to-r from-navy-900 to-navy-800 text-white p-6 sm:p-8">
-                <div class="flex flex-wrap items-center justify-between gap-4 mb-2">
-                    <span class="bg-gold-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">
-		    🏆 決賽預告（現場神秘揭曉）/ Final Round (Surprise Reveal)
-		    </span>
-                    <span class="text-slate-300 text-sm font-medium">Final Preview</span>
-                </div>
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-100">
-    			決賽為神秘盲盒環節，將於初賽結束後現場揭曉！
-			題目與內容將直接基於當天論壇及嘉賓分享的實時核心內容延伸，考驗隊伍的臨場應變與深度洞察能力。
-		</h3>
-            </div>
-	</section>
+        <!-- Tournament Structure
+             NOTE vs original: this section was already hand-written with inline styles in
+             the source and its </section> tag was missing, so every section below was
+             silently nested inside it. Structure kept identical, tag properly closed. -->
+        <section style="margin-top: 4rem; background: #ffffff; border-radius: 8px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            <h3 style="color: #1e3a8a; border-bottom: 2px solid #3b82f6; padding-bottom: 8px; margin-top: 0;">🏆 賽事結構圖 / Tournament Structure</h3>
+            <p style="margin: 0;">比賽將分為兩組初賽，各組勝者將晉級至決賽進行最終對決。</p>
 
-        <!-- Format & Rules Grid -->
-        <div class="display:flex;flex-wrap:wrap;justify-content:center;gap:2em;">
-            <!-- Debate Format -->
-            <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-bold text-navy-900 mb-4 flex items-center gap-2">
-                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        賽制規範 / Debate Format
-                    </h3>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-6">
-                        <li class="flex items-start gap-2">
-                            <span class="text-gold-500 font-bold">•</span>
-                            <span><strong>隊伍組成 Teams:</strong> 每場初賽由兩支隊伍對陣，每隊最多4人 (Max 4 persons per team)。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-gold-500 font-bold">•</span>
-                            <span><strong>立場分配 Side Assignment:</strong> 辯論開始前由賽會隨機分配正反方立場。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-gold-500 font-bold">•</span>
-                            <span><strong>開場陳詞 Opening Statement:</strong> 每隊 3 分鐘 (3 minutes per team)。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-gold-500 font-bold">•</span>
-                            <span><strong>反駁 Rebuttal:</strong> 每隊 3 分鐘，回應對方論點 (3 minutes per team)。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-gold-500 font-bold">•</span>
-                            <span><strong>自由討論 Open Discussion:</strong> 6 分鐘，雙方交替發言，每隊每次 30 秒 (6 mins alternating, 30s per turn)。</span>
-                        </li>
-                    </ul>
+            <div style="display: flex; flex-direction: column; gap: 15px; align-items: center; margin-top: 20px;">
+                <!-- Preliminary Rounds Container -->
+                <div style="display: flex; gap: 20px; width: 100%; justify-content: center; flex-wrap: wrap;">
+                    <!-- Match 1 -->
+                    <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 15px; width: 260px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 5px; font-weight: bold;">初賽第一輪 (Preliminary Round 1)</div>
+                        <div style="font-size: 0.95rem; color: #334155; font-weight: bold; margin-bottom: 8px;">Team A vs Team B</div>
+                        <div style="font-size: 0.8rem; background: #e0f2fe; color: #0369a1; padding: 4px; border-radius: 4px; font-weight: bold;">勝者晉級 ➔</div>
+                    </div>
+
+                    <!-- Match 2 -->
+                    <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 15px; width: 260px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 5px; font-weight: bold;">初賽第二輪 (Preliminary Round 2)</div>
+                        <div style="font-size: 0.95rem; color: #334155; font-weight: bold; margin-bottom: 8px;">Team C vs Team D</div>
+                        <div style="font-size: 0.8rem; background: #e0f2fe; color: #0369a1; padding: 4px; border-radius: 4px; font-weight: bold;">勝者晉級 ➔</div>
+                    </div>
                 </div>
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-slate-500">
-                    嚴格執行時間限制，超過30秒將給予提示警告。主持人決定為最終決定。
+
+                <!-- Connecting Flow Indicator -->
+                <div style="font-size: 1.5rem; color: #3b82f6; font-weight: bold; line-height: 1; margin: 5px 0;">↓</div>
+
+                <!-- Final Round Faceoff -->
+                <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 6px; padding: 15px; width: 340px; max-width: 100%; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                    <div style="font-size: 0.85rem; color: #d97706; margin-bottom: 5px; font-weight: bold;">決賽階段 (Final Round)</div>
+                    <div style="font-size: 1rem; color: #78350f; font-weight: bold;">初賽一勝者 vs 初賽二勝者</div>
+                    <div style="font-size: 0.8rem; color: #b45309; margin-top: 4px;">（勝者對決 · 現場神秘揭曉）</div>
+                </div>
+            </div>
+
+            <!-- Finale Preview (nested inside this card in the source document — kept as-is) -->
+            <section style="margin-top: 25px; background: #ffffff; border: 1px solid var(--slate-200); border-radius: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); overflow: hidden;">
+                <div style="background: linear-gradient(to right, var(--navy-900), var(--navy-800)); color: #ffffff; padding: clamp(1.5rem, 1rem + 1.5vw, 2rem);">
+                    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem;">
+                        <span style="background: var(--gold-500); color: #ffffff; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.75rem; border-radius: 9999px;">
+                            🏆 決賽預告（現場神秘揭曉）/ Finale Round (Surprise Reveal)
+                        </span>
+                        <span style="color: var(--slate-300); font-size: 0.875rem; font-weight: 500;">Finale Preview</span>
+                    </div>
+                    <h3 style="margin: 0; font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem); font-weight: 700; color: var(--slate-100);">
+                        決賽為神秘盲盒環節，將於初賽結束後現場揭曉！
+                        題目與內容將直接基於當天論壇及嘉賓分享的實時核心內容延伸，考驗隊伍的臨場應變與深度洞察能力。
+                    </h3>
                 </div>
             </section>
 
-            <!-- Judging Rubric -->
-            <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-bold text-navy-900 mb-4 flex items-center gap-2">
-                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        評分標準 / Judging Rubric
-                    </h3>
-                    <div class="space-y-4 text-sm">
-                        <div>
-                            <div class="flex justify-between font-semibold text-slate-700 mb-1">
-                                <span>邏輯與反駁 (Logic & Rebuttal)</span>
-                                <span class="text-gold-600">30%</span>
+            <!-- Format / Rubric / AI cards.
+                 NOTE vs original: the source wrote flex layout CSS into a class="" attribute
+                 (class="display:flex;flex-wrap:wrap;..."), which browsers ignore entirely, so
+                 these cards render stacked at full width. Replicated as rendered: a plain div.
+                 LAYOUT REVISION (2026-10-19): the Judging Rubric now shares a flex row with
+                 the Industry Experts card moved up from the dissolved bottom row. -->
+            <div>
+                <!-- Debate Format -->
+                <section style="margin-top: 25px; background: #ffffff; border: 1px solid var(--slate-200); border-radius: 1rem; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); padding: clamp(1.5rem, 1rem + 1.5vw, 2rem); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="margin: 0 0 1rem; font-size: 1.25rem; font-weight: 700; color: var(--navy-900); display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 1.5rem; height: 1.5rem; color: var(--gold-500); flex: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            賽制規範 / Debate Format
+                        </h3>
+                        <ul style="margin: 0 0 1.5rem; padding: 0; list-style: none; font-size: 0.875rem; color: var(--slate-600);">
+                            <li style="display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <span style="color: var(--gold-500); font-weight: 700;">•</span>
+                                <span><strong>隊伍組成 Teams:</strong> 每場初賽由兩支隊伍對陣，每隊最多4人 (Max 4 persons per team)。</span>
+                            </li>
+                            <li style="margin-top: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <span style="color: var(--gold-500); font-weight: 700;">•</span>
+                                <span><strong>立場分配 Side Assignment:</strong> 辯論開始前由賽會隨機分配正反方立場。</span>
+                            </li>
+                            <li style="margin-top: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <span style="color: var(--gold-500); font-weight: 700;">•</span>
+                                <span><strong>開場陳詞 Opening Statement:</strong> 每隊 3 分鐘 (3 minutes per team)。</span>
+                            </li>
+                            <li style="margin-top: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <span style="color: var(--gold-500); font-weight: 700;">•</span>
+                                <span><strong>反駁 Rebuttal:</strong> 每隊 3 分鐘，回應對方論點 (3 minutes per team)。</span>
+                            </li>
+                            <li style="margin-top: 0.75rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <span style="color: var(--gold-500); font-weight: 700;">•</span>
+                                <span><strong>自由討論 Open Discussion:</strong> 6 分鐘，雙方交替發言，每隊每次 30 秒 (6 mins alternating, 30s per turn)。</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="background: var(--slate-50); padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--slate-200); font-size: 0.75rem; color: var(--slate-500);">
+                        嚴格執行時間限制，超過30秒將給予提示警告。主持人決定為最終決定。
+                    </div>
+                </section>
+
+                <!-- Judging Rubric + Industry Experts — LAYOUT REVISION (2026-10-19):
+                     the Industry Experts card was moved up from the bottom row to sit
+                     beside the rubric. flex-wrap keeps them 2-up on wide screens and
+                     stacks them on narrow ones (both cards min-basis 340px). -->
+                <div style="margin-top: 25px; display: flex; flex-wrap: wrap; gap: 2rem;">
+                <!-- Judging Rubric -->
+                <section style="flex: 1 1 340px; background: #ffffff; border: 1px solid var(--slate-200); border-radius: 1rem; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); padding: clamp(1.5rem, 1rem + 1.5vw, 2rem); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="margin: 0 0 1rem; font-size: 1.25rem; font-weight: 700; color: var(--navy-900); display: flex; align-items: center; gap: 0.5rem;">
+                            <svg style="width: 1.5rem; height: 1.5rem; color: var(--gold-500); flex: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            評分標準 / Judging Rubric
+                        </h3>
+                        <div style="font-size: 0.875rem;">
+                            <div style="margin-top: 1rem;">
+                                <div style="display: flex; justify-content: space-between; font-weight: 600; color: var(--slate-700); margin-bottom: 0.25rem;">
+                                    <span>邏輯與反駁 (Logic &amp; Rebuttal)</span>
+                                    <span style="color: var(--gold-600);">30%</span>
+                                </div>
+                                <div style="width: 100%; background: var(--slate-100); height: 0.5rem; border-radius: 9999px; overflow: hidden;">
+                                    <div style="background: var(--navy-900); height: 100%; border-radius: 9999px; width: 30%;"></div>
+                                </div>
+                                <p style="margin: 0.25rem 0 0; font-size: 0.75rem; color: var(--slate-500);">推理嚴密性及解構對手論點的能力。</p>
                             </div>
-                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                <div class="bg-navy-900 h-full rounded-full" style="width: 30%"></div>
+                            <div style="margin-top: 1rem;">
+                                <div style="display: flex; justify-content: space-between; font-weight: 600; color: var(--slate-700); margin-bottom: 0.25rem;">
+                                    <span>內容與證據 (Content &amp; Evidence)</span>
+                                    <span style="color: var(--gold-600);">30%</span>
+                                </div>
+                                <div style="width: 100%; background: var(--slate-100); height: 0.5rem; border-radius: 9999px; overflow: hidden;">
+                                    <div style="background: var(--navy-900); height: 100%; border-radius: 9999px; width: 30%;"></div>
+                                </div>
+                                <p style="margin: 0.25rem 0 0; font-size: 0.75rem; color: var(--slate-500);">論點力度、數據及引用特邀行業嘉賓觀點。</p>
                             </div>
-                            <p class="text-xs text-slate-500 mt-1">推理嚴密性及解構對手論點的能力。</p>
-                        </div>
-                        <div>
-                            <div class="flex justify-between font-semibold text-slate-700 mb-1">
-                                <span>內容與證據 (Content & Evidence)</span>
-                                <span class="text-gold-600">30%</span>
+                            <div style="margin-top: 1rem;">
+                                <div style="display: flex; justify-content: space-between; font-weight: 600; color: var(--slate-700); margin-bottom: 0.25rem;">
+                                    <span>團隊合作與禮儀 (Teamwork &amp; Conduct)</span>
+                                    <span style="color: var(--gold-600);">20%</span>
+                                </div>
+                                <div style="width: 100%; background: var(--slate-100); height: 0.5rem; border-radius: 9999px; overflow: hidden;">
+                                    <div style="background: var(--navy-900); height: 100%; border-radius: 9999px; width: 20%;"></div>
+                                </div>
+                                <p style="margin: 0.25rem 0 0; font-size: 0.75rem; color: var(--slate-500);">協作精神與對賽規、對手的尊重。</p>
                             </div>
-                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                <div class="bg-navy-900 h-full rounded-full" style="width: 30%"></div>
+                            <div style="margin-top: 1rem;">
+                                <div style="display: flex; justify-content: space-between; font-weight: 600; color: var(--slate-700); margin-bottom: 0.25rem;">
+                                    <span>風格與表達 (Style &amp; Delivery)</span>
+                                    <span style="color: var(--gold-600);">20%</span>
+                                </div>
+                                <div style="width: 100%; background: var(--slate-100); height: 0.5rem; border-radius: 9999px; overflow: hidden;">
+                                    <div style="background: var(--navy-900); height: 100%; border-radius: 9999px; width: 20%;"></div>
+                                </div>
+                                <p style="margin: 0.25rem 0 0; font-size: 0.75rem; color: var(--slate-500);">說服力、清晰度與時間掌控。</p>
                             </div>
-                            <p class="text-xs text-slate-500 mt-1">論點力度、數據及引用特邀行業嘉賓觀點。</p>
-                        </div>
-                        <div>
-                            <div class="flex justify-between font-semibold text-slate-700 mb-1">
-                                <span>團隊合作與禮儀 (Teamwork & Conduct)</span>
-                                <span class="text-gold-600">20%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                <div class="bg-navy-900 h-full rounded-full" style="width: 10%"></div>
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1">協作精神與對賽規、對手的尊重。</p>
-                        </div>
-                        <div>
-                            <div class="flex justify-between font-semibold text-slate-700 mb-1">
-                                <span>風格與表達 (Style & Delivery)</span>
-                                <span class="text-gold-600">20%</span>
-                            </div>
-                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                <div class="bg-navy-900 h-full rounded-full" style="width: 20%"></div>
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1">說服力、清晰度與時間掌控。</p>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 flex flex-col justify-between">
-                    <h3 class="text-xl font-bold text-navy-900 mb-4 flex items-center gap-2">
-		  🤖 AI 輔助評審 · 辯論賽 / AI-Assisted Judging</h3>
-		  <p>本次辯論賽引入「AI 輔助評審」，結合人工智能分析與人類裁判的專業判斷，從論證、證據及反駁等角度梳理雙方表現，提供評分參考與賽後回饋。雖然最終裁決仍由人類裁判作出，但參賽隊伍在備賽與現場競技時應留意 AI 輔助評審系統的協同應用。</p>
-		  <div class="speaker">
-		<span class="name">模擬場景</span>
-		<video controls="" width="100%" poster="debate-sim.jpg">
-			  <source src="debate-sim-web.mp4" type="video/mp4">
-		</video>
-	      </div>
-	  </section>
-
-        </div>
-
-        <!-- Industry Guests & Awards Section -->
-        <section class="grid md:grid-cols-2 gap-8">
-            <!-- Industry Guests Note -->
-            <div class="bg-navy-900 text-white rounded-2xl p-6 sm:p-8 shadow-md">
-                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                    <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    行業嘉賓與專家陣容 / Industry Experts
-                </h3>
-                <p class="text-sm text-slate-300 mb-4 leading-relaxed">
-                    本次大賽將邀請來自以下交通核心領域的重量級嘉賓，分享行業前沿挑戰與未來預測：
-                </p>
-                <div class="grid grid-cols-2 gap-3 text-sm font-medium">
-                    <div class="bg-white/10 p-3 rounded-xl border border-white/10 text-center">賽車行業<br><span class="text-xs text-slate-400">Racing Industry</span></div>
-                    <div class="bg-white/10 p-3 rounded-xl border border-white/10 text-center">諮詢行業<br><span class="text-xs text-slate-400">Consultation</span></div>
-                    <div class="bg-white/10 p-3 rounded-xl border border-white/10 text-center">電動汽車擴展<br><span class="text-xs text-slate-400">EV Extension</span></div>
-                    <div class="bg-white/10 p-3 rounded-xl border border-white/10 text-center">出行創新者<br><span class="text-xs text-slate-400">Mobility Innovators</span></div>
-                </div>
-                <p class="text-xs text-gold-400 mt-4 italic">* 評審將特別看重參賽隊伍對嘉賓觀點與行業數據的引用與整合。</p>
-            </div>
-
-            <!-- Awards Section -->
-            <div class="bg-gradient-to-br from-gold-500 to-gold-600 text-white rounded-2xl p-6 sm:p-8 shadow-md flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                        獎項設置 / Awards & Prizes
+                <!-- Industry Experts — LAYOUT REVISION (2026-10-19): moved here from the
+                     bottom row to sit beside the Judging Rubric. Content unchanged. -->
+                <div style="flex: 1 1 340px; background: var(--navy-900); color: #ffffff; border-radius: 1rem; padding: clamp(1.5rem, 1rem + 1.5vw, 2rem); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
+                    <h3 style="margin: 0 0 1rem; font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+                        <svg style="width: 1.5rem; height: 1.5rem; color: var(--gold-500); flex: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        行業嘉賓與專家陣容 / Industry Experts
                     </h3>
-                    <div class="space-y-4">
-                        <div class="bg-white/15 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-                            <div class="text-2xl font-black mb-1">MOP $3,000</div>
-                            <div class="text-sm font-semibold">冠軍現金獎勵 (Immediate Cash Award)</div>
-                            <p class="text-xs text-white/80 mt-1">優勝隊伍更可獲得額外體驗券與尊享旅遊機會。</p>
-                        </div>
-                        <div class="bg-white/10 p-3 rounded-xl border border-white/10 text-sm">
-                            <span class="font-semibold">鼓勵獎 (Encouragement Prizes):</span> 為表彰優秀表現，其餘參賽隊伍亦將獲得鼓勵獎。
-                        </div>
+                    <p style="margin: 0 0 1rem; font-size: 0.875rem; color: var(--slate-300); line-height: 1.625;">
+                        本次大賽將邀請來自以下交通核心領域的重量級嘉賓，分享行業前沿挑戰與未來預測：
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.875rem; font-weight: 500;">
+                        <div style="flex: 1 1 calc(50% - 0.5rem); background: rgb(255 255 255 / 0.1); padding: 0.75rem; border-radius: 0.75rem; border: 1px solid rgb(255 255 255 / 0.1); text-align: center;">賽車行業<br><span style="font-size: 0.75rem; color: var(--slate-400);">Racing Industry</span></div>
+                        <div style="flex: 1 1 calc(50% - 0.5rem); background: rgb(255 255 255 / 0.1); padding: 0.75rem; border-radius: 0.75rem; border: 1px solid rgb(255 255 255 / 0.1); text-align: center;">諮詢行業<br><span style="font-size: 0.75rem; color: var(--slate-400);">Consultation</span></div>
+                        <div style="flex: 1 1 calc(50% - 0.5rem); background: rgb(255 255 255 / 0.1); padding: 0.75rem; border-radius: 0.75rem; border: 1px solid rgb(255 255 255 / 0.1); text-align: center;">電動汽車擴展<br><span style="font-size: 0.75rem; color: var(--slate-400);">EV Extension</span></div>
+                        <div style="flex: 1 1 calc(50% - 0.5rem); background: rgb(255 255 255 / 0.1); padding: 0.75rem; border-radius: 0.75rem; border: 1px solid rgb(255 255 255 / 0.1); text-align: center;">出行創新者<br><span style="font-size: 0.75rem; color: var(--slate-400);">Mobility Innovators</span></div>
                     </div>
+                    <p style="margin: 1rem 0 0; font-size: 0.75rem; font-style: italic;">* 評審將特別看重參賽隊伍對嘉賓觀點與行業數據的引用與整合。</p>
                 </div>
-                <div class="mt-6 text-xs text-white/90 text-center font-medium">
-                    主辦方保留活動最終解釋權。如有疑問請聯絡：debate.contest@sustaincia.org
                 </div>
+
+                <!-- AI-Assisted Judging -->
+                <section style="margin-top: 25px; background: #ffffff; border: 1px solid var(--slate-200); border-radius: 1rem; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); padding: clamp(1.5rem, 1rem + 1.5vw, 2rem); display: flex; flex-direction: column; justify-content: space-between;">
+                    <h3 style="margin: 0 0 1rem; font-size: 1.25rem; font-weight: 700; color: var(--navy-900); display: flex; align-items: center; gap: 0.5rem;">
+                        🤖 AI 輔助評審 · 辯論賽 / AI-Assisted Judging
+                    </h3>
+                    <p style="margin: 0;">本次辯論賽引入「AI 輔助評審」，結合人工智能分析與人類裁判的專業判斷，從論證、證據及反駁等角度梳理雙方表現，提供評分參考與賽後回饋。雖然最終裁決仍由人類裁判作出，但參賽隊伍在備賽與現場競技時應留意 AI 輔助評審系統的協同應用。</p>
+                    <div>
+                        <strong>模擬場景</strong>
+                        <video controls width="100%" poster="https://particiate.org/sustaincia.org/i/e/261031b/debate-sim.jpg">
+                            <source src="https://particiate.org/sustaincia.org/i/e/261031b/debate-sim-web.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </section>
             </div>
+
+            <!-- LAYOUT REVISION (2026-10-19): the old "Industry Guests & Awards" row that
+                 lived here was dissolved — the Awards card moved up into the header (directly
+                 under the email CTA) and the Industry Experts card moved up beside the
+                 Judging Rubric. See those locations for the moved markup. -->
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-navy-950 text-slate-400 py-12 mt-20 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-            <h4 class="font-bold text-lg">全能汽车帝国赛 – 運輸發展辯論比賽籌委會</h4>
-            <p class="text-sm">All-Star Automotive Empire Contest Organizing Committee</p>
-            <p class="text-xs text-slate-500">
-                聯絡電郵 / Contact Email: <a href="mailto:debate.contest@sustaincia.org" class="text-gold-500 hover:underline">debate.contest@sustaincia.org</a>
+    <!-- ================= Footer =================
+         NOTE vs original: bg-navy-950 / text-gold-400 / hover:to-gold-700 referenced
+         colours never defined in tailwind.config, so those classes silently produced
+         no CSS. This file replicates the page exactly as it renders today (light
+         footer, no hover colour shift). To restore the *intended* design, it is a
+         one-token edit each: background:var(--navy-950) etc. -->
+    <footer style="margin-top: 5rem; padding: 3rem 0; border-top: 1px solid var(--slate-800); color: var(--slate-400);">
+        <div style="max-width: 80rem; margin: 0 auto; padding: 0 clamp(1rem, 0.5rem + 1.7vw, 2rem); text-align: center;">
+            <h4 style="margin: 0; font-size: 1.125rem; font-weight: 700;">全能汽车帝国赛 – 運輸發展辯論比賽籌委會</h4>
+            <p style="margin: 1rem 0 0; font-size: 0.875rem;">All-Star Automotive Empire Contest Organizing Committee</p>
+            <p style="margin: 1rem 0 0; font-size: 0.75rem; color: var(--slate-500);">
+                聯絡電郵 / Contact Email: <a href="mailto:debate.contest@sustaincia.org" class="gold-link" style="color: var(--gold-500); text-decoration: none;">debate.contest@sustaincia.org</a>
             </p>
-            <div class="pt-4 border-slate-900 text-xs text-slate-600">
+            <div style="padding-top: 1rem; font-size: 0.75rem; color: var(--slate-600);">
                 &copy; 2026 Sustaincia. All rights reserved.
             </div>
         </div>
