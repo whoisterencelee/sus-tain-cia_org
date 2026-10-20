@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sustaincia trophy emblem">
+  <title>Sustaincia — Trophy Emblem</title>
+  <desc>Tire badge for Sustaincia: wide dark rubber tire with tread grooves and gold rim lip, navy wheel face carrying a large gold trophy, for the Macau Transportation Debate Competition.</desc>
+  <defs>
+    <linearGradient id="goldRim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d97706"/>
+      <stop offset="0.55" stop-color="#b45309"/>
+      <stop offset="1" stop-color="#78350f"/>
+    </linearGradient>
+    <linearGradient id="goldMetal" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="0.5" stop-color="#d97706"/>
+      <stop offset="1" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="goldMetalDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d97706"/>
+      <stop offset="1" stop-color="#92400e"/>
+    </linearGradient>
+    <linearGradient id="navyFace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e3a8a"/>
+      <stop offset="0.55" stop-color="#142247"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="rubberTire" cx="0.35" cy="0.3" r="1">
+      <stop offset="0" stop-color="#323c50"/>
+      <stop offset="0.6" stop-color="#1c2532"/>
+      <stop offset="1" stop-color="#0a0f1a"/>
+    </radialGradient>
+    <radialGradient id="tireSheen" cx="0.35" cy="0.28" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="faceSheen" cx="0.5" cy="0.12" r="0.75">
+      <stop offset="0" stop-color="#3b82f6" stop-opacity="0.22"/>
+      <stop offset="0.6" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ============ TIRE ============ -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="url(#goldRim)" stroke-width="5"/>
+  <circle cx="256" cy="256" r="232" fill="url(#rubberTire)"/>
+  <g fill="#0a0f1c">
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(0 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(13.8 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(27.7 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(41.5 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(55.4 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(69.2 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(83.1 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(96.9 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(110.8 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(124.6 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(138.5 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(152.3 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(166.2 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(180 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(193.8 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(207.7 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(221.5 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(235.4 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(249.2 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(263.1 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(276.9 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(290.8 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(304.6 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(318.5 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(332.3 256 256)"/>
+    <rect x="248" y="38" width="16" height="36" rx="7" transform="rotate(346.2 256 256)"/>
+  </g>
+  <circle cx="256" cy="256" r="232" fill="url(#tireSheen)"/>
+  <circle cx="256" cy="256" r="148" fill="none" stroke="url(#goldRim)" stroke-width="16"/>
+  <circle cx="256" cy="256" r="140" fill="url(#navyFace)"/>
+  <circle cx="256" cy="256" r="140" fill="url(#faceSheen)"/>
+
+  <!-- ============ TROPHY ============ -->
+  <g transform="translate(256 256) scale(0.83) translate(-256 -256)">
+    <!-- handles -->
+    <path d="M184 166 C146 166 124 194 128 222 C132 250 156 264 188 268" fill="none" stroke="url(#goldMetal)" stroke-width="16" stroke-linecap="round"/>
+    <path d="M328 166 C366 166 388 194 384 222 C380 250 356 264 324 268" fill="none" stroke="url(#goldMetal)" stroke-width="16" stroke-linecap="round"/>
+    <!-- bowl -->
+    <path d="M180 150 L332 150 L332 216 C332 278 300 320 256 320 C212 320 180 278 180 216 Z" fill="url(#goldMetal)"/>
+    <!-- rim bar -->
+    <rect x="170" y="124" width="172" height="28" rx="14" fill="url(#goldMetalDark)"/>
+    <!-- stem -->
+    <path d="M246 320 L238 350 L274 350 L266 320 Z" fill="url(#goldMetalDark)"/>
+    <!-- base -->
+    <rect x="208" y="356" width="96" height="20" rx="5" fill="url(#goldMetal)"/>
+    <rect x="194" y="378" width="124" height="24" rx="9" fill="url(#goldMetalDark)"/>
+  </g>
+</svg>
