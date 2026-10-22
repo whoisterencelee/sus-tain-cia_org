@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,6 +59,23 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 ">
+
+	<div class="lang unselectable" style="position:absolute;right:0;top:0;padding:0.2em 1em;z-index:1000;">
+	<style>
+	.unselectable {
+		-webkit-user-select: none; /* For Safari */
+		user-select: none; /* Standard syntax */
+	}
+	.lang a { 
+		text-decoration:none;
+		border:1px solid darkorange;
+		padding:0.2em;
+		text-shadow:0 0;
+		color:darkorange; font-size:small; }
+	</style>
+  	<a onclick="htmlConverter.restore()" >繁</a> 
+	<a onclick="htmlConverter.convert()" >简</a>
+	</div>
 
     <!-- ================= Header ================= -->
     <!-- NOTE vs original: the gradient's last stop is transparent because the original
@@ -538,5 +555,11 @@
         </div>
     </footer>
 
+	<script src="https://cdn.jsdelivr.net/npm/opencc-js@1.0.5/dist/umd/t2cn.js"></script>
+	<script>
+	const converter = OpenCC.Converter({ from: 'hk', to: 'cn' });
+	const rootNode = document.documentElement;
+	const htmlConverter = OpenCC.HTMLConverter(converter, rootNode, 'zh-HK', 'zh-CN');
+	</script>
 </body>
 </html>
