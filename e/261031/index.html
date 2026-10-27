@@ -33,7 +33,6 @@
     }
 
     body {
-      background-color: var(--bg-dark);
       background-image: 
         radial-gradient(circle at 15% 15%, rgba(255, 42, 112, 0.15) 0%, transparent 45%),
         radial-gradient(circle at 85% 65%, rgba(0, 240, 255, 0.12) 0%, transparent 50%),
@@ -101,8 +100,7 @@
     }
 
     .poster-frame {
-      background: var(--carbon);
-      border: 1px solid var(--carbon-border);
+      background: linear-gradient(180deg, rgba(10, 14, 22, 0.95) 0%, rgba(18, 22, 32, 0.4) 40%);
       position: relative;
       border-radius: 18px;
       overflow: hidden;
@@ -129,8 +127,6 @@
       padding: 56px 28px 24px;
       text-align: center;
       position: relative;
-      background: linear-gradient(180deg, rgba(10, 14, 22, 0.95) 0%, rgba(18, 22, 32, 0.4) 100%);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .series-badge {
@@ -191,30 +187,26 @@
     .countdown-bar {
       font-size: 2em;
       display: inline-flex;
+      flex-wrap:wrap;
       align-items: center;
       gap: 16px;
-      background: rgba(8, 11, 16, 0.85);
-      border: 1px solid rgba(255, 42, 112, 0.35);
       padding: 10px 24px;
-      border-radius: 50px;
-      box-shadow: 0 0 25px rgba(255, 42, 112, 0.2);
+      border-radius: 8px;
+      border: 1px solid grey;
       margin-bottom: 8px;
     }
     .cd-label {
-      font-family: var(--font-tech);
-      letter-spacing: 1.5px;
-      color: var(--neon-pink);
+      color: darkgrey;
       font-weight: 700;
     }
     .cd-digits {
-      font-family: var(--font-tech);
-      color: var(--neon-green);
+      color: yellow;
       display: flex;
       gap: 12px;
       font-weight: 700;
     }
     .cd-unit {
-      color: var(--text-muted);
+      color: yellow;
       margin-left: 2px;
     }
 
@@ -254,10 +246,18 @@
       box-shadow: 0 12px 32px rgba(255, 42, 112, 0.6);
       filter: brightness(1.1);
     }
+    .btn-neon-yellow {
+      background: linear-gradient(135deg, #ffd700 0%, #ccaa00 100%);
+      color: #1a1a1a;
+    }
+    .btn-neon-yellow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(255, 215, 0, 0.6);
+      filter: brightness(1.1);
+    }
     .btn-neon-green {
       background: linear-gradient(135deg, green 0%, #0cc444 100%);
       color: #fff;
-      box-shadow: 0 8px 24px rgba(57, 255, 20, 0.4);
     }
     .btn-neon-green:hover {
       transform: translateY(-2px);
@@ -326,7 +326,6 @@
 
     .guest-card {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       position: relative;
       overflow: hidden;
@@ -404,13 +403,11 @@
       margin-bottom: 8px;
     }
     .guest-org {
-      font-size: 12px;
       color: var(--text-muted);
       margin-bottom: 6px;
       font-weight: 500;
     }
     .guest-bio {
-      font-size: 12px;
       color: #b0c0db;
       line-height: 1.4;
       border-top: 1px dashed rgba(255,255,255,0.08);
@@ -451,18 +448,18 @@
       margin-bottom: 6px;
     }
     .pillar-desc {
-      font-size: 12px;
       color: var(--text-muted);
       line-height: 1.45;
     }
 
     /* Dual Venue Logistics Toggle Interactive */
     .logistics-card {
-      background: linear-gradient(145deg, rgba(16, 21, 31, 0.95) 0%, rgba(10, 14, 22, 0.95) 100%);
+      background: rgba(20, 27, 40, 0.85);
       border: 1px solid var(--carbon-border);
       border-radius: 14px;
       padding: 26px;
       position: relative;
+      margin-bottom: 15px;
     }
     .toggle-nav {
       display: flex;
@@ -534,7 +531,6 @@
       color: #fff;
     }
     .metric-sub {
-      font-size: 13px;
       color: var(--text-muted);
     }
 
@@ -633,7 +629,6 @@
     }
     .ticket-container {
       background: #0f1420;
-      border: 1px solid var(--neon-green);
       box-shadow: 0 0 50px rgba(0, 240, 255, 0.3);
       border-radius: 16px;
       max-width: 520px;
@@ -677,35 +672,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding-bottom: 14px;
     }
-    .barcode-zone {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px dashed rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .simulated-barcode {
-      height: 40px;
-      width: 140px;
-      background: repeating-linear-gradient(90deg, #fff 0, #fff 2px, transparent 2px, transparent 5px, #fff 5px, #fff 8px, transparent 8px, transparent 10px);
-      opacity: 0.85;
-    }
-    .simulated-qr {
-      width: 52px;
-      height: 52px;
-      border: 2px solid var(--neon-green);
-      background: #000;
-      padding: 4px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3px;
-    }
-    .simulated-qr div {
-      background: var(--neon-green);
-      border-radius: 2px;
-    }
-
+    
     /* Print / Clean Poster Mode Switcher */
     @media print {
       body {
@@ -742,9 +709,6 @@
   <main class="poster-shell">
     <div class="poster-frame">
       
-      <!-- Tech decals -->
-      <div class="corner-tag corner-tr">GIRLS ON THE TRACK · LIVE PASS</div>
-
       <!-- Header Section -->
       <header class="poster-header">
 	<!--
@@ -771,11 +735,18 @@
           </div>
         </div>
 
+	<div style=font-size:3em;>
+	2026 年 10 月 31 日 14:45 – 15:45
+	</div>
+
         <!-- Call to Action Buttons -->
         <div class="hero-actions">
-          <button class="btn btn-neon-pink" onclick="openRsvpModal('forum')">
+          <button id=regForm class="btn btn-neon-pink" onclick="openRsvpModal('forum')">
            JOIN THE CHALLENGE 接受挑戰 
           </button>
+	  <button id=regOk class="btn btn-neon-yellow" style=display:none; onclick=timeToShare()>
+	    REGISTERED CLICK TO SHARE 已報名 點此分享
+	  </button>
           <a href=#venue class="btn btn-neon-green">
 	   RACE TRACK STARTING LINE 賽道起跑線
 	  </a>
@@ -805,7 +776,7 @@
 	      <img class=guest-avatar src=./chloee.jpg />
               <h3 class="guest-name">王嶸</h3>
               <div class="guest-name-en">CHLOEE WANG</div>
-              <div class="guest-org">WRT MOTORSPORT LIMITED / 中國知名女賽車手</div>
+              <div class="guest-org">中國知名女賽車手</div>
 	      <p class="guest-bio">職業房車賽車手 · 賽道極限挑戰者。跨城赴澳迎戰澳門主場標杆圈速，親授專業實戰控車經驗。</p>
           </div>
 
@@ -817,7 +788,7 @@
 	      <img class=guest-avatar src=./renee.jpg />
               <h3 class="guest-name">李胤樺</h3>
               <div class="guest-name-en">GO-KART PRINCESS</div>
-              <div class="guest-org">Fun Fun Kart 卡丁車 / 卡丁車場公主</div>
+              <div class="guest-org">卡丁車場公主</div>
 	      <p class="guest-bio">澳門主場主理人 · 賽車文化普及推手。攜手傳奇前輩設置澳門主場基準圈速，守護賽道活力。</p>
           </div>
 
@@ -980,44 +951,51 @@
         <button class="close-btn" onclick="closeRsvpModal()">×</button>
       </div>
       <div class="ticket-body">
-        <div class="ticket-chip">
-          <div>
-            <div style="font-family:var(--font-tech); font-size:11px; color:var(--neon-green);">EVENT SERIAL</div>
-            <div style="font-family:var(--font-display); font-size:17px; font-weight:700; color:#fff;" id="ticketSerial">MO-2026-GOT-8819</div>
-          </div>
-          <div style="text-align: right;">
-            <div style="font-family:var(--font-tech); font-size:11px; color:var(--neon-pink);">PREDICTED LAP</div>
-            <div style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--neon-yellow);" id="modalLapVal">31.250s</div>
-          </div>
-        </div>
-
         <div style="margin-bottom:14px;">
-          <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px;">持有人登記類別 / ACCESS TIER:</div>
+	  <!--
           <div style="font-weight:700; color:#fff; font-size:15px;" id="modalTierTitle">論壇見面會 VIP 專屬席位 + 車場競速通行卡</div>
-        </div>
+	  -->
+          <form class="tm-form" method="POST" action="https://functional.limited/forms" style=display:flex;flex-direction:column;gap:1em;>
 
-        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; font-size:12px; color:#a2b2cf;">
-          • 10/31 14:45 論壇現身見證嘉賓現場對決數據<br>
-          • 憑此截圖至 Fun Fun Kart 卡丁車場換領專屬裝備紀念品及第二節續跑優惠
-        </div>
+             <div class="hpot" style=display:none;>
+                    <input name="_next" value="https://sustaincia.org/e/261031?success"></input>
+                    <input name="_gotcha"></input>
+                    <input name="_to" value="https://sustaincia.org/e/261031"></input>
+		</div>
 
-        <div class="barcode-zone">
-          <div>
-            <div class="simulated-barcode"></div>
-            <div style="font-family:var(--font-tech); font-size:10px; color:#5d6d8c; margin-top:4px;">VERIFIED BLOCKCHAIN TELEMETRY</div>
-          </div>
-          <div class="simulated-qr">
-            <div></div><div></div><div></div>
-            <div></div><div></div><div></div>
-            <div></div><div></div><div></div>
-          </div>
-        </div>
+            <label style="color:var(--text-muted); margin:1em; text-align:center;">登記電郵 </label>
+	    <input name="email" type="email" required placeholder="your@email.com" aria-label="電子郵箱" style="font-size:1.5em;color:white;border:0;border-bottom:1px solid cyan;background:transparent;text-align:center;">
+	    <button class="btn btn-neon-green" style="width:100%; justify-content:center;" type=submit>
+	    報名</button>
+          </form>
+	    <script>
+		q = new URLSearchParams(window.location.search)
+		if( q.has("success") || q.has("exists") ){
+			document.getElementById('regForm').style.display = "none"
+			document.getElementById('regOk').style.display = ""
+		}
 
-        <div style="margin-top:20px; text-align:center;">
-          <button class="btn btn-neon-pink" style="width:100%; justify-content:center;" onclick="confirmPassSave()">
-            📸 儲存我的電子通行證
-          </button>
-        </div>
+		function timeToShare( byCopy ){
+			if( navigator.share && !byCopy ){
+				try {
+				  navigator.share({
+				  	title : document.title ,
+					text: "time to share" ,
+					url: "https://sustaincia.org/e/261031" ,
+					})
+				} catch( e ) { 
+					timetoShare( "fallback" ) 
+					alert("can't share")
+					}
+			} else {
+				navigator.clipboard.writeText(
+					document.title + "\n " + "https://sustaincia.org/e/261031" ,
+				)
+				alert("連結已複製")
+			}
+		}
+	    </script>
+
       </div>
     </div>
   </div>
@@ -1066,23 +1044,8 @@
     }
 
     // 4. RSVP Modal & Passport Ticket Generator
-    function openRsvpModal(tier) {
+    function openRsvpModal() {
       const modal = document.getElementById("rsvpModal");
-      const modalLapVal = document.getElementById("modalLapVal");
-      const modalTierTitle = document.getElementById("modalTierTitle");
-      const ticketSerial = document.getElementById("ticketSerial");
-
-      modalLapVal.innerText = currentPrediction + "s";
-      
-      const randomId = Math.floor(1000 + Math.random() * 9000);
-      ticketSerial.innerText = "MO-2026-GOT-" + randomId;
-
-      if (tier === 'forum') {
-        modalTierTitle.innerText = "論壇見面會專屬席位 (包含專屬紀念掛繩)";
-      } else {
-        modalTierTitle.innerText = "圈速懸賞聯票 (論壇席位 + Fun Fun Kart 卡丁車體驗券)";
-      }
-
       modal.classList.add("active");
     }
 
@@ -1090,10 +1053,6 @@
       document.getElementById("rsvpModal").classList.remove("active");
     }
 
-    function confirmPassSave() {
-      alert("✅ 已成功鎖定預測圈速 " + currentPrediction + "s！請截圖保存本通行證，並於 10 月 31 日現場出示驗票。");
-      closeRsvpModal();
-    }
   </script>
 </body>
 </html>
