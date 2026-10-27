@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>賽車運動中的女性力量 ｜ Girls On The Track & 粉絲見面會 2026 澳門</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,700&family=Noto+Sans+TC:wght@400;500;700;900&family=Orbitron:wght@700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #07090e;
+      --bg-card: rgba(16, 21, 31, 0.88);
+      --bg-card-border: rgba(0, 240, 255, 0.22);
+      --neon-pink: #ff2a70;
+      --neon-green: lightgreen;
+      --neon-yellow: #fcee0a;
+      --carbon: #121620;
+      --carbon-border: #1f2738;
+      --text-main: #f0f4fc;
+      --text-muted: #8c9bb5;
+      --font-display: 'Orbitron', 'Chakra Petch', sans-serif;
+      --font-tech: 'Share Tech Mono', monospace;
+      --font-body: 'Noto Sans TC', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(255, 42, 112, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 65%, rgba(0, 240, 255, 0.12) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 0, transparent 24px);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    .racing-carbon {
+	    background-color: #131313;
+	    background-image:
+		    linear-gradient(27deg, #181818 5px, transparent 5px),
+		    linear-gradient(207deg, #181818 5px, transparent 5px),
+		    linear-gradient(27deg, #222 5px, transparent 5px),
+		    linear-gradient(207deg, #222 5px, transparent 5px);
+	    background-size: 20px 20px;
+	    background-position: 0 3px, 10px 13px, 0 13px, 10px 3px;
+    }
+
+    .racing-asphalt {
+	    background-color: #0b0c10;
+	    background-image:
+		    radial-gradient(circle at 50% 30%, rgba(255, 60, 0, 0.08) 0%, transparent 60%),
+		    radial-gradient(#1f2229 15%, transparent 16%),
+		    radial-gradient(#16181d 15%, transparent 16%);
+	    background-size: 100% 100%, 8px 8px, 8px 8px;
+	    background-position: 0 0, 0 0, 4px 4px;
+    }
+
+    .racing-speed-stripes {
+	background:
+	    linear-gradient(115deg, transparent 70%, rgba(225, 6, 0, 0.15) 70%, rgba(225, 6, 0, 0.15) 74%, transparent 74%),
+		    linear-gradient(115deg, transparent 80%, rgba(255, 255, 255, 0.05) 80%, rgba(255, 255, 255, 0.05) 82%, transparent 82%),
+		    linear-gradient(to right, #090a0f, #12151e);
+    }
+
+	.racing-telemetry-grid {
+		background-color: #08090b;
+		background-image:
+			repeating-linear-gradient(75deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 40px),
+			linear-gradient(to bottom, rgba(8, 9, 11, 0.2), #08090b),
+			radial-gradient(ellipse at top, rgba(0, 150, 255, 0.12), transparent 70%);
+	}
+
+    /* Ambient Speed Lines & Grid Background */
+    .telemetry-grid {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px) 0 0 / 60px 60px,
+                  linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px) 0 0 / 60px 60px;
+    }
+
+    /* Poster Container Layout */
+    .poster-shell {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 28px auto 60px;
+      padding: 0 16px;
+    }
+
+    .poster-frame {
+      background: var(--carbon);
+      border: 1px solid var(--carbon-border);
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.75), 0 0 45px rgba(255, 42, 112, 0.12);
+    }
+
+    /* Angular Decorative Decals */
+    .corner-tag {
+      position: absolute;
+      font-family: var(--font-tech);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--neon-green);
+      opacity: 0.75;
+      padding: 6px 14px;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+    }
+    .corner-tl { top: 12px; left: 16px; clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); }
+    .corner-tr { top: 12px; right: 16px; color: var(--neon-pink); border-color: rgba(255,42,112,0.3); background: rgba(255,42,112,0.08); }
+
+    /* Header & Title Section */
+    .poster-header {
+      padding: 56px 28px 24px;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(180deg, rgba(10, 14, 22, 0.95) 0%, rgba(18, 22, 32, 0.4) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .series-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 18px;
+      background: linear-gradient(90deg, rgba(255,42,112,0.2) 0%, rgba(0,240,255,0.2) 100%);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      border-radius: 30px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--neon-yellow);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 0 18px rgba(0,240,255,0.2);
+    }
+
+    .main-title {
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6.2vw, 4.4rem);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--neon-pink) 30%, yellow 50%, green 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      text-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+    }
+
+    .subtitle-en {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: 3px;
+      color: var(--neon-pink);
+      text-shadow: 0 0 20px rgba(255, 42, 112, 0.5);
+      margin-bottom: 14px;
+    }
+
+    .hero-tagline {
+      max-width: 720px;
+      margin: 0 auto 24px;
+      color: var(--text-muted);
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+    .hero-tagline span {
+      color: var(--neon-yellow);
+      font-weight: 600;
+    }
+
+    /* Live Countdown Box */
+    .countdown-bar {
+      font-size: 2em;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(8, 11, 16, 0.85);
+      border: 1px solid rgba(255, 42, 112, 0.35);
+      padding: 10px 24px;
+      border-radius: 50px;
+      box-shadow: 0 0 25px rgba(255, 42, 112, 0.2);
+      margin-bottom: 8px;
+    }
+    .cd-label {
+      font-family: var(--font-tech);
+      letter-spacing: 1.5px;
+      color: var(--neon-pink);
+      font-weight: 700;
+    }
+    .cd-digits {
+      font-family: var(--font-tech);
+      color: var(--neon-green);
+      display: flex;
+      gap: 12px;
+      font-weight: 700;
+    }
+    .cd-unit {
+      color: var(--text-muted);
+      margin-left: 2px;
+    }
+
+    /* Quick Action Buttons */
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .btn {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+    }
+
+    .btn-neon-pink {
+      background: linear-gradient(135deg, var(--neon-pink) 0%, #c40c49 100%);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(255, 42, 112, 0.4);
+    }
+    .btn-neon-pink:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(255, 42, 112, 0.6);
+      filter: brightness(1.1);
+    }
+    .btn-neon-green {
+      background: linear-gradient(135deg, green 0%, #0cc444 100%);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(57, 255, 20, 0.4);
+    }
+    .btn-neon-green:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(57, 255, 20, 0.6);
+      filter: brightness(1.1);
+    }
+    .btn-cyber-cyan {
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--neon-green);
+      border: 1px solid var(--neon-green);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    }
+    .btn-cyber-cyan:hover {
+      background: var(--neon-green);
+      color: #07090e;
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+    }
+
+    /* Star Lineup Grid */
+    .section-block {
+      padding: 38px 26px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 22px;
+      background: var(--neon-pink);
+      box-shadow: 0 0 12px var(--neon-pink);
+    }
+    .section-title span {
+      font-size: 13px;
+      font-family: var(--font-tech);
+      color: var(--neon-green);
+      font-weight: 400;
+    }
+
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .guest-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .guest-card > * {
+      margin: 22px 18px;
+    }
+    .guest-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--neon-green);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+    .guest-card.female-highlight {
+      border-color: rgba(255, 42, 112, 0.4);
+      background: linear-gradient(165deg, rgba(255,42,112,0.08) 0%, rgba(16,21,31,0.95) 60%);
+    }
+    .guest-card.female-highlight:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 42, 112, 0.3);
+    }
+
+    .card-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .guest-role-tag {
+      font-size: 11px;
+      font-family: var(--font-tech);
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--neon-green);
+    }
+    /*
+    .female-highlight .guest-role-tag {
+      color: var(--neon-pink);
+      background: rgba(255, 42, 112, 0.12);
+    }
+    */
+
+    .guest-avatar {
+      height: 40vh;
+      object-fit:cover;
+      background: #192030;
+      margin:0;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      position: relative;
+    }
+    .female-highlight .guest-avatar {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 15px rgba(255, 42, 112, 0.35);
+    }
+
+    .guest-name {
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .guest-name-en {
+      font-family: var(--font-display);
+      font-size: 11px;
+      color: var(--neon-yellow);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .guest-org {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .guest-bio {
+      font-size: 12px;
+      color: #b0c0db;
+      line-height: 1.4;
+      border-top: 1px dashed rgba(255,255,255,0.08);
+      padding-top: 8px;
+      margin-top: 6px;
+    }
+
+    /* 4 Pillars Section */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .pillar-box {
+      background: rgba(13, 17, 26, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-left: 3px solid var(--neon-green);
+      padding: 18px 16px;
+      border-radius: 8px;
+      transition: all 0.25s ease;
+    }
+    .pillar-box:hover {
+      background: rgba(20, 27, 40, 0.85);
+      transform: translateX(4px);
+      border-left-color: var(--neon-pink);
+    }
+    .pillar-num {
+      font-family: var(--font-display);
+      font-size: 12px;
+      color: var(--neon-pink);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .pillar-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .pillar-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Dual Venue Logistics Toggle Interactive */
+    .logistics-card {
+      background: linear-gradient(145deg, rgba(16, 21, 31, 0.95) 0%, rgba(10, 14, 22, 0.95) 100%);
+      border: 1px solid var(--carbon-border);
+      border-radius: 14px;
+      padding: 26px;
+      position: relative;
+    }
+    .toggle-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 14px;
+    }
+    .tab-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
+      font-family: var(--font-display);
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: var(--neon-green);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+    .tab-btn:hover:not(.active) {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .venue-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .venue-panel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .venue-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .venue-details-grid { grid-template-columns: 1fr; }
+    }
+    .venue-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .metric-label {
+      font-family: var(--font-tech);
+      font-size: 11px;
+      color: var(--neon-green);
+      letter-spacing: 1.5px;
+    }
+    .metric-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .metric-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Telemetry Interactive Slider Box */
+    .telemetry-interactive {
+      background: rgba(8, 12, 18, 0.9);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: 12px;
+      padding: 22px;
+      margin-top: 26px;
+    }
+    .telemetry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .telemetry-header h4 {
+      font-size: 15px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .live-time-readout {
+      font-family: var(--font-display);
+      font-size: 26px;
+      color: var(--neon-yellow);
+      font-weight: 900;
+      text-shadow: 0 0 15px rgba(252, 238, 10, 0.4);
+    }
+    .slider-track {
+      width: 100%;
+      height: 8px;
+      -webkit-appearance: none;
+      background: #1a2233;
+      border-radius: 4px;
+      outline: none;
+      margin: 14px 0 10px;
+    }
+    .slider-track::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--neon-pink);
+      border: 2px solid #fff;
+      cursor: pointer;
+      box-shadow: 0 0 12px var(--neon-pink);
+      transition: transform 0.1s ease;
+    }
+    .slider-track::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+    .sector-breakdown {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+      text-align: center;
+    }
+    .sector-cell {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .sector-cell span {
+      display: block;
+      font-family: var(--font-tech);
+      font-size: 10px;
+      color: var(--neon-green);
+    }
+    .sector-cell strong {
+      font-family: var(--font-tech);
+      font-size: 14px;
+      color: #fff;
+    }
+
+    /* Modal / Ticket Generator */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(4, 6, 10, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .ticket-container {
+      background: #0f1420;
+      border: 1px solid var(--neon-green);
+      box-shadow: 0 0 50px rgba(0, 240, 255, 0.3);
+      border-radius: 16px;
+      max-width: 520px;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .ticket-head {
+      background: linear-gradient(90deg, #ff2a70, #00f0ff);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #07090e;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: #07090e;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .ticket-body {
+      padding: 24px;
+    }
+    .ticket-chip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 14px;
+    }
+    .barcode-zone {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .simulated-barcode {
+      height: 40px;
+      width: 140px;
+      background: repeating-linear-gradient(90deg, #fff 0, #fff 2px, transparent 2px, transparent 5px, #fff 5px, #fff 8px, transparent 8px, transparent 10px);
+      opacity: 0.85;
+    }
+    .simulated-qr {
+      width: 52px;
+      height: 52px;
+      border: 2px solid var(--neon-green);
+      background: #000;
+      padding: 4px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    .simulated-qr div {
+      background: var(--neon-green);
+      border-radius: 2px;
+    }
+
+    /* Print / Clean Poster Mode Switcher */
+    @media print {
+      body {
+        background: #000 !important;
+        color: #fff !important;
+      }
+      .hero-actions, .telemetry-interactive, .modal-overlay, .tab-btn {
+        display: none !important;
+      }
+      .poster-shell {
+        margin: 0;
+        max-width: 100%;
+      }
+    }
+
+    .footer-stamp {
+      padding: 24px 28px 34px;
+      text-align: center;
+      font-size: 11px;
+      color: #667899;
+      font-family: var(--font-tech);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background telemetry grid overlay -->
+  <div class="telemetry-grid"></div>
+
+  <main class="poster-shell">
+    <div class="poster-frame">
+      
+      <!-- Tech decals -->
+      <div class="corner-tag corner-tr">GIRLS ON THE TRACK · LIVE PASS</div>
+
+      <!-- Header Section -->
+      <header class="poster-header">
+	<!--
+        <div class="series-badge">
+          ⚡ 2026 第六屆中國（澳門）新能源與智慧交通趨勢發展論壇
+        </div>
+	-->
+        
+        <h1 class="main-title">賽車運動中的女性力量</h1>
+        <h2 class="main-title">Girls On The Track </h2>
+        
+        <p class="hero-tagline">
+          從賽道極限到生活態度——看她們如何打破傳統障礙，<span>打破速度限制</span>
+        </p>
+
+        <!-- Live Countdown Timer to Oct 31, 2026 14:45 -->
+        <div class="countdown-bar">
+          <span class="cd-label">RACE COUNTDOWN</span>
+          <div class="cd-digits" id="countdownClock">
+            <div><span id="cdDays">00</span><span class="cd-unit">D</span></div>
+            <div><span id="cdHours">00</span><span class="cd-unit">H</span></div>
+            <div><span id="cdMins">00</span><span class="cd-unit">M</span></div>
+            <div><span id="cdSecs">00</span><span class="cd-unit">S</span></div>
+          </div>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="hero-actions">
+          <button class="btn btn-neon-pink" onclick="openRsvpModal('forum')">
+           JOIN THE CHALLENGE 接受挑戰 
+          </button>
+          <a href=#venue class="btn btn-neon-green">
+	   RACE TRACK STARTING LINE 賽道起跑線
+	  </a>
+	  <!--
+          <button class="btn btn-cyber-cyan" onclick="openRsvpModal('bounty')">
+            🏁 解鎖通關護照 & 圈速競猜
+          </button>
+          <button class="btn btn-ghost" onclick="window.print()">
+            🖨️ 打印 / 保存海報
+          </button>
+	  -->
+        </div>
+      </header>
+
+      <!-- Star Lineup Section -->
+      <section class="section-block">
+        <div class="section-title">
+          重磅嘉賓陣容 <span>// GUEST STAR LINEUP</span>
+        </div>
+        <div class="lineup-grid">
+          
+          <!-- Chloee Wang -->
+          <div class="guest-card">
+              <div class="card-top-bar">
+                <span style="color:var(--neon-pink); font-size:12px;">★ APEX</span>
+              </div>
+	      <img class=guest-avatar src=./chloee.jpg />
+              <h3 class="guest-name">王嶸</h3>
+              <div class="guest-name-en">CHLOEE WANG</div>
+              <div class="guest-org">WRT MOTORSPORT LIMITED / 中國知名女賽車手</div>
+	      <p class="guest-bio">職業房車賽車手 · 賽道極限挑戰者。跨城赴澳迎戰澳門主場標杆圈速，親授專業實戰控車經驗。</p>
+          </div>
+
+          <!-- Go-Kart Princess -->
+          <div class="guest-card">
+              <div class="card-top-bar">
+                <span style="color:var(--neon-pink); font-size:12px;">★ PRINCESS</span>
+              </div>
+	      <img class=guest-avatar src=./renee.jpg />
+              <h3 class="guest-name">李胤樺</h3>
+              <div class="guest-name-en">GO-KART PRINCESS</div>
+              <div class="guest-org">Fun Fun Kart 卡丁車 / 卡丁車場公主</div>
+	      <p class="guest-bio">澳門主場主理人 · 賽車文化普及推手。攜手傳奇前輩設置澳門主場基準圈速，守護賽道活力。</p>
+          </div>
+
+          <!-- Henry Lee Junior -->
+          <div class="guest-card">
+              <div class="card-top-bar">
+                <span style="color:var(--neon-green); font-size:12px;">★ LEGEND</span>
+              </div>
+	      <img class=guest-avatar src=./henry.jpg />
+              <h3 class="guest-name">李萬祺</h3>
+              <div class="guest-name-en">HENRY LEE JUNIOR</div>
+              <div class="guest-org">澳門著名傳奇賽車手</div>
+	      <p class="guest-bio">賽道精神導師 · 澳門格蘭披治名宿。親自審核把關主場賽道難度，傳承對賽道安全與技術極限的崇高敬畏。</p>
+          </div>
+
+          <!-- Host -->
+          <div class="guest-card">
+              <div class="card-top-bar">
+                <span style="color:var(--text-muted); font-size:12px;">★ MODERATOR</span>
+              </div>
+	      <img class=guest-avatar src=./angela.jpg />
+              <h3 class="guest-name">甘燕霞</h3>
+              <div class="guest-name-en">ANGELA KAM</div>
+              <div class="guest-org">可持續發展協會特約主持人</div>
+	      <p class="guest-bio">跨界引言人。引導青年消費趨勢、女性領導力與澳門體育文旅可持續拓展的深層對話。</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Key Pillars Section -->
+      <section class="section-block">
+        <div class="section-title">
+          論壇四大核心支柱 <span>// FOUR STRATEGIC PILLARS</span>
+        </div>
+        <div class="pillars-grid">
+          <div class="pillar-box">
+            <div class="pillar-num">PILLAR 01</div>
+            <div class="pillar-title">賽道女性力量</div>
+            <div class="pillar-desc">職業女車手與賽道管理者面對面，剖析女性在最高抗 G 力競技運動中的韌性與突圍。</div>
+          </div>
+          <div class="pillar-box">
+            <div class="pillar-num">PILLAR 02</div>
+            <div class="pillar-title">彎道即人生</div>
+            <div class="pillar-desc">賽車手的方向盤哲學，在壓力下判斷、在每一次選擇裡承擔後果——這堂課，人生也用得上。</div>
+          </div>
+          <div class="pillar-box">
+            <div class="pillar-num">PILLAR 03</div>
+            <div class="pillar-title">KOL 破圈青年消費新浪潮</div>
+            <div class="pillar-desc">賽車不再只是少數人的機械狂歡，而是一場用鏡頭、態度與潮流生活方式重新定義的青年運動。</div>
+          </div>
+          <div class="pillar-box">
+            <div class="pillar-num">PILLAR 04</div>
+            <div class="pillar-title">潮流文旅研學</div>
+            <div class="pillar-desc">融合澳門格蘭披治歷史底蘊與卡丁車 STEM 科普，開拓長效文旅休閒與青少年研學產業鏈。</div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Dual Venue Logistics & Map Bridge -->
+      <section class="section-block" id=venue>
+        <div class="section-title">
+          雙場地無縫聯動指引 <span>// DUAL-VENUE LOGISTICS</span>
+        </div>
+
+        <div class="logistics-card">
+          <div class="toggle-nav">
+            <button class="tab-btn active" id="tabForum">
+              LAP ONE：主會場論壇
+            </button>
+          </div>
+
+          <!-- Forum Panel -->
+          <div class="venue-panel active" id="panelForum">
+            <div class="venue-details-grid">
+              <div class="venue-metric">
+                <span class="metric-label">TIME SLOT</span>
+                <span class="metric-value">2026 年 10 月 31 日 14:45 – 15:45</span>
+                <span class="metric-sub">敬請提前 15 分鐘入場</span>
+              </div>
+              <div class="venue-metric">
+                <span class="metric-label">VENUE LOCATION</span>
+                <span class="metric-value">澳門威尼斯人展館 ABC</span>
+                <span class="metric-sub"> 第六屆中國（澳門）新能源與智慧交通趨勢發展論壇</span>
+              </div>
+            </div>
+          </div>
+	</div>
+
+        <div class="logistics-card">
+          <div class="toggle-nav">
+            <button class="tab-btn active" id="tabTrack">
+              LAP TWO：賽道起跑線
+            </button>
+          </div>
+
+          <!-- Track Panel -->
+          <div class="venue-panel active" id="panelTrack">
+            <div class="venue-details-grid">
+              <div class="venue-metric">
+                <span class="metric-label">TIME SLOT</span>
+                <span class="metric-value">2026 年 10 月 31 日 16:30 起</span>
+                <span class="metric-sub">論壇轉變為真正的挑戰</span>
+              </div>
+              <div class="venue-metric">
+                <span class="metric-label">VENUE LOCATION</span>
+                <span class="metric-value">Fun Fun Kart 卡丁車場</span>
+                <span class="metric-sub">澳門葡京人 H853 娛樂館 2 樓 R96 鋪</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Telemetry Interactive Simulator -->
+	  <!--
+          <div class="telemetry-interactive">
+            <div class="telemetry-header">
+              <h4>🎯 圈速懸賞令：預測王嶸（Chloee）首發圈速</h4>
+              <div class="live-time-readout" id="lapDisplay">31.250s</div>
+            </div>
+            <p style="font-size:12px; color:var(--text-muted); margin-bottom: 6px;">
+              拖動滑塊自定義你的預測圈速，鎖定你的個人車手號碼牌（差距在 0.200 秒內現場有獎！）：
+            </p>
+            <input type="range" min="28.000" max="35.000" step="0.025" value="31.250" class="slider-track" id="lapSlider" oninput="updateLapPrediction(this.value)">
+            
+            <div class="sector-breakdown">
+              <div class="sector-cell">
+                <span>SECTOR 1 (EST)</span>
+                <strong id="sec1Val">10.41s</strong>
+              </div>
+              <div class="sector-cell">
+                <span>SECTOR 2 (EST)</span>
+                <strong id="sec2Val">11.87s</strong>
+              </div>
+              <div class="sector-cell">
+                <span>SECTOR 3 (EST)</span>
+                <strong id="sec3Val">8.97s</strong>
+              </div>
+            </div>
+          </div>
+	  -->
+
+        </div>
+      </section>
+
+      <!-- Footer Signoff -->
+      <footer class="footer-stamp">
+        <div>2026 GIRLS ON THE TRACK EVENT COMMITTEE ｜ ALL RIGHTS RESERVED</div>
+        <div>SUSTAINABLE DEVELOPMENT ASSOCIATION</div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Interactive Digital Pass / RSVP Modal -->
+  <div class="modal-overlay" id="rsvpModal">
+    <div class="ticket-container">
+      <div class="ticket-head">
+        <span>DRIVER'S PASSPORT // 2026 MACAU</span>
+        <button class="close-btn" onclick="closeRsvpModal()">×</button>
+      </div>
+      <div class="ticket-body">
+        <div class="ticket-chip">
+          <div>
+            <div style="font-family:var(--font-tech); font-size:11px; color:var(--neon-green);">EVENT SERIAL</div>
+            <div style="font-family:var(--font-display); font-size:17px; font-weight:700; color:#fff;" id="ticketSerial">MO-2026-GOT-8819</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-family:var(--font-tech); font-size:11px; color:var(--neon-pink);">PREDICTED LAP</div>
+            <div style="font-family:var(--font-display); font-size:17px; font-weight:700; color:var(--neon-yellow);" id="modalLapVal">31.250s</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px;">持有人登記類別 / ACCESS TIER:</div>
+          <div style="font-weight:700; color:#fff; font-size:15px;" id="modalTierTitle">論壇見面會 VIP 專屬席位 + 車場競速通行卡</div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px; font-size:12px; color:#a2b2cf;">
+          • 10/31 14:45 論壇現身見證嘉賓現場對決數據<br>
+          • 憑此截圖至 Fun Fun Kart 卡丁車場換領專屬裝備紀念品及第二節續跑優惠
+        </div>
+
+        <div class="barcode-zone">
+          <div>
+            <div class="simulated-barcode"></div>
+            <div style="font-family:var(--font-tech); font-size:10px; color:#5d6d8c; margin-top:4px;">VERIFIED BLOCKCHAIN TELEMETRY</div>
+          </div>
+          <div class="simulated-qr">
+            <div></div><div></div><div></div>
+            <div></div><div></div><div></div>
+            <div></div><div></div><div></div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; text-align:center;">
+          <button class="btn btn-neon-pink" style="width:100%; justify-content:center;" onclick="confirmPassSave()">
+            📸 儲存我的電子通行證
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Live Countdown to October 31, 2026, 14:45 CST (UTC+8)
+    const targetDate = new Date("2026-10-31T14:45:00+08:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdownClock").innerHTML = "<span style='color:var(--neon-yellow);'>RACE IN PROGRESS // 活動進行中</span>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("cdDays").innerText = String(days).padStart(2, '0');
+      document.getElementById("cdHours").innerText = String(hours).padStart(2, '0');
+      document.getElementById("cdMins").innerText = String(minutes).padStart(2, '0');
+      document.getElementById("cdSecs").innerText = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 3. Telemetry & Lap-Time Prediction Slider
+    let currentPrediction = "31.250";
+    function updateLapPrediction(val) {
+      const numericVal = parseFloat(val);
+      currentPrediction = numericVal.toFixed(3);
+      document.getElementById("lapDisplay").innerText = currentPrediction + "s";
+      
+      // Approximate sector splits for visual flair
+      const sec1 = (numericVal * 0.333).toFixed(2);
+      const sec2 = (numericVal * 0.380).toFixed(2);
+      const sec3 = (numericVal - parseFloat(sec1) - parseFloat(sec2)).toFixed(2);
+
+      document.getElementById("sec1Val").innerText = sec1 + "s";
+      document.getElementById("sec2Val").innerText = sec2 + "s";
+      document.getElementById("sec3Val").innerText = sec3 + "s";
+    }
+
+    // 4. RSVP Modal & Passport Ticket Generator
+    function openRsvpModal(tier) {
+      const modal = document.getElementById("rsvpModal");
+      const modalLapVal = document.getElementById("modalLapVal");
+      const modalTierTitle = document.getElementById("modalTierTitle");
+      const ticketSerial = document.getElementById("ticketSerial");
+
+      modalLapVal.innerText = currentPrediction + "s";
+      
+      const randomId = Math.floor(1000 + Math.random() * 9000);
+      ticketSerial.innerText = "MO-2026-GOT-" + randomId;
+
+      if (tier === 'forum') {
+        modalTierTitle.innerText = "論壇見面會專屬席位 (包含專屬紀念掛繩)";
+      } else {
+        modalTierTitle.innerText = "圈速懸賞聯票 (論壇席位 + Fun Fun Kart 卡丁車體驗券)";
+      }
+
+      modal.classList.add("active");
+    }
+
+    function closeRsvpModal() {
+      document.getElementById("rsvpModal").classList.remove("active");
+    }
+
+    function confirmPassSave() {
+      alert("✅ 已成功鎖定預測圈速 " + currentPrediction + "s！請截圖保存本通行證，並於 10 月 31 日現場出示驗票。");
+      closeRsvpModal();
+    }
+  </script>
+</body>
+</html>
