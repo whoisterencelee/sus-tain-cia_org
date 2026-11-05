@@ -1,8 +1,9 @@
 # Robots are Here to Takeover Teaching 
 
-*A world where humans are controlled by machines always ends up in the same dilemma: The students rebel because Ai teaches incorrectly and worst, the opposite with conviction.* 
+## That is what we are trying to prevent!
 
-If you ever used Ai, you already get a taste of that when you repeat-ly correct it.  That frustration is simply unbearable because we want agency, to do and learn as we desire. Worst, we are misled and doesn't know until it's far too late.
+If you ever used Ai, you know it's not going to help students.  In fact you probably already get a taste of that when you repeat-ly correct it, it 
+misleads and student won't know until it's far too late.
 
 At the same time, we see the effortless and innovativeness in the use of Ai, with corrective steering, teachers can use machines to help provide attention and adapt teachings in more effective ways.
 
@@ -10,13 +11,13 @@ In quality education we would expect human teacher to use the right tools and me
 
 ***That's responsible sustainable education***
 
-## Take 45 minutes to find out what it can actually do to take things off your plate
+### Let's take 45 minutes to find out what it can actually do to take things off your plate
 
-## Bring the task you least look forward to and maybe leave with one workflow you'll use next week 
+### Bring the task you least look forward to and maybe leave with one workflow you'll use next week 
 
-## No prior experience, nothing to install
+### No prior experience, nothing to install
 
-## One department at a time
+### One department at a time
 
 ## What this is not
 
