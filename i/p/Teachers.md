@@ -3,11 +3,11 @@
 ## That is what we are trying to prevent!
 
 If you ever used Ai, you know it's not going to help students.  In fact you probably already get a taste of that when you repeat-ly correct it, it 
-misleads and student won't know until it's far too late.
+misleads and student won't know until it's far too late.  At the same time, we see the effortless and innovativeness in the use of Ai. 
 
-At the same time, we see the effortless and innovativeness in the use of Ai, with corrective steering, teachers can use machines to help provide attention and adapt teachings in more effective ways.
+With corrective steering, teachers can use machines to help handle the scale and augment teachings in more effective ways.
 
-In quality education we would expect human teacher to use the right tools and methods to make subjects understandable and explain it correctly, therefore ***Teachers are key to watch, correct and use Ai.***
+In quality education we would expect teacher to have the right tools and methods, therefore ***Teachers are key to design the correct use of Ai.***
 
 ***That's responsible sustainable education***
 
