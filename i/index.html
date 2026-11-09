@@ -141,7 +141,7 @@
       color: #0b2b4a;
     }
 
-    /* ----- cards & sections ----- */
+    /* ----- cpadding:0 2em;ards & sections ----- */
     section {
       margin: 3rem 1.5rem 2.5rem;
       break-inside: avoid;
@@ -150,16 +150,20 @@
     section-title {
     	display:block;
 	margin: 1rem 0;
+	text-align:center;
     }
 
     .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1.8rem;
     }
 
     .card {
-      height: 30vh;
+      min-height: 32vh;
+      overflow:hidden;
+      min-width: 32vh;
       background: lightyellow;
       color: navy;
       text-shadow:0 0;
@@ -471,20 +475,18 @@
 	<a class=selected href=index.html?lang=en>EN</a>
 </div>
 
-<section class=hero style="height:100dvh;padding-top:260px;text-align:center;align-items:center;position:relative;margin:0;overflow-x:clip;display:flex;flex-direction:column;justify-content:center;">
+<section class=hero style="height:100dvh;padding:0 2em;padding-top:30vh;text-align:center;align-items:center;position:relative;margin:0;overflow-x:clip;display:flex;flex-direction:column;justify-content:center;">
 
 	<!-- HERO -->
 	<style>
-	.hero h1 { font-size: 3.2rem; max-width: 900px; }
-	.hero h2 { font-size: 1.5rem; max-width: 900px; }
+	.hero h1 { font-size: 3rem; max-width: 900px; line-height:1em; }
+	.hero h2 { font-size: 1.1rem; max-width: 900px; }
 	</style>
 	<h1> Imparting Argumental Intelligence </h1>
-	<h2> Sustainable use of Machine Models </h2>
-	<h2> for Academic, Employment and Entrepreneurial Development </h2>
+	<h2 style=margin-top:1em;> Sustainable use of <span style=display:inline-block;>Machine Models</span> 
+	 for Academic, Employment and Entrepreneurial Development </h2>
 	<div style=margin-top:1em;>
-	<strong>Led by sustaincia.org</strong>
-	— encouraging diverse sustainable development with technology and social efforts 
-	</div>
+	<h2>Led by <a href=https://sustaincia.org style=position:relative;z-index:1000;> sustaincia.org&nbsp;<img src=https://sustaincia.org/logo/favicon.png style=width:1em;height:1em;margin-bottom:-0.2em; /></a></h2>
 
 	<div class=card-grid style="margin:2em 0;z-index:101;">
 		<div class="hero" style="padding:0 1.5rem;display:flex;flex-direction:column;justify-content:center;align-items:center;">
@@ -498,7 +500,7 @@
 		position:absolute;
 		background:lightyellow;color:navy;width:130px;height:130px;border-radius:0;padding:1em;
 		transform-origin: center center;
-		transform: translate(-50%,-50%) rotate(3deg);
+		transform: translate(-50%,-50%) rotate(3deg) scale(0.2);
 		text-shadow:0 0;
 		display:flex;
 		flex-direction:column;
@@ -508,6 +510,9 @@
 		box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
 		text-overflow: ellipsis;
 		touch-action: none;
+	}
+	.postIT:hover {
+		transform: translate(-50%,-50%) rotate(3deg) scale(1);
 	}
 	</style>
 
@@ -684,9 +689,9 @@
 	      <a style=color:white; href=#get><h2 id=get>Get</h2></a>
 	</section-title>
 	    <div class="card-grid">
-	      <div class="card"><h2> Real Projects </h2><p>Prototypes Built with Passion </p> </div>
-	      <div class="card"><h2> Ready Skills </h2><p>Next Level Abilities </p> </div>
-	      <div class="card"><h2> Future Paths </h2><p>Open Career Possibilities </p> </div>
+	      <div class="card"><h2> Real Projects </h2><p>Built with Passion </p> </div>
+	      <div class="card"><h2> Ready Skills </h2><p>Open up Opportunities</p> </div>
+	      <div class="card"><h2> More Insights </h2><p>See Possibilities</p> </div>
 	    </div>
 
 	  <!-- FOOTER / CONTACT -->
