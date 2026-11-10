@@ -12,7 +12,140 @@
     <title>Markdown Loader</title>
 </head>
 <body style=background:radial-gradient(circle,#0355c4,#3eeeff);margin:0;>
+
+	<style>
+	 .die-gradient {
+	    /*
+	      Layer 1 (Top): The Grid
+	      Layer 2 (Bottom): The Animated Rainbow Gradient
+	    */
+	    background:
+	      /* Grid layer */
+	      repeating-linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 0.05) 0px,
+		rgba(0, 0, 0, 0.05) 1px,
+		transparent 1px,
+		transparent 13px
+	      ),
+	      repeating-linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 0.05) 0px,
+		rgba(0, 0, 0, 0.05) 1px,
+		transparent 1px,
+		transparent 13px
+	      ),
+	      /* Gradient layer */
+	      linear-gradient(
+		135deg,
+		#d100d1 0%,
+		#ff0044 15%,
+		#ff8800 30%,
+		#eeff00 50%,
+		#00ff44 70%,
+		#00ddff 85%,
+		#0022cc 100%
+	      );
+
+	    /* Both the grid and gradient need to scale up for the animation */
+	    background-size: 100% 100%, 100% 100%, 200% 200%;
+
+	    /* Apply the animation to all background layers */
+	    animation: shiftGradient 15s ease-in-out infinite alternate;
+
+	    /*
+	    border-radius: 4px;
+	    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+	    box-shadow: inset 0 0 4px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.3);
+	    */
+	  }
+
+	  /* We only want to animate the position of the gradient, not the grid */
+	  @keyframes shiftGradient {
+	    0% {
+	      background-position: 0% 0%, 0% 0%, 0% 50%;
+	    }
+	    50% {
+	      background-position: 0% 0%, 0% 0%, 100% 50%;
+	    }
+	    100% {
+	      background-position: 0% 0%, 0% 0%, 0% 50%;
+	    }
+	  }
+	</style>
+
+<!-- BACKGROUND -->
+	<video autoplay muted loop style=z-index:-1000;position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;opacity:0.2;>
+	  <source src=../cover.webm type=video/webm />
+	</video>
+
     <div id=content>Loading...</div>
+	<style>
+	 .die-gradient {
+	    /*
+	      Layer 1 (Top): The Grid
+	      Layer 2 (Bottom): The Animated Rainbow Gradient
+	    */
+	    background:
+	      /* Grid layer */
+	      repeating-linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 0.05) 0px,
+		rgba(0, 0, 0, 0.05) 1px,
+		transparent 1px,
+		transparent 13px
+	      ),
+	      repeating-linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 0.05) 0px,
+		rgba(0, 0, 0, 0.05) 1px,
+		transparent 1px,
+		transparent 13px
+	      ),
+	      /* Gradient layer */
+	      linear-gradient(
+		135deg,
+		#d100d1 0%,
+		#ff0044 15%,
+		#ff8800 30%,
+		#eeff00 50%,
+		#00ff44 70%,
+		#00ddff 85%,
+		#0022cc 100%
+	      );
+
+	    /* Both the grid and gradient need to scale up for the animation */
+	    background-size: 100% 100%, 100% 100%, 200% 200%;
+
+	    /* Apply the animation to all background layers */
+	    animation: shiftGradient 15s ease-in-out infinite alternate;
+
+	    /*
+	    border-radius: 4px;
+	    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+	    box-shadow: inset 0 0 4px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.3);
+	    */
+	  }
+
+	  /* We only want to animate the position of the gradient, not the grid */
+	  @keyframes shiftGradient {
+	    0% {
+	      background-position: 0% 0%, 0% 0%, 0% 50%;
+	    }
+	    50% {
+	      background-position: 0% 0%, 0% 0%, 100% 50%;
+	    }
+	    100% {
+	      background-position: 0% 0%, 0% 0%, 0% 50%;
+	    }
+	  }
+	</style>
+
+<!-- BACKGROUND -->
+
+	<video autoplay muted loop style=z-index:-1000;position:fixed;width:100vw;height:100vh;object-fit:cover;opacity:0.2;>
+	  <source src=cover.webm type=video/webm />
+	</video>
 
 	<!-- cards -->
 	<div id="cards" class="cards"></div>
@@ -133,6 +266,7 @@
 
 	    const link = document.createElement("a");
 	    link.className = "card";
+	    link.classList.add('die-gradient')
 	    link.href = url;
 	    link.target = "_blank";
 	    link.rel = "noopener noreferrer";
