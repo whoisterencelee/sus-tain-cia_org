@@ -475,6 +475,74 @@
 	<a class=selected href=index.html?lang=en>EN</a>
 </div>
 
+	<style>
+	 .die-gradient {
+	    /*
+	      Layer 1 (Top): The Grid
+	      Layer 2 (Bottom): The Animated Rainbow Gradient
+	    */
+	    background:
+	      /* Grid layer */
+	      repeating-linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 0.05) 0px,
+		rgba(0, 0, 0, 0.05) 1px,
+		transparent 1px,
+		transparent 13px
+	      ),
+	      repeating-linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 0.05) 0px,
+		rgba(0, 0, 0, 0.05) 1px,
+		transparent 1px,
+		transparent 13px
+	      ),
+	      /* Gradient layer */
+	      linear-gradient(
+		135deg,
+		#d100d1 0%,
+		#ff0044 15%,
+		#ff8800 30%,
+		#eeff00 50%,
+		#00ff44 70%,
+		#00ddff 85%,
+		#0022cc 100%
+	      );
+
+	    /* Both the grid and gradient need to scale up for the animation */
+	    background-size: 100% 100%, 100% 100%, 200% 200%;
+
+	    /* Apply the animation to all background layers */
+	    animation: shiftGradient 15s ease-in-out infinite alternate;
+
+	    /*
+	    border-radius: 4px;
+	    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+	    box-shadow: inset 0 0 4px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.3);
+	    */
+	  }
+
+	  /* We only want to animate the position of the gradient, not the grid */
+	  @keyframes shiftGradient {
+	    0% {
+	      background-position: 0% 0%, 0% 0%, 0% 50%;
+	    }
+	    50% {
+	      background-position: 0% 0%, 0% 0%, 100% 50%;
+	    }
+	    100% {
+	      background-position: 0% 0%, 0% 0%, 0% 50%;
+	    }
+	  }
+	</style>
+
+<!-- BACKGROUND -->
+
+	<video autoplay muted loop style=z-index:-1000;position:fixed;width:100vw;height:100vh;object-fit:cover;opacity:0.2;>
+	  <source src=cover.webm type=video/webm />
+	</video>
+
+
 <section class=hero style="height:100dvh;padding:0 2em;padding-top:30vh;text-align:center;align-items:center;position:relative;margin:0;overflow-x:clip;display:flex;flex-direction:column;justify-content:center;">
 
 	<!-- HERO -->
@@ -498,9 +566,10 @@
 	<style>
 	.postIT {
 		position:absolute;
-		background:lightyellow;color:navy;width:130px;height:130px;border-radius:0;padding:1em;
+		/* background:lightyellow; */
+		color:navy;width:130px;height:130px;border-radius:0;padding:1em;
 		transform-origin: center center;
-		transform: translate(-50%,-50%) rotate(3deg) scale(0.2);
+		transform: translate(-50%,-50%) scale(0.2);
 		text-shadow:0 0;
 		display:flex;
 		flex-direction:column;
@@ -512,23 +581,23 @@
 		touch-action: none;
 	}
 	.postIT:hover {
-		transform: translate(-50%,-50%) rotate(3deg) scale(1);
+		transform: translate(-50%,-50%) scale(1);
 	}
 	</style>
 
 	<div id=posting class=unselectable style=position:absolute;inset:0;text-align:center;>
-		<div class="postIT" x="0.52" y="0.08">Collectively follow the latest in AI development</div>
-		<div class="postIT" x="0.82" y="0.12">Build skills from the ground up</div>
-		<div class="postIT" x="0.95" y="0.26">Demonstrate practical solutions</div>
-		<div class="postIT" x="0.40" y="0.25">Scale cost-effectively</div>
-		<div class="postIT" x="0.67" y="0.27">Collaborative design with stakeholders</div>
-		<div class="postIT" x="0.12" y="0.26">Keep control and avoid misdirection</div>
+		<div class="postIT die-gradient" x="0.52" y="0.08">Collectively follow the latest in AI development</div>
+		<div class="postIT die-gradient" x="0.82" y="0.12">Build skills from the ground up</div>
+		<div class="postIT die-gradient" x="0.95" y="0.26">Demonstrate practical solutions</div>
+		<div class="postIT die-gradient" x="0.40" y="0.25">Scale cost-effectively</div>
+		<div class="postIT die-gradient" x="0.67" y="0.27">Collaborative design with stakeholders</div>
+		<div class="postIT die-gradient" x="0.12" y="0.26">Keep control and avoid misdirection</div>
 	</div>
 
 	<script>
 	function newPostIT({ text = '' } = {} , evt ) {
 	  const el = document.createElement('div');
-	  el.className = 'postIT';
+	  el.classList.add('postIT','die-gradient');
 	  el.textContent = text;
 	  el.contentEditable = 'true';
 	  el.style.left = evt.target.offsetLeft + "px"
@@ -667,7 +736,7 @@
 
 	<!-- new postIT -->
 	<!--
-	<div class="postIT unselectable" onclick="newPostIT( { text:'write and stick anywhere' } , event )" x="0.15" y="0.20" style="color:transparent;text-shadow:0 0 1px navy;font-size:44px;transform:translate(-50%,-50%) rotate(0deg);left:75px;top:75px;">🖋</div>
+	<div class="postIT unselectable" onclick="newPostIT( { text:'write and stick anywhere' } , event )" x="0.15" y="0.20" style="color:transparent;text-shadow:0 0 1px navy;font-size:44px;transform:translate(-50%,-50%);left:75px;top:75px;">🖋</div>
 	-->
 
 </section>
@@ -677,9 +746,9 @@
 	      <a style=color:white; href=#join><h2 id=join>Join</h2></a>
 	</section-title>
 	    <div class="card-grid">
-	      <a href=./e><div class="card"><h2>Events ➜</h2><p> Speakers<br/>Researchers<br/>Organizers </p> </div></a>
-	      <a href=./p?s=Adopters.md><div class="card"><h2>Adopters ➜</h2><p> Students<br/>Interns<br/>Trainees </p> </div></a>
-	      <a href=./p?s=Teachers.md><div class="card"><h2>Teachers ➜</h2><p> Experts<br/>Professors<br/>Trainers </p> </div></a>
+	      <a href=./e><div class="card die-gradient"><h2>Events ➜</h2><p> Speakers<br/>Researchers<br/>Organizers </p> </div></a>
+	      <a href=./p?s=Adopters.md><div class="card die-gradient"><h2>Adopters ➜</h2><p> Students<br/>Interns<br/>Trainees </p> </div></a>
+	      <a href=./p?s=Teachers.md><div class="card die-gradient"><h2>Teachers ➜</h2><p> Experts<br/>Professors<br/>Trainers </p> </div></a>
 	    </div>
 	  </div>
 </section>
@@ -689,9 +758,9 @@
 	      <a style=color:white; href=#get><h2 id=get>Get</h2></a>
 	</section-title>
 	    <div class="card-grid">
-	      <div class="card"><h2> Real Projects </h2><p>Built with Passion </p> </div>
-	      <div class="card"><h2> Ready Skills </h2><p>Open up Opportunities</p> </div>
-	      <div class="card"><h2> More Insights </h2><p>See Possibilities</p> </div>
+	      <div class="card die-gradient"><h2> Real Projects </h2><p>Built with Passion </p> </div>
+	      <div class="card die-gradient"><h2> Ready Skills </h2><p>Open up Opportunities</p> </div>
+	      <div class="card die-gradient"><h2> More Insights </h2><p>See Possibilities</p> </div>
 	    </div>
 
 	  <!-- FOOTER / CONTACT -->
