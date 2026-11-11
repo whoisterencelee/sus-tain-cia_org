@@ -175,7 +175,7 @@
       gap: 0.5em;
       align-items:center;
       justify-content:center;
-      border-radius:3px;
+      border-radius:50%;
       box-shadow: 6px -6px 4px rgba(0,0,0,0.25);
     }
 
@@ -534,6 +534,60 @@
 	      background-position: 0% 0%, 0% 0%, 0% 50%;
 	    }
 	  }
+
+    /* ===== CHIP BODY (single div) ===== */
+    .chip {
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      position: relative;
+      width: 280px;
+      height: 280px;
+      /* Green PCB margin area, created by padding */
+      padding: 24px;
+      background: #1a6b3a;
+      background: linear-gradient(145deg, #1f7d45, #145230);
+      border-radius: 6px;
+      box-shadow:
+        /* outer depth */
+        0 12px 24px -8px rgba(0, 0, 0, 0.95),
+        0 4px 8px rgba(0, 0, 0, 0.6),
+        /* edge highlights */
+        inset 0 1px 1px #ffffff18,
+        inset 0 -1px 2px #00000060,
+        /* crisp border */
+        0 0 0 2px #2f343e,
+        0 0 0 4px #0d0f13,
+        0 0 0 6px #1e2229;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      /* text styling for the marking (actual text content) */
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -1px;
+      color: #9aa3b5;
+      text-shadow: 0 1px 2px #000000;
+      z-index: 2;
+    }
+
+    /* ===== CHIP INNER PLATE (the dark top surface) ===== */
+    .chip::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      background: #232730;
+      background: linear-gradient(160deg, #2e333e 0%, #1a1e26 100%);
+      border-radius: 3px;
+      box-shadow:
+        inset 0 1px 0 #ffffff12,
+        inset 0 -1px 0 #00000080,
+        inset 2px 0 0 #ffffff08,
+        inset -2px 0 0 #00000040,
+        0 0 0 1px #0e1015,
+        0 0 0 3px #2a2f3a40;
+      z-index: -1;
+    }
+
 	</style>
 
 <!-- BACKGROUND -->
@@ -567,9 +621,14 @@
 	.postIT {
 		position:absolute;
 		/* background:lightyellow; */
-		color:navy;width:130px;height:130px;border-radius:0;padding:1em;
+		color:#9aa3b5;
+		text-shadow: 0 1px 2px #000000;
+		width:130px;
+		height:130px;
+		border-radius:0;
+		padding:1em;
 		transform-origin: center center;
-		transform: translate(-50%,-50%) scale(0.2);
+		transform: translate(-50%,-50%) scale(0.3);
 		text-shadow:0 0;
 		display:flex;
 		flex-direction:column;
@@ -586,18 +645,18 @@
 	</style>
 
 	<div id=posting class=unselectable style=position:absolute;inset:0;text-align:center;>
-		<div class="postIT die-gradient" x="0.52" y="0.08">Collectively follow the latest in AI development</div>
-		<div class="postIT die-gradient" x="0.82" y="0.12">Build skills from the ground up</div>
-		<div class="postIT die-gradient" x="0.95" y="0.26">Demonstrate practical solutions</div>
-		<div class="postIT die-gradient" x="0.40" y="0.25">Scale cost-effectively</div>
-		<div class="postIT die-gradient" x="0.67" y="0.27">Collaborative design with stakeholders</div>
-		<div class="postIT die-gradient" x="0.12" y="0.26">Keep control and avoid misdirection</div>
+		<div class="postIT chip" x="0.52" y="0.08">Collectively follow the latest in AI development</div>
+		<div class="postIT chip" x="0.82" y="0.12">Build skills from the ground up</div>
+		<div class="postIT chip" x="0.95" y="0.26">Demonstrate practical solutions</div>
+		<div class="postIT chip" x="0.40" y="0.25">Scale cost-effectively</div>
+		<div class="postIT chip" x="0.67" y="0.27">Collaborative design with stakeholders</div>
+		<div class="postIT chip" x="0.12" y="0.26">Keep control and avoid misdirection</div>
 	</div>
 
 	<script>
 	function newPostIT({ text = '' } = {} , evt ) {
 	  const el = document.createElement('div');
-	  el.classList.add('postIT','die-gradient');
+	  el.classList.add('postIT','chip');
 	  el.textContent = text;
 	  el.contentEditable = 'true';
 	  el.style.left = evt.target.offsetLeft + "px"
