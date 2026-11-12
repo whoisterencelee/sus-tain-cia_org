@@ -42,13 +42,13 @@
 
     a {
     	text-decoration:none;
-	color: #2e333e;
+	color: white;
     }
 
     body {
       background: radial-gradient(circle,#0355c4,#3eeeff);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #2e333e;
+      color: white;
     }
 
     /* ----- typography & colour ----- */
@@ -543,7 +543,7 @@
       /* Green PCB margin area, created by padding */
       padding: 24px;
       background: #1a6b3a;
-      background: linear-gradient(145deg, #1f7d45, #145230);
+      background: linear-gradient(145deg, lightgreen, #145230);
       border-radius: 6px;
       box-shadow:
         /* outer depth */
@@ -641,6 +641,11 @@
   .postIT:hover {
     transform: translate(-50%,-50%) scale(1);
   }
+  .postIT[contenteditable="true"]:empty::before {
+    content: "write your thoughts and press enter";
+    color: #6b7280;
+    pointer-events: none;
+  }
 </style>
 
 <div id=posting class=unselectable style=position:absolute;inset:0;text-align:center;>
@@ -674,7 +679,9 @@
   function readInitialFromHTML(postIT) {
     const x = parseFloat(postIT.getAttribute('x'));
     const y = parseFloat(postIT.getAttribute('y'));
-    return Number.isFinite(x) && Number.isFinite(y) ? { x, y, text: postIT.textContent } : null;
+    return Number.isFinite(x) && Number.isFinite(y)
+      ? { x, y, text: postIT.textContent }
+      : null;
   }
 
   function saveLayout() {
@@ -688,7 +695,9 @@
 
   postITs.forEach((postIT, i) => {
     const p = layout[i];
-    if (p) applyPinned(postIT, p.x, p.y);
+    if (!p) return;
+    applyPinned(postIT, p.x, p.y);
+    if (p.text) postIT.textContent = p.text;
   });
 
   // ---------- coordinate helper ----------
@@ -704,9 +713,13 @@
   // ---------- drag ----------
 
   posting.addEventListener('pointerdown', (e) => {
+    // A spawn is pending: this pointerdown is the drop click — do not start a new drag.
+    if (drag && drag.isNew) return;
+
     if (e.target.closest('[data-spawn]')) return;
     const postIT = e.target.closest('.postIT');
     if (!postIT) return;
+    if (postIT.isContentEditable) return;   // let the browser place the caret
 
     const list = [...posting.querySelectorAll('.postIT')];
     const index = list.indexOf(postIT);
@@ -726,7 +739,7 @@
     postIT.style.top  = e.clientY + 'px';
     postIT.style.zIndex = 1000;
 
-    drag = { postIT, index, moved: false };
+    drag = { postIT, index, moved: false, isNew: false };
 
     posting.setPointerCapture(e.pointerId);
     e.preventDefault();
@@ -742,7 +755,7 @@
   function endDrag(e) {
     if (!drag) return;
 
-    // Swallow the pointerup that belongs to the spawn click.
+    // Swallow the pointerup that belongs to the spawn click itself.
     if (spawnPointerId !== null && e.pointerId === spawnPointerId) {
       spawnPointerId = null;
       return;
@@ -764,41 +777,74 @@
     if (drag.moved) saveLayout();
 
     if (drag.isNew) {
+      el.textContent = '';                // clears "stick anywhere" → :empty → placeholder
       el.contentEditable = 'true';
-      el.focus();
+      el.focus();                         // opens mobile keyboard
+
+      // Caret at start (empty box → collapse to start).
       const range = document.createRange();
       range.selectNodeContents(el);
+      range.collapse(true);
       const sel = window.getSelection();
       sel.removeAllRanges();
       sel.addRange(range);
     }
+
     drag = null;
   }
 
   posting.addEventListener('pointerup', endDrag);
   posting.addEventListener('pointercancel', endDrag);
 
-  // shift + dblclick = reset
+  // commit text on Enter / tap-away
+  posting.addEventListener('focusout', (e) => {
+    const chip = e.target.closest('.postIT');
+    if (!chip) return;
+
+    chip.contentEditable = 'false';
+
+    const list = [...posting.querySelectorAll('.postIT')];
+    const idx = list.indexOf(chip);
+    const txt = chip.textContent.trim();
+
+    if (!txt) {
+      const entry = layout[idx];
+      chip.remove();
+      if (entry) layout.splice(idx, 1);
+      saveLayout();
+      return;
+    }
+
+    if (layout[idx]) layout[idx].text = txt;
+    saveLayout();
+  });
+
+  // shift + dblclick = reset; plain dblclick = re-enter edit mode
   posting.addEventListener('dblclick', (e) => {
-    if (!e.shiftKey) return;
-    localStorage.removeItem(STORAGE_KEY);
-    location.reload();
+    if (e.shiftKey) {
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+      return;
+    }
+    const chip = e.target.closest('.postIT');
+    if (!chip) return;
+    chip.contentEditable = 'true';
+    chip.focus();
   });
 
   // ---------- spawn ----------
 
-  function newPostIT({ text = '' } = {}, evt) {
+  function newPostIT({ text = 'stick anywhere' } = {}, evt) {
     evt.stopPropagation();
     evt.preventDefault();
 
     const el = document.createElement('div');
     el.classList.add('postIT', 'chip');
-    el.textContent = text;
-    el.contentEditable = 'false';
+    el.textContent = text;                // visible while dragging
+    el.contentEditable = 'false';         // not editable until drop
 
     posting.appendChild(el);
 
-    // Fixed, centered on the cursor.
     el.style.position = 'fixed';
     el.style.left = evt.clientX + 'px';
     el.style.top  = evt.clientY + 'px';
@@ -825,7 +871,7 @@
 <div class="postIT chip unselectable" data-spawn
      onpointerdown="newPostIT({ text:'stick anywhere' }, event)"
      x="0.05" y="0.05"
-     style="position:fixed;color:white;font-size:44px;transform:translate(-50%,-50%) scale(0.2);left:25px;top:25px;opacity:0.4;">+</div>
+     style="position:fixed;color:white;font-size:44px;transform:translate(-50%,-50%) scale(0.2);left:50px;top:50px;opacity:0.4;">+</div>
 
 </section>
 
