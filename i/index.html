@@ -42,14 +42,13 @@
 
     a {
     	text-decoration:none;
-	color: lightyellow;
+	color: #2e333e;
     }
 
     body {
       background: radial-gradient(circle,#0355c4,#3eeeff);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: lightyellow;
-      text-shadow: 0px 1px 2px black;
+      color: #2e333e;
     }
 
     /* ----- typography & colour ----- */
@@ -616,187 +615,217 @@
 		</div>
 	</div>
 
-	<!-- postIT -->
-	<style>
-	.postIT {
-		position:absolute;
-		/* background:lightyellow; */
-		color:#9aa3b5;
-		text-shadow: 0 1px 2px #000000;
-		width:130px;
-		height:130px;
-		border-radius:0;
-		padding:1em;
-		transform-origin: center center;
-		transform: translate(-50%,-50%) scale(0.3);
-		text-shadow:0 0;
-		display:flex;
-		flex-direction:column;
-		flex-wrap:wrap;
-		align-items:center;
-		justify-content:center;
-		box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
-		text-overflow: ellipsis;
-		touch-action: none;
-	}
-	.postIT:hover {
-		transform: translate(-50%,-50%) scale(1);
-	}
-	</style>
+<!-- postIT -->
+<style>
+  .postIT {
+    position:absolute;
+    color:#9aa3b5;
+    text-shadow: 0 1px 2px #000000;
+    width:130px;
+    height:130px;
+    border-radius:0;
+    padding:1em;
+    transform-origin: center center;
+    transform: translate(-50%,-50%) scale(0.3);
+    text-shadow:0 0;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+    text-overflow: ellipsis;
+    touch-action: none;
+    box-sizing: border-box;
+  }
+  .postIT:hover {
+    transform: translate(-50%,-50%) scale(1);
+  }
+</style>
 
-	<div id=posting class=unselectable style=position:absolute;inset:0;text-align:center;>
-		<div class="postIT chip" x="0.52" y="0.08">Collectively follow the latest in AI development</div>
-		<div class="postIT chip" x="0.82" y="0.12">Build skills from the ground up</div>
-		<div class="postIT chip" x="0.95" y="0.26">Demonstrate practical solutions</div>
-		<div class="postIT chip" x="0.40" y="0.25">Scale cost-effectively</div>
-		<div class="postIT chip" x="0.67" y="0.27">Collaborative design with stakeholders</div>
-		<div class="postIT chip" x="0.12" y="0.26">Keep control and avoid misdirection</div>
-	</div>
+<div id=posting class=unselectable style=position:absolute;inset:0;text-align:center;>
+  <div class="postIT chip" x="0.52" y="0.08">Collectively follow the latest in AI development</div>
+  <div class="postIT chip" x="0.82" y="0.12">Build skills from the ground up</div>
+  <div class="postIT chip" x="0.95" y="0.26">Demonstrate practical solutions</div>
+  <div class="postIT chip" x="0.40" y="0.25">Scale cost-effectively</div>
+  <div class="postIT chip" x="0.67" y="0.27">Collaborative design with stakeholders</div>
+  <div class="postIT chip" x="0.12" y="0.26">Keep control and avoid misdirection</div>
+</div>
 
-	<script>
-	function newPostIT({ text = '' } = {} , evt ) {
-	  const el = document.createElement('div');
-	  el.classList.add('postIT','chip');
-	  el.textContent = text;
-	  el.contentEditable = 'true';
-	  el.style.left = evt.target.offsetLeft + "px"
-	  el.style.top = evt.target.offsetTop + "px"
-	  el.style.zIndex = 1000
+<script>
+  const STORAGE_KEY = 'postIT.v1';
+  const posting = document.getElementById('posting');
+  const postITs = [...posting.querySelectorAll('.postIT')];
 
-	  document.getElementById('posting').appendChild(el);
+  let layout = loadLayout();
+  let drag = null;
+  let spawnPointerId = null;
 
-	  // Enter edit mode.
-	  el.focus();
-	  const range = document.createRange();
-	  range.selectNodeContents(el);
-	  const sel = window.getSelection();
-	  sel.removeAllRanges();
-	  sel.addRange(range);
+  // ---------- persistence ----------
 
-	  // Blur on outside tap/click so the card becomes draggable.
-	  // (Your pointerdown handler gates drag on `document.activeElement !== el`.)
-	  const onDocPointerDown = (e) => {
-	    if (!el.contains(e.target)) {
-	      el.blur();
-	    }
-	  };
-	  document.addEventListener('pointerdown', onDocPointerDown, true);
+  function loadLayout() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (Array.isArray(raw)) return raw;
+    } catch {}
+    return postITs.map(readInitialFromHTML);
+  }
 
-	  // Blur on Enter (without inserting a newline).
-	  const onKeyDown = (e) => {
-		  if (e.key === 'Enter') {
-			  e.preventDefault();
-			  el.blur();
-		  }
-	  };
-	  el.addEventListener('keydown', onKeyDown);
+  function readInitialFromHTML(postIT) {
+    const x = parseFloat(postIT.getAttribute('x'));
+    const y = parseFloat(postIT.getAttribute('y'));
+    return Number.isFinite(x) && Number.isFinite(y) ? { x, y, text: postIT.textContent } : null;
+  }
 
-	  el.addEventListener('blur', () => {
-	    document.removeEventListener('pointerdown', onDocPointerDown, true);
-	    el.contentEditable = 'false';
-	  }, { once: true });
+  function saveLayout() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(layout)); } catch {}
+  }
 
-	  return el;
-	}  // end of newPostIT
+  function applyPinned(postIT, x, y) {
+    postIT.style.left = (x * 100) + '%';
+    postIT.style.top  = (y * 100) + '%';
+  }
 
-		(() => {
-		  const STORAGE_KEY = 'postIT.v1';
-		  const posting = document.getElementById('posting');
-		  const postITs = [...posting.querySelectorAll('.postIT')];
+  postITs.forEach((postIT, i) => {
+    const p = layout[i];
+    if (p) applyPinned(postIT, p.x, p.y);
+  });
 
-		  let layout = loadLayout();
+  // ---------- coordinate helper ----------
+  // Converts a viewport point to posting-relative fractions.
+  function viewportToPosting(clientX, clientY) {
+    const pr = posting.getBoundingClientRect();
+    return {
+      x: (clientX - pr.left) / pr.width,
+      y: (clientY - pr.top)  / pr.height,
+    };
+  }
 
-		  function loadLayout() {
-		    try {
-		      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
-		      if (Array.isArray(raw)) return raw;
-		    } catch {}
-		    return postITs.map(readInitialFromHTML);
-		  }
+  // ---------- drag ----------
 
-		  function readInitialFromHTML(postIT) {
-		    const x = parseFloat(postIT.getAttribute('x'));
-		    const y = parseFloat(postIT.getAttribute('y'));
-		    return Number.isFinite(x) && Number.isFinite(y) ? { x, y } : null;
-		  }
+  posting.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('[data-spawn]')) return;
+    const postIT = e.target.closest('.postIT');
+    if (!postIT) return;
 
-		  function saveLayout() {
-		    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(layout)); } catch {}
-		  }
+    const list = [...posting.querySelectorAll('.postIT')];
+    const index = list.indexOf(postIT);
 
-		  function applyPinned(postIT, x, y) {
-		    postIT.style.left = (x * 100) + '%';
-		    postIT.style.top  = (y * 100) + '%';
-		  }
+    // Seed layout if missing.
+    if (!layout[index]) {
+      const p = viewportToPosting(
+        postIT.getBoundingClientRect().left,
+        postIT.getBoundingClientRect().top
+      );
+      layout[index] = { x: p.x, y: p.y, text: postIT.textContent };
+    }
 
-		  postITs.forEach((postIT, i) => {
-		    const p = layout[i];
-		    if (p) applyPinned(postIT, p.x, p.y);
-		  });
+    // Switch to fixed positioning, centered on the pointer.
+    postIT.style.position = 'fixed';
+    postIT.style.left = e.clientX + 'px';
+    postIT.style.top  = e.clientY + 'px';
+    postIT.style.zIndex = 1000;
 
-		  let drag = null;
-		  posting.addEventListener('pointerdown', (e) => {
-		    const postIT = e.target.closest('.postIT');
-		    if (!postIT) return;
-		    const postITs = [...posting.querySelectorAll('.postIT')];
-		    const index = postITs.indexOf(postIT);
+    drag = { postIT, index, moved: false };
 
-		    if (!layout[index]) {
-		      const r = postIT.getBoundingClientRect();
-		      const pr = posting.getBoundingClientRect();
-		      layout[index] = {
-			x: (r.left - pr.left) / pr.width,
-			y: (r.top  - pr.top ) / pr.height,
-			text: postIT.textContent,
-		      };
-		      applyPinned(postIT, layout[index].x, layout[index].y);
-		    }
+    posting.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  });
 
-		    drag = {
-		      postIT, index,
-		      startX: e.clientX, startY: e.clientY,
-		      startPct: { ...layout[index] },
-		      moved: false,
-		    };
-		    postIT.style.zIndex = 1000;
-		    posting.setPointerCapture(e.pointerId);
-		    e.preventDefault();
-		  });
+  posting.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    drag.postIT.style.left = e.clientX + 'px';
+    drag.postIT.style.top  = e.clientY + 'px';
+    drag.moved = true;
+  });
 
-		  posting.addEventListener('pointermove', (e) => {
-		    if (!drag) return;
-		    const pr = posting.getBoundingClientRect();
-		    drag.postIT.style.left = ((drag.startPct.x + (e.clientX - drag.startX) / pr.width)  * 100) + '%';
-		    drag.postIT.style.top  = ((drag.startPct.y + (e.clientY - drag.startY) / pr.height) * 100) + '%';
-		    layout[drag.index] = {
-		      x: (drag.startPct.x + (e.clientX - drag.startX) / pr.width),
-		      y: (drag.startPct.y + (e.clientY - drag.startY) / pr.height),
-		    };
-		    drag.moved = true;
-		  });
+  function endDrag(e) {
+    if (!drag) return;
 
-		  function endDrag(e) {
-		    if (!drag) return;
-		    posting.releasePointerCapture(e.pointerId);
-		    drag.postIT.style.zIndex = '';
-		    if (drag.moved) saveLayout();
-		    drag = null;
-		  }
-		  posting.addEventListener('pointerup', endDrag);
-		  posting.addEventListener('pointercancel', endDrag);
+    // Swallow the pointerup that belongs to the spawn click.
+    if (spawnPointerId !== null && e.pointerId === spawnPointerId) {
+      spawnPointerId = null;
+      return;
+    }
 
-		  posting.addEventListener('dblclick', (e) => {
-		    if (!e.shiftKey) return;
-		    localStorage.removeItem(STORAGE_KEY);
-		    location.reload();
-		  });
-		})();
-	</script>
+    posting.releasePointerCapture(e.pointerId);
 
-	<!-- new postIT -->
-	<!--
-	<div class="postIT unselectable" onclick="newPostIT( { text:'write and stick anywhere' } , event )" x="0.15" y="0.20" style="color:transparent;text-shadow:0 0 1px navy;font-size:44px;transform:translate(-50%,-50%);left:75px;top:75px;">🖋</div>
-	-->
+    const el = drag.postIT;
+
+    // left/top == rendered center (thanks to translate(-50%,-50%)).
+    const p = viewportToPosting(parseFloat(el.style.left), parseFloat(el.style.top));
+
+    el.style.position = 'absolute';
+    el.style.left = (p.x * 100) + '%';
+    el.style.top  = (p.y * 100) + '%';
+    el.style.zIndex = '';
+
+    layout[drag.index] = { x: p.x, y: p.y, text: el.textContent };
+    if (drag.moved) saveLayout();
+
+    if (drag.isNew) {
+      el.contentEditable = 'true';
+      el.focus();
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+    drag = null;
+  }
+
+  posting.addEventListener('pointerup', endDrag);
+  posting.addEventListener('pointercancel', endDrag);
+
+  // shift + dblclick = reset
+  posting.addEventListener('dblclick', (e) => {
+    if (!e.shiftKey) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
+
+  // ---------- spawn ----------
+
+  function newPostIT({ text = '' } = {}, evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+
+    const el = document.createElement('div');
+    el.classList.add('postIT', 'chip');
+    el.textContent = text;
+    el.contentEditable = 'false';
+
+    posting.appendChild(el);
+
+    // Fixed, centered on the cursor.
+    el.style.position = 'fixed';
+    el.style.left = evt.clientX + 'px';
+    el.style.top  = evt.clientY + 'px';
+    el.style.zIndex = 1000;
+
+    const index = [...posting.querySelectorAll('.postIT')].indexOf(el);
+    const p0 = viewportToPosting(evt.clientX, evt.clientY);
+    layout[index] = { x: p0.x, y: p0.y, text };
+
+    drag = { postIT: el, index, moved: false, isNew: true };
+    spawnPointerId = evt.pointerId;
+
+    posting.setPointerCapture(evt.pointerId);
+
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); el.blur(); }
+    });
+
+    return el;
+  }
+</script>
+
+<!-- new postIT -->
+<div class="postIT chip unselectable" data-spawn
+     onpointerdown="newPostIT({ text:'stick anywhere' }, event)"
+     x="0.05" y="0.05"
+     style="position:fixed;color:white;font-size:44px;transform:translate(-50%,-50%) scale(0.2);left:25px;top:25px;opacity:0.4;">+</div>
 
 </section>
 
