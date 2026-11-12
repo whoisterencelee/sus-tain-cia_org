@@ -657,10 +657,15 @@
   <div class="postIT chip" x="0.12" y="0.26">Keep control and avoid misdirection</div>
 </div>
 
+<!-- new postIT (outside #posting so rebuild doesn't delete it) -->
+<div class="postIT chip unselectable" data-spawn
+     onpointerdown="newPostIT({ text:'stick anywhere' }, event)"
+     x="0.05" y="0.05"
+     style="position:fixed;color:white;font-size:44px;transform:translate(-50%,-50%) scale(0.2);left:25px;top:25px;opacity:0.4;">+</div>
+
 <script>
   const STORAGE_KEY = 'postIT.v1';
   const posting = document.getElementById('posting');
-  const postITs = [...posting.querySelectorAll('.postIT')];
 
   let layout = loadLayout();
   let drag = null;
@@ -671,9 +676,10 @@
   function loadLayout() {
     try {
       const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (Array.isArray(raw)) return raw;
+      if (Array.isArray(raw) && raw.length) return raw;
     } catch {}
-    return postITs.map(readInitialFromHTML);
+    // Seed from the DOM once; storage takes over after the first save.
+    return [...posting.querySelectorAll('.postIT')].map(readInitialFromHTML);
   }
 
   function readInitialFromHTML(postIT) {
@@ -693,12 +699,22 @@
     postIT.style.top  = (y * 100) + '%';
   }
 
-  postITs.forEach((postIT, i) => {
-    const p = layout[i];
-    if (!p) return;
-    applyPinned(postIT, p.x, p.y);
-    if (p.text) postIT.textContent = p.text;
-  });
+  // ---------- rebuild DOM from layout ----------
+
+  function rebuildFromLayout() {
+    posting.innerHTML = '';
+    layout.forEach((p) => {
+      if (!p) return;
+      const el = document.createElement('div');
+      el.classList.add('postIT', 'chip');
+      el.textContent = p.text || '';
+      el.contentEditable = 'false';
+      applyPinned(el, p.x, p.y);
+      posting.appendChild(el);
+    });
+  }
+
+  rebuildFromLayout();
 
   // ---------- coordinate helper ----------
   // Converts a viewport point to posting-relative fractions.
@@ -865,13 +881,8 @@
 
     return el;
   }
-</script>
 
-<!-- new postIT -->
-<div class="postIT chip unselectable" data-spawn
-     onpointerdown="newPostIT({ text:'stick anywhere' }, event)"
-     x="0.05" y="0.05"
-     style="position:fixed;color:white;font-size:44px;transform:translate(-50%,-50%) scale(0.2);left:50px;top:50px;opacity:0.4;">+</div>
+</script>
 
 </section>
 
