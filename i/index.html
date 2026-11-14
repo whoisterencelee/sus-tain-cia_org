@@ -646,15 +646,32 @@
     color: #6b7280;
     pointer-events: none;
   }
+
+  @property --spin {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+  }
+  @keyframes postIT-sending {
+    from { --spin: 0deg; }
+    to   { --spin: 360deg; }
+  }
+  .postIT.postit-sending {
+    animation: postIT-sending 1.2s linear infinite;
+    background-image: linear-gradient(var(--spin, 0deg), lightgreen, #145230);
+    color: #e5f5ea;
+    background-color: transparent;
+  }
+  .postIT.postit-error { outline: 1px solid #ef4444; }
 </style>
 
 <div id=posting class=unselectable style=position:absolute;inset:0;text-align:center;>
-  <div class="postIT chip" x="0.52" y="0.08">Collectively follow the latest in AI development</div>
-  <div class="postIT chip" x="0.82" y="0.12">Build skills from the ground up</div>
-  <div class="postIT chip" x="0.95" y="0.26">Demonstrate practical solutions</div>
-  <div class="postIT chip" x="0.40" y="0.25">Scale cost-effectively</div>
-  <div class="postIT chip" x="0.67" y="0.27">Collaborative design with stakeholders</div>
-  <div class="postIT chip" x="0.12" y="0.26">Keep control and avoid misdirection</div>
+  <div class="postIT chip" x="0.52" y="0.08" t="1700000000001">Collectively follow the latest in AI development</div>
+  <div class="postIT chip" x="0.82" y="0.12" t="1700000000002">Build skills from the ground up</div>
+  <div class="postIT chip" x="0.95" y="0.26" t="1700000000003">Demonstrate practical solutions</div>
+  <div class="postIT chip" x="0.40" y="0.25" t="1700000000004">Scale cost-effectively</div>
+  <div class="postIT chip" x="0.67" y="0.27" t="1700000000005">Collaborative design with stakeholders</div>
+  <div class="postIT chip" x="0.12" y="0.26" t="1700000000006">Keep control and avoid misdirection</div>
 </div>
 
 <!-- new postIT (outside #posting so rebuild doesn't delete it) -->
@@ -665,141 +682,149 @@
 
 <script>
   const STORAGE_KEY = 'postIT.v1';
+  const FORM_URL = 'https://functional.limited/forms';
   const posting = document.getElementById('posting');
 
-  let layout = loadLayout();
-  let drag = null;
-  let spawnPointerId = null;
+  let drag = null;          // gesture state or null
+  let dragging = false;     // predicate: a drag gesture is in progress
 
-  // ---------- persistence ----------
+  // ---------- identity ----------
 
-  function loadLayout() {
-    try {
-      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
-      if (Array.isArray(raw) && raw.length) return raw;
-    } catch {}
-    // Seed from the DOM once; storage takes over after the first save.
-    return [...posting.querySelectorAll('.postIT')].map(readInitialFromHTML);
+  function keyOf(text, t) {
+    return text + '\u0000' + t;
   }
 
-  function readInitialFromHTML(postIT) {
-    const x = parseFloat(postIT.getAttribute('x'));
-    const y = parseFloat(postIT.getAttribute('y'));
-    return Number.isFinite(x) && Number.isFinite(y)
-      ? { x, y, text: postIT.textContent }
-      : null;
+  // ---------- position ----------
+
+  function applyPinned(note, x, y) {
+    note.dataset.x = String(x);
+    note.dataset.y = String(y);
+    note.style.left = (x * 100) + '%';
+    note.style.top  = (y * 100) + '%';
+  }
+
+  function viewportToPosting(clientX, clientY) {
+    const pr = posting.getBoundingClientRect();
+    return { x: (clientX - pr.left) / pr.width, y: (clientY - pr.top) / pr.height };
+  }
+
+  // ---------- serialize / hydrate ----------
+
+  function serialize() {
+    return [...posting.querySelectorAll('.postIT')].map((note) => ({
+      text: note.textContent,
+      t:    Number(note.dataset.t) || 0,
+      x:    parseFloat(note.dataset.x),
+      y:    parseFloat(note.dataset.y),
+    }));
   }
 
   function saveLayout() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(layout)); } catch {}
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(serialize())); } catch {}
   }
 
-  function applyPinned(postIT, x, y) {
-    postIT.style.left = (x * 100) + '%';
-    postIT.style.top  = (y * 100) + '%';
-  }
+  function hydrate() {
+    let entries = null;
 
-  // ---------- rebuild DOM from layout ----------
+    try {
+      const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (Array.isArray(raw) && raw.length) {
+        entries = raw
+          .map((p) => ({
+            text: typeof p.text === 'string' ? p.text : '',
+            t:    Number(p.t),
+            x:    Number(p.x),
+            y:    Number(p.y),
+          }))
+          .filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y) && p.t);
+      }
+    } catch {}
 
-  function rebuildFromLayout() {
+    if (!entries || !entries.length) {
+      entries = [...posting.querySelectorAll('.postIT')].map((note, i) => {
+        const x = parseFloat(note.getAttribute('x'));
+        const y = parseFloat(note.getAttribute('y'));
+        const t = Number(note.getAttribute('t'));
+        return {
+          text: note.textContent,
+          t: Number.isFinite(t) && t ? t : Date.now() + i,
+          x: Number.isFinite(x) ? x : 0.5,
+          y: Number.isFinite(y) ? y : 0.5,
+        };
+      });
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); } catch {}
+    }
+
+    if (!entries.length) return;
+
     posting.innerHTML = '';
-    layout.forEach((p) => {
-      if (!p) return;
-      const el = document.createElement('div');
-      el.classList.add('postIT', 'chip');
-      el.textContent = p.text || '';
-      el.contentEditable = 'false';
-      applyPinned(el, p.x, p.y);
-      posting.appendChild(el);
-    });
+    for (const p of entries) {
+      const note = document.createElement('div');
+      note.classList.add('postIT', 'chip');
+      note.textContent = p.text || '';
+      note.dataset.t = String(p.t);
+      note.contentEditable = 'false';
+      applyPinned(note, p.x, p.y);
+      posting.appendChild(note);
+    }
   }
 
-  rebuildFromLayout();
-
-  // ---------- coordinate helper ----------
-  // Converts a viewport point to posting-relative fractions.
-  function viewportToPosting(clientX, clientY) {
-    const pr = posting.getBoundingClientRect();
-    return {
-      x: (clientX - pr.left) / pr.width,
-      y: (clientY - pr.top)  / pr.height,
-    };
-  }
+  hydrate();
 
   // ---------- drag ----------
 
   posting.addEventListener('pointerdown', (e) => {
-    // A spawn is pending: this pointerdown is the drop click — do not start a new drag.
-    if (drag && drag.isNew) return;
+    if (dragging && drag && drag.isNew) return;
 
     if (e.target.closest('[data-spawn]')) return;
-    const postIT = e.target.closest('.postIT');
-    if (!postIT) return;
-    if (postIT.isContentEditable) return;   // let the browser place the caret
+    const note = e.target.closest('.postIT');
+    if (!note) return;
+    if (note.isContentEditable) return;
 
-    const list = [...posting.querySelectorAll('.postIT')];
-    const index = list.indexOf(postIT);
+    note.style.position = 'fixed';
+    note.style.left = e.clientX + 'px';
+    note.style.top  = e.clientY + 'px';
+    note.style.zIndex = 1000;
 
-    // Seed layout if missing.
-    if (!layout[index]) {
-      const p = viewportToPosting(
-        postIT.getBoundingClientRect().left,
-        postIT.getBoundingClientRect().top
-      );
-      layout[index] = { x: p.x, y: p.y, text: postIT.textContent };
-    }
-
-    // Switch to fixed positioning, centered on the pointer.
-    postIT.style.position = 'fixed';
-    postIT.style.left = e.clientX + 'px';
-    postIT.style.top  = e.clientY + 'px';
-    postIT.style.zIndex = 1000;
-
-    drag = { postIT, index, moved: false, isNew: false };
+    drag = { note, pointerId: e.pointerId, moved: false, isNew: false };
+    dragging = true;
 
     posting.setPointerCapture(e.pointerId);
     e.preventDefault();
   });
 
   posting.addEventListener('pointermove', (e) => {
-    if (!drag) return;
-    drag.postIT.style.left = e.clientX + 'px';
-    drag.postIT.style.top  = e.clientY + 'px';
+    if (!dragging || !drag) return;
+    drag.note.style.left = e.clientX + 'px';
+    drag.note.style.top  = e.clientY + 'px';
     drag.moved = true;
   });
 
   function endDrag(e) {
-    if (!drag) return;
+    if (!dragging || !drag) return;
 
-    // Swallow the pointerup that belongs to the spawn click itself.
-    if (spawnPointerId !== null && e.pointerId === spawnPointerId) {
-      spawnPointerId = null;
+    if (drag.isNew && e.pointerId === drag.pointerId) {
+      drag.pointerId = null;
       return;
     }
 
     posting.releasePointerCapture(e.pointerId);
 
-    const el = drag.postIT;
+    const note = drag.note;
+    const p = viewportToPosting(parseFloat(note.style.left), parseFloat(note.style.top));
 
-    // left/top == rendered center (thanks to translate(-50%,-50%)).
-    const p = viewportToPosting(parseFloat(el.style.left), parseFloat(el.style.top));
+    note.style.position = 'absolute';
+    applyPinned(note, p.x, p.y);
+    note.style.zIndex = '';
 
-    el.style.position = 'absolute';
-    el.style.left = (p.x * 100) + '%';
-    el.style.top  = (p.y * 100) + '%';
-    el.style.zIndex = '';
-
-    layout[drag.index] = { x: p.x, y: p.y, text: el.textContent };
     if (drag.moved) saveLayout();
 
     if (drag.isNew) {
-      el.textContent = '';                // clears "stick anywhere" → :empty → placeholder
-      el.contentEditable = 'true';
-      el.focus();                         // opens mobile keyboard
-
-      // Caret at start (empty box → collapse to start).
+      note.textContent = '';
+      note.contentEditable = 'true';
+      note.focus();
       const range = document.createRange();
-      range.selectNodeContents(el);
+      range.selectNodeContents(note);
       range.collapse(true);
       const sel = window.getSelection();
       sel.removeAllRanges();
@@ -807,45 +832,88 @@
     }
 
     drag = null;
+    dragging = false;
   }
 
   posting.addEventListener('pointerup', endDrag);
   posting.addEventListener('pointercancel', endDrag);
 
-  // commit text on Enter / tap-away
+  // ---------- first (and only) text commit + submit ----------
+
   posting.addEventListener('focusout', (e) => {
-    const chip = e.target.closest('.postIT');
-    if (!chip) return;
+    const note = e.target.closest('.postIT');
+    if (!note) return;
 
-    chip.contentEditable = 'false';
+    note.contentEditable = 'false';
 
-    const list = [...posting.querySelectorAll('.postIT')];
-    const idx = list.indexOf(chip);
-    const txt = chip.textContent.trim();
+    const txt = note.textContent.trim();
 
     if (!txt) {
-      const entry = layout[idx];
-      chip.remove();
-      if (entry) layout.splice(idx, 1);
+      note.remove();
       saveLayout();
       return;
     }
 
-    if (layout[idx]) layout[idx].text = txt;
+    // Already has a timestamp → already saved and submitted. Do nothing.
+    if (note.dataset.t) return;
+
+    const t = Date.now();
+    note.dataset.t = String(t);
     saveLayout();
+
+    const x = parseFloat(note.dataset.x);
+    const y = parseFloat(note.dataset.y);
+
+    note.classList.add('postit-sending');
+    submitPostIT({ text: txt, x, y, t })
+      .then((ok) => {
+        note.classList.remove('postit-sending');
+        if (!ok) note.classList.add('postit-error');
+      })
+      .catch(() => {
+        note.classList.remove('postit-sending');
+        note.classList.add('postit-error');
+      });
   });
 
-  // shift + dblclick = reset; plain dblclick = re-enter edit mode
-  posting.addEventListener('dblclick', (e) => {
-    if (e.shiftKey) {
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
-      return;
+  // ---------- submit (retry with backoff) ----------
+
+  async function submitPostIT({ text, x, y, t },
+                              { maxAttempts = 6, baseDelay = 1000, maxDelay = 8000 } = {}) {
+    const body = new URLSearchParams({
+      text,
+      x:  x.toFixed(4),
+      y:  y.toFixed(4),
+      t:  String(t),
+      _next: 'https://sustaincia.org/i?success',
+      _to:   'https://sustaincia.org/i/postIT',
+    });
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        const res = await fetch(FORM_URL, {
+          method: 'POST',
+          redirect: 'manual',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body,
+        });
+        if (res.type === 'opaqueredirect' || res.ok) return true;
+      } catch { /* network error → retry */ }
+
+      if (attempt < maxAttempts) {
+        const delay = Math.min(baseDelay * 2 ** (attempt - 1), maxDelay);
+        await new Promise((r) => setTimeout(r, delay));
+      }
     }
-    const chip = e.target.closest('.postIT');
-    if (!chip) return;
-    chip.contentEditable = 'true';
-    chip.focus();
+    return false;
+  }
+
+  // ---------- shift + dblclick = reset ----------
+
+  posting.addEventListener('dblclick', (e) => {
+    if (!e.shiftKey) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
   });
 
   // ---------- spawn ----------
@@ -854,34 +922,32 @@
     evt.stopPropagation();
     evt.preventDefault();
 
-    const el = document.createElement('div');
-    el.classList.add('postIT', 'chip');
-    el.textContent = text;                // visible while dragging
-    el.contentEditable = 'false';         // not editable until drop
+    const note = document.createElement('div');
+    note.classList.add('postIT', 'chip');
+    note.textContent = text;
+    note.contentEditable = 'false';
 
-    posting.appendChild(el);
+    posting.appendChild(note);
 
-    el.style.position = 'fixed';
-    el.style.left = evt.clientX + 'px';
-    el.style.top  = evt.clientY + 'px';
-    el.style.zIndex = 1000;
+    note.style.position = 'fixed';
+    note.style.left = evt.clientX + 'px';
+    note.style.top  = evt.clientY + 'px';
+    note.style.zIndex = 1000;
 
-    const index = [...posting.querySelectorAll('.postIT')].indexOf(el);
     const p0 = viewportToPosting(evt.clientX, evt.clientY);
-    layout[index] = { x: p0.x, y: p0.y, text };
+    applyPinned(note, p0.x, p0.y);
 
-    drag = { postIT: el, index, moved: false, isNew: true };
-    spawnPointerId = evt.pointerId;
+    drag = { note, pointerId: evt.pointerId, moved: false, isNew: true };
+    dragging = true;
 
     posting.setPointerCapture(evt.pointerId);
 
-    el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') { e.preventDefault(); el.blur(); }
+    note.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); note.blur(); }
     });
 
-    return el;
+    return note;
   }
-
 </script>
 
 </section>
