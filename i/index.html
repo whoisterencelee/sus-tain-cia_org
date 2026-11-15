@@ -48,7 +48,6 @@
   .stage {
     position: relative;
     width: 1280px;
-    min-height: calc(100vh / var(--stage-scale, 1));
     transform-origin: top left;
     transform: scale(var(--stage-scale, 1));
     display: flow-root;
@@ -190,13 +189,13 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.8rem;
+      gap: 20px;
     }
 
     .card {
-      min-height: 32vh;
+      min-height: 240px;
       overflow: hidden;
-      min-width: 32vh;
+      min-width: 240px;
       color: navy;
       text-shadow: 0 0;
       padding: 1.8rem 1.5rem;
@@ -204,7 +203,7 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      gap: 0.5em;
+      gap: 10px;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
@@ -369,7 +368,7 @@
     .postIT.postit-error { outline: 1px solid #ef4444; }
   </style>
 
-  <div id="posting" class="unselectable" style="position:absolute;inset:0;text-align:center;z-index:2;">
+  <div id="posting" class="unselectable" style="position:absolute;width:1280px;height:720px;top:0;left:0;text-align:center;z-index:2;">
     <div class="postIT chip" x="0.52" y="0.08" t="1700000000001">Collectively follow the latest in AI development</div>
     <div class="postIT chip" x="0.82" y="0.12" t="1700000000002">Build skills from the ground up</div>
     <div class="postIT chip" x="0.95" y="0.26" t="1700000000003">Demonstrate practical solutions</div>
